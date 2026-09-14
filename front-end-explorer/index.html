@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frontend Explorer</title>
+<style>
+:root{
+  --bg:#f4f7f9;--panel:#fff;--ink:#14212d;--muted:#586977;--line:#d6e0e7;
+  --navy:#173f5f;--navy-2:#225c85;--blue-bg:#eaf3f8;
+  --good:#176b45;--good-bg:#e7f5ed;--bad:#9a3030;--bad-bg:#fae9e9;
+  --warn:#7a5a12;--warn-bg:#fff3d0;--na:#5d6973;--na-bg:#edf1f4;
+  --pin:#6e3f82;--pin-bg:#f3eaf7;--focus:#1769aa;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+button,select{font:inherit}
+button:focus-visible,select:focus-visible{outline:3px solid rgba(23,105,170,.28);outline-offset:2px}
+main{max-width:1800px;margin:0 auto;padding:26px 34px 42px}
+.kicker{text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:850;color:var(--navy-2)}
+h1{font-size:32px;line-height:1.08;margin:4px 0 7px}
+.lead{margin:0;color:var(--muted);font-size:15px;line-height:1.48;max-width:1180px}
+.intro{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:18px}
+.howto{max-width:470px;font-size:13px;line-height:1.45;color:#435563;background:#e9f1f6;border-left:4px solid var(--navy-2);padding:10px 12px;border-radius:0 9px 9px 0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:13px;box-shadow:0 4px 18px rgba(20,33,45,.04)}
+.controls{display:grid;grid-template-columns:repeat(5,minmax(140px,1fr)) auto auto;gap:12px;align-items:end;padding:14px 16px;margin-bottom:10px}
+.control{display:grid;gap:5px}.control label{font-size:11px;font-weight:800;color:#405362;text-transform:uppercase;letter-spacing:.035em}
+select{width:100%;padding:8px 10px;border:1px solid #c4d0d8;border-radius:8px;background:#fff;color:var(--ink)}
+.reset{padding:8px 12px;border:1px solid #c4d0d8;border-radius:8px;background:#fff;color:#365268;font-weight:750;cursor:pointer;white-space:nowrap}
+.count{font-weight:750;font-size:13px;white-space:nowrap;padding-bottom:4px;color:#405362}.count b{font-size:25px;color:var(--navy-2);margin-right:3px}
+.filter-note{padding:0 16px 12px;color:var(--muted);font-size:12px;line-height:1.35}
+.legendbar{display:flex;justify-content:space-between;gap:18px;align-items:center;margin:10px 2px 9px;flex-wrap:wrap}
+.legend{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:11px;color:var(--muted)}
+.legend span{display:inline-flex;gap:5px;align-items:center}.legend i{font-style:normal}
+.key{width:18px;height:18px;border-radius:5px;display:inline-grid;place-items:center;border:1px solid currentColor;font-size:10px;font-weight:900}
+.key.y{color:var(--good);background:var(--good-bg)}.key.n{color:var(--bad);background:var(--bad-bg)}.key.u{color:var(--warn);background:var(--warn-bg)}.key.na{color:var(--na);background:var(--na-bg);font-size:8px;letter-spacing:-.035em}
+.scales{display:flex;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:11px}.scales b{color:#405362}
+.matrix{overflow:auto}
+table{border-collapse:separate;border-spacing:0;width:100%;min-width:1580px;font-size:12px}
+th,td{padding:8px 7px;border-bottom:1px solid #e7edf1;vertical-align:middle;text-align:center}
+thead th{position:sticky;top:0;z-index:3;background:#eef3f6;color:#405362;font-size:10px;text-transform:uppercase;letter-spacing:.045em}
+thead th.group{background:#d9e8f1;color:#244f6e;font-weight:850}
+/* Subtle lane separation helps the grouped headers read as four distinct sections. */
+thead tr:first-child th.group{border-left:5px solid var(--bg)}
+thead tr:nth-child(2) th:nth-child(1),
+thead tr:nth-child(2) th:nth-child(3),
+thead tr:nth-child(2) th:nth-child(7),
+thead tr:nth-child(2) th:nth-child(9),
+tbody td:nth-child(2),
+tbody td:nth-child(4),
+tbody td:nth-child(8),
+tbody td:nth-child(10){border-left:5px solid var(--bg)}
+
+td.name,th.name{position:sticky;left:0;text-align:left;z-index:2;background:#fff;min-width:270px;max-width:270px}
+th.name{background:#eef3f6;z-index:4}
+tbody tr:hover td,tbody tr:focus-within td{background:#f7fafc}tbody tr:hover td.name,tbody tr:focus-within td.name{background:#f7fafc}
+tbody tr.is-pinned td{box-shadow:inset 0 1px 0 #d7c6df,inset 0 -1px 0 #d7c6df;background:#fcfafd}
+tbody tr.is-pinned td.name{background:#fcfafd}
+.namewrap{display:flex;gap:8px;align-items:center}.namecopy{min-width:0}.namecopy strong{font-size:12.5px;line-height:1.15;display:block}.small{font-size:10.5px;color:var(--muted);line-height:1.25}.nowrap{white-space:nowrap}
+.pin{width:27px;height:27px;border-radius:7px;border:1px solid #c4d0d8;background:#fff;color:#677580;cursor:pointer;display:grid;place-items:center;font-size:17px;line-height:1;flex:0 0 auto}
+.pin[aria-pressed="true"]{color:var(--pin);background:var(--pin-bg);border-color:#cab4d5}.pin:disabled{opacity:.35;cursor:not-allowed}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 7px;border-radius:999px;font-size:10.5px;font-weight:800;white-space:nowrap}.good{color:var(--good);background:var(--good-bg)}.bad{color:var(--bad);background:var(--bad-bg)}.warn{color:var(--warn);background:var(--warn-bg)}.neutral{color:#455560;background:var(--na-bg)}
+.mark{width:25px;height:25px;border-radius:7px;display:inline-grid;place-items:center;font-weight:900;font-size:12px;border:1px solid currentColor}.mark.yes{color:var(--good);background:var(--good-bg)}.mark.no{color:var(--bad);background:var(--bad-bg)}.mark.unknown{color:var(--warn);background:var(--warn-bg)}.mark.na{color:var(--na);background:var(--na-bg);font-size:8px;letter-spacing:-.035em}
+.pkg{font-size:9.5px;color:var(--muted);margin:3px auto 0;max-width:112px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.other-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 7px;border-radius:999px;background:#edf2f5;color:#42535f;font-size:10.5px;font-weight:800}
+.life{height:20px;position:relative;margin:0 4px;background:#edf1f3;border-radius:4px}.life-line{position:absolute;top:9px;height:2px;background:#7191a8}.dot{position:absolute;top:6px;width:8px;height:8px;border-radius:50%;background:#7191a8;transform:translateX(-50%)}.dot.last{background:var(--navy-2);width:10px;height:10px;top:5px}.life-label{display:flex;justify-content:space-between;font-size:9px;color:var(--muted);padding:2px 2px 0}
+.axis-labels{display:flex;justify-content:space-between;gap:5px;font-size:8.5px;color:#647783;font-weight:650;text-transform:none;letter-spacing:0;margin-top:4px}
+.sizeaxis{height:20px;position:relative;background:#edf1f3;border-radius:4px}.sizeaxis span.range{position:absolute;top:8px;height:4px;background:#6e8ba3;border-radius:99px}.size-dot{position:absolute;top:5px;width:10px;height:10px;border-radius:50%;background:var(--navy-2);transform:translateX(-50%)}
+.missing-size{height:20px;display:grid;place-items:center;background:var(--warn-bg);color:var(--warn);border-radius:4px;font-weight:900}
+.shortlist{margin-top:14px;padding:15px 16px 17px;display:none}.shortlist.show{display:block}.shortlist-head{display:flex;justify-content:space-between;gap:16px;align-items:baseline;margin-bottom:10px}.shortlist h2{font-size:17px;margin:0}.shortlist-head p{font-size:11px;color:var(--muted);margin:0}.shortlist-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.compare-card{border:1px solid #d9cce0;background:#fcfafd;border-radius:10px;padding:12px;min-width:0}.compare-card h3{font-size:15px;margin:0}.remove{float:right;border:0;background:transparent;color:#6c5876;cursor:pointer;font-size:12px;font-weight:800}.card-sub{font-size:10px;color:var(--muted);margin:2px 0 8px}.spec-group{margin-top:8px;padding-top:6px;border-top:1px solid #ece3ef}.spec-group h4{font-size:10px;text-transform:uppercase;letter-spacing:.055em;color:#705b7b;margin:0 0 4px}.spec{display:grid;grid-template-columns:112px minmax(0,1fr);gap:4px 9px;font-size:10.5px;line-height:1.3;padding:2px 0}.spec b{color:#5f4e68}.spec span{overflow-wrap:anywhere}
+.live{font-size:11px;color:#5b4a64;min-height:1.2em;margin:7px 2px 0}
+.empty{padding:28px;text-align:center;color:var(--muted);font-size:13px}
+@media(max-width:980px){main{padding:20px}.intro{display:block}.howto{margin-top:12px}.controls{grid-template-columns:repeat(2,minmax(140px,1fr))}.count{margin-top:4px}.shortlist-grid{grid-template-columns:1fr}}
+@media print{body{background:#fff}main{max-width:none;padding:12px}.panel{box-shadow:none}.controls{break-inside:avoid}.matrix{overflow:visible}table{min-width:0}.pin,.reset{display:none}.shortlist{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+  <header class="intro">
+    <div>
+      <div class="kicker">Decision-support visualization</div>
+      <h1>Frontend Explorer</h1>
+      <p class="lead">Compare emulator frontends across openness, platform support, lifecycle, download footprint, and implementation details. Use filters to narrow the field, then pin up to three candidates for a complete side-by-side review.</p>
+    </div>
+    <div class="howto"><strong>How to use:</strong> Start with the full landscape. Apply only the constraints that matter to your department. Pin interesting candidates to preserve them while you continue exploring.</div>
+  </header>
+
+  <section class="panel" aria-label="Filters">
+    <div class="controls">
+      <div class="control"><label for="platform">Desktop support</label><select id="platform"><option value="all">Any</option><option value="3">All three</option><option value="2">At least two</option><option value="1">At least one</option></select></div>
+      <div class="control"><label for="source">Source code</label><select id="source"><option value="all">Any</option><option value="yes">Available</option><option value="request">On request</option><option value="no">Unavailable</option></select></div>
+      <div class="control"><label for="libre">Free/Libre license</label><select id="libre"><option value="all">Any</option><option value="yes">Available</option><option value="unclear">Unclear / other</option><option value="no">Not available</option></select></div>
+      <div class="control"><label for="status">Maintenance status</label><select id="status"><option value="all">Any</option><option value="active">Actively maintained</option><option value="possible">Possibly discontinued</option><option value="unknown">Unknown</option></select></div>
+      <div class="control"><label for="sort">Sort by</label><select id="sort"><option value="latest">Latest stable, newest first</option><option value="name">Name, A to Z</option><option value="desktop">Desktop breadth</option><option value="download">Download minimum</option></select></div>
+      <button id="reset" class="reset" type="button">Reset</button>
+      <div class="count"><b id="count">14</b> candidates</div>
+    </div>
+    <div id="filterNote" class="filter-note">Showing the full eligible set.</div>
+  </section>
+
+  <div class="legendbar">
+    <div class="legend" aria-label="Legend">
+      <span><i class="key y">✓</i> Supported / available</span>
+      <span><i class="key n">×</i> Unsupported / unavailable</span>
+      <span><i class="key u">?</i> Unknown / not listed</span>
+      <span><i class="key na">N/A</i> N/A in source</span>
+    </div>
+    <div class="scales"><span><b>Lifecycle:</b> shared 2007–2025 scale</span><span><b>Download:</b> logarithmic 0.1–900 MiB scale</span></div>
+  </div>
+
+  <section class="panel matrix" aria-label="Frontend comparison matrix">
+    <table>
+      <thead>
+        <tr>
+          <th class="name" rowspan="2" scope="col">Frontend</th>
+          <th class="group" colspan="2" scope="colgroup">Openness</th>
+          <th class="group" colspan="4" scope="colgroup">Platform support</th>
+          <th class="group" colspan="2" scope="colgroup">Lifecycle</th>
+          <th class="group" colspan="2" scope="colgroup">Technical</th>
+        </tr>
+        <tr>
+          <th scope="col">Source</th><th scope="col">Libre License</th>
+          <th scope="col">Windows</th><th scope="col">macOS</th><th scope="col">GNU/Linux</th><th scope="col">Other</th>
+          <th scope="col" style="min-width:190px">Initial → latest<div class="axis-labels"><span>2007</span><span>2013</span><span>2019</span><span>2025</span></div></th>
+          <th scope="col">Status</th>
+          <th scope="col" style="min-width:195px">Download footprint<div class="axis-labels"><span>0.1</span><span>1</span><span>10</span><span>100</span><span>900 MiB</span></div></th>
+          <th scope="col">Language</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </section>
+  <div id="live" class="live" role="status" aria-live="polite"></div>
+
+  <section id="shortlist" class="panel shortlist" aria-labelledby="shortlistTitle">
+    <div class="shortlist-head"><div><h2 id="shortlistTitle">Pinned comparison</h2><p>Up to three candidates. Pinning preserves choices but does not rank or recommend them.</p></div><div class="small">Exact source values are shown here for completeness.</div></div>
+    <div id="shortlistGrid" class="shortlist-grid"></div>
+  </section>
+</main>
+<script>
+const DATA = [{"name": "Pegasus", "sourceRaw": "Yes", "source": "yes", "licenseRaw": "Yes (GPLv3)", "libre": "yes", "initialRaw": "2017-08-07 (Alpha 3)", "initialDate": "2017-08-07", "initialYear": 2017, "latestRaw": "2025-10-04 (alpha 16)", "latestDate": "2025-10-04", "latestYear": 2025, "windowsRaw": "Yes", "windows": "yes", "macRaw": "Yes", "mac": "yes", "linuxRaw": "Yes", "linux": "yes", "otherRaw": "Android, Raspberry Pi", "otherCount": 2, "downloadRaw": "Not provided", "dmin": null, "dmax": null, "downloadType": "missing", "statusRaw": "Not provided", "status": "unknown", "languageRaw": "Not provided", "language": "Unknown", "desktopCount": 3}, {"name": "Nostlan", "sourceRaw": "Yes", "source": "yes", "licenseRaw": "No", "libre": "no", "initialRaw": "2019-03-04 (v1.0.12)", "initialDate": "2019-03-04", "initialYear": 2019, "latestRaw": "2025-08-12 (v3.0)", "latestDate": "2025-08-12", "latestYear": 2025, "windowsRaw": "Yes", "windows": "yes", "macRaw": "Yes", "mac": "yes", "linuxRaw": "Yes", "linux": "yes", "otherRaw": "N/A", "otherCount": null, "downloadRaw": "Not listed", "dmin": null, "dmax": null, "downloadType": "missing", "statusRaw": "Not listed", "status": "unknown", "languageRaw": "Not listed", "language": "Unknown", "desktopCount": 3}, {"name": "EmulationStation Desktop Edition (ES-DE)", "sourceRaw": "GitLab", "source": "yes", "licenseRaw": "MIT (except Android)", "libre": "yes", "initialRaw": "2021-04-20 (v1.0.0)", "initialDate": "2021-04-20", "initialYear": 2021, "latestRaw": "2025-07-15 (v3.3.0-48)", "latestDate": "2025-07-15", "latestYear": 2025, "windowsRaw": "EXE, ZIP", "windows": "yes", "macRaw": "DMG, Homebrew", "mac": "yes", "linuxRaw": "AppImage, RPM, AUR, Nixpkg", "linux": "yes", "otherRaw": "Android, FreeBSD, Haiku, OpenBSD, Steam Deck", "otherCount": 5, "downloadRaw": "189 MiB", "dmin": 189.0, "dmax": 189.0, "downloadType": "single", "statusRaw": "Actively maintained", "status": "active", "languageRaw": "C++", "language": "C++", "desktopCount": 3}, {"name": "Attract-Mode Plus", "sourceRaw": "GitHub", "source": "yes", "licenseRaw": "GPL-3.0-or-later", "libre": "yes", "initialRaw": "2022-01-29 (v2.6.1)", "initialDate": "2022-01-29", "initialYear": 2022, "latestRaw": "2025-05-31 (v3.1.2)", "latestDate": "2025-05-31", "latestYear": 2025, "windowsRaw": "7z", "windows": "yes", "macRaw": "7z", "mac": "yes", "linuxRaw": "DEB", "linux": "yes", "otherRaw": "No", "otherCount": 0, "downloadRaw": "Not listed", "dmin": null, "dmax": null, "downloadType": "missing", "statusRaw": "Not listed", "status": "unknown", "languageRaw": "Not listed", "language": "Unknown", "desktopCount": 3}, {"name": "Playnite", "sourceRaw": "Yes", "source": "yes", "licenseRaw": "Yes (MIT)", "libre": "yes", "initialRaw": "2017-03-28 (v0.70 Alpha)", "initialDate": "2017-03-28", "initialYear": 2017, "latestRaw": "2025-01-28 (v10.35)", "latestDate": "2025-01-28", "latestYear": 2025, "windowsRaw": "Yes", "windows": "yes", "macRaw": "No", "mac": "no", "linuxRaw": "No", "linux": "no", "otherRaw": "No", "otherCount": 0, "downloadRaw": "Not provided", "dmin": null, "dmax": null, "downloadType": "missing", "statusRaw": "Actively maintained", "status": "active", "languageRaw": "Not provided", "language": "Unknown", "desktopCount": 1}, {"name": "BizHawk", "sourceRaw": "GitHub", "source": "yes", "licenseRaw": "MIT", "libre": "yes", "initialRaw": "2012-03-03 (v1.0.0)", "initialDate": "2012-03-03", "initialYear": 2012, "latestRaw": "2025-01-07 (v2.10)", "latestDate": "2025-01-07", "latestYear": 2025, "windowsRaw": "ZIP", "windows": "yes", "macRaw": "No", "mac": "no", "linuxRaw": ".tar.gz", "linux": "yes", "otherRaw": "No", "otherCount": 0, "downloadRaw": "48.1 MiB (+43 MiB on Windows)", "dmin": 48.1, "dmax": 91.1, "downloadType": "base+add", "statusRaw": "Actively maintained", "status": "active", "languageRaw": "C++ & C#", "language": "C++ & C#", "desktopCount": 2}, {"name": "RetroArch", "sourceRaw": "Yes", "source": "yes", "licenseRaw": "Yes (GPLv3)", "libre": "yes", "initialRaw": "2011-01-25 (v0.2)", "initialDate": "2011-01-25", "initialYear": 2011, "latestRaw": "2024-05-30 (v1.22.2)", "latestDate": "2024-05-30", "latestYear": 2024, "windowsRaw": "Yes", "windows": "yes", "macRaw": "Yes", "mac": "yes", "linuxRaw": "Yes", "linux": "yes", "otherRaw": "DOS, BSD, Haiku, Solaris, PS2, PS3, PSP, PSVita, Xbox, Xbox 360, Xbox One, GameCube, Wii, Wii U, 3DS, Switch, NES/SNES Classic Edition, Raspberry Pi, Android, iOS, Blackberry, Web Browser", "otherCount": 22, "downloadRaw": "4.8 - 165 - 806 MiB (Android - Win10 64bit - PS3 DEX)", "dmin": 4.8, "dmax": 806.0, "downloadType": "range", "statusRaw": "Actively maintained", "status": "active", "languageRaw": "C", "language": "C", "desktopCount": 3}, {"name": "mGalaxy", "sourceRaw": "No", "source": "no", "licenseRaw": "No", "libre": "no", "initialRaw": "2007-02-05 (v1.0)", "initialDate": "2007-02-05", "initialYear": 2007, "latestRaw": "2024-05-01 (v10.1)", "latestDate": "2024-05-01", "latestYear": 2024, "windowsRaw": "Yes", "windows": "yes", "macRaw": "Yes", "mac": "yes", "linuxRaw": "No", "linux": "no", "otherRaw": "No", "otherCount": 0, "downloadRaw": "194 MiB", "dmin": 194.0, "dmax": 194.0, "downloadType": "single", "statusRaw": "Actively maintained", "status": "active", "languageRaw": "Not provided", "language": "Unknown", "desktopCount": 2}, {"name": "GameEx", "sourceRaw": "No", "source": "no", "licenseRaw": "No", "libre": "no", "initialRaw": "2016-04-14 (v14.44)", "initialDate": "2016-04-14", "initialYear": 2016, "latestRaw": "2024-03-13 (v18.61)", "latestDate": "2024-03-13", "latestYear": 2024, "windowsRaw": "Yes", "windows": "yes", "macRaw": "No", "mac": "no", "linuxRaw": "No", "linux": "no", "otherRaw": "No", "otherCount": 0, "downloadRaw": "81.8 MiB", "dmin": 81.8, "dmax": 81.8, "downloadType": "single", "statusRaw": "Actively maintained", "status": "active", "languageRaw": "C#", "language": "C#", "desktopCount": 1}, {"name": "All Stars Launcher", "sourceRaw": "On request", "source": "request", "licenseRaw": "\"Freeware\"", "libre": "unclear", "initialRaw": "2020-09-30 (v2020.274)", "initialDate": "2020-09-30", "initialYear": 2020, "latestRaw": "2024-01-30 (v2024.030)", "latestDate": "2024-01-30", "latestYear": 2024, "windowsRaw": "ZIP", "windows": "yes", "macRaw": "No", "mac": "no", "linuxRaw": "No", "linux": "no", "otherRaw": "No", "otherCount": 0, "downloadRaw": "100 KiB - 135 MiB", "dmin": 0.09765625, "dmax": 135.0, "downloadType": "range", "statusRaw": "Possibly discontinued", "status": "possible", "languageRaw": "MASM - Machine Language", "language": "MASM - Machine Language", "desktopCount": 1}, {"name": "Attract-Mode", "sourceRaw": "GitHub", "source": "yes", "licenseRaw": "GPL-3.0-or-later", "libre": "yes", "initialRaw": "2013-11-17 (v1.0)", "initialDate": "2013-11-17", "initialYear": 2013, "latestRaw": "2023-06-10 (v2.7.0)", "latestDate": "2023-06-10", "latestYear": 2023, "windowsRaw": "ZIP", "windows": "yes", "macRaw": "DMG", "mac": "yes", "linuxRaw": ".tar.gz, AUR, DEB", "linux": "yes", "otherRaw": "No", "otherCount": 0, "downloadRaw": "34.5 - 35.9 MiB", "dmin": 34.5, "dmax": 35.9, "downloadType": "range", "statusRaw": "Actively maintained", "status": "active", "languageRaw": "C++", "language": "C++", "desktopCount": 3}, {"name": "EmulationStation: RetroPie fork", "sourceRaw": "GitHub", "source": "yes", "licenseRaw": "MIT", "libre": "yes", "initialRaw": "2017-03-07 (v2.0.2)", "initialDate": "2017-03-07", "initialYear": 2017, "latestRaw": "2023-04-13 (v2.11.2)", "latestDate": "2023-04-13", "latestYear": 2023, "windowsRaw": "ZIP", "windows": "yes", "macRaw": "No", "mac": "no", "linuxRaw": ".tar.gz", "linux": "yes", "otherRaw": "Raspberry Pi Zero/ Zero 2 W /1/2/3/4/400 (IMG)", "otherCount": 1, "downloadRaw": "Not listed", "dmin": null, "dmax": null, "downloadType": "missing", "statusRaw": "Not listed", "status": "unknown", "languageRaw": "Not listed", "language": "Unknown", "desktopCount": 2}, {"name": "QuickPlay", "sourceRaw": "Yes", "source": "yes", "licenseRaw": "Yes (BSD-3)", "libre": "yes", "initialRaw": "2014-04-14 (v3.9.0)", "initialDate": "2014-04-14", "initialYear": 2014, "latestRaw": "2022-03-26 (v4.7.6)", "latestDate": "2022-03-26", "latestYear": 2022, "windowsRaw": "Yes", "windows": "yes", "macRaw": "N/A", "mac": "na", "linuxRaw": "N/A", "linux": "na", "otherRaw": "N/A", "otherCount": null, "downloadRaw": "32.8 MiB", "dmin": 32.8, "dmax": 32.8, "downloadType": "single", "statusRaw": "Actively maintained", "status": "active", "languageRaw": "Delphi", "language": "Delphi", "desktopCount": 1}, {"name": "EmuLoader", "sourceRaw": "Yes", "source": "yes", "licenseRaw": "No", "libre": "no", "initialRaw": "2007-08-27 (v5.1.6)", "initialDate": "2007-08-27", "initialYear": 2007, "latestRaw": "2021-10-27 (v8.9.4)", "latestDate": "2021-10-27", "latestYear": 2021, "windowsRaw": "Yes", "windows": "yes", "macRaw": "No", "mac": "no", "linuxRaw": "No", "linux": "no", "otherRaw": "No", "otherCount": 0, "downloadRaw": "16.50 MiB", "dmin": 16.5, "dmax": 16.5, "downloadType": "single", "statusRaw": "Actively maintained", "status": "active", "languageRaw": "Pascal", "language": "Pascal", "desktopCount": 1}];
+
+const $ = id => document.getElementById(id);
+const params = new URLSearchParams(location.search);
+let pinned = [];
+
+function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+function stateMark(state, raw){
+  if(state==='yes') return `<span class="mark yes" aria-label="Supported" title="${esc(raw)}">✓</span>`;
+  if(state==='no') return `<span class="mark no" aria-label="Not supported" title="${esc(raw)}">×</span>`;
+  if(state==='na') return `<span class="mark na" aria-label="N/A in source" title="${esc(raw)}">N/A</span>`;
+  return `<span class="mark unknown" aria-label="Unknown" title="${esc(raw)}">?</span>`;
+}
+function sourceBadge(d){
+  if(d.source==='yes') return '<span class="badge good">✓ available</span>';
+  if(d.source==='request') return '<span class="badge warn">? on request</span>';
+  return '<span class="badge bad">× unavailable</span>';
+}
+function libreBadge(d){
+  if(d.libre==='yes') return '<span class="badge good">✓ Libre</span>';
+  if(d.libre==='unclear') return '<span class="badge warn">? unclear</span>';
+  return '<span class="badge bad">× not Libre</span>';
+}
+function statusBadge(d){
+  if(d.status==='active') return '<span class="badge good">Active</span>';
+  if(d.status==='possible') return '<span class="badge bad">Possibly discontinued</span>';
+  return '<span class="badge warn">Unknown</span>';
+}
+function otherCell(d){
+  if(d.otherRaw==='N/A') return `<span class="mark na" aria-label="N/A in source">N/A</span><div class="pkg" title="N/A">N/A</div>`;
+  if(d.otherRaw==='No') return `<span class="other-badge">0 additional</span><div class="pkg">No</div>`;
+  return `<span class="other-badge">${d.otherCount} additional</span><div class="pkg" title="${esc(d.otherRaw)}">${esc(d.otherRaw)}</div>`;
+}
+function yearPct(y){return Math.max(0,Math.min(100,((y-2007)/(2025-2007))*100));}
+function timeline(d){
+  const a=yearPct(d.initialYear), b=yearPct(d.latestYear);
+  return `<div class="life" title="Initial: ${esc(d.initialRaw)} | Latest: ${esc(d.latestRaw)}"><span class="life-line" style="left:${a}%;width:${Math.max(1,b-a)}%"></span><i class="dot first" style="left:${a}%"></i><i class="dot last" style="left:${b}%"></i></div><div class="life-label"><span>${d.initialYear}</span><span>${d.latestYear}</span></div>`;
+}
+function logPct(v){if(v==null)return null;const lo=Math.log10(.09),hi=Math.log10(900);return (Math.log10(Math.max(.09,v))-lo)/(hi-lo)*100;}
+function sizeRange(d){
+  if(d.dmin==null)return '<div class="missing-size" aria-label="Download size unknown">?</div><div class="small">not listed / provided</div>';
+  const a=logPct(d.dmin), b=logPct(d.dmax);
+  if(Math.abs(a-b)<1){return `<div class="sizeaxis" title="${esc(d.downloadRaw)}"><i class="size-dot" style="left:${a}%"></i></div><div class="small">${esc(d.downloadRaw)}</div>`;}
+  return `<div class="sizeaxis" title="${esc(d.downloadRaw)}"><span class="range" style="left:${a}%;width:${Math.max(1,b-a)}%"></span><i class="size-dot" style="left:${a}%"></i><i class="size-dot" style="left:${b}%"></i></div><div class="small">${esc(d.downloadRaw)}</div>`;
+}
+function pinDisabled(name){return pinned.length>=3 && !pinned.includes(name);}
+function getFiltered(){
+  const p=$('platform').value,s=$('source').value,l=$('libre').value,st=$('status').value;
+  let result=DATA.filter(d=>(p==='all'||d.desktopCount>=+p)&&(s==='all'||d.source===s)&&(l==='all'||d.libre===l)&&(st==='all'||d.status===st));
+  const sort=$('sort').value;
+  result=[...result].sort((a,b)=>{
+    if(sort==='name') return a.name.localeCompare(b.name);
+    if(sort==='desktop') return (b.desktopCount-a.desktopCount)||(b.latestDate.localeCompare(a.latestDate));
+    if(sort==='download') return ((a.dmin??Infinity)-(b.dmin??Infinity))||a.name.localeCompare(b.name);
+    return b.latestDate.localeCompare(a.latestDate);
+  });
+  return result;
+}
+function describeFilters(count){
+  const labels=[];
+  if($('platform').value!=='all') labels.push($('platform').selectedOptions[0].text+' desktop support');
+  if($('source').value!=='all') labels.push('source code: '+$('source').selectedOptions[0].text.toLowerCase());
+  if($('libre').value!=='all') labels.push('Free/Libre license: '+$('libre').selectedOptions[0].text.toLowerCase());
+  if($('status').value!=='all') labels.push('status: '+$('status').selectedOptions[0].text.toLowerCase());
+  $('filterNote').textContent = labels.length ? `Showing ${count} of 14 candidates after applying ${labels.join('; ')}.` : 'Showing the full eligible set.';
+}
+function render(){
+  const filtered=getFiltered();
+  $('count').textContent=filtered.length;describeFilters(filtered.length);
+  if(!filtered.length){$('rows').innerHTML='<tr><td colspan="11"><div class="empty">No candidates match the current combination. Reset one or more filters to broaden the field.</div></td></tr>';renderShortlist();return;}
+  $('rows').innerHTML=filtered.map(d=>`<tr data-name="${esc(d.name)}" class="${pinned.includes(d.name)?'is-pinned':''}">
+    <td class="name"><div class="namewrap"><button class="pin" type="button" aria-label="${pinned.includes(d.name)?'Unpin':'Pin'} ${esc(d.name)}" aria-pressed="${pinned.includes(d.name)}" ${pinDisabled(d.name)?'disabled':''}>${pinned.includes(d.name)?'★':'☆'}</button><div class="namecopy"><strong>${esc(d.name)}</strong><div class="small">Latest: ${esc(d.latestDate)}</div></div></div></td>
+    <td>${sourceBadge(d)}<div class="pkg" title="${esc(d.sourceRaw)}">${esc(d.sourceRaw)}</div></td>
+    <td>${libreBadge(d)}<div class="pkg" title="${esc(d.licenseRaw)}">${esc(d.licenseRaw)}</div></td>
+    <td>${stateMark(d.windows,d.windowsRaw)}<div class="pkg" title="${esc(d.windowsRaw)}">${esc(d.windowsRaw)}</div></td>
+    <td>${stateMark(d.mac,d.macRaw)}<div class="pkg" title="${esc(d.macRaw)}">${esc(d.macRaw)}</div></td>
+    <td>${stateMark(d.linux,d.linuxRaw)}<div class="pkg" title="${esc(d.linuxRaw)}">${esc(d.linuxRaw)}</div></td>
+    <td>${otherCell(d)}</td>
+    <td>${timeline(d)}</td><td>${statusBadge(d)}</td><td>${sizeRange(d)}</td>
+    <td>${d.language==='Unknown'?'<span class="badge warn">Unknown</span>':esc(d.language)}</td>
+  </tr>`).join('');
+  $('rows').querySelectorAll('.pin').forEach(btn=>btn.addEventListener('click',()=>togglePin(btn.closest('tr').dataset.name)));
+  renderShortlist();
+}
+function togglePin(name){
+  if(pinned.includes(name)){pinned=pinned.filter(x=>x!==name);$('live').textContent=`${name} removed from pinned comparison.`;}
+  else if(pinned.length<3){pinned.push(name);$('live').textContent=`${name} pinned. ${3-pinned.length} comparison slot${3-pinned.length===1?'':'s'} remaining.`;}
+  else{$('live').textContent='Three candidates are already pinned. Remove one before adding another.';}
+  render();
+}
+function spec(label,value){return `<div class="spec"><b>${label}</b><span>${esc(value)}</span></div>`;}
+function renderShortlist(){
+  const box=$('shortlist'),grid=$('shortlistGrid');box.classList.toggle('show',pinned.length>0);
+  grid.innerHTML=pinned.map(n=>{const d=DATA.find(x=>x.name===n);return `<article class="compare-card"><button class="remove" type="button" data-remove="${esc(d.name)}">Remove</button><h3>${esc(d.name)}</h3><div class="card-sub">Pinned candidate, not a recommendation</div>
+    <div class="spec-group"><h4>Openness</h4>${spec('Source code',d.sourceRaw)}${spec('Free/Libre license',d.licenseRaw)}</div>
+    <div class="spec-group"><h4>Platform support</h4>${spec('Windows',d.windowsRaw)}${spec('macOS',d.macRaw)}${spec('GNU/Linux',d.linuxRaw)}${spec('Other',d.otherRaw)}</div>
+    <div class="spec-group"><h4>Release history</h4>${spec('Initial public',d.initialRaw)}${spec('Latest stable',d.latestRaw)}</div>
+    <div class="spec-group"><h4>Technical facts</h4>${spec('Download size',d.downloadRaw)}${spec('Current status',d.statusRaw)}${spec('Language used',d.languageRaw)}</div>
+  </article>`}).join('');
+  grid.querySelectorAll('[data-remove]').forEach(btn=>btn.addEventListener('click',()=>togglePin(btn.dataset.remove)));
+}
+function resetAll(){['platform','source','libre','status'].forEach(id=>$(id).value='all');$('sort').value='latest';$('live').textContent='Filters reset.';render();}
+function applyParams(){
+  ['platform','source','libre','status','sort'].forEach(id=>{const v=params.get(id);if(v && [...$(id).options].some(o=>o.value===v))$(id).value=v;});
+  const pinParam=params.get('pin');if(pinParam){pinned=pinParam.split('|').map(decodeURIComponent).filter(n=>DATA.some(d=>d.name===n)).slice(0,3);}
+}
+['platform','source','libre','status','sort'].forEach(id=>$(id).addEventListener('change',render));$('reset').addEventListener('click',resetAll);
+applyParams();render();
+</script>
+</body>
+</html>
