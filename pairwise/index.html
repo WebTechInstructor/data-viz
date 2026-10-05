@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Homework 3 Pairwise FRED Relationships</title>
+<style>
+:root{
+  --ink:#18324a;
+  --muted:#67798a;
+  --line:#c9d3dc;
+  --grid:#e8edf1;
+  --panel:#f7f9fb;
+  --diag:#eef4f8;
+  --blue:#0072B2;
+  --orange:#D55E00;
+  --focus:#173f5f;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color:var(--ink);
+  background:#fff;
+}
+.page{
+  width:1600px;
+  min-height:1120px;
+  margin:0 auto;
+  padding:28px 34px 24px;
+}
+h1{font-size:30px;line-height:1.15;margin:0;font-weight:750;letter-spacing:-.02em}
+.subtitle{margin-top:6px;color:var(--muted);font-size:15px}
+.layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 256px;
+  gap:18px;
+  margin-top:18px;
+  align-items:start
+}
+.matrix-wrap{border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff}
+#matrix{width:100%;height:auto;display:block}
+.sidebar{display:flex;flex-direction:column;gap:10px}
+.card{border:1px solid var(--line);border-radius:8px;background:#fff;overflow:hidden}
+.card h2{margin:0;padding:10px 12px;background:var(--panel);font-size:15px}
+.card .body{padding:12px;font-size:12.5px;line-height:1.42}
+.legend-row{display:flex;align-items:center;gap:9px;margin:8px 0}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--blue);display:inline-block}
+.square{width:12px;height:12px;background:var(--orange);display:inline-block}
+.note{font-size:11.5px;color:var(--muted);margin-top:8px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+button{
+  font:inherit;font-size:12px;padding:7px 10px;border-radius:6px;border:1px solid var(--line);
+  background:#fff;color:var(--ink);cursor:pointer
+}
+button.active{background:var(--focus);color:#fff;border-color:var(--focus)}
+#detailTitle{font-weight:700;margin-bottom:4px}
+#detailMeta{color:var(--muted);font-size:12px;margin-bottom:8px}
+#detailSvg{width:100%;height:auto;display:block;background:#fff}
+.bottom-key{
+  margin-top:16px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  overflow:hidden;
+}
+.bottom-key h2{
+  margin:0;padding:10px 12px;background:var(--panel);font-size:15px
+}
+.key-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:0;
+}
+.key-item{
+  padding:12px 14px;
+  border-top:1px solid var(--grid);
+  border-right:1px solid var(--grid);
+  min-height:72px;
+}
+.key-item:nth-child(3n){border-right:none}
+.key-name{font-weight:700;font-size:12px;margin-bottom:4px}
+.key-code{font-size:11px;color:var(--muted)}
+.key-unit{font-size:11px;color:var(--muted);margin-top:2px}
+.footer{
+  margin-top:12px;padding-top:8px;border-top:1px solid var(--grid);
+  color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:16px
+}
+.tooltip{
+  position:fixed;pointer-events:none;background:#102b3f;color:#fff;border-radius:6px;
+  padding:8px 10px;font-size:12px;line-height:1.35;box-shadow:0 4px 18px rgba(0,0,0,.18);
+  opacity:0;transition:opacity .08s;z-index:99;max-width:260px
+}
+.small-list{margin:0;padding-left:18px}
+.small-list li{margin:4px 0}
+@media print{
+  .controls{display:none}
+  .page{width:auto;min-height:auto;padding:18px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Homework 3 | Pairwise FRED Relationships</h1>
+  <div class="subtitle">Six monthly economic indicators, August 2016 through July 2026. Each scatterplot shows one of the 15 unique pairwise relationships.</div>
+
+  <div class="layout">
+    <div class="matrix-wrap">
+      <svg id="matrix" viewBox="0 0 1190 935" role="img" aria-labelledby="matrixTitle matrixDesc">
+        <title id="matrixTitle">Triangular scatterplot matrix of six FRED indicators</title>
+        <desc id="matrixDesc">Fifteen pairwise scatterplots. Blue circles show the first 60 months and orange squares show the second 60 months.</desc>
+      </svg>
+    </div>
+
+    <aside class="sidebar">
+      <section class="card">
+        <h2>Time period</h2>
+        <div class="body">
+          <div class="legend-row"><span class="dot"></span><span><strong>Early half</strong><br>Aug 2016 to Jul 2021</span></div>
+          <div class="legend-row"><span class="square"></span><span><strong>Late half</strong><br>Aug 2021 to Jul 2026</span></div>
+          <div class="controls">
+            <button id="splitBtn" class="active">Split-half view</button>
+            <button id="singleBtn">All months</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>How to read it</h2>
+        <div class="body">
+          <ul class="small-list">
+            <li>Each point represents one month.</li>
+            <li>Upward patterns suggest positive correlation.</li>
+            <li>Downward patterns suggest negative correlation.</li>
+            <li>Diffuse clouds suggest little linear correlation.</li>
+          </ul>
+          <div class="note">The small <em>r</em> value in each panel summarizes the full 10-year Pearson correlation for that pair.</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Selected pair</h2>
+        <div class="body">
+          <div id="detailTitle">Select a pair</div>
+          <div id="detailMeta">Click any scatterplot for a larger view.</div>
+          <svg id="detailSvg" viewBox="0 0 240 220" aria-label="Selected pair detail"></svg>
+          <div id="detailStats" class="note"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Why split the decade?</h2>
+        <div class="body">
+          The two marker styles make it easier to see whether an overall relationship remains similar or changes over time. This is a diagnostic view, not a claim that August 2021 is a causal breakpoint.
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <section class="bottom-key">
+    <h2>Series key</h2>
+    <div class="key-grid" id="seriesKey"></div>
+  </section>
+
+  <div class="footer">
+    <span>FRED codes are retained in the series key for verification.</span>
+    <span>Correlation describes association, not causation.</span>
+  </div>
+</div>
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+const P = {"series":["PROFCONS","TLPWRCONS","PCU33443344","IPB53122S","CES3133440001","PCE"],"labels":{"PROFCONS":"Office Construction","TLPWRCONS":"Power Construction","PCU33443344":"Semiconductor Prices","IPB53122S":"Semiconductor Production","CES3133440001":"Semiconductor Employment","PCE":"Consumer Spending"},"units":{"PROFCONS":"Millions $, SAAR","TLPWRCONS":"Millions $, SAAR","PCU33443344":"Producer price index","IPB53122S":"Index (2017 = 100)","CES3133440001":"Thousands of persons","PCE":"Billions $, SAAR"},"data":[{"date":"2016-08-01","PROFCONS":62814.0,"TLPWRCONS":104296.0,"PCU33443344":57.4,"IPB53122S":89.99,"CES3133440001":366.6,"PCE":12788.1},{"date":"2016-09-01","PROFCONS":63241.0,"TLPWRCONS":106134.0,"PCU33443344":57.1,"IPB53122S":91.7511,"CES3133440001":364.8,"PCE":12846.6},{"date":"2016-10-01","PROFCONS":63377.0,"TLPWRCONS":105015.0,"PCU33443344":56.9,"IPB53122S":93.6898,"CES3133440001":363.3,"PCE":12867.0},{"date":"2016-11-01","PROFCONS":65110.0,"TLPWRCONS":107626.0,"PCU33443344":56.9,"IPB53122S":94.4096,"CES3133440001":362.7,"PCE":12893.0},{"date":"2016-12-01","PROFCONS":64316.0,"TLPWRCONS":108514.0,"PCU33443344":56.9,"IPB53122S":94.991,"CES3133440001":363.3,"PCE":13005.9},{"date":"2017-01-01","PROFCONS":62978.0,"TLPWRCONS":110424.0,"PCU33443344":57.4,"IPB53122S":95.6996,"CES3133440001":359.9,"PCE":13063.7},{"date":"2017-02-01","PROFCONS":60356.0,"TLPWRCONS":107641.0,"PCU33443344":57.3,"IPB53122S":96.8644,"CES3133440001":359.6,"PCE":13088.4},{"date":"2017-03-01","PROFCONS":60197.0,"TLPWRCONS":103168.0,"PCU33443344":57.3,"IPB53122S":97.9667,"CES3133440001":361.0,"PCE":13139.9},{"date":"2017-04-01","PROFCONS":60376.0,"TLPWRCONS":97677.0,"PCU33443344":57.6,"IPB53122S":99.4458,"CES3133440001":361.0,"PCE":13169.2},{"date":"2017-05-01","PROFCONS":59565.0,"TLPWRCONS":95844.0,"PCU33443344":57.5,"IPB53122S":100.1456,"CES3133440001":360.6,"PCE":13171.9},{"date":"2017-06-01","PROFCONS":60209.0,"TLPWRCONS":92346.0,"PCU33443344":57.4,"IPB53122S":100.2831,"CES3133440001":361.1,"PCE":13225.2},{"date":"2017-07-01","PROFCONS":58627.0,"TLPWRCONS":90388.0,"PCU33443344":56.6,"IPB53122S":100.1293,"CES3133440001":361.3,"PCE":13263.3},{"date":"2017-08-01","PROFCONS":57421.0,"TLPWRCONS":90464.0,"PCU33443344":56.4,"IPB53122S":100.1895,"CES3133440001":360.2,"PCE":13294.6},{"date":"2017-09-01","PROFCONS":58071.0,"TLPWRCONS":91589.0,"PCU33443344":56.0,"IPB53122S":100.7648,"CES3133440001":362.9,"PCE":13417.3},{"date":"2017-10-01","PROFCONS":59408.0,"TLPWRCONS":91681.0,"PCU33443344":56.0,"IPB53122S":101.5288,"CES3133440001":364.6,"PCE":13447.5},{"date":"2017-11-01","PROFCONS":61116.0,"TLPWRCONS":91628.0,"PCU33443344":56.0,"IPB53122S":102.7545,"CES3133440001":365.4,"PCE":13540.6},{"date":"2017-12-01","PROFCONS":62243.0,"TLPWRCONS":91914.0,"PCU33443344":56.0,"IPB53122S":104.2279,"CES3133440001":367.4,"PCE":13666.1},{"date":"2018-01-01","PROFCONS":61953.0,"TLPWRCONS":109577.0,"PCU33443344":56.1,"IPB53122S":105.3186,"CES3133440001":365.5,"PCE":13703.3},{"date":"2018-02-01","PROFCONS":64524.0,"TLPWRCONS":107821.0,"PCU33443344":56.3,"IPB53122S":105.0084,"CES3133440001":366.5,"PCE":13738.7},{"date":"2018-03-01","PROFCONS":64060.0,"TLPWRCONS":106598.0,"PCU33443344":56.3,"IPB53122S":104.7029,"CES3133440001":367.6,"PCE":13793.2},{"date":"2018-04-01","PROFCONS":64539.0,"TLPWRCONS":104242.0,"PCU33443344":56.4,"IPB53122S":105.6117,"CES3133440001":368.5,"PCE":13838.4},{"date":"2018-05-01","PROFCONS":66837.0,"TLPWRCONS":100958.0,"PCU33443344":56.2,"IPB53122S":105.8783,"CES3133440001":368.8,"PCE":13905.0},{"date":"2018-06-01","PROFCONS":65598.0,"TLPWRCONS":99162.0,"PCU33443344":56.2,"IPB53122S":106.8108,"CES3133440001":369.3,"PCE":13930.4},{"date":"2018-07-01","PROFCONS":67061.0,"TLPWRCONS":97643.0,"PCU33443344":55.9,"IPB53122S":106.8383,"CES3133440001":370.4,"PCE":13974.8},{"date":"2018-08-01","PROFCONS":68707.0,"TLPWRCONS":95972.0,"PCU33443344":55.5,"IPB53122S":106.8009,"CES3133440001":369.8,"PCE":14014.0},{"date":"2018-09-01","PROFCONS":68540.0,"TLPWRCONS":94145.0,"PCU33443344":55.9,"IPB53122S":105.7947,"CES3133440001":369.6,"PCE":14017.8},{"date":"2018-10-01","PROFCONS":70796.0,"TLPWRCONS":93244.0,"PCU33443344":55.6,"IPB53122S":104.4552,"CES3133440001":369.7,"PCE":14083.1},{"date":"2018-11-01","PROFCONS":68474.0,"TLPWRCONS":93640.0,"PCU33443344":55.6,"IPB53122S":103.2209,"CES3133440001":370.5,"PCE":14162.9},{"date":"2018-12-01","PROFCONS":70816.0,"TLPWRCONS":94159.0,"PCU33443344":55.6,"IPB53122S":102.1217,"CES3133440001":371.6,"PCE":14051.6},{"date":"2019-01-01","PROFCONS":71955.0,"TLPWRCONS":89483.0,"PCU33443344":55.1,"IPB53122S":101.8818,"CES3133440001":374.1,"PCE":14084.6},{"date":"2019-02-01","PROFCONS":72129.0,"TLPWRCONS":93440.0,"PCU33443344":55.1,"IPB53122S":103.1751,"CES3133440001":375.0,"PCE":14117.4},{"date":"2019-03-01","PROFCONS":73168.0,"TLPWRCONS":98046.0,"PCU33443344":55.1,"IPB53122S":103.9548,"CES3133440001":375.1,"PCE":14248.6},{"date":"2019-04-01","PROFCONS":74633.0,"TLPWRCONS":106191.0,"PCU33443344":55.2,"IPB53122S":104.9363,"CES3133440001":374.8,"PCE":14290.0},{"date":"2019-05-01","PROFCONS":76366.0,"TLPWRCONS":113099.0,"PCU33443344":55.1,"IPB53122S":105.3309,"CES3133440001":374.4,"PCE":14353.3},{"date":"2019-06-01","PROFCONS":75568.0,"TLPWRCONS":118619.0,"PCU33443344":55.3,"IPB53122S":106.1206,"CES3133440001":376.5,"PCE":14408.7},{"date":"2019-07-01","PROFCONS":80445.0,"TLPWRCONS":122165.0,"PCU33443344":55.4,"IPB53122S":107.4128,"CES3133440001":377.5,"PCE":14496.0},{"date":"2019-08-01","PROFCONS":82817.0,"TLPWRCONS":128091.0,"PCU33443344":55.5,"IPB53122S":109.0928,"CES3133440001":377.1,"PCE":14558.2},{"date":"2019-09-01","PROFCONS":79572.0,"TLPWRCONS":132402.0,"PCU33443344":55.6,"IPB53122S":108.7969,"CES3133440001":377.6,"PCE":14590.6},{"date":"2019-10-01","PROFCONS":81040.0,"TLPWRCONS":135209.0,"PCU33443344":55.5,"IPB53122S":108.9329,"CES3133440001":375.8,"PCE":14617.4},{"date":"2019-11-01","PROFCONS":81931.0,"TLPWRCONS":137830.0,"PCU33443344":55.5,"IPB53122S":111.2914,"CES3133440001":376.4,"PCE":14711.0},{"date":"2019-12-01","PROFCONS":80025.0,"TLPWRCONS":137984.0,"PCU33443344":55.6,"IPB53122S":113.7337,"CES3133440001":375.4,"PCE":14774.8},{"date":"2020-01-01","PROFCONS":84149.0,"TLPWRCONS":128245.0,"PCU33443344":55.5,"IPB53122S":112.4892,"CES3133440001":374.0,"PCE":14868.3},{"date":"2020-02-01","PROFCONS":85308.0,"TLPWRCONS":122091.0,"PCU33443344":55.4,"IPB53122S":110.5394,"CES3133440001":374.2,"PCE":14828.1},{"date":"2020-03-01","PROFCONS":84246.0,"TLPWRCONS":121207.0,"PCU33443344":55.6,"IPB53122S":111.0584,"CES3133440001":374.1,"PCE":13812.8},{"date":"2020-04-01","PROFCONS":79128.0,"TLPWRCONS":118329.0,"PCU33443344":54.9,"IPB53122S":108.627,"CES3133440001":369.8,"PCE":12249.2},{"date":"2020-05-01","PROFCONS":80744.0,"TLPWRCONS":117445.0,"PCU33443344":54.9,"IPB53122S":108.1308,"CES3133440001":366.3,"PCE":13281.5},{"date":"2020-06-01","PROFCONS":82540.0,"TLPWRCONS":115213.0,"PCU33443344":54.9,"IPB53122S":110.2709,"CES3133440001":369.7,"PCE":14049.2},{"date":"2020-07-01","PROFCONS":80728.0,"TLPWRCONS":114826.0,"PCU33443344":54.7,"IPB53122S":112.2976,"CES3133440001":367.6,"PCE":14307.2},{"date":"2020-08-01","PROFCONS":78950.0,"TLPWRCONS":114663.0,"PCU33443344":54.6,"IPB53122S":113.4444,"CES3133440001":366.2,"PCE":14462.2},{"date":"2020-09-01","PROFCONS":79383.0,"TLPWRCONS":115017.0,"PCU33443344":54.7,"IPB53122S":116.9728,"CES3133440001":365.7,"PCE":14668.1},{"date":"2020-10-01","PROFCONS":77955.0,"TLPWRCONS":117581.0,"PCU33443344":53.8,"IPB53122S":121.5272,"CES3133440001":365.6,"PCE":14725.8},{"date":"2020-11-01","PROFCONS":76760.0,"TLPWRCONS":116540.0,"PCU33443344":53.9,"IPB53122S":123.026,"CES3133440001":364.5,"PCE":14701.6},{"date":"2020-12-01","PROFCONS":77420.0,"TLPWRCONS":117387.0,"PCU33443344":54.1,"IPB53122S":122.6249,"CES3133440001":364.9,"PCE":14822.0},{"date":"2021-01-01","PROFCONS":78188.0,"TLPWRCONS":117771.0,"PCU33443344":54.1,"IPB53122S":122.5563,"CES3133440001":366.3,"PCE":15073.0},{"date":"2021-02-01","PROFCONS":76140.0,"TLPWRCONS":118022.0,"PCU33443344":54.1,"IPB53122S":120.8549,"CES3133440001":365.8,"PCE":14983.5},{"date":"2021-03-01","PROFCONS":79715.0,"TLPWRCONS":118924.0,"PCU33443344":54.3,"IPB53122S":121.0571,"CES3133440001":366.7,"PCE":15709.7},{"date":"2021-04-01","PROFCONS":78051.0,"TLPWRCONS":118565.0,"PCU33443344":54.2,"IPB53122S":123.8447,"CES3133440001":366.9,"PCE":15917.5},{"date":"2021-05-01","PROFCONS":78118.0,"TLPWRCONS":118597.0,"PCU33443344":54.5,"IPB53122S":126.2187,"CES3133440001":367.4,"PCE":15973.5},{"date":"2021-06-01","PROFCONS":77444.0,"TLPWRCONS":122152.0,"PCU33443344":54.7,"IPB53122S":122.867,"CES3133440001":367.8,"PCE":16191.7},{"date":"2021-07-01","PROFCONS":77764.0,"TLPWRCONS":122257.0,"PCU33443344":54.548,"IPB53122S":118.5003,"CES3133440001":368.5,"PCE":16239.7},{"date":"2021-08-01","PROFCONS":77091.0,"TLPWRCONS":120738.0,"PCU33443344":54.766,"IPB53122S":118.6605,"CES3133440001":369.3,"PCE":16412.9},{"date":"2021-09-01","PROFCONS":77484.0,"TLPWRCONS":119854.0,"PCU33443344":54.875,"IPB53122S":119.0291,"CES3133440001":373.3,"PCE":16489.6},{"date":"2021-10-01","PROFCONS":76312.0,"TLPWRCONS":119032.0,"PCU33443344":54.947,"IPB53122S":121.5124,"CES3133440001":373.9,"PCE":16704.2},{"date":"2021-11-01","PROFCONS":77574.0,"TLPWRCONS":119654.0,"PCU33443344":55.251,"IPB53122S":124.6972,"CES3133440001":374.3,"PCE":16849.8},{"date":"2021-12-01","PROFCONS":76645.0,"TLPWRCONS":114829.0,"PCU33443344":55.42,"IPB53122S":126.0997,"CES3133440001":374.4,"PCE":16891.0},{"date":"2022-01-01","PROFCONS":77632.0,"TLPWRCONS":117204.0,"PCU33443344":56.336,"IPB53122S":128.1396,"CES3133440001":376.5,"PCE":16993.8},{"date":"2022-02-01","PROFCONS":78285.0,"TLPWRCONS":117939.0,"PCU33443344":56.366,"IPB53122S":131.6216,"CES3133440001":378.1,"PCE":17106.0},{"date":"2022-03-01","PROFCONS":78798.0,"TLPWRCONS":118680.0,"PCU33443344":56.726,"IPB53122S":132.3046,"CES3133440001":379.8,"PCE":17347.2},{"date":"2022-04-01","PROFCONS":81447.0,"TLPWRCONS":120112.0,"PCU33443344":56.488,"IPB53122S":130.6544,"CES3133440001":382.4,"PCE":17490.0},{"date":"2022-05-01","PROFCONS":81055.0,"TLPWRCONS":119327.0,"PCU33443344":56.624,"IPB53122S":131.2535,"CES3133440001":384.8,"PCE":17574.5},{"date":"2022-06-01","PROFCONS":81177.0,"TLPWRCONS":122394.0,"PCU33443344":56.916,"IPB53122S":132.9365,"CES3133440001":387.6,"PCE":17755.2},{"date":"2022-07-01","PROFCONS":81730.0,"TLPWRCONS":123542.0,"PCU33443344":56.804,"IPB53122S":133.5663,"CES3133440001":390.7,"PCE":17770.1},{"date":"2022-08-01","PROFCONS":83674.0,"TLPWRCONS":123564.0,"PCU33443344":56.632,"IPB53122S":133.6247,"CES3133440001":394.4,"PCE":17916.5},{"date":"2022-09-01","PROFCONS":85837.0,"TLPWRCONS":123502.0,"PCU33443344":56.822,"IPB53122S":134.1355,"CES3133440001":395.3,"PCE":17992.8},{"date":"2022-10-01","PROFCONS":84657.0,"TLPWRCONS":122313.0,"PCU33443344":57.313,"IPB53122S":133.0217,"CES3133440001":397.2,"PCE":18109.6},{"date":"2022-11-01","PROFCONS":85716.0,"TLPWRCONS":124129.0,"PCU33443344":57.591,"IPB53122S":131.6678,"CES3133440001":398.8,"PCE":18108.0},{"date":"2022-12-01","PROFCONS":87411.0,"TLPWRCONS":126445.0,"PCU33443344":57.607,"IPB53122S":129.3593,"CES3133440001":399.8,"PCE":18116.5},{"date":"2023-01-01","PROFCONS":87862.0,"TLPWRCONS":136561.0,"PCU33443344":57.231,"IPB53122S":128.2705,"CES3133440001":400.8,"PCE":18449.1},{"date":"2023-02-01","PROFCONS":88818.0,"TLPWRCONS":137757.0,"PCU33443344":57.227,"IPB53122S":128.6655,"CES3133440001":401.0,"PCE":18491.6},{"date":"2023-03-01","PROFCONS":88688.0,"TLPWRCONS":141467.0,"PCU33443344":57.291,"IPB53122S":128.5615,"CES3133440001":396.8,"PCE":18520.4},{"date":"2023-04-01","PROFCONS":87516.0,"TLPWRCONS":142836.0,"PCU33443344":57.142,"IPB53122S":131.1037,"CES3133440001":396.8,"PCE":18641.8},{"date":"2023-05-01","PROFCONS":88366.0,"TLPWRCONS":145796.0,"PCU33443344":56.58,"IPB53122S":132.0769,"CES3133440001":395.8,"PCE":18664.6},{"date":"2023-06-01","PROFCONS":87555.0,"TLPWRCONS":147976.0,"PCU33443344":56.733,"IPB53122S":132.9548,"CES3133440001":395.1,"PCE":18773.0},{"date":"2023-07-01","PROFCONS":86300.0,"TLPWRCONS":151267.0,"PCU33443344":56.919,"IPB53122S":132.6844,"CES3133440001":393.8,"PCE":18884.2},{"date":"2023-08-01","PROFCONS":87440.0,"TLPWRCONS":156905.0,"PCU33443344":57.125,"IPB53122S":132.1756,"CES3133440001":393.5,"PCE":18953.3},{"date":"2023-09-01","PROFCONS":87800.0,"TLPWRCONS":160706.0,"PCU33443344":57.362,"IPB53122S":132.3021,"CES3133440001":393.3,"PCE":19048.1},{"date":"2023-10-01","PROFCONS":87815.0,"TLPWRCONS":162686.0,"PCU33443344":57.374,"IPB53122S":134.4001,"CES3133440001":392.6,"PCE":19109.4},{"date":"2023-11-01","PROFCONS":88346.0,"TLPWRCONS":162977.0,"PCU33443344":57.591,"IPB53122S":136.0805,"CES3133440001":393.8,"PCE":19178.9},{"date":"2023-12-01","PROFCONS":87235.0,"TLPWRCONS":165432.0,"PCU33443344":57.536,"IPB53122S":137.7923,"CES3133440001":396.0,"PCE":19283.5},{"date":"2024-01-01","PROFCONS":87227.0,"TLPWRCONS":165888.0,"PCU33443344":57.873,"IPB53122S":138.6867,"CES3133440001":397.4,"PCE":19303.3},{"date":"2024-02-01","PROFCONS":89029.0,"TLPWRCONS":165845.0,"PCU33443344":58.044,"IPB53122S":138.0412,"CES3133440001":396.7,"PCE":19446.5},{"date":"2024-03-01","PROFCONS":88947.0,"TLPWRCONS":168520.0,"PCU33443344":58.094,"IPB53122S":139.2916,"CES3133440001":394.9,"PCE":19581.8},{"date":"2024-04-01","PROFCONS":85609.0,"TLPWRCONS":166583.0,"PCU33443344":58.245,"IPB53122S":142.4464,"CES3133440001":394.2,"PCE":19665.7},{"date":"2024-05-01","PROFCONS":89114.0,"TLPWRCONS":165956.0,"PCU33443344":58.195,"IPB53122S":144.4501,"CES3133440001":394.8,"PCE":19758.0},{"date":"2024-06-01","PROFCONS":92969.0,"TLPWRCONS":165265.0,"PCU33443344":58.052,"IPB53122S":143.517,"CES3133440001":395.0,"PCE":19844.5},{"date":"2024-07-01","PROFCONS":93625.0,"TLPWRCONS":164227.0,"PCU33443344":57.453,"IPB53122S":144.1713,"CES3133440001":395.1,"PCE":19949.5},{"date":"2024-08-01","PROFCONS":93183.0,"TLPWRCONS":167476.0,"PCU33443344":57.484,"IPB53122S":148.228,"CES3133440001":394.8,"PCE":20001.3},{"date":"2024-09-01","PROFCONS":92147.0,"TLPWRCONS":169079.0,"PCU33443344":57.533,"IPB53122S":150.6738,"CES3133440001":394.4,"PCE":20147.6},{"date":"2024-10-01","PROFCONS":93113.0,"TLPWRCONS":170721.0,"PCU33443344":57.992,"IPB53122S":151.6731,"CES3133440001":393.4,"PCE":20226.0},{"date":"2024-11-01","PROFCONS":95146.0,"TLPWRCONS":173183.0,"PCU33443344":58.925,"IPB53122S":151.9804,"CES3133440001":391.3,"PCE":20313.6},{"date":"2024-12-01","PROFCONS":99316.0,"TLPWRCONS":170556.0,"PCU33443344":58.817,"IPB53122S":153.8061,"CES3133440001":388.3,"PCE":20514.3},{"date":"2025-01-01","PROFCONS":102225.0,"TLPWRCONS":170838.0,"PCU33443344":58.261,"IPB53122S":159.1412,"CES3133440001":387.4,"PCE":20462.2},{"date":"2025-02-01","PROFCONS":102795.0,"TLPWRCONS":170022.0,"PCU33443344":58.059,"IPB53122S":162.2637,"CES3133440001":385.8,"PCE":20519.8},{"date":"2025-03-01","PROFCONS":102854.0,"TLPWRCONS":171411.0,"PCU33443344":58.414,"IPB53122S":164.3237,"CES3133440001":385.8,"PCE":20683.0},{"date":"2025-04-01","PROFCONS":109064.0,"TLPWRCONS":171115.0,"PCU33443344":58.312,"IPB53122S":165.3617,"CES3133440001":384.0,"PCE":20746.4},{"date":"2025-05-01","PROFCONS":102760.0,"TLPWRCONS":172584.0,"PCU33443344":58.318,"IPB53122S":165.6791,"CES3133440001":382.8,"PCE":20755.0},{"date":"2025-06-01","PROFCONS":100575.0,"TLPWRCONS":171601.0,"PCU33443344":57.596,"IPB53122S":167.1942,"CES3133440001":380.5,"PCE":20868.4},{"date":"2025-07-01","PROFCONS":101666.0,"TLPWRCONS":172391.0,"PCU33443344":57.566,"IPB53122S":172.1753,"CES3133440001":378.3,"PCE":21007.3},{"date":"2025-08-01","PROFCONS":103300.0,"TLPWRCONS":171380.0,"PCU33443344":59.626,"IPB53122S":172.8262,"CES3133440001":375.6,"PCE":21123.8},{"date":"2025-09-01","PROFCONS":104376.0,"TLPWRCONS":172475.0,"PCU33443344":59.754,"IPB53122S":173.1665,"CES3133440001":372.7,"PCE":21202.4},{"date":"2025-10-01","PROFCONS":108898.0,"TLPWRCONS":172706.0,"PCU33443344":60.114,"IPB53122S":176.3751,"CES3133440001":369.5,"PCE":21288.1},{"date":"2025-11-01","PROFCONS":105503.0,"TLPWRCONS":173785.0,"PCU33443344":60.857,"IPB53122S":178.2095,"CES3133440001":370.8,"PCE":21356.0},{"date":"2025-12-01","PROFCONS":107066.0,"TLPWRCONS":176211.0,"PCU33443344":61.052,"IPB53122S":181.0264,"CES3133440001":370.1,"PCE":21445.9},{"date":"2026-01-01","PROFCONS":105913.0,"TLPWRCONS":174160.0,"PCU33443344":61.572,"IPB53122S":186.72,"CES3133440001":369.4,"PCE":21478.7},{"date":"2026-02-01","PROFCONS":106772.0,"TLPWRCONS":175305.0,"PCU33443344":67.007,"IPB53122S":189.0681,"CES3133440001":368.8,"PCE":21611.4},{"date":"2026-03-01","PROFCONS":107164.0,"TLPWRCONS":175392.0,"PCU33443344":68.269,"IPB53122S":189.92,"CES3133440001":368.7,"PCE":21814.7},{"date":"2026-04-01","PROFCONS":111220.0,"TLPWRCONS":175695.0,"PCU33443344":73.171,"IPB53122S":194.9277,"CES3133440001":369.4,"PCE":21949.5},{"date":"2026-05-01","PROFCONS":115159.0,"TLPWRCONS":178422.0,"PCU33443344":72.885,"IPB53122S":202.7101,"CES3133440001":369.2,"PCE":22136.8},{"date":"2026-06-01","PROFCONS":119328.0,"TLPWRCONS":180662.0,"PCU33443344":73.627,"IPB53122S":208.5963,"CES3133440001":368.3,"PCE":22214.2},{"date":"2026-07-01","PROFCONS":123318.0,"TLPWRCONS":181532.0,"PCU33443344":73.125,"IPB53122S":213.4946,"CES3133440001":369.6,"PCE":22250.4}],"corrs":{"PROFCONS|TLPWRCONS":{"full":0.9160990681285629,"early":0.7850893340620126,"late":0.8314108942539099},"PROFCONS|PCU33443344":{"full":0.6536209097742246,"early":-0.7689838603317183,"late":0.7957750426761669},"PROFCONS|IPB53122S":{"full":0.9405189319636744,"early":0.7109728695705179,"late":0.9574163915512021},"PROFCONS|CES3133440001":{"full":0.44768880740044126,"early":0.6625290862392713,"late":-0.4438925822596802},"PROFCONS|PCE":{"full":0.9145465259536216,"early":0.6694976297792937,"late":0.952719487446444},"TLPWRCONS|PCU33443344":{"full":0.5919067403652908,"early":-0.44675483397282134,"late":0.5588301134216421},"TLPWRCONS|IPB53122S":{"full":0.8820933456443911,"early":0.566083209792711,"late":0.7646237630691725},"TLPWRCONS|CES3133440001":{"full":0.5352452391933318,"early":0.4358751738533176,"late":-0.16172857460364654},"TLPWRCONS|PCE":{"full":0.925760077692743,"early":0.5289292244365562,"late":0.9380611139342613},"PCU33443344|IPB53122S":{"full":0.7664273557233117,"early":-0.8708212175692706,"late":0.8595862879525501},"PCU33443344|CES3133440001":{"full":0.02409632646675831,"early":-0.40723531361356186,"late":-0.5148009555837636},"PCU33443344|PCE":{"full":0.624169034797028,"early":-0.7568456816952878,"late":0.7246873509381844},"IPB53122S|CES3133440001":{"full":0.32641602571745015,"early":0.23538824501577948,"late":-0.6042147527097791},"IPB53122S|PCE":{"full":0.9389243876371518,"early":0.8570516046768908,"late":0.9192306344147599},"CES3133440001|PCE":{"full":0.5921893336172569,"early":0.41389155490876645,"late":-0.3198636618888581}}};
+const SVG_NS = "http://www.w3.org/2000/svg";
+const blue = "#0072B2", orange = "#D55E00", ink="#18324a", muted="#67798a", line="#c9d3dc", grid="#e8edf1";
+const matrix = document.getElementById("matrix");
+const tooltip = document.getElementById("tooltip");
+let splitMode = true;
+
+const series = P.series;
+const n = series.length;
+const matrixLeft = 150, matrixTop = 88, cellW = 170, cellH = 138;
+const plotPad = {l:34,r:12,t:24,b:28};
+
+const extents = {};
+series.forEach(s => {
+  const vals = P.data.map(d => d[s]);
+  let mn = Math.min(...vals), mx = Math.max(...vals);
+  const pad = (mx-mn)*0.055 || 1;
+  extents[s] = [mn-pad, mx+pad];
+});
+
+function el(tag, attrs={}, parent=matrix){
+  const node = document.createElementNS(SVG_NS, tag);
+  Object.entries(attrs).forEach(([k,v]) => {
+    if(k==="text") node.textContent=v;
+    else node.setAttribute(k,v);
+  });
+  parent.appendChild(node);
+  return node;
+}
+function scale(v, a, b, x0, x1){ return x0 + (v-a)/(b-a)*(x1-x0); }
+function fmt(s,v){
+  if(s==="PCU33443344" || s==="IPB53122S" || s==="CES3133440001") return v.toFixed(1);
+  return Math.round(v).toLocaleString();
+}
+function rkey(a,b){ return series.indexOf(a)<series.indexOf(b) ? `${a}|${b}` : `${b}|${a}`; }
+function rvals(a,b){ return P.corrs[rkey(a,b)]; }
+function addMultilineText(parent, x, y, text, opts={}){
+  const anchor = opts.anchor || "middle";
+  const size = opts.size || 12;
+  const weight = opts.weight || 700;
+  const fill = opts.fill || ink;
+  const words = text.split(" ");
+  const lines = words.length === 2 ? [words[0], words[1]] :
+                words.length === 3 ? [words[0], words.slice(1).join(" ")] :
+                [text];
+  const t = el("text",{x, y, "text-anchor":anchor, "font-size":String(size), "font-weight":String(weight), fill}, parent);
+  lines.forEach((line, i) => {
+    const span = document.createElementNS(SVG_NS, "tspan");
+    span.setAttribute("x", x);
+    span.setAttribute("dy", i===0 ? 0 : 15);
+    span.textContent = line;
+    t.appendChild(span);
+  });
+  return t;
+}
+
+function drawMatrix(){
+  matrix.innerHTML = "";
+  el("title",{id:"matrixTitle",text:"Triangular scatterplot matrix of six FRED indicators"});
+  el("desc",{id:"matrixDesc",text:"Fifteen pairwise scatterplots. Blue circles show the first 60 months and orange squares show the second 60 months."});
+
+  series.forEach((s,j)=>{
+    const x=matrixLeft+j*cellW;
+    el("rect",{x,y:18,width:cellW-2,height:58,rx:5,fill:"#eef4f8",stroke:line});
+    addMultilineText(matrix, x+(cellW-2)/2, 37, P.labels[s], {size:12, anchor:"middle"});
+  });
+
+  series.forEach((ys,i)=>{
+    const y=matrixTop+i*cellH;
+    el("rect",{x:0,y,width:matrixLeft-10,height:cellH-2,rx:5,fill:"#eef4f8",stroke:line});
+    addMultilineText(matrix, 12, y+54, P.labels[ys], {size:12, anchor:"start"});
+
+    series.forEach((xs,j)=>{
+      if(j>i) return;
+      const x=matrixLeft+j*cellW;
+      const g=el("g",{class:"cell"});
+      if(i===j){
+        el("rect",{x,y,width:cellW-2,height:cellH-2,rx:4,fill:"#f4f8fb",stroke:line},g);
+        addMultilineText(g, x+(cellW-2)/2, y+60, P.labels[xs], {size:13, anchor:"middle"});
+        return;
+      }
+
+      el("rect",{x,y,width:cellW-2,height:cellH-2,rx:3,fill:"#fff",stroke:line},g);
+      const px0=x+plotPad.l, px1=x+cellW-plotPad.r-2, py0=y+plotPad.t, py1=y+cellH-plotPad.b-2;
+
+      [0,.5,1].forEach(t=>{
+        const gx=px0+t*(px1-px0), gy=py0+t*(py1-py0);
+        el("line",{x1:gx,y1:py0,x2:gx,y2:py1,stroke:grid,"stroke-width":"1"},g);
+        el("line",{x1:px0,y1:gy,x2:px1,y2:gy,stroke:grid,"stroke-width":"1"},g);
+      });
+
+      const [xmin,xmax]=extents[xs], [ymin,ymax]=extents[ys];
+
+      P.data.forEach((d,idx)=>{
+        const cx=scale(d[xs],xmin,xmax,px0,px1);
+        const cy=scale(d[ys],ymin,ymax,py1,py0);
+        const early=idx<60;
+        const color=splitMode ? (early?blue:orange) : "#4f6b7a";
+        let mark;
+        if(splitMode && !early){
+          mark=el("rect",{x:cx-2.5,y:cy-2.5,width:5,height:5,fill:color,opacity:".72","data-idx":idx,class:"point"},g);
+        }else{
+          mark=el("circle",{cx,cy,r:2.9,fill:color,opacity:".72","data-idx":idx,class:"point"},g);
+        }
+        mark.addEventListener("mouseenter", e=>showTooltip(e,d,xs,ys,idx));
+        mark.addEventListener("mousemove", moveTooltip);
+        mark.addEventListener("mouseleave", hideTooltip);
+      });
+
+      const rv=rvals(xs,ys).full;
+      el("rect",{x:px0+3,y:y+5,width:54,height:18,rx:3,fill:"#ffffff",opacity:".92"},g);
+      el("text",{x:px0+8,y:y+18,"font-size":"10","font-style":"italic",fill:ink,text:`r = ${rv.toFixed(2)}`},g);
+
+      // Add local axis endpoint labels to every scatterplot for clarity.
+      el("text",{x:px0,y:py1+16,"text-anchor":"start","font-size":"8",fill:muted,text:fmt(xs,xmin)},g);
+      el("text",{x:px1,y:py1+16,"text-anchor":"end","font-size":"8",fill:muted,text:fmt(xs,xmax)},g);
+      el("text",{x:px0-5,y:py0+4,"text-anchor":"end","font-size":"8",fill:muted,text:fmt(ys,ymax)},g);
+      el("text",{x:px0-5,y:py1,"text-anchor":"end","font-size":"8",fill:muted,text:fmt(ys,ymin)},g);
+
+      const hit=el("rect",{x,y,width:cellW-2,height:cellH-2,fill:"transparent",class:"hit",tabindex:"0","aria-label":`${P.labels[ys]} versus ${P.labels[xs]}`},g);
+      hit.addEventListener("click",()=>drawDetail(xs,ys));
+      hit.addEventListener("keydown",(ev)=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();drawDetail(xs,ys);}});
+    });
+  });
+}
+
+function showTooltip(e,d,xs,ys,idx){
+  document.querySelectorAll(".point").forEach(p=>{
+    if(Number(p.dataset.idx)===idx){
+      p.setAttribute("opacity","1");
+      if(p.tagName==="circle") p.setAttribute("r","4.8");
+      if(p.tagName==="rect"){p.setAttribute("width","7");p.setAttribute("height","7");}
+    }else{
+      p.setAttribute("opacity",".22");
+    }
+  });
+  tooltip.innerHTML = `<strong>${d.date.slice(0,7)}</strong><br>${P.labels[xs]}: ${fmt(xs,d[xs])}<br>${P.labels[ys]}: ${fmt(ys,d[ys])}`;
+  tooltip.style.opacity=1;
+  moveTooltip(e);
+}
+function moveTooltip(e){ tooltip.style.left=(e.clientX+14)+"px"; tooltip.style.top=(e.clientY+12)+"px"; }
+function hideTooltip(){
+  tooltip.style.opacity=0;
+  document.querySelectorAll(".point").forEach(p=>{
+    p.setAttribute("opacity",".72");
+    if(p.tagName==="circle") p.setAttribute("r","2.9");
+    if(p.tagName==="rect"){p.setAttribute("width","5");p.setAttribute("height","5");}
+  });
+}
+
+function drawDetail(xs,ys){
+  document.getElementById("detailTitle").textContent = `${P.labels[ys]} × ${P.labels[xs]}`;
+  document.getElementById("detailMeta").textContent = `y-axis: ${P.labels[ys]} · x-axis: ${P.labels[xs]}`;
+  const rv=rvals(xs,ys);
+  document.getElementById("detailStats").innerHTML =
+    `<strong>Full period:</strong> r = ${rv.full.toFixed(3)}<br>`+
+    `<strong>Early half:</strong> r = ${rv.early.toFixed(3)}<br>`+
+    `<strong>Late half:</strong> r = ${rv.late.toFixed(3)}`;
+
+  const svg=document.getElementById("detailSvg");
+  svg.innerHTML="";
+  const ex=extents[xs], ey=extents[ys];
+  // Center plot area and keep labels outside the plot frame.
+  const x0=24,x1=220,y0=30,y1=176;
+
+  [0,.5,1].forEach(t=>{
+    el("line",{x1:x0+t*(x1-x0),y1:y0,x2:x0+t*(x1-x0),y2:y1,stroke:grid},svg);
+    el("line",{x1:x0,y1:y0+t*(y1-y0),x2:x1,y2:y0+t*(y1-y0),stroke:grid},svg);
+  });
+  el("rect",{x:x0,y:y0,width:x1-x0,height:y1-y0,fill:"none",stroke:line},svg);
+
+  P.data.forEach((d,idx)=>{
+    const cx=scale(d[xs],ex[0],ex[1],x0,x1), cy=scale(d[ys],ey[0],ey[1],y1,y0);
+    const early=idx<60, color=splitMode?(early?blue:orange):"#4f6b7a";
+    if(splitMode && !early) el("rect",{x:cx-2.7,y:cy-2.7,width:5.4,height:5.4,fill:color,opacity:".75"},svg);
+    else el("circle",{cx,cy,r:3.2,fill:color,opacity:".75"},svg);
+  });
+
+  // Local axis endpoint labels for the detail view.
+  el("text",{x:x0,y:y1+16,"font-size":"8.5",fill:muted,text:fmt(xs,ex[0])},svg);
+  el("text",{x:x1,y:y1+16,"text-anchor":"end","font-size":"8.5",fill:muted,text:fmt(xs,ex[1])},svg);
+  el("text",{x:x0-4,y:y0+4,"text-anchor":"end","font-size":"8.5",fill:muted,text:fmt(ys,ey[1])},svg);
+  el("text",{x:x0-4,y:y1,"text-anchor":"end","font-size":"8.5",fill:muted,text:fmt(ys,ey[0])},svg);
+
+  // Axis titles aligned to the frame rather than floating off to the sides.
+  el("text",{x:x0,y:16,"font-size":"9.5","font-weight":"600",fill:muted,text:P.labels[ys]},svg);
+  el("text",{x:x0,y:206,"font-size":"9.5","font-weight":"600",fill:muted,text:P.labels[xs]},svg);
+}
+
+document.getElementById("splitBtn").addEventListener("click",()=>{
+  splitMode=true;
+  document.getElementById("splitBtn").classList.add("active");
+  document.getElementById("singleBtn").classList.remove("active");
+  drawMatrix();
+});
+document.getElementById("singleBtn").addEventListener("click",()=>{
+  splitMode=false;
+  document.getElementById("singleBtn").classList.add("active");
+  document.getElementById("splitBtn").classList.remove("active");
+  drawMatrix();
+});
+
+const key=document.getElementById("seriesKey");
+series.forEach(s=>{
+  const d=document.createElement("div");
+  d.className="key-item";
+  d.innerHTML=`<div class="key-name">${P.labels[s]}</div><div class="key-code">${s}</div><div class="key-unit">${P.units[s]}</div>`;
+  key.appendChild(d);
+});
+
+drawMatrix();
+</script>
+</body>
+</html>

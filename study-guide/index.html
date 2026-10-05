@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Information Visualization: Review Module</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1B1915; --surface:#24211C; --raised:#2E2A23; --line:#3F392F;
+  --text:#EFE8DB; --muted:#AFA697; --accent:#E3A857; --accent-soft:rgba(227,168,87,.14); --on-accent:#1B1915;
+  --ok:#7CCBA2; --ok-bg:rgba(124,203,162,.12); --bad:#F08372; --bad-bg:rgba(240,131,114,.12);
+  --serif:'Spectral',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --r:12px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--serif);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:1rem;top:-3rem;background:var(--accent);color:var(--on-accent);padding:.5rem 1rem;border-radius:8px;font-family:var(--mono);z-index:10}
+.skip:focus{top:1rem}
+[tabindex="-1"]{scroll-margin-top:1rem}
+@media (min-width:760px){[tabindex="-1"]{scroll-margin-top:13rem}}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* Header */
+.topbar{background:linear-gradient(var(--bg),rgba(27,25,21,.94));border-bottom:1px solid var(--line);padding:1.1rem 1.25rem .9rem;z-index:5}
+@media (min-width:760px){.topbar{position:sticky;top:0;backdrop-filter:blur(6px)}}
+.topbar-inner{max-width:1180px;margin:0 auto;display:grid;gap:.85rem}
+.title-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1rem}
+h1{font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:700;line-height:1.1;margin:0;letter-spacing:-.01em}
+.subtitle{margin:.2rem 0 0;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.switch{display:inline-flex;align-items:center;gap:.6rem;background:none;border:1px solid var(--line);color:var(--text);border-radius:999px;padding:.4rem .8rem .4rem .5rem;font-family:var(--mono);font-size:.8rem;cursor:pointer}
+.switch:hover{border-color:var(--muted)}
+.switch .track{width:34px;height:20px;border-radius:999px;background:var(--line);position:relative;transition:background .2s}
+.switch .track::after{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:var(--muted);transition:transform .2s,background .2s}
+.switch[aria-checked="true"] .track{background:var(--accent)}
+.switch[aria-checked="true"] .track::after{transform:translateX(14px);background:var(--on-accent)}
+.dash{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:.5rem 1.25rem;align-items:end;margin:0}
+.dash div{min-width:0}
+.dash dt{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.dash dd{margin:0;font-family:var(--mono);font-size:1.25rem;font-weight:600;font-variant-numeric:tabular-nums}
+.dash .d-ok dd{color:var(--ok)} .dash .d-bad dd{color:var(--bad)} .dash .d-score dd{color:var(--accent)}
+.round-label{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-align:right;align-self:center}
+.progress{position:relative;height:14px}
+.progress .track{position:absolute;inset:0;background:var(--line);clip-path:polygon(0 0,100% 28%,100% 72%,0 100%)}
+.progress .fill{position:absolute;inset:0 auto 0 0;width:0;background:var(--accent);clip-path:inherit;transition:width .6s cubic-bezier(.3,.8,.3,1)}
+.progress .ticks{position:absolute;inset:0;pointer-events:none}
+.progress .tick{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--bg)}
+@media (max-width:620px){.dash{grid-template-columns:repeat(4,minmax(0,1fr))}.round-label{grid-column:1/-1;text-align:left}.dash dd{font-size:1.05rem}}
+
+/* Layout */
+.layout{max-width:1180px;margin:0 auto;padding:1.75rem 1.25rem 4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2rem;justify-items:center}
+.layout.has-deficits{grid-template-columns:minmax(0,1fr) 290px;align-items:start;justify-items:stretch}
+.layout.has-deficits #stage{justify-self:center}
+#stage{width:100%;max-width:780px}
+@media (max-width:900px){.layout.has-deficits{grid-template-columns:minmax(0,1fr)}}
+
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(1.25rem,3vw,2rem);animation:rise .5s cubic-bezier(.2,.75,.25,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:1rem}
+.badge{font-family:var(--mono);font-size:.74rem;font-weight:600;background:var(--accent);color:var(--on-accent);padding:.18rem .55rem;border-radius:6px}
+.topic{font-family:var(--mono);font-size:.76rem;color:var(--accent);border:1px solid rgba(227,168,87,.45);padding:.15rem .55rem;border-radius:6px}
+.qtype{font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-left:auto}
+.qnum{font-family:var(--mono);font-size:.8rem;font-weight:500;color:var(--muted);margin:0 0 .35rem}
+.qnum:focus{outline:none}
+.prompt{font-size:1.28rem;line-height:1.45;font-weight:600;margin:0 0 1.1rem;padding:0;max-width:62ch}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+
+/* Context box */
+.ctx{margin:0 0 1.25rem;background:var(--raised);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:.9rem 1rem;overflow-x:auto}
+.ctx figcaption{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-bottom:.5rem}
+.ctx p{margin:.25rem 0;font-size:.98rem}
+.ctx table{border-collapse:collapse;font-family:var(--mono);font-size:.82rem;min-width:100%}
+.ctx th,.ctx td{border:1px solid var(--line);padding:.32rem .6rem;text-align:left;font-variant-numeric:tabular-nums}
+.ctx th{color:var(--accent);font-weight:500;background:rgba(0,0,0,.15)}
+.ctx td.num{text-align:right}
+.ctx code,.ctx .mono{font-family:var(--mono);font-size:.86rem}
+.ctx svg{display:block;max-width:100%;height:auto;color:var(--text)}
+.ctx dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:.25rem .9rem;font-size:.95rem}
+.ctx dt{font-family:var(--mono);font-size:.82rem;color:var(--accent)}
+.ctx dd{margin:0}
+.magic{border-collapse:collapse;font-family:var(--mono);font-size:1.1rem;min-width:0!important;margin:.4rem 0}
+.magic td{width:2.4rem;height:2.4rem;text-align:center!important;border:2px solid var(--muted)!important}
+
+/* Options */
+.opts{display:grid;gap:.6rem}
+.opt{display:flex;gap:.8rem;align-items:flex-start;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:.8rem 1rem;cursor:pointer;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--muted)}
+.opt:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.opt:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.opt input{accent-color:var(--accent);width:1.15rem;height:1.15rem;margin:.3rem 0 0;flex:none}
+.opt input:focus-visible{outline:none}
+.opt-text{flex:1}
+.opt .tag{font-family:var(--mono);font-size:.72rem;font-weight:600;padding:.1rem .45rem;border-radius:5px;align-self:center;white-space:nowrap}
+.locked .opt{cursor:default}
+.locked .opt:hover{border-color:var(--line)}
+.locked .opt[data-state="correct"]{border-color:var(--ok);background:var(--ok-bg)}
+.locked .opt[data-state="correct"] .tag{background:var(--ok);color:var(--on-accent)}
+.locked .opt[data-state="missed"]{border-color:var(--ok);border-style:dashed;background:var(--ok-bg)}
+.locked .opt[data-state="missed"] .tag{border:1px solid var(--ok);color:var(--ok)}
+.locked .opt[data-state="wrong"]{border-color:var(--bad);background:var(--bad-bg)}
+.locked .opt[data-state="wrong"] .tag{background:var(--bad);color:var(--on-accent)}
+.locked .opt[data-state="dim"]{opacity:.55}
+@media (max-width:520px){.opt{flex-wrap:wrap}.opt-text{flex:1 1 calc(100% - 2.2rem)}.opt .tag{margin-left:1.95rem}}
+.hint{font-family:var(--mono);font-size:.76rem;color:var(--muted);margin:.7rem 0 0}
+.actions{margin-top:1.25rem;display:flex;gap:.75rem;flex-wrap:wrap}
+
+/* Buttons */
+.btn{font-family:var(--mono);font-size:.88rem;font-weight:600;border-radius:8px;padding:.7rem 1.2rem;cursor:pointer;border:1px solid var(--line);background:var(--raised);color:var(--text)}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.45;cursor:not-allowed;filter:none}
+
+/* Feedback */
+.feedback{margin-top:1.5rem;border-radius:10px;padding:1.1rem 1.2rem;border:1px solid}
+.feedback:focus{outline:none}
+.feedback.ok{border-color:var(--ok);background:var(--ok-bg)}
+.feedback.bad{border-color:var(--bad);background:var(--bad-bg)}
+.feedback h3{margin:0 0 .5rem;font-size:1.15rem;display:flex;gap:.5rem;align-items:center}
+.feedback.ok h3{color:var(--ok)} .feedback.bad h3{color:var(--bad)}
+.feedback h4{font-family:var(--mono);font-size:.76rem;font-weight:600;color:var(--muted);margin:.9rem 0 .3rem}
+.feedback p{margin:.2rem 0}
+.feedback ul{margin:.2rem 0;padding-left:1.15rem}
+.feedback li{margin:.3rem 0}
+.answer-line{font-size:.98rem}
+.answer-line b{color:var(--ok)}
+
+/* Intro */
+.intro .eyebrow-n{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin:0 0 .4rem}
+.intro h2{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.15;margin:0 0 .9rem}
+.intro h2:focus{outline:none}
+.intro p.lede{font-size:1.1rem;max-width:60ch;margin:0 0 1.2rem}
+.chips{list-style:none;margin:0 0 1.4rem;padding:0;display:flex;flex-wrap:wrap;gap:.45rem}
+.chips li{font-family:var(--mono);font-size:.78rem;border:1px solid rgba(227,168,87,.5);color:var(--text);background:var(--accent-soft);padding:.25rem .65rem;border-radius:999px}
+.intro .count{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin:0 0 1rem}
+
+/* Deficiency panel */
+.deficits{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--bad);border-radius:var(--r);padding:1.1rem 1.15rem;position:sticky;top:12.5rem;width:100%;max-height:calc(100vh - 14rem);overflow:auto;animation:rise .4s ease both}
+@media (max-width:900px){.deficits{position:static}}
+.deficits h2{font-size:1.1rem;margin:0 0 .2rem}
+.deficits p{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin:0 0 .8rem}
+.deficits ol{list-style:none;margin:0;padding:0;display:grid;gap:.7rem}
+.def-row{display:grid;grid-template-columns:1fr auto;gap:.15rem .5rem;font-size:.92rem;line-height:1.3}
+.def-row .sec{grid-column:1;font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.def-row .n{grid-row:1/3;grid-column:2;align-self:center;font-family:var(--mono);font-weight:600;color:var(--bad);font-size:.9rem}
+.def-row .bar{grid-column:1/-1;height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.def-row .bar span{display:block;height:100%;background:var(--bad);transition:width .4s}
+
+/* Summary */
+.summary h2{font-size:clamp(1.6rem,3vw,2.2rem);margin:0 0 .3rem}
+.summary h2:focus{outline:none}
+.bigscore{font-family:var(--mono);font-size:clamp(3rem,9vw,5rem);font-weight:600;color:var(--accent);line-height:1;margin:.6rem 0 .3rem;font-variant-numeric:tabular-nums}
+.summary h3{font-size:1.2rem;margin:2rem 0 .8rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+.secbars{list-style:none;margin:0;padding:0;display:grid;gap:.8rem}
+.secbar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.3rem .8rem;font-size:.95rem}
+.secbar .frac{font-family:var(--mono);font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.secbar .bar{grid-column:1/-1;height:10px;background:var(--line);border-radius:5px;overflow:hidden}
+.secbar .bar span{display:block;height:100%;background:var(--accent);border-radius:5px;transition:width .8s cubic-bezier(.3,.8,.3,1)}
+.secbar.full .bar span{background:var(--ok)}
+.missed{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
+.missed li{background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--bad);border-radius:8px;padding:.95rem 1.05rem}
+.missed .mq{font-weight:600;margin:.45rem 0 .5rem}
+.missed dl{display:grid;grid-template-columns:max-content 1fr;gap:.3rem .9rem;margin:0;font-size:.95rem}
+.missed dt{font-family:var(--mono);font-size:.74rem;color:var(--muted);padding-top:.2rem}
+.missed dd{margin:0}
+.missed dd.yours{color:var(--bad)} .missed dd.right{color:var(--ok)}
+.empty-note{color:var(--muted)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#stage">Skip to question</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="title-row">
+      <div>
+        <h1>Information Visualization</h1>
+        <p class="subtitle">Review module: 7 sections, 56 questions</p>
+      </div>
+      <button type="button" class="switch" id="shuffleBtn" role="switch" aria-checked="false">
+        <span class="track" aria-hidden="true"></span>Shuffle questions
+      </button>
+    </div>
+    <dl class="dash" aria-label="Progress dashboard">
+      <div class="d-ok"><dt>Correct</dt><dd id="dCorrect">0</dd></div>
+      <div class="d-bad"><dt>Incorrect</dt><dd id="dIncorrect">0</dd></div>
+      <div class="d-score"><dt>Score</dt><dd id="dScore">–</dd></div>
+      <div><dt>Remaining</dt><dd id="dRemaining">56</dd></div>
+      <p class="round-label" id="roundLabel">Main round</p>
+    </dl>
+    <div class="progress" role="progressbar" id="progress" aria-label="Questions answered" aria-valuemin="0" aria-valuemax="56" aria-valuenow="0">
+      <div class="track"></div><div class="fill" id="progressFill"></div><div class="ticks" id="ticks" aria-hidden="true"></div>
+    </div>
+  </div>
+</header>
+<main class="layout" id="layout">
+  <div id="stage" tabindex="-1"></div>
+  <aside class="deficits" id="deficits" aria-labelledby="defH" hidden>
+    <h2 id="defH">Topics to review</h2>
+    <p>Misses this session, updated live</p>
+    <ol id="defList" aria-live="polite"></ol>
+  </aside>
+</main>
+<div class="sr-only" role="status" aria-live="polite" id="announce"></div>
+<script>
+const SECTIONS = [
+ {id:1, name:"Foundations of visualization",
+  intro:"Visualization is a human activity: forming a mental model of something. Computers can enhance it immensely, but they don't define it. What appears on a screen is a representation that supports visualization. No single representation serves every task, dataset, or user, and the type of data limits how it can be encoded.",
+  terms:["Mental model","Representation","External cognition","Information vs. scientific visualization","Nominal","Ordinal","Quantitative","Dimensions and size"]},
+ {id:2, name:"Visual structures",
+  intro:"Every visualization is built from a spatial substrate, marks positioned on it, the graphical (retinal) properties of those marks, and optionally temporal encoding. Some properties are read far more accurately than others, and some can't convey order or quantity at all.",
+  terms:["Spatial substrate","Composition","Alignment","Folding","Recursion","Overloading","Marks","Retinal properties","Bertin's guidance","Cleveland & McGill","Dependent variable","Temporal encoding"]},
+ {id:3, name:"Perception",
+  intro:"The visual system processes some features without focused attention: fast, in parallel, in under about 250 ms. Gestalt principles describe how we group what we see. Designers can exploit both, and must also guard against our blindness to change.",
+  terms:["Pre-attentive processing","Parallel","Interference","Emergent features","Proximity","Similarity","Closure","Continuity","Symmetry","Change blindness"]},
+ {id:4, name:"Graphical integrity",
+  intro:"A chart can be grammatically correct and still deceive. A visualization mirage is a message that a cursory reading suggests but the data doesn't support, and it can arise at any stage, from curation to rendering. Tufte's principles describe the opposite goal: telling the truth about the data with clarity, precision, and efficiency.",
+  terms:["Visualization mirage","Aggregation","Overplotting","Axis domain","Transparency test","Change-order test","Repeated resampling","Graphical excellence","Data-ink ratio","Chartjunk","Small multiples","Multifunctioning elements"]},
+ {id:5, name:"Design issues",
+  intro:"Choosing a car from a table models a common task: selecting one object from many by its attributes. Goals start fuzzy and sharpen as the user explores. Bargrams, brushing, focusing, filtering, suppression, and sensitivity cues help the user build a mental model along the way.",
+  terms:["Fuzzy goals","Derived data","Bargram","Overview","Detail","Brushing","Focusing","Filtering","Suppression","Sensitivity","Representation","Presentation","Interaction"]},
+ {id:6, name:"Multidimensional data",
+  intro:"Once data has more dimensions than space does, there's no spare axis to map them to. Techniques aggregate, link separate displays, repeat plots in a matrix, compute relevance, or turn each object into a glyph or a polyline. Each choice trades object visibility against attribute visibility.",
+  terms:["Aggregation","Mosaic display","Simpson's paradox","Comet chart","Linked histograms","Scatterplot matrix","Scagnostics","Star plot","Parallel coordinates","Relevance","Spiral pixels"]},
+ {id:7, name:"Non-quantitative data",
+  intro:"Nominal and ordered data break many quantitative techniques, and some can mislead. Multidimensional icons, size, color, patterns, and even sound can encode it. Color needs particular care: a limited number of categories, tricky ordering, brightness, and color-vision differences.",
+  terms:["Nominal","Ordered","Multidimensional icons","Chernoff faces","StarCursor","InfoCanvas","Selective magnification","HSL","Color schemes","Intrinsic brightness","Two-tone coloring","Sound"]}
+];
+
+const TF = (truth, nTrue, nFalse) => [
+  {t:"True", c:truth===true, n:nTrue},
+  {t:"False", c:truth===false, n:nFalse}
+];
+
+const Q = [
+/* ---------- Section 1 ---------- */
+{s:1, topic:"Defining visualization", type:"mc",
+ prompt:"Which statement best captures the definition of visualization used in this course?",
+ opts:[
+  {t:"The activity of forming a mental model of something", c:true},
+  {t:"The process of rendering data as a chart on a display", n:"Rendering produces a representation. The display supports visualization, but the visualization itself happens in the viewer's mind."},
+  {t:"Any graphic that encodes numbers with position or color", n:"Encodings are tools for building a representation. The definition centers on the human activity, not on the graphic."},
+  {t:"Applying statistical summaries to data before plotting it", n:"Derived data such as medians can help, but summarizing data isn't what visualization means."}],
+ why:"Spence defines visualization as the activity of forming a mental model of something. It's a cognitive act, which is why Spence calls the images on screen representations: they exist to support that act. Bertin frames it the same way, as finding the artificial memory that best supports our natural means of perception."},
+
+{s:1, topic:"Visualization and computers", type:"tf",
+ prompt:"True or false: without a computer, an activity cannot count as information visualization.",
+ opts:TF(false,"Interaction often improves visualization, which can make computers seem essential. But the historical examples show the activity predates them.",""),
+ why:"False. Visualization is independent of computers. Nightingale's rose diagram, Minard's map of Napoleon's march, Snow's cholera map, and Beck's Tube map all predate computing. Computation and interaction can enhance visualization immensely, but they aren't part of the definition."},
+
+{s:1, topic:"Why representation matters", type:"sa",
+ ctx:`<p><b>Summing game:</b> two players take turns picking from the numbers 1–9. The first player to hold three numbers that add up to 15 wins.</p>
+<p>The same game, laid out as a grid where every row, column, and diagonal sums to 15:</p>
+<table class="magic" aria-label="Magic square: row 1: 8, 1, 6. Row 2: 3, 5, 7. Row 3: 4, 9, 2."><tbody><tr><td>8</td><td>1</td><td>6</td></tr><tr><td>3</td><td>5</td><td>7</td></tr><tr><td>4</td><td>9</td><td>2</td></tr></tbody></table>`,
+ prompt:"The summing game is tic-tac-toe in disguise. Which reasons explain why tic-tac-toe is easier to play? Select all that apply.",
+ opts:[
+  {t:"The grid gives the game a graphical representation", c:true},
+  {t:"Players can write down, and see, the current state of the game", c:true},
+  {t:"Previous experience: its rules for winning and not losing are simple", c:true},
+  {t:"Tic-tac-toe has fewer winning combinations than the summing game", n:"The games are equivalent. The eight triples that sum to 15 map exactly onto the eight lines of the grid."}],
+ why:"The lecture gives three reasons: graphics, interactivity (the state of the game is externalized where you can see it), and previous experience. The underlying problem is identical; only its representation changed. That's the core argument for visualization: a good representation can make a solution transparent."},
+
+{s:1, topic:"Information vs. scientific visualization", type:"mc",
+ prompt:"Which dataset is the clearest fit for information visualization rather than scientific visualization?",
+ opts:[
+  {t:"Records of financial transactions between bank accounts", c:true},
+  {t:"A CAD model of a manufactured machine part", n:"CAD data has a well-defined geometry, which places it in scientific visualization."},
+  {t:"Elevation measurements across a mountain range", n:"Geospatial data has a physical shape, which places it on the scientific side."},
+  {t:"An engineering diagram of a bridge's structure", n:"Engineering diagrams describe physical geometry, so they belong to scientific visualization."}],
+ why:"Information visualization handles abstract data with no physical shape: text, statistical, financial, and Internet information. Scientific visualization handles data with a well-defined geometry, such as geospatial data and engineering diagrams. The two overlap considerably along a continuum, with CAD at the scientific end."},
+
+{s:1, topic:"Data types", type:"mc",
+ ctx:`<svg viewBox="0 0 260 60" role="img" aria-label="Four marks of equal size: a circle, a square, a triangle, and a star."><g fill="currentColor"><circle cx="30" cy="30" r="17"/><rect x="83" y="13" width="34" height="34"/><polygon points="160,12 180,47 140,47"/><polygon points="230,10 235.9,23.9 251,25.4 239.6,35.3 242.9,50.1 230,42.4 217.1,50.1 220.4,35.3 209,25.4 224.1,23.9"/></g></svg>`,
+ prompt:"Shape variation alone (circle, square, triangle, star) is appropriate for presenting which type of data?",
+ opts:[
+  {t:"Nominal (categorical) data", c:true},
+  {t:"Ordinal data", n:"Shapes have no inherent order. A viewer can't tell whether a star ranks above a triangle."},
+  {t:"Quantitative data", n:"Shapes carry no magnitude or interval, so arithmetic relationships can't be read from them."},
+  {t:"Any type, as long as a legend is supplied", n:"A legend lets viewers decode the marks, but it doesn't make shapes perceived as ordered or proportional."}],
+ why:"Nominal data (Chrysler, horse, cow) only needs categories that look different from one another. Shape distinguishes categories but implies no order and no quantity. This matches Bertin's guidance, where shape supports association only."},
+
+{s:1, topic:"Data dimensions and size", type:"mc",
+ ctx:`<table><thead><tr><th>Name</th><th>Income</th><th>Tax</th><th>Population</th></tr></thead><tbody>
+<tr><td>Russia</td><td class="num">29</td><td class="num">6</td><td class="num">14</td></tr>
+<tr><td>Turkey</td><td class="num">24</td><td class="num">7</td><td class="num">6</td></tr>
+<tr><td>Britain</td><td class="num">14</td><td class="num">28</td><td class="num">2</td></tr></tbody></table>`,
+ prompt:"How would you describe this dataset in terms of dimensions and size?",
+ opts:[
+  {t:"Four dimensions; size of three", c:true},
+  {t:"Three dimensions; size of four", n:"This swaps the two. Columns (variables) are dimensions; rows determine the size."},
+  {t:"Three dimensions; size of three", n:"Name is a dimension too: a nominal one. Excluding it undercounts the columns."},
+  {t:"Twelve dimensions; size of one", n:"Each cell is a value, not a dimension. Dimensions are the columns."}],
+ why:"Each column is a dimension (also called a variable or property): Name, Income, Tax, and Population, so four. The size of the data is the number of rows, three. Dimensionality drives design difficulty; size drives choices like aggregation."},
+
+{s:1, topic:"External cognition", type:"tf",
+ prompt:"True or false: visualization can amplify cognition by serving as external memory, increasing the memory capacity and processing power available to the viewer.",
+ opts:TF(true,"","External cognition is one of the main ways visualization helps. Visual logic gates, multiplication on paper, and the mutilated chessboard all show it."),
+ why:"True. Visualization amplifies cognition through cognitive maps (think of planning a subway trip) and through external cognition, which increases effective memory capacity and processing power. The mutilated chessboard shows this: colored squares make the impossibility of a complete cover obvious, while the same logic told as a story about marriages is hard to see."},
+
+{s:1, topic:"Representation vs. visualization", type:"mc",
+ ctx:`<p>A city map with color coding superimposed to show the percentage of houses that are home to children. A menu lets the user switch to another attribute, such as monthly income per person.</p>`,
+ prompt:"Spence argues that the colored map itself should not be called a visualization. What term does he prefer for it?",
+ opts:[
+  {t:"A representation", c:true},
+  {t:"A mental model", n:"The mental model is what forms in the user's mind. The map supports it but isn't it."},
+  {t:"A presentation", n:"Presentation concerns selecting and laying out what's shown. Spence's point is about what the image is relative to the mind."},
+  {t:"A visual analytics system", n:"Visual analytics combines automated analysis with interactive visualization, as in WireVis or CoCo. It isn't a term for a single image."}],
+ why:"Because visualization means forming a mental model, the image on screen isn't a visualization. It's a representation, whose reason for existing is to support visualization in the user's mind. The interface that provides it is a visualization tool."},
+
+/* ---------- Section 2 ---------- */
+{s:2, topic:"Spatial substrate", type:"mc",
+ prompt:"A designer repeats an axis at a different position in space so that a second chart lines up with the first. Which spatial substrate technique is this?",
+ opts:[
+  {t:"Alignment", c:true},
+  {t:"Composition", n:"Composition places axes orthogonally to form a 2D or 3D space."},
+  {t:"Folding", n:"Folding continues an axis in a parallel dimension."},
+  {t:"Overloading", n:"Overloading reuses space so that, for example, each surface corresponds to a single point in a second set of axes."}],
+ why:"Alignment is the repetition of an axis at a different position in space. The lecture lists five ways to increase use of space: composition (orthogonal axes), alignment (a repeated axis), folding (an axis continued in a parallel dimension), recursion (repeated subdivision of space), and overloading (reusing the same space)."},
+
+{s:2, topic:"Marks", type:"sa",
+ prompt:"Which of the following are marks? Select all that apply.",
+ opts:[
+  {t:"Point", c:true},
+  {t:"Line", c:true},
+  {t:"Area", c:true},
+  {t:"Volume", c:true},
+  {t:"Color", n:"Color is a graphical property of a mark, not a mark."},
+  {t:"Axis", n:"Axes belong to the spatial substrate, the space on which marks are positioned."}],
+ why:"Marks are things that occur in space and are positioned on the spatial substrate: a point (almost 0D), a line (almost 1D), an area, and a volume. Color, length, size, and similar qualities are graphical properties applied to marks."},
+
+{s:2, topic:"Bertin's guidance", type:"sa",
+ ctx:`<p>Bertin's four tasks for marks:</p><dl><dt>Association</dt><dd>Marks can be perceived as similar</dd><dt>Selection</dt><dd>Marks are perceived as different, forming families</dd><dt>Order</dt><dd>Marks are perceived as ordered</dd><dt>Quantity</dt><dd>Marks are perceived as proportional to each other</dd></dl>`,
+ prompt:"According to Bertin's guidance, which retinal variables let marks be perceived as ordered? Select all that apply.",
+ opts:[
+  {t:"Size", c:true},
+  {t:"Value (light to dark)", c:true},
+  {t:"Texture", c:true},
+  {t:"Colour (hue)", n:"Bertin rates colour for association and selection only. Hues have no natural sequence."},
+  {t:"Orientation", n:"Orientation supports association only."},
+  {t:"Shape", n:"Shape supports association only."}],
+ why:"Bertin's table: size supports selection, order, and quantity. Value supports selection and order. Texture supports association, selection, and order. Colour supports association and selection. Orientation and shape support association only. Spence notes this guidance is intuitively reasonable but depends heavily on context."},
+
+{s:2, topic:"Bertin's guidance", type:"mc",
+ prompt:"Which retinal variable is the only one Bertin rates as supporting quantity, so that marks are perceived as proportional to each other?",
+ opts:[
+  {t:"Size", c:true},
+  {t:"Value", n:"Value conveys order (lighter vs. darker) but not proportion."},
+  {t:"Texture", n:"Texture supports association, selection, and order, but not quantity."},
+  {t:"Colour", n:"Colour supports association and selection only."}],
+ why:"In Bertin's table, size is the only retinal variable with a mark in the quantity column. A bar twice as tall can be read as twice the value; a mark twice as dark can't."},
+
+{s:2, topic:"Cleveland & McGill ranking", type:"mc",
+ prompt:"Cleveland and McGill ranked encodings by how accurately people judge quantities. Which order runs from most to least accurate?",
+ opts:[
+  {t:"Position, length, angle/slope, area, volume, colour density", c:true},
+  {t:"Length, position, area, angle/slope, colour density, volume", n:"Position on a common scale beats length, and colour density is the least accurate of all."},
+  {t:"Position, area, length, volume, angle/slope, colour density", n:"Area and volume rank below length and angle. Judging 2D and 3D extent is error-prone."},
+  {t:"Colour density, position, length, angle/slope, area, volume", n:"This inverts the bottom of the scale. Colour density is the least accurate encoding."}],
+ why:"Position is most accurate, followed by length, angle/slope, area, volume, and finally colour density. Spence advises applying the ranking with judgment: colour works well for height on maps because of familiarity, and Nightingale used area effectively."},
+
+{s:2, topic:"Choosing axes", type:"mc",
+ ctx:`<table><thead><tr><th>Dependent (D)</th><th>Independent (I)</th></tr></thead><tbody><tr><td>Sales</td><td>Season</td></tr><tr><td>Tax revenue</td><td>City</td></tr></tbody></table>`,
+ prompt:"Which visual structure should display the dependent variable?",
+ opts:[
+  {t:"The y-axis", c:true},
+  {t:"The x-axis", n:"The x-axis is for the independent variable, the one the dependent variable changes relative to."},
+  {t:"The size of each mark", n:"Mark properties are used to differentiate additional independent variables."},
+  {t:"The color of each mark", n:"Color is likewise used for additional independent variables, not the dependent one."}],
+ why:"The dependent variable changes relative to the independent one, so it goes on the y-axis and the independent variable goes on the x-axis. Sales depends on season; tax revenue depends on city."},
+
+{s:2, topic:"Choosing axes", type:"tf",
+ prompt:"True or false: when there is more than one independent variable, the most important one is assigned to the x-axis and the others are differentiated by a graphical property of the mark.",
+ opts:TF(true,"","This is the recommended approach. Only one independent variable can own the x-axis; the rest need another encoding."),
+ why:"True. The most important independent variable goes on the x-axis. Any others are differentiated by graphical properties of the marks, such as color or shape."},
+
+{s:2, topic:"Temporal encoding", type:"tf",
+ prompt:"True or false: animation should only encode time-based data; using it for anything else misleads viewers.",
+ opts:TF(false,"Encoding time is one use of animation, but not the only legitimate one.",""),
+ why:"False. Temporal encoding can encode time, encode non-temporal data, or simply help viewers read the visualization better with no data encoded at all. Because of change blindness, animated changes may need smooth transitions."},
+
+/* ---------- Section 3 ---------- */
+{s:3, topic:"Pre-attentive processing", type:"mc",
+ prompt:"Which description fits pre-attentive processing?",
+ opts:[
+  {t:"Fast (under about 250 ms), in parallel, without focused attention", c:true},
+  {t:"Slow and serial, requiring the viewer to fixate on each item", n:"That describes attentive search, the opposite of pre-attentive processing."},
+  {t:"Fast, but possible only after the viewer has learned a legend", n:"Pre-attentive processing is a property of the visual system and doesn't depend on learned codes."},
+  {t:"Possible only for marks rendered in 3D perspective", n:"3D features can improve early detection, but pre-attentive processing isn't limited to 3D."}],
+ why:"The visual system can process some types of visual information without focusing attention, in parallel, in under about 250 ms, almost as fast as an eye movement. Design should take advantage of this so important information stands out."},
+
+{s:3, topic:"Pre-attentive limits", type:"mc",
+ ctx:`<p>A display contains many marks that vary in color and in shape. The viewer must judge, at a glance, whether a particular target is present.</p>`,
+ prompt:"Which of these CANNOT be determined pre-attentively?",
+ opts:[
+  {t:"Whether a mark with a certain color and a certain shape exists", c:true},
+  {t:"Whether a mark with a certain color exists", n:"A unique color pops out, so this can be judged pre-attentively."},
+  {t:"Whether a mark with a certain shape exists", n:"A unique shape among other shapes can be detected pre-attentively."},
+  {t:"Where the boundary between two differently colored regions is", n:"Determining region boundaries is one of the tasks pre-attentive processing supports."}],
+ why:"A single distinct feature, such as color or shape, can pop out. A combination of two features can't, because the other marks share each feature individually. This is the interference among graphical properties that the lecture warns about: it forces a slower, attentive search."},
+
+{s:3, topic:"Pre-attentive processing", type:"sa",
+ prompt:"Designs can exploit pre-attentive processing to support which tasks? Select all that apply.",
+ opts:[
+  {t:"Finding important information, if it's present", c:true},
+  {t:"Determining the boundaries of regions", c:true},
+  {t:"Counting and estimation", c:true},
+  {t:"Reading the exact value in a spreadsheet cell", n:"Reading a precise number takes focused attention. Lecture 5 even asks whether quantitative information in a spreadsheet can be processed pre-attentively at all."}],
+ why:"The lecture lists three uses: finding important information if present, determining region boundaries, and counting or estimation. All three rely on parallel detection of visual features rather than reading symbols."},
+
+{s:3, topic:"Gestalt principles", type:"mc",
+ ctx:`<svg viewBox="0 0 360 90" role="img" aria-label="Twelve identical dots arranged as three tight clusters of four, with wide gaps between the clusters."><g fill="currentColor"><circle cx="30" cy="35" r="8"/><circle cx="52" cy="35" r="8"/><circle cx="30" cy="57" r="8"/><circle cx="52" cy="57" r="8"/><circle cx="160" cy="35" r="8"/><circle cx="182" cy="35" r="8"/><circle cx="160" cy="57" r="8"/><circle cx="182" cy="57" r="8"/><circle cx="296" cy="35" r="8"/><circle cx="318" cy="35" r="8"/><circle cx="296" cy="57" r="8"/><circle cx="318" cy="57" r="8"/></g></svg>`,
+ prompt:"Viewers see three groups of dots, even though all twelve dots are identical. Which Gestalt principle explains this?",
+ opts:[
+  {t:"Proximity", c:true},
+  {t:"Similarity", n:"Every dot looks the same, so shared appearance can't separate the groups."},
+  {t:"Closure", n:"Closure is perceiving an incomplete outline as a complete shape. No outline is involved here."},
+  {t:"Symmetry", n:"The clusters are symmetric, but symmetry isn't what separates them into three."}],
+ why:"Proximity: elements that are close together are perceived as a group. Spacing alone creates the three clusters. Designers use this to group related data without adding borders or labels."},
+
+{s:3, topic:"Gestalt principles", type:"mc",
+ ctx:`<svg viewBox="0 0 300 110" role="img" aria-label="A circle outline with a gap in it, and a square outline with gaps on two sides."><g fill="none" stroke="currentColor" stroke-width="5"><circle cx="70" cy="55" r="40" stroke-dasharray="210 41.3" transform="rotate(-60 70 55)"/><path d="M180 15 H230 M250 15 H260 V60 M260 80 V95 H180 V15"/></g></svg>`,
+ prompt:"Viewers report seeing a complete circle and a complete square, even though both outlines have gaps. Which Gestalt principle explains this?",
+ opts:[
+  {t:"Closure", c:true},
+  {t:"Continuity", n:"Continuity is following a smooth path through intersecting or interrupted lines. Here the mind fills gaps to complete a closed shape."},
+  {t:"Proximity", n:"Proximity groups nearby separate elements; it doesn't explain filling in missing parts of an outline."},
+  {t:"Similarity", n:"Similarity groups elements that look alike; there's only one of each shape here."}],
+ why:"Closure: we perceive incomplete figures as complete, closed shapes. The visual system fills in the gaps."},
+
+{s:3, topic:"Change blindness", type:"mc",
+ ctx:`<p>An early altimeter used three hands: the smallest showed tens of thousands of feet, the middle one thousands, the largest hundreds. A pilot glances at it and sees a safe altitude. After talking to the co-pilot and air-traffic control, the pilot glances again, sees no change, and concludes all is well. In fact the aircraft has dropped almost 20,000 ft.</p>`,
+ prompt:"What phenomenon does Spence identify as the cause of accidents like this?",
+ opts:[
+  {t:"Change blindness", c:true},
+  {t:"Inattentional blindness", n:"The lecture lists both kinds of blindness, but Spence attributes this case to change blindness: the pilot looked both times and failed to notice what changed."},
+  {t:"Pre-attentive pop-out", n:"Pop-out helps detection. The problem here is a failure to detect."},
+  {t:"Gestalt closure", n:"Closure concerns completing shapes, not noticing changes between two views."}],
+ why:"Change blindness: viewers often fail to notice a change between two views, even a large one. On the old altimeter, a 20,000 ft drop moved only the smallest hand. Since most uses of visualization tools involve noticing change, this matters well beyond cockpits."},
+
+{s:3, topic:"Emergent features", type:"tf",
+ prompt:"True or false: pre-attentive detection depends only on the features of individual marks. Features that emerge from a group of simpler shapes play no role.",
+ opts:TF(false,"Emergent features, created by a group of simpler shapes, also matter for pre-attentive detection.",""),
+ why:"False. Emergent features, those created by a group of simpler shapes, are also important. The lecture adds that 3D features can improve early detection, and that interference among graphical properties can reduce the effectiveness of the visual system."},
+
+{s:3, topic:"Designing for perception", type:"mc",
+ ctx:`<p>In a modern altimeter, a black area representing the plane sits inside a green "safe" region or a purple "danger" region. White numbers on the green background give approximate height. A black box holds precise digits, with the hundreds emphasized because pilots think in hundreds of feet.</p>`,
+ prompt:"Within about 250 ms, a pilot can tell whether the aircraft is safe without reading any numbers. What design idea does this altimeter illustrate?",
+ opts:[
+  {t:"Layered information: status at a glance, approximate value next, precise value on demand", c:true},
+  {t:"Showing one precise number as large as possible to prevent misreading", n:"For the safety judgment, numbers are deliberately secondary. The colored region carries it."},
+  {t:"Removing numeric information entirely to avoid clutter", n:"Numbers remain, both approximate and precise. They're just not needed for the first judgment."},
+  {t:"Animating the needle so that change blindness can't occur", n:"The design relies on a pre-attentive color region, not animated needles."}],
+ why:"The safety question is answered pre-attentively by the position of the black area relative to the green and purple regions. Approximate height comes from the white numbers; precise height from the black box. The design also respects the user's convention by emphasizing hundreds of feet."},
+
+/* ---------- Section 4 ---------- */
+{s:4, topic:"Sources of mirages", type:"sa",
+ prompt:"Which of the following can produce visualization mirages? Select all that apply.",
+ opts:[
+  {t:"Aggregating data points in a way that hides different underlying distributions", c:true},
+  {t:"Showing missing values merged into an aggregate", c:true},
+  {t:"The choice of an axis's domain", c:true},
+  {t:"Data points drawn on top of each other", c:true},
+  {t:"Lowering mark opacity to check for overplotting", n:"That's the transparency test, a way to detect mirages, not a cause of them."},
+  {t:"Shuffling the data order and comparing the results", n:"That's the change-order test, also a detection method."}],
+ why:"Mirages come from aggregation that hides different distributions (four datasets can share one average), missing data folded into aggregates (three missing months made Q4 sales look low), axis domain choices (a world-record chart can look flat or steep), and overdraw. Transparency, change-order, and repeated-resampling tests are how you surface them."},
+
+{s:4, topic:"Defining mirages", type:"mc",
+ prompt:"Which statement best defines a visualization mirage?",
+ opts:[
+  {t:"A message a cursory reading suggests but a deep dive into the data doesn't support", c:true},
+  {t:"A chart that breaks visualization grammar, such as using the wrong mark type", n:"Mirages can be grammatically correct yet deceptive. The 100 m dash axis example is a valid chart."},
+  {t:"An error introduced only when the chart is finally rendered on screen", n:"Mirages can occur at any stage of the visualization process, including curation and wrangling."},
+  {t:"A chart created by a designer who intends to mislead", n:"Many mirages come from honest curation or wrangling errors. Intent isn't required."}],
+ why:"A mirage is a message apparent through cursory examination that isn't supported by a deeper look at the data (McNutt, Kindlmann, and Correll, 2020). It can occur at any stage of the visualization process, from data curation through rendering."},
+
+{s:4, topic:"Data curation errors", type:"mc",
+ ctx:`<table><thead><tr><th>Category as entered</th><th>Records</th></tr></thead><tbody><tr><td>A</td><td class="num">8</td></tr><tr><td>a</td><td class="num">22</td></tr><tr><td>B</td><td class="num">15</td></tr></tbody></table><p>A bar chart compares the mean value of category A against category B. Its filter is case-sensitive and keeps only “A” and “B”.</p>`,
+ prompt:"The chart shows B well above A. If the “a” records were merged into A, the difference would reverse. What kind of mirage is this?",
+ opts:[
+  {t:"A data curation error that silently drops the records entered as “a”", c:true},
+  {t:"Overplotting, with bars drawn over one another in the same space", n:"Each category gets its own bar here. Nothing is drawn on top of anything else."},
+  {t:"A misleading choice of y-axis domain", n:"The axis isn't the problem. The data feeding the chart is incomplete."},
+  {t:"A Simpson's paradox mix effect across subgroups", n:"Mix effects come from shifting subgroup sizes. Here, records are simply split by inconsistent data entry."}],
+ why:"Most A records were mistakenly entered as lowercase “a”, and the case-sensitive filter excluded them. The chart is drawn correctly from the data it receives; the data is wrong. That's a curation error, and it shows why mirages can arise long before rendering."},
+
+{s:4, topic:"Testing for mirages", type:"mc",
+ ctx:`<p>A bar chart shows monthly precipitation, with no aggregation set on the precipitation axis. When mark opacity is reduced, each month reveals several stacked layers of different heights.</p>`,
+ prompt:"What did this transparency test reveal?",
+ opts:[
+  {t:"Many bars were overplotted, so only each month's maximum was visible", c:true},
+  {t:"The y-axis did not start at zero", n:"Reducing opacity says nothing about the axis domain."},
+  {t:"Several months were missing records", n:"The test targets marks drawn over one another, not missing records."},
+  {t:"The bars were sorted into a misleading order", n:"Order effects are what the change-order test probes."}],
+ why:"Without an aggregate, many bars occupy the same space and only the tallest is visible, so the chart seems to show maximum values. If a chart is free of overplotting, lowering opacity should produce a visually similar chart. A big change means overplotting."},
+
+{s:4, topic:"Area and proportion", type:"mc",
+ ctx:`<p>A value of 4 and a value of 8 are each encoded as a rectangle.</p>`,
+ prompt:"Which encoding makes the rectangle for 4 NOT look like half of the rectangle for 8?",
+ opts:[
+  {t:"Scaling both width and height by the value", c:true},
+  {t:"Scaling only the width by the value", n:"With one dimension fixed, area stays proportional to the value: 4 looks like half of 8."},
+  {t:"Scaling only the height by the value", n:"Same as width: one scaled dimension keeps the area proportional."},
+  {t:"All three distort the ratio equally", n:"Scaling one dimension is honest. Only scaling both distorts the ratio."}],
+ why:"Scaling both dimensions multiplies area by the square of the ratio: 8 becomes four times the area of 4, not twice. Tufte's “How to exaggerate with graphs” example shows exactly this error: shrinking along both dimensions."},
+
+{s:4, topic:"Tufte's principles", type:"mc",
+ ctx:`<p>A bar chart has a gradient background, a bevelled 3D effect on every bar, and decorative clip art in the corner. None of these elements carry data.</p>`,
+ prompt:"What is Tufte's term for these elements?",
+ opts:[
+  {t:"Chartjunk", c:true},
+  {t:"Small multiples", n:"Small multiples are repeated simple charts placed close together, a principle Tufte recommends."},
+  {t:"Multifunctioning graphical elements", n:"Those convey data and serve a design function at once. These elements convey nothing."},
+  {t:"Emergent features", n:"Emergent features are a perception concept: features created by a group of simpler shapes."}],
+ why:"Chartjunk is visual elements that don't convey important information and only distract the viewer. Removing it raises the data-ink ratio, which Tufte says to maximize: the greatest number of ideas in the shortest time with the least ink in the smallest space."},
+
+{s:4, topic:"Tufte's principles", type:"tf",
+ prompt:"True or false: Tufte's principle of multifunctioning graphical elements means each element should serve only one purpose, to avoid confusing the viewer.",
+ opts:TF(false,"The principle says the opposite: one element should do more than one job.",""),
+ why:"False. Multifunctioning graphical elements convey data and serve a design function, or show several pieces of data at once. Making each element work harder is one way to maximize the data-ink ratio."},
+
+{s:4, topic:"Dual-axis deception", type:"tf",
+ ctx:`<p>A chart titled “Aging is the primary cause of death” plots death rates against age for smokers and for non-smokers. Each group has its own y-axis, with independently chosen scales. The two lines nearly overlap.</p>`,
+ prompt:"True or false: giving two series separate y-axes with independently chosen scales can make clearly different series look nearly identical.",
+ opts:TF(true,"","This is exactly how the chart hides the gap. Other charts of the same data show smokers' death rates clearly above non-smokers' at every age."),
+ why:"True. Wainer's example rescales each group's axis so the lines coincide, hiding the effect of smoking. The mirage examples show the same trick: a misleading y-axis that starts at 55 instead of 0 made two outliers look like a correlation."},
+
+/* ---------- Section 5 ---------- */
+{s:5, topic:"Representation vs. presentation", type:"mc",
+ ctx:`<p>The lecture summarizes design issues in four categories: representation (encoding), presentation (selection, layout), interaction, and human performance.</p>`,
+ prompt:"In this framework, which category does brushing belong to?",
+ opts:[
+  {t:"Representation (encoding)", c:true},
+  {t:"Presentation (selection, layout)", n:"Presentation covers what's selected and how it's laid out: filtering and suppression."},
+  {t:"Human performance", n:"Human performance covers perception and interpretation by the viewer."},
+  {t:"None of them, because brushing only changes the data", n:"Brushing doesn't change the data; it changes how linked marks are encoded, through color coding."}],
+ why:"Representation covers overview, detail, sensitivity, brushing, focusing, and suppression. Presentation covers suppression and filtering. Interaction covers navigation and exploration. Brushing works by color-coding a selected item in every linked view, which is a change in encoding."},
+
+{s:5, topic:"Focusing vs. filtering", type:"mc",
+ ctx:`<p>A user selects the £12–14k range on the price bargram. Four cars in that range are highlighted; every other car stays visible.</p>`,
+ prompt:"Which technique is this?",
+ opts:[
+  {t:"Focusing", c:true},
+  {t:"Filtering", n:"Filtering suppresses items considered irrelevant. Here, the other cars remain on screen."},
+  {t:"Suppression", n:"Suppression reduces or hides elements, typically because of space limits."},
+  {t:"Overview", n:"An overview summarizes the whole collection; this selection emphasizes part of it."}],
+ why:"Focusing emphasizes some parts of the data while still displaying the rest. Selecting a second range, such as MPG, then identifies only the cars that satisfy both requirements. Filtering, by contrast, removes the irrelevant detail from view."},
+
+{s:5, topic:"Sensitivity", type:"mc",
+ ctx:`<p>Above each attribute bargram, an outline car icon appears over a range when that range is the only requirement the car fails. Selecting that range turns the outline into a filled icon.</p>`,
+ prompt:"What is this feature called, and what does it support?",
+ opts:[
+  {t:"Sensitivity information, supporting exploration of near misses", c:true},
+  {t:"Suppression, saving display space when bargrams don't fit", n:"Suppression shrinks bargrams for space. Outline icons add information rather than hiding it."},
+  {t:"Filtering, removing cars that fail a requirement", n:"Filtering would hide these cars. Sensitivity keeps them visible and says how close they are."},
+  {t:"Detail, showing a car's precise attribute values", n:"The outline encodes which requirement fails, not a precise value."}],
+ why:"Sensitivity information shows what's close to the selection but not included, which encourages exploration. It answers questions like “what if I could spend another £500?” without trial and error. The EZChooser uses outline cars; the Attribute Explorer uses black encoding for objects that fail one limit."},
+
+{s:5, topic:"Suppression", type:"mc",
+ ctx:`<p>Ten attribute bargrams won't fit on screen. Most are shrunk vertically, losing their range labels but staying visible. Scrolling brings any one into full view.</p>`,
+ prompt:"Which technique is this?",
+ opts:[
+  {t:"Suppression", c:true},
+  {t:"Filtering", n:"Filtering removes irrelevant items entirely. Here, every bargram stays partly visible."},
+  {t:"Brushing", n:"Brushing links a selection across views by color coding; it doesn't manage space."},
+  {t:"Focusing", n:"Focusing highlights selected data; it doesn't shrink views to save room."}],
+ why:"When space is too limited, suppression reduces the space given to some elements so that some aspect of all of them remains visible. Users keep an overview, so a significant change on any attribute is still noticeable."},
+
+{s:5, topic:"Fuzzy goals", type:"tf",
+ prompt:"True or false: a car buyer typically states precise requirements at the start, so the problem is well defined before exploration begins.",
+ opts:TF(false,"Buyers usually start with vague needs like “sporty” or “around £3,000”.",""),
+ why:"False. Goals are fuzzy at first. The problem may not be well defined, and its definition happens while solving it, with precision introduced as the task proceeds. As Spence puts it, we often don't know what we don't know."},
+
+{s:5, topic:"Bargrams", type:"sa",
+ ctx:`<p>A bargram is made by “pushing over” a histogram's columns and abutting them end to end in a single row.</p>`,
+ prompt:"Which statements about a bargram of car prices are true? Select all that apply.",
+ opts:[
+  {t:"Each range's width is proportional to the number of cars in it", c:true},
+  {t:"It provides a framework for icons that represent individual cars", c:true},
+  {t:"It shows explicitly that no cars fall in an empty price range", n:"Abutting the columns drops empty ranges. Spence notes the bargram omits that no cars are in the £14–16k range."},
+  {t:"It is useful only when the buyer needs precise prices", n:"A bargram is an overview, and detail doesn't have to mean precision."}],
+ why:"In a bargram, each range's width is proportional to the number of objects in it. Its value is as a framework: icons above it can encode individual cars, be brushed to their images, and show sensitivity. The trade-off is that empty ranges disappear."},
+
+{s:5, topic:"Overview and detail", type:"tf",
+ prompt:"True or false: providing detail about a car in this kind of tool does not require showing its attributes as precise values.",
+ opts:TF(true,"","Detail can be qualitative, such as a car's appearance or which price range it falls in."),
+ why:"True. The lecture states directly that detail does not have to be precision. A photo is detail about appearance, an unquantifiable attribute; brushing a car's position on every bargram is detail about all its attributes. Mental models often mix qualitative overview with quantitative detail."},
+
+{s:5, topic:"Derived data", type:"mc",
+ prompt:"In a Tukey box plot of car prices, what do the two ends of the box represent?",
+ opts:[
+  {t:"The 25th and 75th percentiles", c:true},
+  {t:"The minimum and maximum prices", n:"Separate bars mark the 5th and 95th percentiles, and points beyond them are outliers."},
+  {t:"The mean plus and minus one standard deviation", n:"Box plots use percentiles. The central line is the median, not the mean."},
+  {t:"The 5th and 95th percentiles", n:"Those are the separate horizontal bars outside the box."}],
+ why:"A Tukey box plot shows derived data: the median, a box from the 25th to the 75th percentile, bars at the 5th and 95th percentiles, and outliers as points. It favors the median because one false observation can throw off the mean, while the median isn't affected until half the observations are false."},
+
+/* ---------- Section 6 ---------- */
+{s:6, topic:"Mosaic display", type:"mc",
+ ctx:`<table><thead><tr><th>Eye \\ Hair</th><th>Black</th><th>Brown</th><th>Red</th><th>Blond</th><th>Total</th></tr></thead><tbody>
+<tr><td>Green</td><td class="num">5</td><td class="num">29</td><td class="num">14</td><td class="num">16</td><td class="num">64</td></tr>
+<tr><td>Hazel</td><td class="num">15</td><td class="num">54</td><td class="num">14</td><td class="num">10</td><td class="num">93</td></tr>
+<tr><td>Blue</td><td class="num">20</td><td class="num">84</td><td class="num">17</td><td class="num">94</td><td class="num">215</td></tr>
+<tr><td>Brown</td><td class="num">68</td><td class="num">119</td><td class="num">26</td><td class="num">7</td><td class="num">220</td></tr>
+<tr><td>Total</td><td class="num">108</td><td class="num">286</td><td class="num">71</td><td class="num">127</td><td class="num">592</td></tr></tbody></table>`,
+ prompt:"In a mosaic display of this table, what do rectangle area and color encode?",
+ opts:[
+  {t:"Area: size of each sub-category. Color: how far it deviates from what independent variables would produce.", c:true},
+  {t:"Area: correlation between the variables. Color: size of each sub-category.", n:"This swaps the encodings. Area is proportional to counts; color carries the deviation."},
+  {t:"Area: distance of each sub-category's mean from the overall mean. Color: sub-category size.", n:"Area shows counts, and the display deals with counts, not means."},
+  {t:"Area: size of each sub-category. Color: distance of its mean from the overall mean.", n:"Area is right, but color shows deviation from independence (standardized residuals), not differences in means."}],
+ why:"Each rectangle's area is proportional to its count. Color shows the standardized residual: how far the count is from what you'd expect if hair and eye color were independent. Blue eyes with blond hair: expected about 215 × 127 / 592 ≈ 46, observed 94, so the cell is strongly colored."},
+
+{s:6, topic:"Simpson's paradox", type:"mc",
+ ctx:`<table><thead><tr><th>Segment</th><th>Change in median wage, 2000–2013</th></tr></thead><tbody>
+<tr><td>Overall</td><td class="num">+0.9%</td></tr><tr><td>No degree</td><td class="num">−7.9%</td></tr><tr><td>HS, no college</td><td class="num">−4.7%</td></tr><tr><td>Some college</td><td class="num">−7.6%</td></tr><tr><td>Bachelor's +</td><td class="num">−1.2%</td></tr></tbody></table>`,
+ prompt:"The overall median wage rose while every education segment fell. What explains this?",
+ opts:[
+  {t:"A mix effect: the share of workers in higher-wage segments grew", c:true},
+  {t:"A data entry error in the overall row", n:"Nothing is wrong with the data. This pattern arises naturally from changing group sizes."},
+  {t:"Overplotting that hid the segments that rose", n:"This is a table of numbers. No segment rose."},
+  {t:"Rounding errors that accumulated across the segments", n:"Rounding can't turn four sizable declines into an overall gain."}],
+ why:"This is Simpson's paradox, a statistical mix effect. As more of the workforce moved into higher-education segments with higher wages, the overall median rose even though each segment's median fell. Comet charts were designed to expose exactly this by showing both segment size and rate."},
+
+{s:6, topic:"Comet charts", type:"mc",
+ prompt:"A comet chart shows change between how many points in time?",
+ opts:[
+  {t:"Two: a start and an end", c:true},
+  {t:"One: a single snapshot", n:"A comet's shape encodes change, which requires a start and an end."},
+  {t:"Either one or two, depending on the data", n:"Every comet has both a start (tail) and an end (head)."},
+  {t:"More than two, as a continuous trajectory", n:"A comet connects only a start and an end; it doesn't trace intermediate points."}],
+ why:"Each comet runs from a start point (the narrow tail) to an end point (the head). Its position encodes two variables, such as size of labor force and unemployment rate, so you can see each segment and the aggregate change together. That makes mix effects visible."},
+
+{s:6, topic:"Scatterplot matrices", type:"mc",
+ ctx:`<p>A scatterplot matrix pairs every attribute with every other attribute. Two attributes need 1 component scatterplot; three attributes need 3.</p>`,
+ prompt:"How many distinct component scatterplots are needed for 5 attributes?",
+ opts:[
+  {t:"10", c:true},
+  {t:"5", n:"That's one plot per attribute. Plots show pairs of attributes."},
+  {t:"20", n:"That counts each pair twice, once above and once below the diagonal."},
+  {t:"25", n:"That's every cell of a 5×5 grid, including duplicates and the diagonal."}],
+ why:"Each distinct pair of attributes gets one plot: 2, 3, 4, and 5 attributes need 1, 3, 6, and 10 plots. The count grows much faster than the number of attributes, which is why large scatterplot matrices become hard to navigate."},
+
+{s:6, topic:"Scagnostics", type:"mc",
+ prompt:"How do scagnostics help an analyst faced with a large scatterplot matrix?",
+ opts:[
+  {t:"They classify each scatterplot by its shape so plots can be sorted and interesting ones found", c:true},
+  {t:"They replace the scatterplots with a single parallel coordinate plot", n:"Scagnostics work on the scatterplots themselves rather than replacing them."},
+  {t:"They project all the dimensions onto a single two-dimensional map", n:"That describes projection methods like self-organizing maps or t-SNE."},
+  {t:"They remove outliers so the trends are easier to see", n:"Scagnostics characterize plots, and outlying points are one feature they measure, not something they delete."}],
+ why:"Scagnostics compute measures of each scatterplot's shape and classify the plots, so the matrix can be sorted by classification and unusual views surface. Transforming scales matters too: with log or logit scales, three clusters become apparent that weren't visible before."},
+
+{s:6, topic:"Star plots", type:"tf",
+ prompt:"True or false: if a star plot uses the same scale on every axis, the area it encloses is a reliable overall score for comparing objects.",
+ opts:TF(false,"Area depends on the order of the axes, so it can't serve as a score.",""),
+ why:"False. Two star plots of identical data can enclose very different areas if the axes are arranged in a different order. Ranking students by star plot area could rank them wrongly. Nightingale's rose diagram avoids this: each segment's area is proportional to its value, so total area is meaningful."},
+
+{s:6, topic:"Object vs. attribute visibility", type:"mc",
+ prompt:"Which representation has attribute visibility but not object visibility?",
+ opts:[
+  {t:"A parallel coordinate plot", c:true},
+  {t:"A star plot", n:"Each object is a single coherent star, so a star plot has object visibility."},
+  {t:"A Chernoff face", n:"Each object is one face, a single visual entity: object visibility."},
+  {t:"A Nightingale rose", n:"Each rose represents one object, such as one student, so it has object visibility."}],
+ why:"In a parallel coordinate plot, one object is a polyline across many axes rather than a single visual entity. Each axis shows one attribute across all objects, so comparing a subject's scores for the whole class is easy. That suits a head teacher, while a parent may prefer a rose for one child."},
+
+{s:6, topic:"Visualizing relevance", type:"sa",
+ ctx:`<p>Query: <code>(20, 4, 56, 5)</code>. No item matches exactly. Closest items include <code>(19, 4, 55, 6)</code>, <code>(17, 4, 56, 5)</code>, and <code>(20, 7, 56, 5)</code>.</p>`,
+ prompt:"Which statements describe the visualization of relevance? Select all that apply.",
+ opts:[
+  {t:"Relevance is the inverse of the distance between the query and each item", c:true},
+  {t:"Query results can be displayed at the pixel level", c:true},
+  {t:"A spiral arrangement places the most relevant records at the center", c:true},
+  {t:"Only items that exactly match the query are displayed", n:"The technique exists because exact matches are often missing. It shows how close every item is."},
+  {t:"Each query dimension requires a separate screen", n:"The lecture shows alternative groupings that fit all query dimensions on one display."}],
+ why:"For each item, compute its distance from the query; relevance is the inverse. Results are shown at pixel level, ordered by relevance in a spiral that starts at the center. Near misses like the three items above stay visible instead of being discarded."},
+
+/* ---------- Section 7 ---------- */
+{s:7, topic:"Color for categories", type:"mc",
+ prompt:"Roughly how many nominal categories can color reliably distinguish?",
+ opts:[
+  {t:"Between 5 and 10", c:true},
+  {t:"Only 2 or 3", n:"Color handles more categories than that before it breaks down."},
+  {t:"Between 20 and 30", n:"Well beyond what viewers can reliably tell apart."},
+  {t:"Any number, with a well-designed palette", n:"Palettes help, but perception sets the limit."}],
+ why:"Color can distinguish between about 5 and 10 categories of nominal information. Beyond that, viewers can't reliably tell hues apart, which is also why the guidance says to limit the number of colors."},
+
+{s:7, topic:"Color model", type:"mc",
+ prompt:"In the HSL color model, what does saturation describe?",
+ opts:[
+  {t:"How much color there is; with none, the result is gray", c:true},
+  {t:"The typical color name, such as red or green", n:"That's hue."},
+  {t:"How light or dark the color is", n:"That's lightness."},
+  {t:"How many distinct colors a palette contains", n:"That's a property of a palette, not of a single color."}],
+ why:"HSL describes a color by hue (the typical color: red, green), saturation (how much color, so gray when there's none), and lightness."},
+
+{s:7, topic:"Using color effectively", type:"sa",
+ prompt:"Which practices follow the guidance on using color effectively? Select all that apply.",
+ opts:[
+  {t:"Make colors differ in brightness so content stays readable", c:true},
+  {t:"Avoid bright colors on large areas of the screen", c:true},
+  {t:"Limit the number of colors", c:true},
+  {t:"Reinforce color with another encoding rather than relying on color alone", c:true},
+  {t:"Choose a palette whose colors all share the same brightness", n:"Colors of equal brightness are hard to read against each other. The guidance says to avoid such palettes."},
+  {t:"Use extreme contrast between adjacent colors", n:"Extreme contrast causes vibration."}],
+ why:"Intrinsic brightness matters: you need different brightness to read, so avoid equal-brightness palettes and bright colors on large areas, and avoid extreme contrast, which vibrates. Limit the number of colors, account for color blindness, and reinforce color with another encoding."},
+
+{s:7, topic:"Color schemes", type:"mc",
+ ctx:`<p>A mosaic display colors each cell by its standardized residual: shades of blue for counts above what independence predicts, shades of red for counts below.</p>`,
+ prompt:"Which color scheme is this?",
+ opts:[
+  {t:"Double-ended multiple hue scale", c:true},
+  {t:"Single sequence single hue scale", n:"One hue can show low to high, but it can't distinguish two directions away from a middle."},
+  {t:"Full spectral scale", n:"A full spectral scale runs through many hues with no clear midpoint and has no natural order."},
+  {t:"Gray scale", n:"Gray scale has no hue at all, so it can't separate above from below."}],
+ why:"A double-ended multiple hue scale uses one hue for each direction away from a neutral middle, here blue for positive residuals and red for negative. It fits data where both the direction and the size of a deviation matter."},
+
+{s:7, topic:"Ordering colors", type:"tf",
+ ctx:`<p>Five swatches: purple, green, orange, yellow, red.</p>`,
+ prompt:"True or false: hue alone gives these colors a natural low-to-high order that viewers will agree on.",
+ opts:TF(false,"Viewers produce different orderings for hues. There's no perceptual low-to-high.",""),
+ why:"False. Color handles nominal data well, but ordered data is trickier. Asked to order these swatches from low to high, people disagree. To encode order, vary lightness or use a single-hue sequence."},
+
+{s:7, topic:"Selective magnification", type:"mc",
+ prompt:"Selective magnification, as in a US map resized by electoral college votes, preserves which property?",
+ opts:[
+  {t:"The adjacency relation between regions", c:true},
+  {t:"Each region's true geographic area", n:"Area is what changes: it's resized to encode the data."},
+  {t:"A single magnifying power for every region", n:"Different regions get different magnifying power."},
+  {t:"The exact shapes of the borders", n:"Shapes distort as regions grow or shrink, which is the technique's main disadvantage."}],
+ why:"Selective magnification keeps the adjacency relation while applying a different magnifying power to each region. Familiarity with where regions sit makes the encoding readable, as with Canada shrinking on a population-density map. The cost is distorted shapes and areas."},
+
+{s:7, topic:"Two-tone coloring", type:"tf",
+ prompt:"True or false: two-tone pseudo coloring is a compact visualization technique for one-dimensional quantitative data.",
+ opts:TF(true,"","The technique is presented specifically for quantitative data, not nominal categories."),
+ why:"True. Two-tone pseudo coloring (Saito et al., 2005) is a compact visualization for one-dimensional quantitative data. The lecture's examples show it side by side with continuous coloring on the same data."},
+
+{s:7, topic:"Multidimensional icons", type:"sa",
+ prompt:"Which statements about multidimensional icons, such as Chernoff faces, StarCursor, or the real-estate icons of Spence and Parr, are true? Select all that apply.",
+ opts:[
+  {t:"They can be customized for a different task and domain", c:true},
+  {t:"A Chernoff face represents k dimensions in a single face", c:true},
+  {t:"Each object appears as one coherent visual entity (object visibility)", c:true},
+  {t:"They make it easy to compare one attribute across all objects", n:"That's attribute visibility, a strength of parallel coordinates. Icons favor whole objects."},
+  {t:"Spence and Parr found icons slowed dwelling selection compared with text", n:"Their experiment found the task was completed twice as fast with icons."}],
+ why:"Multidimensional icons encode many attributes in one glyph and can be tailored to a domain: houses whose windows encode repair and whose green area encodes garden size. Each object is a single entity, which gives object visibility. Spence and Parr found choosing among 56 dwellings took half the time with icons."}
+];
+Q.forEach((q,i)=>q.id=i);
+
+const TYPE_LABEL = {mc:"Multiple choice", tf:"True / false", sa:"Select all that apply"};
+const $ = s => document.querySelector(s);
+const stage = $('#stage');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffleArr = a => { for (let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const sectionOf = id => SECTIONS[id-1];
+
+const S = {
+  shuffle:false, round:'main', queue:[], pos:0, phase:null,
+  correct:0, incorrect:0, log:{}, orders:{}, seen:new Set(),
+  misses:{}, mainLog:null
+};
+
+function announce(msg){ const a=$('#announce'); a.textContent=''; setTimeout(()=>a.textContent=msg,30); }
+
+/* ---------- Rounds ---------- */
+function startRound(kind, ids){
+  S.round = kind;
+  S.queue = ids.slice().sort((a,b)=>a-b);
+  if (S.shuffle) shuffleArr(S.queue);
+  S.pos = 0; S.correct = 0; S.incorrect = 0; S.log = {}; S.orders = {};
+  S.seen = new Set(kind === 'main' ? [] : SECTIONS.map(s=>s.id));
+  $('#roundLabel').textContent = kind === 'main' ? 'Main round' : 'Remediation round';
+  updateDash(); drawTicks(); show();
+}
+
+function show(){
+  if (S.pos >= S.queue.length) return renderSummary();
+  const q = Q[S.queue[S.pos]];
+  if (!S.seen.has(q.s)) { S.phase = 'intro'; return renderIntro(q.s); }
+  S.phase = 'question'; renderQuestion(q);
+}
+
+function focusEl(el){ if (el) { el.focus({preventScroll:true}); el.scrollIntoView({block:'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}); } }
+function scrollTopStage(){ window.scrollTo({top:0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}); }
+
+/* ---------- Section intro ---------- */
+function renderIntro(sid){
+  const sec = sectionOf(sid);
+  const n = Q.filter(q=>q.s===sid).length;
+  const note = S.shuffle ? 'Shuffle is on: questions from this section are mixed with the others.' : `${n} questions in this section`;
+  stage.innerHTML = `<article class="card intro" aria-labelledby="introH">
+    <div class="meta"><span class="badge">Section ${sid}</span><span class="qtype">Section ${sid} of ${SECTIONS.length}</span></div>
+    <h2 id="introH" tabindex="-1">${esc(sec.name)}</h2>
+    <p class="lede">${esc(sec.intro)}</p>
+    <h3 class="sr-only">Key terms</h3>
+    <ul class="chips">${sec.terms.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
+    <p class="count">${note}</p>
+    <button type="button" class="btn primary" id="beginBtn">Start section</button>
+  </article>`;
+  $('#beginBtn').addEventListener('click', ()=>{ S.seen.add(sid); show(); });
+  scrollTopStage(); focusEl($('#introH'));
+}
+
+/* ---------- Question ---------- */
+function renderQuestion(q){
+  const sec = sectionOf(q.s);
+  if (!S.orders[q.id]) {
+    const idx = q.opts.map((_,i)=>i);
+    S.orders[q.id] = q.type === 'tf' ? idx : shuffleArr(idx);
+  }
+  const inputType = q.type === 'sa' ? 'checkbox' : 'radio';
+  const optsHtml = S.orders[q.id].map(i => `
+    <label class="opt" data-i="${i}">
+      <input type="${inputType}" name="ans" value="${i}">
+      <span class="opt-text">${esc(q.opts[i].t)}</span>
+      <span class="tag" hidden></span>
+    </label>`).join('');
+  stage.innerHTML = `<article class="card" aria-labelledby="qnum">
+    <div class="meta">
+      <span class="badge" title="${esc(sec.name)}">Section ${q.s}</span>
+      <span class="topic">${esc(q.topic)}</span>
+      <span class="qtype">${TYPE_LABEL[q.type]}</span>
+    </div>
+    <h2 class="qnum" id="qnum" tabindex="-1">Question ${S.pos+1} of ${S.queue.length}<span class="sr-only">, ${esc(sec.name)}, ${TYPE_LABEL[q.type]}</span></h2>
+    ${q.ctx ? `<figure class="ctx"><figcaption>Reference</figcaption>${q.ctx}</figure>` : ''}
+    <form id="qform" novalidate>
+      <fieldset>
+        <legend class="prompt">${esc(q.prompt)}</legend>
+        <div class="opts">${optsHtml}</div>
+      </fieldset>
+      ${q.type==='sa' ? '<p class="hint">Select every option that applies, then check your answer.</p>' : ''}
+      <div class="actions"><button type="submit" class="btn primary" id="checkBtn" disabled>Check answer</button></div>
+    </form>
+    <div id="fb"></div>
+  </article>`;
+  const form = $('#qform');
+  form.addEventListener('change', ()=>{ $('#checkBtn').disabled = !form.querySelector('input:checked'); });
+  form.addEventListener('submit', e=>{ e.preventDefault(); grade(q); });
+  scrollTopStage(); focusEl($('#qnum'));
+}
+
+function grade(q){
+  const form = $('#qform');
+  const chosen = [...form.querySelectorAll('input:checked')].map(i=>+i.value);
+  if (!chosen.length) return;
+  const right = q.opts.map((o,i)=>o.c?i:-1).filter(i=>i>=0);
+  const ok = chosen.length === right.length && chosen.every(i=>right.includes(i));
+  S.log[q.id] = {chosen, ok};
+  if (ok) S.correct++; else { S.incorrect++; S.misses[q.topic] = S.misses[q.topic] || {n:0, s:q.s}; S.misses[q.topic].n++; }
+  S.phase = 'feedback';
+
+  form.classList.add('locked');
+  form.querySelectorAll('input').forEach(i=>i.disabled=true);
+  $('#checkBtn').remove();
+  form.querySelectorAll('.opt').forEach(lab=>{
+    const i = +lab.dataset.i, isC = q.opts[i].c, picked = chosen.includes(i), tag = lab.querySelector('.tag');
+    let state = 'dim', text = '';
+    if (isC && picked) { state='correct'; text='✓ Correct'; }
+    else if (isC) { state='missed'; text = q.type==='sa' ? '✓ Also correct' : '✓ Correct answer'; }
+    else if (picked) { state='wrong'; text='✗ Your choice'; }
+    lab.dataset.state = state;
+    if (text) { tag.textContent = text; tag.hidden = false; }
+  });
+
+  const correctTexts = right.map(i=>`“${esc(q.opts[i].t)}”`);
+  let misc = '';
+  if (!ok) {
+    const items = [];
+    chosen.filter(i=>!q.opts[i].c).forEach(i=>items.push(`<li><strong>You chose “${esc(q.opts[i].t)}”.</strong> ${esc(q.opts[i].n || 'This option is not correct.')}</li>`));
+    if (q.type==='sa') right.filter(i=>!chosen.includes(i)).forEach(i=>items.push(`<li><strong>You left out “${esc(q.opts[i].t)}”.</strong> ${esc(q.opts[i].n || 'This is also correct; the explanation below covers why.')}</li>`));
+    const hasWrong = chosen.some(i=>!q.opts[i].c);
+    misc = `<h4>${hasWrong ? 'Misconception to correct' : 'What you missed'}</h4><ul>${items.join('')}</ul>`;
+  }
+  const last = S.pos === S.queue.length - 1;
+  $('#fb').innerHTML = `<section class="feedback ${ok?'ok':'bad'}" id="fbBox" tabindex="-1" aria-labelledby="fbH">
+    <h3 id="fbH">${ok ? '✓ Correct' : '✗ Incorrect'}</h3>
+    <p class="answer-line">${right.length>1?'Correct answers':'Correct answer'}: <b>${correctTexts.join(', ')}</b></p>
+    ${misc}
+    <h4>Why</h4><p>${esc(q.why)}</p>
+    <div class="actions"><button type="button" class="btn primary" id="nextBtn">${last ? 'See results' : 'Next question'}</button></div>
+  </section>`;
+  $('#nextBtn').addEventListener('click', ()=>{ S.pos++; show(); });
+  updateDash(); updateDeficits();
+  announce(ok ? 'Correct.' : 'Incorrect. Feedback follows.');
+  focusEl($('#fbBox'));
+}
+
+/* ---------- Dashboard ---------- */
+function updateDash(){
+  const answered = S.correct + S.incorrect, total = S.queue.length;
+  $('#dCorrect').textContent = S.correct;
+  $('#dIncorrect').textContent = S.incorrect;
+  $('#dScore').textContent = answered ? Math.round(100*S.correct/answered) + '%' : '–';
+  $('#dRemaining').textContent = total - answered;
+  const pct = total ? 100*answered/total : 0;
+  $('#progressFill').style.width = pct + '%';
+  const pb = $('#progress');
+  pb.setAttribute('aria-valuemax', total); pb.setAttribute('aria-valuenow', answered);
+  pb.setAttribute('aria-valuetext', `${answered} of ${total} answered`);
+}
+
+function drawTicks(){
+  const t = $('#ticks'); t.innerHTML = '';
+  if (S.shuffle || S.round !== 'main') return;
+  let acc = 0;
+  SECTIONS.slice(0,-1).forEach(sec=>{
+    acc += Q.filter(q=>q.s===sec.id).length;
+    const d = document.createElement('span'); d.className='tick'; d.style.left = (100*acc/Q.length)+'%'; t.appendChild(d);
+  });
+}
+
+function updateDeficits(){
+  const entries = Object.entries(S.misses).sort((a,b)=>b[1].n-a[1].n || a[1].s-b[1].s);
+  const box = $('#deficits'), layout = $('#layout');
+  if (!entries.length) { box.hidden = true; layout.classList.remove('has-deficits'); return; }
+  box.hidden = false; layout.classList.add('has-deficits');
+  const max = entries[0][1].n;
+  $('#defList').innerHTML = entries.map(([topic,v])=>`<li class="def-row">
+    <span>${esc(topic)}</span><span class="sec">Section ${v.s}: ${esc(sectionOf(v.s).name)}</span>
+    <span class="n" aria-label="missed ${v.n} ${v.n===1?'time':'times'}">×${v.n}</span>
+    <span class="bar" aria-hidden="true"><span style="width:${100*v.n/max}%"></span></span></li>`).join('');
+}
+
+/* ---------- Summary ---------- */
+function renderSummary(){
+  S.phase = 'summary';
+  const ids = S.queue.slice();
+  const total = ids.length, pct = total ? Math.round(100*S.correct/total) : 0;
+  const missedIds = ids.filter(id=>!S.log[id].ok).sort((a,b)=>a-b);
+  const secIds = [...new Set(ids.map(id=>Q[id].s))].sort((a,b)=>a-b);
+  const bars = secIds.map(sid=>{
+    const inSec = ids.filter(id=>Q[id].s===sid), c = inSec.filter(id=>S.log[id].ok).length;
+    const p = Math.round(100*c/inSec.length);
+    return `<li class="secbar ${c===inSec.length?'full':''}"><span>Section ${sid}: ${esc(sectionOf(sid).name)}</span><span class="frac">${c}/${inSec.length} · ${p}%</span>
+      <span class="bar" role="img" aria-label="${p} percent correct"><span style="width:0" data-w="${p}"></span></span></li>`;
+  }).join('');
+  const optText = (q,list)=> list.map(i=>`“${esc(q.opts[i].t)}”`).join(', ');
+  const missed = missedIds.map(id=>{
+    const q = Q[id], r = q.opts.map((o,i)=>o.c?i:-1).filter(i=>i>=0);
+    return `<li><div class="meta" style="margin:0"><span class="badge">Section ${q.s}</span><span class="topic">${esc(q.topic)}</span></div>
+      <p class="mq">${esc(q.prompt)}</p>
+      <dl><dt>Your answer</dt><dd class="yours">${optText(q,S.log[id].chosen)}</dd>
+      <dt>Correct</dt><dd class="right">${optText(q,r)}</dd>
+      <dt>Why</dt><dd>${esc(q.why)}</dd></dl></li>`;
+  }).join('');
+  const isMain = S.round === 'main';
+  const title = isMain ? 'Module complete' : 'Remediation round complete';
+  const remedLabel = isMain ? `Start remediation round (${missedIds.length})` : `Replay remaining misses (${missedIds.length})`;
+  stage.innerHTML = `<article class="card summary" aria-labelledby="sumH">
+    <h2 id="sumH" tabindex="-1">${title}</h2>
+    <p class="bigscore">${pct}%</p>
+    <p>${S.correct} of ${total} correct${isMain?'':' in this round'}.${missedIds.length?'':' Nothing left to remediate.'}</p>
+    <div class="actions">
+      ${missedIds.length ? `<button type="button" class="btn primary" id="remedBtn">${remedLabel}</button>` : ''}
+      <button type="button" class="btn" id="restartBtn">Restart full module</button>
+    </div>
+    <h3>By section</h3>
+    <ul class="secbars">${bars}</ul>
+    <h3>${missedIds.length ? `Missed questions (${missedIds.length})` : 'Missed questions'}</h3>
+    ${missedIds.length ? `<ol class="missed">${missed}</ol>` : '<p class="empty-note">You answered every question correctly.</p>'}
+  </article>`;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>stage.querySelectorAll('.secbar .bar span').forEach(s=>s.style.width=s.dataset.w+'%')));
+  if (missedIds.length) $('#remedBtn').addEventListener('click', ()=>startRound('remed', missedIds));
+  $('#restartBtn').addEventListener('click', ()=>{ S.misses = {}; updateDeficits(); startRound('main', Q.map(q=>q.id)); });
+  announce(`${title}. Score ${pct} percent.`);
+  scrollTopStage(); focusEl($('#sumH'));
+}
+
+/* ---------- Shuffle toggle ---------- */
+$('#shuffleBtn').addEventListener('click', ()=>{
+  S.shuffle = !S.shuffle;
+  $('#shuffleBtn').setAttribute('aria-checked', String(S.shuffle));
+  if (S.phase === 'summary' || S.phase === null) { drawTicks(); return; }
+  const from = S.phase === 'feedback' ? S.pos + 1 : S.pos;
+  const rest = S.queue.slice(from);
+  if (S.shuffle) shuffleArr(rest); else rest.sort((a,b)=>a-b);
+  S.queue = S.queue.slice(0, from).concat(rest);
+  drawTicks();
+  announce(S.shuffle ? 'Shuffle on. Remaining questions reordered.' : 'Shuffle off. Remaining questions back in section order.');
+  if (S.phase !== 'feedback') show();
+});
+
+startRound('main', Q.map(q=>q.id));
+</script>
+</body></html>
