@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How the mix of documented AI incidents changed, 2018–2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F6F7F9; --ink:#1B2430; --ink2:#3A4552; --muted:#5B6673; --rule:#D8DEE6; --faint:#EDF0F4;
+  --bar:#5A6573; --focus:#1F5FBF; --flag:#A3460A; --sel:#EAF1FA;
+  --c-mal:#B4530A; --c-mis:#B8891F; --c-hci:#7B5EA7; --c-soc:#827D5C; --c-pri:#2E8077; --c-dis:#B8496A; --c-saf:#2F5D8F;
+  --pos:#2F5D8F; --neg:#B4530A;
+  color-scheme: light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12161C; --surface:#1A2029; --ink:#E7ECF2; --ink2:#C3CCD6; --muted:#97A3B0; --rule:#323C48; --faint:#222A35;
+    --bar:#8C97A4; --focus:#7FB0F5; --flag:#F0965A; --sel:#1E2A3A;
+    --c-mal:#E07A2E; --c-mis:#E0B54F; --c-hci:#A88BD4; --c-soc:#B3AE8C; --c-pri:#4FB3A8; --c-dis:#E07A98; --c-saf:#6C9BD2;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12161C; --surface:#1A2029; --ink:#E7ECF2; --ink2:#C3CCD6; --muted:#97A3B0; --rule:#323C48; --faint:#222A35;
+  --bar:#8C97A4; --focus:#7FB0F5; --flag:#F0965A; --sel:#1E2A3A;
+  --c-mal:#E07A2E; --c-mis:#E0B54F; --c-hci:#A88BD4; --c-soc:#B3AE8C; --c-pri:#4FB3A8; --c-dis:#E07A98; --c-saf:#6C9BD2;
+  color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans','Segoe UI',system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.5;font-variant-numeric:tabular-nums}
+a{color:var(--focus)}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--ink);color:var(--bg);padding:8px 12px;border-radius:4px;z-index:5}
+.skip:focus{left:12px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+header.top{padding:36px 0 20px;border-bottom:1px solid var(--rule)}
+.eyebrow{font-size:13px;font-weight:600;color:var(--muted);margin:0 0 6px}
+h1{font-size:clamp(24px,3.2vw,32px);line-height:1.2;margin:0 0 10px;font-weight:600;letter-spacing:-0.01em;max-width:28ch}
+.question{margin:0 0 14px;color:var(--ink2);max-width:72ch}
+.howto{display:flex;flex-wrap:wrap;gap:8px 24px;margin:0;padding:0;list-style:none;font-size:14px;color:var(--ink2)}
+.howto li{display:flex;gap:8px;align-items:baseline}
+.howto b{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--ink);color:var(--bg);font-size:12px;flex:none}
+.controls{position:sticky;top:0;z-index:3;background:var(--bg);border-bottom:1px solid var(--rule);padding:12px 0;padding-top:max(12px, env(safe-area-inset-top,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.controls .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center}
+.key{display:flex;flex-wrap:wrap;gap:6px}
+.key button{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);font:inherit;font-size:14px;padding:6px 12px;border-radius:999px;cursor:pointer;min-height:36px}
+.key button:hover{border-color:var(--muted)}
+.key button[aria-checked="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:600}
+.sw{width:12px;height:12px;border-radius:3px;flex:none}
+.period{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink2)}
+select{font:inherit;font-size:14px;padding:6px 10px;border:1px solid var(--rule);border-radius:6px;background:var(--bg);color:var(--ink);min-height:36px}
+main{padding-bottom:48px}
+section.level{padding:32px 0 8px}
+.lvl{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+h2{font-size:22px;line-height:1.25;margin:0 0 6px;font-weight:600}
+.lede{margin:0 0 18px;color:var(--ink2);max-width:75ch;font-size:15px}
+.gridA{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;align-items:start}
+@media (max-width:980px){.gridA{grid-template-columns:minmax(0,1fr)}}
+figure{margin:0 0 18px}
+figcaption{font-size:14px;font-weight:600;margin:0 0 4px;color:var(--ink)}
+figcaption span{font-weight:400;color:var(--muted)}
+.chart{width:100%;overflow-x:auto}
+.chart svg{display:block}
+svg text{font-family:inherit}
+.yearctl{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--ink2);margin:0 0 18px;flex-wrap:wrap}
+.yearctl input{width:min(320px,60vw);accent-color:var(--ink)}
+.yearctl output{font-weight:600;color:var(--ink);min-width:3ch}
+aside.readout{position:sticky;top:76px;border:1px solid var(--rule);border-radius:8px;padding:18px;background:var(--surface)}
+.readout h3{margin:0 0 2px;font-size:18px;line-height:1.3;display:flex;gap:10px;align-items:flex-start}
+.readout h3 .sw{margin-top:5px}
+.verdict{margin:8px 0 14px;font-size:15px;color:var(--ink);font-weight:500}
+.stats{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:0 0 14px;font-size:14px}
+.stats dt{color:var(--muted)}
+.stats dd{margin:0;font-weight:600}
+.stats dd small{font-weight:400;color:var(--muted)}
+.note{font-size:13px;color:var(--ink2);margin:0 0 10px;padding-top:10px;border-top:1px solid var(--rule)}
+.note:last-child{margin-bottom:0}
+.yearline{font-size:14px;margin:0 0 12px;padding:8px 10px;background:var(--bg);border-radius:6px;border:1px solid var(--rule)}
+details{margin:6px 0 0;font-size:14px}
+summary{cursor:pointer;color:var(--focus);font-weight:500;padding:4px 0}
+.tablewrap{overflow-x:auto;margin-top:8px}
+table{border-collapse:collapse;font-size:13px;min-width:640px}
+th,td{padding:5px 10px;border-bottom:1px solid var(--rule);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+thead th{font-weight:600;color:var(--ink)}
+tbody th{font-weight:500}
+caption{text-align:left;font-size:13px;color:var(--muted);padding:0 0 6px}
+.subhead{display:grid;grid-template-columns:minmax(200px,1.5fr) minmax(160px,2fr) 76px 104px minmax(120px,1fr);gap:12px;font-size:12px;color:var(--muted);font-weight:600;padding:0 12px 6px;border-bottom:1px solid var(--rule)}
+.subs{list-style:none;margin:0;padding:0}
+.subrow{all:unset;box-sizing:border-box;display:grid;grid-template-columns:minmax(200px,1.5fr) minmax(160px,2fr) 76px 104px minmax(120px,1fr);gap:12px;align-items:center;width:100%;padding:8px 12px;border-bottom:1px solid var(--faint);cursor:pointer;font-size:14px;color:var(--ink)}
+.subrow:hover{background:var(--surface)}
+.subrow[aria-pressed="true"]{background:var(--sel);box-shadow:inset 3px 0 0 var(--ink)}
+.subrow:focus-visible{outline:3px solid var(--focus);outline-offset:-3px}
+.subrow.dom{cursor:default;background:var(--surface);font-weight:600}
+.subrow.minor{color:var(--muted)}
+.subrow svg{width:100%;height:22px;display:block;overflow:visible}
+.pp{font-weight:600;text-align:right}
+.cnt{white-space:nowrap}
+.flag{display:inline-block;margin-left:6px;font-size:12px;font-weight:600;color:var(--flag)}
+.spark{display:flex;align-items:center;gap:6px;min-width:0}
+.spark span{font-size:12px;color:var(--muted);white-space:nowrap}
+@media (max-width:760px){
+  .subhead{display:none}
+  .subrow{grid-template-columns:1fr auto;grid-template-areas:"n n" "b b" "p c"}
+  .subrow .n{grid-area:n}.subrow .b{grid-area:b}.subrow .pp{grid-area:p;text-align:left}.subrow .cnt{grid-area:c}.subrow .spark{display:none}
+}
+.sumline{font-size:13px;color:var(--muted);margin:8px 12px 0}
+.gridB{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:980px){.gridB{grid-template-columns:minmax(0,1fr)}}
+.detail{border:1px solid var(--rule);border-radius:8px;padding:18px;background:var(--surface)}
+.detail h3{margin:0 0 4px;font-size:17px;line-height:1.3}
+.detail p{margin:0 0 10px;font-size:14px;color:var(--ink2)}
+.evidence{margin:6px 0 0;padding-left:20px;font-size:14px}
+.evidence li{margin:0 0 8px}
+.evidence .meta{color:var(--muted);font-size:12px}
+.coverage{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:0;padding:0;list-style:none}
+.coverage li{border-top:2px solid var(--ink);padding-top:10px;font-size:14px;color:var(--ink2)}
+.coverage b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+footer{border-top:1px solid var(--rule);padding:20px 0 40px;font-size:13px;color:var(--muted)}
+@media (forced-colors: active){.sw{forced-color-adjust:none;border:1px solid CanvasText}.key button[aria-checked="true"]{outline:2px solid Highlight}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the visualization</a>
+<header class="top"><div class="wrap">
+  <p class="eyebrow">IFSC 54503 · Interactive prototype for task-based testing</p>
+  <h1>How the mix of documented AI incidents changed, 2018–2025</h1>
+  <p class="question">Which MIT risk domains gained or lost prominence among documented AI incidents, did their incident counts move the same way, and which subdomains explain the change?</p>
+  <ol class="howto">
+    <li><b aria-hidden="true">1</b>Pick a risk domain.</li>
+    <li><b aria-hidden="true">2</b>Compare its share (top chart) with its count (bottom chart).</li>
+    <li><b aria-hidden="true">3</b>See which subdomains drove the change.</li>
+  </ol>
+</div></header>
+
+<div class="controls"><div class="wrap">
+  <div class="key" id="key" role="radiogroup" aria-label="Risk domain"></div>
+  <label class="period" for="early">Compare
+    <select id="early">
+      <option value="0">2018–19</option>
+      <option value="2">2020–21</option>
+      <option value="4">2022–23</option>
+    </select>
+    with 2024–25
+  </label>
+</div></div>
+
+<main id="main"><div class="wrap">
+
+<section class="level" aria-labelledby="hA">
+  <p class="lvl">Overview</p>
+  <h2 id="hA">What changed: share versus count</h2>
+  <p class="lede">The top chart shows each domain’s share of all classified incidents in each year. The selected domain sits on the baseline. The two charts below show how many incidents that share represents.</p>
+  <div class="gridA">
+    <div>
+      <figure>
+        <figcaption id="capShare">Share of classified incidents <span>(each year adds to 100%)</span></figcaption>
+        <div class="chart" id="share"></div>
+      </figure>
+      <figure>
+        <figcaption>All incidents per year <span>(solid: classified, outline: unclassified)</span></figcaption>
+        <div class="chart" id="totals"></div>
+      </figure>
+      <figure>
+        <figcaption id="capCount">Selected domain: incidents per year</figcaption>
+        <div class="chart" id="count"></div>
+      </figure>
+      <div class="yearctl">
+        <label for="year">Inspect a year</label>
+        <input type="range" id="year" min="2018" max="2025" step="1" value="2025">
+        <output id="yearOut" for="year">2025</output>
+      </div>
+      <details>
+        <summary>Show the data as a table</summary>
+        <div class="tablewrap" id="tableA"></div>
+      </details>
+    </div>
+    <aside class="readout" id="readout" aria-labelledby="roTitle"></aside>
+  </div>
+</section>
+
+<section class="level" aria-labelledby="hS">
+  <p class="lvl">Summary</p>
+  <h2 id="hS">Period comparison with uncertainty</h2>
+  <p class="lede" id="ledeS"></p>
+  <figure>
+    <figcaption>Share of classified incidents, by period <span>(whiskers: 95% interval)</span></figcaption>
+    <div class="chart" id="dumbbell"></div>
+  </figure>
+  <details>
+    <summary>Show the data as a table</summary>
+    <div class="tablewrap" id="tableS"></div>
+  </details>
+</section>
+
+<section class="level" aria-labelledby="hB">
+  <p class="lvl">Explain</p>
+  <h2 id="hB">Which subdomains drove the change</h2>
+  <p class="lede">Each incident has one subdomain, so the rows add up exactly to the domain’s change. Bars use the same scale for every domain. Select a row to see its yearly counts and most-reported incidents.</p>
+  <div class="gridB">
+    <div>
+      <div class="subhead" aria-hidden="true"><span>Subdomain</span><span>Change in share (pp)</span><span style="text-align:right">pp</span><span id="cntHead">Count</span><span>Per year, 2018–2025</span></div>
+      <ul class="subs" id="subs" aria-label="Subdomains"></ul>
+      <p class="sumline" id="sumline"></p>
+    </div>
+    <div class="detail" id="detail"></div>
+  </div>
+  <details>
+    <summary>Show subdomain data as a table</summary>
+    <div class="tablewrap" id="tableB"></div>
+  </details>
+</section>
+
+<section class="level" aria-labelledby="hC">
+  <p class="lvl">Verify</p>
+  <h2 id="hC">Coverage and method</h2>
+  <ul class="coverage" id="coverage"></ul>
+</section>
+
+<div class="sr-only" aria-live="polite" id="live"></div>
+</div></main>
+
+<footer><div class="wrap">
+  <p>Source: AI Incident Database snapshot (2026-09-07), classified with the MIT AI Risk Repository taxonomy. 1,289 incidents dated 2018–2025: 1,234 classified, 55 unclassified. Aggregates computed directly from the project workbook.</p>
+  <p>This is a design prototype for usability testing. It shows documented incidents, not how often AI harms occur.</p>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+const DATA = {"years":[2018,2019,2020,2021,2022,2023,2024,2025],"totals":[45,44,90,79,105,169,292,410],"unclassified":[1,0,1,1,1,5,7,39],"domains":[{"key":"mal","name":"Malicious actors & misuse","short":"Malicious actors","subs":[{"id":"mal-0","name":"Cyberattacks, weapons & mass harm","full":"Cyberattacks, weapon development or use, and mass harm","counts":[0,0,1,0,1,1,2,9]},{"id":"mal-1","name":"Disinformation, surveillance & influence at scale","full":"Disinformation, surveillance, and influence at scale","counts":[0,2,6,3,6,21,50,38]},{"id":"mal-2","name":"Fraud, scams & targeted manipulation","full":"Fraud, scams, and targeted manipulation","counts":[1,3,9,4,13,43,103,190]}],"intent":{"Intentional":484,"Unintentional":21,"Other":1}},{"key":"mis","name":"Misinformation","short":"Misinformation","subs":[{"id":"mis-0","name":"False or misleading information","full":"False or misleading information","counts":[0,1,5,3,10,35,50,66]},{"id":"mis-1","name":"Pollution of information ecosystem","full":"Pollution of information ecosystem and loss of consensus reality","counts":[0,1,0,1,1,0,1,0]}],"intent":{"Unintentional":118,"Intentional":52,"Other":4}},{"key":"hci","name":"Human–computer interaction","short":"Human–computer","subs":[{"id":"hci-0","name":"Loss of human agency and autonomy","full":"Loss of human agency and autonomy","counts":[0,0,0,2,0,0,1,0]},{"id":"hci-1","name":"Overreliance and unsafe use","full":"Overreliance and unsafe use","counts":[1,1,0,4,5,5,3,18]}],"intent":{"Unintentional":31,"Intentional":9}},{"key":"soc","name":"Socioeconomic & environmental harms","short":"Socioeconomic","subs":[{"id":"soc-0","name":"Competitive dynamics","full":"Competitive dynamics","counts":[0,0,1,0,0,0,0,0]},{"id":"soc-1","name":"Devaluation of human effort","full":"Economic and cultural devaluation of human effort","counts":[0,0,0,0,1,0,1,2]},{"id":"soc-2","name":"Environmental harm","full":"Environmental harm","counts":[0,0,0,0,0,0,1,0]},{"id":"soc-3","name":"Governance failure","full":"Governance failure","counts":[0,0,0,0,1,0,0,0]},{"id":"soc-4","name":"Inequality & decline in job quality","full":"Increased inequality and decline in employment quality","counts":[0,0,0,1,0,1,1,0]},{"id":"soc-5","name":"Power centralization & unfair distribution","full":"Power centralization and unfair distribution of benefits","counts":[2,0,0,1,0,0,0,1]}],"intent":{"Intentional":11,"Unintentional":3}},{"key":"pri","name":"Privacy & security","short":"Privacy & security","subs":[{"id":"pri-0","name":"AI system security vulnerabilities & attacks","full":"AI system security vulnerabilities and attacks","counts":[0,1,0,0,2,3,3,5]},{"id":"pri-1","name":"Compromise of privacy","full":"Compromise of privacy by obtaining, leaking or correctly inferring sensitive information","counts":[5,5,5,5,8,9,14,19]}],"intent":{"Intentional":41,"Unintentional":40,"Other":3}},{"key":"dis","name":"Discrimination & toxicity","short":"Discrimination","subs":[{"id":"dis-0","name":"Exposure to toxic content","full":"Exposure to toxic content","counts":[3,4,4,7,10,12,17,21]},{"id":"dis-1","name":"Unequal performance across groups","full":"Unequal performance across groups","counts":[2,4,9,3,5,1,6,1]},{"id":"dis-2","name":"Unfair discrimination & misrepresentation","full":"Unfair discrimination and misrepresentation","counts":[9,8,19,8,10,11,7,3]}],"intent":{"Unintentional":151,"Intentional":33}},{"key":"saf","name":"AI system safety, failures & limitations","short":"AI system safety","subs":[{"id":"saf-0","name":"Lack of capability or robustness","full":"Lack of capability or robustness","counts":[21,14,31,36,31,27,32,37]},{"id":"saf-1","name":"Lack of transparency or interpretability","full":"Lack of transparency or interpretability","counts":[1,0,0,1,1,0,0,0]}],"intent":{"Unintentional":214,"Intentional":13,"Other":5}}],"evidence":{"mal-0":[{"id":1487,"year":2025,"title":"ChatGPT Was Alleged to Have Aided Planning of Florida State University Mass Shooting","reports":46},{"id":443,"year":2022,"title":"ChatGPT Abused to Develop Malicious Softwares","reports":25},{"id":672,"year":2024,"title":"'Lavender' and 'The Gospel' AI Systems Reportedly Used in Gaza Targeting Operations with Civilian Harm Allegations","reports":9},{"id":886,"year":2024,"title":"ChatGPT Reportedly Referenced During Las Vegas Cybertruck Explosion Planning","reports":5},{"id":1015,"year":2025,"title":"Reported Darknet Launch of Xanthorox AI Introduces Autonomous Cyberattack Platform","reports":3}],"mal-1":[{"id":701,"year":2024,"title":"American Asylum Seeker John Mark Dougan in Russia Reportedly Spreads Disinformation via AI Tools and Fake News Network","reports":36},{"id":1263,"year":2025,"title":"Chinese State-Linked Operator (GTG-1002) Reportedly Uses Claude Code for Autonomous Cyber Espionage","reports":34},{"id":968,"year":2022,"title":"'Pravda' Network, Successor to 'Portal Kombat,' Allegedly Seeding AI Models with Kremlin Disinformation","reports":27},{"id":544,"year":2023,"title":"Alleged Use of Purportedly AI-Generated and Manipulated Media to Misrepresent Candidates and Disrupt Turkey's 2023 Presidential Election","reports":22},{"id":824,"year":2024,"title":"Purported Deepfake Allegedly Misattributes Claims to Former Student in Attack on Vice-Presidential Candidate Tim Walz","reports":16}],"mal-2":[{"id":597,"year":2023,"title":"Female Students at Westfield High School in New Jersey Reportedly Targeted with Deepfake Nudes","reports":57},{"id":1118,"year":2021,"title":"Ongoing Purported AI-Assisted Identity Fraud Enables Unauthorized Access to Western Companies by North Korean IT Workers","reports":41},{"id":632,"year":2024,"title":"Significant Increase in Deepfake Nudes of Taylor Swift Circulating on Social Media","reports":31},{"id":634,"year":2024,"title":"Alleged Deepfake CFO Scam Reportedly Costs Multinational Engineering Firm Arup $25 Million","reports":30},{"id":626,"year":2023,"title":"Social Media Scammers Used Deepfakes of Taylor Swift and Several Other Celebrities in Fraudulent Le Creuset Cookware Giveaways","reports":30}],"mis-0":[{"id":541,"year":2023,"title":"ChatGPT Reportedly Produced False Court Case Law Presented by Legal Counsel in Court","reports":58},{"id":616,"year":2023,"title":"Sports Illustrated Is Alleged to Have Used AI to Invent Fake Authors and Their Articles","reports":43},{"id":645,"year":2024,"title":"Seeming Pattern of Gemini Bias and Sociotechnical Training Failures Harm Google's Reputation","reports":35},{"id":1072,"year":2025,"title":"Grok Chatbot Reportedly Inserted Content About South Africa and 'White Genocide' in Unrelated User Queries","reports":22},{"id":543,"year":2023,"title":"Purported AI-Generated Image of Explosion Near Pentagon Reportedly Triggers Brief Market Dip and Public Confusion","reports":17}],"mis-1":[{"id":202,"year":2021,"title":"Korean Politician Employed Deepfake as Campaign Representative","reports":5},{"id":684,"year":2024,"title":"Google Books Appears to Be Indexing Works Written by AI","reports":1},{"id":562,"year":2022,"title":"Uptick in Low-Quality AI-Produced Content Degraded Publishers' Submission Management","reports":1},{"id":522,"year":2019,"title":"Facebook Political Ad Delivery Algorithms Inferred Users' Political Alignment, Inhibiting Political Campaigns' Reach","reports":1}],"hci-0":[{"id":854,"year":2024,"title":"Waymo Driverless Taxi Allegedly Stalled During Pedestrian Harassment Incident in San Francisco","reports":8},{"id":207,"year":2021,"title":"Hawaii Police Deployed Robot Dog to Patrol a Homeless Encampment","reports":4},{"id":141,"year":2021,"title":"California Police Turned on Music to Allegedly Trigger Instagram’s DCMA to Avoid Being Live-Streamed","reports":0}],"hci-1":[{"id":826,"year":2024,"title":"Character.ai Chatbot Allegedly Influenced Teen User Toward Suicide Amid Claims of Missing Guardrails","reports":38},{"id":67,"year":2018,"title":"Sleeping Driver on Tesla AutoPilot","reports":23},{"id":482,"year":2023,"title":"Vanderbilt Peabody Office's Purportedly ChatGPT-Drafted Message About Michigan State Shooting Reportedly Drew Student Backlash","reports":20},{"id":1192,"year":2025,"title":"16-Year-Old Allegedly Received Suicide Method Guidance from ChatGPT Before Death","reports":9},{"id":436,"year":2022,"title":"Tesla Driver Put Car on Autopilot Before Falling Asleep in Germany","reports":9}],"soc-0":[{"id":191,"year":2020,"title":"Korean Internet Portal Giant Naver Manipulated Shopping and Video Search Algorithms to Favor In-House Services","reports":2}],"soc-1":[{"id":627,"year":2024,"title":"Unauthorized AI Impersonation of George Carlin Used in Comedy Special","reports":8},{"id":1282,"year":2025,"title":"Reported Disqualification of Two Books from the Ockham New Zealand Book Awards Due to Alleged AI-Generated Cover Art","reports":6},{"id":1294,"year":2025,"title":"The New York Times Sued Perplexity for Allegedly Using Copyrighted Content and Generating False Attributions","reports":6},{"id":369,"year":2022,"title":"GAN Artwork Won First Place at State Fair Competition","reports":1}],"soc-2":[{"id":1144,"year":2024,"title":"xAI Allegedly Operates Unpermitted Methane Turbines in Memphis to Power Supercomputer Colossus to Train Grok","reports":9}],"soc-3":[{"id":252,"year":2022,"title":"Remotely Operated Taser-Armed Drones Proposed by Taser Manufacturer as Defense for School Shootings in the US","reports":1}],"soc-4":[{"id":450,"year":2021,"title":"Kenyan Data Annotators Allegedly Exposed to Graphic Content for OpenAI's AI","reports":8},{"id":833,"year":2024,"title":"Polish Radio Station Replaces Human Hosts with AI-Generated Presenters to Simulate Interviewing Deceased Poet Wisława Szymborska","reports":2},{"id":549,"year":2023,"title":"Fast Food Chains' AI Chatbots Failed to Assist Job Applicants with Scheduling Interviews","reports":1}],"soc-5":[{"id":435,"year":2021,"title":"Coupang Allegedly Tweaked Search Algorithms to Boost Own Products","reports":4},{"id":251,"year":2018,"title":"Amazon Allegedly Tweaked Search Algorithm to Boost Its Own Products","reports":3},{"id":1001,"year":2025,"title":"LLM Scrapers Allegedly Target Multiple Open Source Projects Disrupting the FOSS Ecosystem","reports":2},{"id":403,"year":2018,"title":"Gmail’s Inbox Sorting System Reportedly Reduced Visibility of Political Emails and Campaign Calls-to-Action","reports":2}],"pri-0":[{"id":842,"year":2024,"title":"Reportedly Hacked AI-Powered Robot Vacuums Allegedly Used for Surveillance and Harassment","reports":16},{"id":1158,"year":2025,"title":"Alleged Malicious Wiping Command Found in Amazon Q AI Assistant","reports":4},{"id":352,"year":2022,"title":"GPT-3-Based Twitter Bot Hijacked Using Prompt Injection Attacks","reports":4},{"id":372,"year":2022,"title":"Users Reported Security Issues with Google Pixel 6a's Fingerprint Unlocking","reports":3},{"id":1171,"year":2025,"title":"Reported Hack of Tea Dating App Compromises Data from Purportedly AI-Supported Identity and Image Checks","reports":2}],"pri-1":[{"id":1069,"year":2025,"title":"Purported Graphite Spyware Linked to Paragon Solutions Allegedly Deployed Against Journalists and Civil Society Workers","reports":33},{"id":430,"year":2022,"title":"Lawyers Denied Entry to Performance Venue by Facial Recognition","reports":21},{"id":1075,"year":2025,"title":"New Orleans Police Reportedly Used Real-Time Facial Recognition Alerts Supplied by Project NOLA Despite Local Ordinance","reports":15},{"id":1070,"year":2025,"title":"Serviceaide AI Platform Implicated in Health Data Exposure Affecting 483,000 Catholic Health Patients","reports":14},{"id":688,"year":2024,"title":"Scarlett Johansson Alleges OpenAI's Sky Imitates Her Voice Without Licensing","reports":14}],"dis-0":[{"id":1146,"year":2025,"title":"Grok Chatbot Reportedly Posts Antisemitic Statements Praising Hitler on X","reports":34},{"id":1329,"year":2025,"title":"Grok Reportedly Generated and Distributed Nonconsensual Sexualized Images of Adults and Minors in X Replies","reports":28},{"id":624,"year":2023,"title":"Child Sexual Abuse Material Taints Image Generators","reports":18},{"id":420,"year":2022,"title":"Users Bypassed ChatGPT's Content Filters with Ease","reports":11},{"id":106,"year":2020,"title":"Korean Chatbot Luda Reportedly Made Offensive Remarks Towards Minority Groups in South Korea","reports":11}],"dis-1":[{"id":74,"year":2020,"title":"Detroit Police Allegedly Wrongfully Arrested Black Man Due to Purportedly Faulty Facial Recognition Technology","reports":11},{"id":440,"year":2022,"title":"Louisiana Police Wrongfully Arrested Black Man Using False Face Match","reports":6},{"id":138,"year":2020,"title":"University of Illinois' Proctorio Remote-Proctoring Deployment Reportedly Raised Student Rights Concerns","reports":6},{"id":189,"year":2019,"title":"Opaque Fraud Detection Algorithm by the UK’s Department of Work and Pensions Allegedly Discriminated against People with Disabilities","reports":6},{"id":738,"year":2024,"title":"Department for Work and Pensions (DWP) Algorithm Wrongly Flags 200,000 for Housing Benefit Fraud","reports":5}],"dis-2":[{"id":633,"year":2024,"title":"Nine Network's AI Alters Lawmaker Georgie Purcell's Image Inappropriately","reports":17},{"id":619,"year":2023,"title":"Rite Aid Facial Recognition Disproportionately Misidentified Minority Shoppers as Shoplifters","reports":14},{"id":611,"year":2021,"title":"UK Government AI Allegedly Targets Disproportionate Numbers of Certain Nationals for Fraud Review","reports":13},{"id":127,"year":2020,"title":"Microsoft’s Algorithm Allegedly Selected Photo of the Wrong Mixed-Race Person Featured in a News Story","reports":12},{"id":374,"year":2020,"title":"UK Ofqual's Algorithm Disproportionately Provided Lower Grades Than Teachers' Assessments","reports":8}],"saf-0":[{"id":545,"year":2023,"title":"Chatbot Tessa gives unauthorized diet advice to users seeking help for eating disorders","reports":46},{"id":1145,"year":2025,"title":"MyPillow Defense Lawyers in Coomer v. Lindell Reportedly Sanctioned for Filing Court Document Allegedly Containing AI-Generated Legal Citations","reports":26},{"id":41,"year":2018,"title":"All Image Captions Produced are Violent","reports":26},{"id":4,"year":2018,"title":"Uber AV Killed Pedestrian in Arizona","reports":25},{"id":36,"year":2018,"title":"Picture of Woman on Side of Bus Shamed for Jaywalking","reports":24}],"saf-1":[{"id":355,"year":2018,"title":"Uber Allegedly Wrongfully Accused Drivers of Fraud via Automated Systems","reports":5},{"id":203,"year":2022,"title":"Uber Launched Opaque Algorithm That Changes Drivers' Payments in the US","reports":3},{"id":137,"year":2021,"title":"Israeli Tax Authority Reportedly Used an Opaque Automated System to Issue a Fine, Declining to Explain or Disclose the Underlying Calculation","reports":1}]}};
+(function(){
+"use strict";
+const YRS = DATA.years, TOT = DATA.totals, UNC = DATA.unclassified;
+const DOMS = DATA.domains;
+const BY = Object.fromEntries(DOMS.map(d => [d.key, d]));
+const BASE = DOMS.map(d => d.key);
+DOMS.forEach(d => { d.counts = YRS.map((_, i) => d.subs.reduce((s, x) => s + x.counts[i], 0)); });
+const LATE = [6, 7];
+const state = { dom: "mal", early: 0, sub: null, year: 2025 };
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const col = k => `var(--c-${k})`;
+const sum = (a, idx) => idx.reduce((s, i) => s + a[i], 0);
+const eIdx = () => [state.early, state.early + 1];
+const pLabel = idx => `${YRS[idx[0]]}–${String(YRS[idx[1]]).slice(2)}`;
+const nOf = idx => sum(TOT, idx);
+const pct = x => (x * 100).toFixed(1) + "%";
+const minus = s => s.replace("-", "−");
+const pp = x => minus((x >= 0 ? "+" : "") + (x * 100).toFixed(1)) + " pp";
+function wilson(k, n, z = 1.96) {
+  const p = k / n, d = 1 + z * z / n, c = (p + z * z / (2 * n)) / d;
+  const h = z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d;
+  return [Math.max(0, c - h), Math.min(1, c + h)];
+}
+function stats(arr) {
+  const e = eIdx(), ne = nOf(e), nl = nOf(LATE);
+  const ce = sum(arr, e), cl = sum(arr, LATE);
+  return { ce, cl, se: ce / ne, sl: cl / nl, d: cl / nl - ce / ne, ne, nl };
+}
+const el = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+/* ---------- shared Level A geometry ---------- */
+function geom(id) {
+  const W = Math.max(el(id).clientWidth || 860, 340);
+  const narrow = W < 600;
+  return { W, narrow, m: { l: 44, r: narrow ? 118 : 196 } };
+}
+const xs = {};
+function xScale(g) { return d3.scaleLinear([2018, 2025], [g.m.l + 14, g.W - g.m.r - 14]); }
+function setupSvg(id, H, label) {
+  const g = geom(id);
+  const svg = d3.select("#" + id).selectAll("svg").data([0]).join("svg")
+    .attr("width", g.W).attr("height", H).attr("viewBox", `0 0 ${g.W} ${H}`)
+    .attr("role", "img").attr("aria-label", label);
+  return { svg, g };
+}
+function layer(svg, name) { return svg.selectAll("g." + name).data([0]).join("g").attr("class", name); }
+
+/* ---------- key ---------- */
+function renderKey() {
+  const k = el("key");
+  if (!k.children.length) {
+    DOMS.forEach(d => {
+      const b = document.createElement("button");
+      b.type = "button"; b.setAttribute("role", "radio"); b.dataset.k = d.key;
+      b.innerHTML = `<span class="sw" style="background:${col(d.key)}" aria-hidden="true"></span>${esc(d.short)}`;
+      b.addEventListener("click", () => select(d.key, true));
+      k.appendChild(b);
+    });
+    k.addEventListener("keydown", ev => {
+      const keys = ["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp", "Home", "End"];
+      if (!keys.includes(ev.key)) return;
+      ev.preventDefault();
+      let i = BASE.indexOf(state.dom);
+      if (ev.key === "ArrowRight" || ev.key === "ArrowDown") i = (i + 1) % BASE.length;
+      else if (ev.key === "ArrowLeft" || ev.key === "ArrowUp") i = (i - 1 + BASE.length) % BASE.length;
+      else if (ev.key === "Home") i = 0; else i = BASE.length - 1;
+      select(BASE[i], true);
+      k.querySelector(`[data-k="${BASE[i]}"]`).focus();
+    });
+  }
+  k.querySelectorAll("button").forEach(b => {
+    const on = b.dataset.k === state.dom;
+    b.setAttribute("aria-checked", on); b.tabIndex = on ? 0 : -1;
+  });
+}
+
+/* ---------- share chart (stacked area, selected on baseline) ---------- */
+function renderShare(animate) {
+  const H = 330;
+  const d = BY[state.dom];
+  const { svg, g } = setupSvg("share", H,
+    `Stacked area chart of each risk domain's share of classified incidents, 2018 to 2025. ${d.name} is on the baseline: ${pct(d.counts[0] / TOT[0])} in 2018 and ${pct(d.counts[7] / TOT[7])} in 2025.`);
+  const m = { ...g.m, t: 34, b: 26 };
+  const x = xScale(g); xs.share = x;
+  const y = d3.scaleLinear([0, 1], [H - m.b, m.t]);
+  const order = [state.dom, ...BASE.filter(k => k !== state.dom)];
+  const rows = YRS.map((yr, i) => { const o = { year: yr }; DOMS.forEach(dm => o[dm.key] = dm.counts[i] / TOT[i]); return o; });
+  const series = d3.stack().keys(order)(rows);
+  const area = d3.area().x(p => x(p.data.year)).y0(p => y(p[0])).y1(p => y(p[1]));
+
+  const grid = layer(svg, "grid");
+  grid.selectAll("line").data([0, .25, .5, .75, 1]).join("line")
+    .attr("x1", x(2018)).attr("x2", x(2025)).attr("y1", v => y(v)).attr("y2", v => y(v))
+    .attr("stroke", "var(--rule)");
+  grid.selectAll("text.yt").data([0, .25, .5, .75, 1]).join("text").attr("class", "yt")
+    .attr("x", m.l - 4).attr("y", v => y(v) + 4).attr("text-anchor", "end").attr("font-size", 11).attr("fill", "var(--muted)")
+    .text(v => (v * 100) + "%");
+
+  const areas = layer(svg, "areas");
+  const paths = areas.selectAll("path").data(series, s => s.key).join("path")
+    .attr("fill", s => col(s.key))
+    .attr("fill-opacity", s => s.key === state.dom ? 1 : 0.28)
+    .attr("stroke", "var(--bg)").attr("stroke-width", 1)
+    .style("cursor", "pointer")
+    .on("click", (ev, s) => select(s.key, true));
+  paths.select("title").remove();
+  paths.append("title").text(s => BY[s.key].name);
+  if (animate && !reduce) paths.transition().duration(450).attr("d", area);
+  else paths.interrupt().attr("d", area);
+
+  // small-base marker
+  const anno = layer(svg, "anno");
+  anno.selectAll("*").remove();
+  const xb = (x(2019) + x(2020)) / 2;
+  anno.append("line").attr("x1", xb).attr("x2", xb).attr("y1", m.t - 4).attr("y2", H - m.b)
+    .attr("stroke", "var(--ink)").attr("stroke-dasharray", "3 3").attr("stroke-opacity", .55);
+  anno.append("path").attr("d", `M${x(2018)},${m.t - 10} V${m.t - 14} H${xb - 4} V${m.t - 10}`)
+    .attr("fill", "none").attr("stroke", "var(--muted)");
+  anno.append("text").attr("x", x(2018)).attr("y", m.t - 19).attr("font-size", 11).attr("fill", "var(--muted)")
+    .text(`Small base: ${TOT[0] + TOT[1]} incidents`);
+
+  // x axis
+  layer(svg, "xax").selectAll("text").data(YRS).join("text")
+    .attr("x", v => x(v)).attr("y", H - 6).attr("text-anchor", "middle").attr("font-size", 11)
+    .attr("fill", "var(--muted)").text(v => g.narrow && v % 2 ? "" : v);
+
+  // direct labels at the 2025 edge
+  const lab = series.map(s => { const p = s[7]; return { k: s.key, y: y((p[0] + p[1]) / 2), v: p[1] - p[0] }; })
+    .sort((a, b) => a.y - b.y);
+  const gap = 15;
+  for (let i = 1; i < lab.length; i++) lab[i].ly = Math.max(lab[i].y, (lab[i - 1].ly ?? lab[i - 1].y) + gap);
+  lab[0].ly = lab[0].y;
+  for (let i = 1; i < lab.length; i++) lab[i].ly = Math.max(lab[i].y, lab[i - 1].ly + gap);
+  const over = lab[lab.length - 1].ly - (H - m.b - 4);
+  if (over > 0) { for (let i = lab.length - 1; i >= 0; i--) { lab[i].ly -= over; if (i && lab[i - 1].ly > lab[i].ly - gap) lab[i - 1].ly = lab[i].ly - gap; } }
+  const lx = x(2025) + 14;
+  const L = layer(svg, "labels"); L.selectAll("*").remove();
+  lab.forEach(l => {
+    const on = l.k === state.dom;
+    L.append("line").attr("x1", x(2025) + 2).attr("x2", lx - 3).attr("y1", l.y).attr("y2", l.ly).attr("stroke", "var(--rule)");
+    L.append("text").attr("x", lx).attr("y", l.ly + 4).attr("font-size", 12)
+      .attr("font-weight", on ? 600 : 400).attr("fill", on ? "var(--ink)" : "var(--ink2)")
+      .text(`${g.narrow ? "" : BY[l.k].short + " "}${(l.v * 100).toFixed(0)}%`)
+      .style("cursor", "pointer").on("click", () => select(l.k, true));
+    if (g.narrow) L.append("rect").attr("x", lx + 30).attr("y", l.ly - 5).attr("width", 10).attr("height", 10).attr("rx", 2).attr("fill", col(l.k));
+  });
+  hoverLayer(svg, x, m.t, H - m.b);
+}
+
+/* ---------- totals ---------- */
+function renderTotals() {
+  const H = 132;
+  const { svg, g } = setupSvg("totals", H, `Bar chart of classified incidents per year: ${TOT.join(", ")}. Unclassified: ${UNC.join(", ")}.`);
+  const m = { ...g.m, t: 18, b: 22 };
+  const x = xScale(g); xs.totals = x;
+  const mx = d3.max(TOT.map((t, i) => t + UNC[i]));
+  const y = d3.scaleLinear([0, mx], [H - m.b, m.t]);
+  const bw = Math.min(46, (x(2019) - x(2018)) * 0.62);
+  const B = layer(svg, "bars"); B.selectAll("*").remove();
+  YRS.forEach((yr, i) => {
+    B.append("rect").attr("x", x(yr) - bw / 2).attr("y", y(TOT[i])).attr("width", bw).attr("height", y(0) - y(TOT[i])).attr("fill", "var(--bar)");
+    if (UNC[i]) B.append("rect").attr("x", x(yr) - bw / 2 + .5).attr("y", y(TOT[i] + UNC[i])).attr("width", bw - 1).attr("height", y(TOT[i]) - y(TOT[i] + UNC[i])).attr("fill", "var(--bg)").attr("stroke", "var(--bar)");
+    B.append("text").attr("x", x(yr)).attr("y", y(TOT[i] + UNC[i]) - 4).attr("text-anchor", "middle").attr("font-size", 11)
+      .attr("font-weight", 600).attr("fill", "var(--ink)").text(TOT[i] + (UNC[i] >= 5 ? ` +${UNC[i]}` : ""));
+    B.append("text").attr("x", x(yr)).attr("y", H - 6).attr("text-anchor", "middle").attr("font-size", 11).attr("fill", "var(--muted)").text(g.narrow && yr % 2 ? "" : yr);
+  });
+  B.append("line").attr("x1", x(2018) - bw).attr("x2", x(2025) + bw).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "var(--rule)");
+  if (!g.narrow) {
+    B.append("text").attr("x", x(2025) + 30).attr("y", y(TOT[7]) + 4).attr("font-size", 12).attr("fill", "var(--ink2)").text("9× more incidents");
+    B.append("text").attr("x", x(2025) + 30).attr("y", y(TOT[7]) + 20).attr("font-size", 12).attr("fill", "var(--ink2)").text("in 2025 than 2018");
+  }
+  hoverLayer(svg, x, m.t, H - m.b);
+}
+
+/* ---------- selected domain count ---------- */
+function renderCount() {
+  const H = 150, d = BY[state.dom];
+  el("capCount").innerHTML = `${esc(d.name)}: incidents per year <span>(own scale)</span>`;
+  const { svg, g } = setupSvg("count", H, `Bar chart of ${d.name} incidents per year: ${d.counts.join(", ")}.`);
+  const m = { ...g.m, t: 18, b: 22 };
+  const x = xScale(g); xs.count = x;
+  const y = d3.scaleLinear([0, Math.max(5, d3.max(d.counts))], [H - m.b, m.t]);
+  const bw = Math.min(46, (x(2019) - x(2018)) * 0.62);
+  const B = layer(svg, "bars"); B.selectAll("*").remove();
+  YRS.forEach((yr, i) => {
+    const v = d.counts[i];
+    B.append("rect").attr("x", x(yr) - bw / 2).attr("y", y(v)).attr("width", bw).attr("height", Math.max(0, y(0) - y(v))).attr("fill", col(d.key));
+    B.append("text").attr("x", x(yr)).attr("y", y(v) - 4).attr("text-anchor", "middle").attr("font-size", 12).attr("font-weight", 600).attr("fill", "var(--ink)").text(v);
+    B.append("text").attr("x", x(yr)).attr("y", H - 6).attr("text-anchor", "middle").attr("font-size", 11).attr("fill", "var(--muted)").text(g.narrow && yr % 2 ? "" : yr);
+  });
+  B.append("line").attr("x1", x(2018) - bw).attr("x2", x(2025) + bw).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "var(--rule)");
+  if (!g.narrow) {
+    B.append("text").attr("x", x(2025) + 30).attr("y", m.t + 10).attr("font-size", 12).attr("fill", "var(--ink2)").text(`${d3.sum(d.counts)} incidents`);
+    B.append("text").attr("x", x(2025) + 30).attr("y", m.t + 26).attr("font-size", 12).attr("fill", "var(--ink2)").text("in 2018–2025");
+  }
+  hoverLayer(svg, x, m.t, H - m.b);
+}
+
+/* ---------- year inspection (pointer + slider) ---------- */
+function hoverLayer(svg, x, top, bottom) {
+  const R = layer(svg, "rule");
+  R.selectAll("line").data([0]).join("line").attr("y1", top - 2).attr("y2", bottom)
+    .attr("stroke", "var(--ink)").attr("stroke-width", 1).attr("pointer-events", "none")
+    .attr("x1", x(state.year)).attr("x2", x(state.year)).attr("stroke-opacity", .5);
+  svg.on("pointermove", ev => {
+    const [px] = d3.pointer(ev);
+    if (px < x(2018) - 20 || px > x(2025) + 20) return;
+    setYear(Math.max(2018, Math.min(2025, Math.round(x.invert(px)))));
+  });
+}
+function setYear(yr) {
+  if (yr === state.year) return;
+  state.year = yr; el("year").value = yr; el("yearOut").textContent = yr;
+  el("year").setAttribute("aria-valuetext", String(yr));
+  ["share", "totals", "count"].forEach(id => {
+    const x = xs[id]; if (!x) return;
+    d3.select("#" + id + " g.rule line").attr("x1", x(yr)).attr("x2", x(yr));
+  });
+  renderYearLine();
+}
+function renderYearLine() {
+  const d = BY[state.dom], i = YRS.indexOf(state.year);
+  const t = el("yearLine");
+  if (t) t.innerHTML = `<b>${state.year}:</b> ${d.counts[i]} of ${TOT[i]} classified incidents (${pct(d.counts[i] / TOT[i])})`;
+}
+
+/* ---------- readout ---------- */
+function verdict(s) {
+  if (s.d < 0 && s.cl > s.ce) return "Share fell while the count rose. Other domains grew faster.";
+  if (s.d < 0) return "Share and count both fell.";
+  if (s.cl >= s.ce) return "Share and count both rose.";
+  return "Share rose while the count fell.";
+}
+function renderReadout() {
+  const d = BY[state.dom], s = stats(d.counts), e = eIdx();
+  const recent = d.counts.slice(2);
+  const it = d.intent, itot = d3.sum(Object.values(it));
+  const top = Object.entries(it).sort((a, b) => b[1] - a[1])[0];
+  const lo = d.counts[7] / (TOT[7] + UNC[7]), hi = (d.counts[7] + UNC[7]) / (TOT[7] + UNC[7]);
+  el("readout").innerHTML = `
+    <h3 id="roTitle"><span class="sw" style="background:${col(d.key)}" aria-hidden="true"></span>${esc(d.name)}</h3>
+    <p class="verdict">${verdict(s)}</p>
+    <dl class="stats">
+      <dt>Share</dt><dd>${pct(s.se)} → ${pct(s.sl)} <small>(${pp(s.d)})</small></dd>
+      <dt>Count</dt><dd>${s.ce} → ${s.cl} <small>incidents</small></dd>
+      <dt>Periods</dt><dd><small>${pLabel(e)} (n = ${s.ne}) vs. 2024–25 (n = ${s.nl})</small></dd>
+      <dt>Per year</dt><dd>${d.counts[2]} → ${d.counts[7]} <small>incidents, 2020 → 2025 (range ${d3.min(recent)}–${d3.max(recent)})</small></dd>
+    </dl>
+    <p class="yearline" id="yearLine"></p>
+    <p class="note"><b>Intent:</b> ${Math.round(top[1] / itot * 100)}% ${esc(top[0].toLowerCase())} across all years.</p>
+    <p class="note"><b>Unclassified check:</b> 2025 has ${UNC[7]} unclassified incidents. Assigning none or all of them here gives a 2025 share between ${pct(lo)} and ${pct(hi)}.</p>`;
+  renderYearLine();
+}
+
+/* ---------- dumbbell (C5) ---------- */
+function renderDumbbell() {
+  const e = eIdx(), ne = nOf(e), nl = nOf(LATE);
+  el("ledeS").textContent = `Hollow dots: ${pLabel(e)} (n = ${ne}). Filled dots: 2024–25 (n = ${nl}). Wide whiskers mean the estimate rests on few incidents.`;
+  const W = Math.max(el("dumbbell").clientWidth || 860, 340), narrow = W < 640;
+  const rows = DOMS.map(d => ({ d, s: stats(d.counts) })).sort((a, b) => b.s.d - a.s.d);
+  const rh = 40, top = 26, H = top + rows.length * rh + 8;
+  const lab = narrow ? 128 : 250, right = narrow ? 70 : 170;
+  const mx = Math.min(1, Math.ceil(d3.max(rows, r => Math.max(wilson(r.s.ce, ne)[1], wilson(r.s.cl, nl)[1])) * 10) / 10);
+  const x = d3.scaleLinear([0, mx], [lab, W - right]);
+  const svg = d3.select("#dumbbell").selectAll("svg").data([0]).join("svg").attr("width", W).attr("height", H)
+    .attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img")
+    .attr("aria-label", "Dumbbell chart of each domain's share in the two periods with 95% intervals. " + rows.map(r => `${r.d.name}: ${pct(r.s.se)} to ${pct(r.s.sl)}`).join("; ") + ".");
+  svg.selectAll("*").remove();
+  d3.range(0, mx + 0.0001, mx > .5 ? .1 : .05).forEach(v => {
+    svg.append("line").attr("x1", x(v)).attr("x2", x(v)).attr("y1", top - 6).attr("y2", H - 6).attr("stroke", "var(--rule)");
+    svg.append("text").attr("x", x(v)).attr("y", top - 12).attr("text-anchor", "middle").attr("font-size", 11).attr("fill", "var(--muted)").text(Math.round(v * 100) + "%");
+  });
+  if (!narrow) {
+    svg.append("text").attr("x", W - right + 16).attr("y", top - 12).attr("font-size", 11).attr("font-weight", 600).attr("fill", "var(--ink2)").text("Count");
+    svg.append("text").attr("x", W - 6).attr("y", top - 12).attr("text-anchor", "end").attr("font-size", 11).attr("font-weight", 600).attr("fill", "var(--ink2)").text("Change");
+  }
+  rows.forEach((r, i) => {
+    const cy = top + i * rh + rh / 2, on = r.d.key === state.dom, c = col(r.d.key);
+    const gR = svg.append("g").style("cursor", "pointer").on("click", () => select(r.d.key, true));
+    gR.append("rect").attr("x", 0).attr("y", cy - rh / 2).attr("width", W).attr("height", rh).attr("fill", on ? "var(--sel)" : "transparent");
+    gR.append("text").attr("x", 8).attr("y", cy + 4).attr("font-size", 13).attr("font-weight", on ? 600 : 400).attr("fill", "var(--ink)").text(narrow ? r.d.short : r.d.name);
+    const [ea, eb] = wilson(r.s.ce, ne), [la, lb] = wilson(r.s.cl, nl);
+    gR.append("line").attr("x1", x(r.s.se)).attr("x2", x(r.s.sl)).attr("y1", cy).attr("y2", cy).attr("stroke", c).attr("stroke-width", 2).attr("stroke-opacity", .5);
+    gR.append("line").attr("x1", x(ea)).attr("x2", x(eb)).attr("y1", cy - 8).attr("y2", cy - 8).attr("stroke", "var(--muted)").attr("stroke-width", 1.5);
+    gR.append("line").attr("x1", x(la)).attr("x2", x(lb)).attr("y1", cy + 8).attr("y2", cy + 8).attr("stroke", c).attr("stroke-width", 3);
+    gR.append("circle").attr("cx", x(r.s.se)).attr("cy", cy).attr("r", 6).attr("fill", "var(--bg)").attr("stroke", c).attr("stroke-width", 2);
+    gR.append("circle").attr("cx", x(r.s.sl)).attr("cy", cy).attr("r", 6).attr("fill", c);
+    if (!narrow) gR.append("text").attr("x", W - right + 16).attr("y", cy + 4).attr("font-size", 13).attr("fill", "var(--ink)").text(`${r.s.ce} → ${r.s.cl}`);
+    gR.append("text").attr("x", W - 6).attr("y", cy + 4).attr("text-anchor", "end").attr("font-size", 13).attr("font-weight", 600).attr("fill", "var(--ink)").text(pp(r.s.d));
+  });
+}
+
+/* ---------- Level B: merged C8 + C3 ---------- */
+let PPMIN = -0.35, PPMAX = 0.4;
+function fixedScale() {
+  const all = [];
+  DOMS.forEach(d => { all.push(stats(d.counts).d); d.subs.forEach(s => all.push(stats(s.counts).d)); });
+  PPMIN = Math.floor(d3.min(all) * 20) / 20; PPMAX = Math.ceil(d3.max(all) * 20) / 20;
+}
+function barSvg(v, color, heavy) {
+  const W = 200, z = W * (-PPMIN) / (PPMAX - PPMIN), px = v / (PPMAX - PPMIN) * W;
+  const x0 = Math.min(z, z + px), w = Math.max(Math.abs(px), 1);
+  return `<svg viewBox="0 0 200 22" preserveAspectRatio="none" aria-hidden="true">
+    <line x1="${z}" x2="${z}" y1="0" y2="22" stroke="var(--muted)" vector-effect="non-scaling-stroke"/>
+    <rect x="${x0}" y="${heavy ? 5 : 4}" width="${w}" height="${heavy ? 12 : 14}" fill="${color}" ${heavy ? 'fill-opacity="0.45"' : ""}/></svg>`;
+}
+function sparkSvg(a, color) {
+  const m = Math.max(1, d3.max(a));
+  const pts = a.map((v, i) => `${(i / 7 * 100).toFixed(1)},${(21 - v / m * 18).toFixed(1)}`).join(" ");
+  return `<svg viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>`;
+}
+function renderLevelB() {
+  const d = BY[state.dom], ds = stats(d.counts), e = eIdx();
+  fixedScale();
+  el("cntHead").textContent = `${pLabel(e)} → 24–25`;
+  const subs = d.subs.map(s => ({ s, st: stats(s.counts), n: d3.sum(s.counts) })).sort((a, b) => b.st.d - a.st.d);
+  if (!state.sub || !d.subs.some(s => s.id === state.sub)) state.sub = subs.slice().sort((a, b) => Math.abs(b.st.d) - Math.abs(a.st.d))[0].s.id;
+  const c = col(d.key);
+  let html = `<li><div class="subrow dom"><span class="n">${esc(d.name)} <small style="font-weight:400;color:var(--muted)">(domain total)</small></span><span class="b">${barSvg(ds.d, c, true)}</span><span class="pp">${pp(ds.d)}</span><span class="cnt">${ds.ce} → ${ds.cl}</span><span class="spark">${sparkSvg(d.counts, c)}<span>${d.counts[0]}…${d.counts[7]}</span></span></div></li>`;
+  subs.forEach(({ s, st, n }) => {
+    const minor = n < 10, fell = st.cl < st.ce && !minor;
+    const fc = minor ? "var(--rule)" : c;
+    html += `<li><button type="button" class="subrow${minor ? " minor" : ""}" data-sub="${s.id}" aria-pressed="${s.id === state.sub}">
+      <span class="n">${esc(s.name)}</span>
+      <span class="b">${barSvg(st.d, fc, false)}</span>
+      <span class="pp">${pp(st.d)}</span>
+      <span class="cnt">${st.ce} → ${st.cl}${fell ? '<span class="flag">▼ count fell</span>' : ""}</span>
+      <span class="spark">${sparkSvg(s.counts, minor ? "var(--muted)" : c)}<span>${s.counts[0]}…${s.counts[7]}</span></span>
+    </button></li>`;
+  });
+  el("subs").innerHTML = html;
+  el("subs").querySelectorAll("button.subrow").forEach(b => b.addEventListener("click", () => { state.sub = b.dataset.sub; renderLevelB(); }));
+  el("sumline").textContent = `Rows add up to the domain’s ${pp(ds.d)}. Bar scale runs from ${pp(PPMIN)} to ${pp(PPMAX)} for every domain. Grey rows: fewer than 10 incidents in total. Sparklines show shape only.`;
+  renderDetail(d, subs.find(r => r.s.id === state.sub));
+  renderTableB(d);
+}
+function renderDetail(d, r) {
+  const { s, st } = r, ev = DATA.evidence[s.id] || [], c = col(d.key);
+  const de = stats(d.counts);
+  const W = 360, H = 120, mx = Math.max(5, d3.max(s.counts)), bw = 30;
+  const X = i => 22 + i * (W - 44) / 7;
+  let bars = "";
+  s.counts.forEach((v, i) => {
+    const h = v / mx * (H - 44);
+    bars += `<rect x="${X(i) - bw / 2}" y="${H - 22 - h}" width="${bw}" height="${h}" fill="${c}"/><text x="${X(i)}" y="${H - 26 - h}" text-anchor="middle" font-size="11" font-weight="600" fill="var(--ink)">${v}</text><text x="${X(i)}" y="${H - 6}" text-anchor="middle" font-size="10" fill="var(--muted)">${String(YRS[i]).slice(2)}</text>`;
+  });
+  el("detail").innerHTML = `
+    <h3>${esc(s.name)}</h3>
+    <p>${pp(st.d)} of all classified incidents. ${st.ce} → ${st.cl} incidents, which is ${de.ce ? Math.round(st.ce / de.ce * 100) : 0}% → ${de.cl ? Math.round(st.cl / de.cl * 100) : 0}% of ${esc(d.short)}.</p>
+    <svg width="100%" viewBox="0 0 ${W} ${H}" role="img" aria-label="Incidents per year for ${esc(s.name)}: ${s.counts.join(", ")}.">${bars}<line x1="4" x2="${W - 4}" y1="${H - 22}" y2="${H - 22}" stroke="var(--rule)"/></svg>
+    <p style="margin-top:12px"><b>Most-reported incidents</b></p>
+    <ol class="evidence">${ev.map(x => `<li><a href="https://incidentdatabase.ai/cite/${x.id}/" target="_blank" rel="noopener">${esc(x.title)}</a><br><span class="meta">${x.year} · ${x.reports} reports · incident ${x.id}</span></li>`).join("")}</ol>`;
+}
+
+/* ---------- tables ---------- */
+function renderTableA() {
+  let h = `<table><caption>Count and share of classified incidents by domain and year</caption><thead><tr><th scope="col">Domain</th>${YRS.map(y => `<th scope="col">${y}</th>`).join("")}</tr></thead><tbody>`;
+  DOMS.forEach(d => { h += `<tr><th scope="row">${esc(d.name)}</th>${d.counts.map((v, i) => `<td>${v} (${pct(v / TOT[i])})</td>`).join("")}</tr>`; });
+  h += `<tr><th scope="row">All classified</th>${TOT.map(v => `<td>${v}</td>`).join("")}</tr><tr><th scope="row">Unclassified</th>${UNC.map(v => `<td>${v}</td>`).join("")}</tr></tbody></table>`;
+  el("tableA").innerHTML = h;
+}
+function renderTableS() {
+  const e = eIdx(), ne = nOf(e), nl = nOf(LATE);
+  let h = `<table><caption>Share by period with 95% Wilson intervals</caption><thead><tr><th scope="col">Domain</th><th scope="col">${pLabel(e)} share</th><th scope="col">95% interval</th><th scope="col">2024–25 share</th><th scope="col">95% interval</th><th scope="col">Change</th><th scope="col">Count</th></tr></thead><tbody>`;
+  DOMS.forEach(d => { const s = stats(d.counts), a = wilson(s.ce, ne), b = wilson(s.cl, nl);
+    h += `<tr><th scope="row">${esc(d.name)}</th><td>${pct(s.se)}</td><td>${pct(a[0])}–${pct(a[1])}</td><td>${pct(s.sl)}</td><td>${pct(b[0])}–${pct(b[1])}</td><td>${pp(s.d)}</td><td>${s.ce} → ${s.cl}</td></tr>`; });
+  el("tableS").innerHTML = h + "</tbody></table>";
+}
+function renderTableB(d) {
+  let h = `<table><caption>${esc(d.name)}: incidents per year by subdomain</caption><thead><tr><th scope="col">Subdomain</th>${YRS.map(y => `<th scope="col">${y}</th>`).join("")}<th scope="col">Change in share</th></tr></thead><tbody>`;
+  d.subs.forEach(s => { h += `<tr><th scope="row">${esc(s.name)}</th>${s.counts.map(v => `<td>${v}</td>`).join("")}<td>${pp(stats(s.counts).d)}</td></tr>`; });
+  el("tableB").innerHTML = h + "</tbody></table>";
+}
+function renderCoverage() {
+  const items = [
+    ["One label per incident", "Every classified incident has exactly one risk domain and one subdomain, so yearly shares add to 100% and subdomain changes add up to their domain’s change."],
+    ["Shares use classified incidents", `Denominators are the ${d3.sum(TOT)} MIT-classified incidents. The ${d3.sum(UNC)} unclassified incidents are shown in the yearly totals; ${UNC[7]} of them fall in 2025.`],
+    ["Periods are pooled, not averaged", "Two-year shares divide the summed domain count by the summed total. Intervals are 95% Wilson intervals."],
+    ["Small early base", `2018 and 2019 together have ${TOT[0] + TOT[1]} classified incidents, so early shares move a lot with a few incidents. Compare against 2020–21 to check a pattern.`],
+    ["Documented, not prevalent", "Counts reflect what was reported and catalogued. Growth can come from more reporting, discovery or classification, not only more harm."]
+  ];
+  el("coverage").innerHTML = items.map(([a, b]) => `<li><b>${a}</b>${b}</li>`).join("");
+}
+
+/* ---------- orchestration ---------- */
+function announce() {
+  const d = BY[state.dom], s = stats(d.counts);
+  el("live").textContent = `${d.name} selected. Share ${pct(s.se)} to ${pct(s.sl)}, ${pp(s.d)}. Count ${s.ce} to ${s.cl}. ${verdict(s)}`;
+}
+function select(k, user) {
+  if (k === state.dom && user) return;
+  state.dom = k; state.sub = null;
+  renderAll(true);
+  if (user) announce();
+}
+function renderAll(animate) {
+  renderKey(); renderShare(animate); renderTotals(); renderCount(); renderReadout(); renderDumbbell(); renderLevelB(); renderTableS();
+}
+el("early").addEventListener("change", ev => {
+  state.early = +ev.target.value;
+  renderReadout(); renderDumbbell(); renderLevelB(); renderTableS();
+  const d = BY[state.dom], s = stats(d.counts);
+  el("live").textContent = `Comparing ${pLabel(eIdx())} with 2024–25. ${d.name}: share ${pct(s.se)} to ${pct(s.sl)}, count ${s.ce} to ${s.cl}.`;
+});
+el("year").addEventListener("input", ev => setYear(+ev.target.value));
+renderTableA(); renderCoverage(); renderAll(false);
+let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(() => { renderShare(false); renderTotals(); renderCount(); renderDumbbell(); }, 120); }).observe(document.querySelector("main"));
+})();
+</script>
+</body>
+</html>
