@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Step 2: One dot per incident</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Reported AI incidents, 2018–2025</h1>
+  <p class="lede">Step 2: one dot per reported incident, stacked into year columns with <code>selection.join()</code>.</p>
+  <figure>
+    <svg id="chart"></svg>
+  </figure>
+</main>
+
+<!-- D3 v7, pinned to an exact version -->
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script type="module">
+  // ── 1. Margin convention: a fixed coordinate system, scaled by viewBox ──
+  const width = 1000;
+  const height = 540;
+  const margin = { top: 36, right: 20, bottom: 64, left: 56 };
+  const innerW = width - margin.left - margin.right;
+  const innerH = height - margin.top - margin.bottom;
+  const bottom = height - margin.bottom;
+
+  const svg = d3.select("#chart")
+    .attr("viewBox", [0, 0, width, height]);
+
+  // ── 2. Load: d3.csv returns a Promise; autoType turns "2018" into 2018 ──
+  let incidents;
+  try {
+    incidents = await d3.csv("data/aiid_incidents_2018_2025.csv", d3.autoType);
+  } catch (err) {
+    d3.select("figure").html(
+      `<p class="error">The data file didn’t load. Open this page through a local
+       server (for example <code>npx serve</code>), not by double-clicking it.</p>`
+    );
+    throw err;
+  }
+  console.log(incidents.length, incidents[0]);   // 1289, {incident_id: 2, year: 2018, …}
+
+  // ── 3. Group: one row per incident → a Map of year → incidents ──
+  const byYear = d3.group(incidents, d => d.year);
+  const years = d3.sort(byYear.keys());            // [2018, 2019, …, 2025]
+  console.log(byYear);                             // Map(8) {2018 => Array(46), …}
+
+  // ── 4. Scale: a band scale gives each year an equal-width column ──
+  const x = d3.scaleBand()
+    .domain(years)
+    .range([margin.left, width - margin.right])
+    .paddingInner(0.15);
+
+  // ── 5. Fit a grid of dots into each column ──
+  //    Try dot spacings from large to small; keep the first where
+  //    the biggest year (449 incidents) still fits vertically.
+  function fitColumns(bandWidth, maxCount, availableHeight) {
+    for (let step = 16; step > 2; step -= 0.25) {
+      const cols = Math.floor(bandWidth / step);
+      const rows = Math.ceil(maxCount / cols);
+      if (rows * step <= availableHeight) return { step, cols };
+    }
+  }
+  const maxCount = d3.max(byYear.values(), group => group.length);
+  const { step, cols } = fitColumns(x.bandwidth(), maxCount, innerH);
+
+  // ── 6. Give every incident an (x, y) slot: fill rows left→right, bottom→top ──
+  for (const [year, group] of byYear) {
+    const left = x(year) + (x.bandwidth() - cols * step) / 2;
+    group.forEach((d, i) => {
+      d.x = left + (i % cols) * step + step / 2;
+      d.y = bottom - Math.floor(i / cols) * step - step / 2;
+    });
+  }
+
+  // A y scale in incidents: each full row of dots = `cols` incidents
+  const y = d3.scaleLinear()
+    .domain([0, (innerH / step) * cols])
+    .range([bottom, margin.top]);
+
+  // ── 7. Gridlines first, so they sit behind the dots ──
+  svg.append("g")
+    .attr("class", "grid")
+    .attr("transform", `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y).tickSize(-innerW).tickFormat(""))
+    .call(g => g.select(".domain").remove());
+
+  // ── 8. Data join: one <circle> per incident ──
+  svg.append("g")
+    .selectAll("circle")
+    .data(incidents, d => d.incident_id)     // key: each dot IS one incident
+    .join("circle")                          // v7: enter + update + exit in one call
+      .attr("class", "dot")
+      .attr("cx", d => d.x)
+      .attr("cy", d => d.y)
+      .attr("r", step * 0.42);
+
+  // ── 9. Axes on top ──
+  svg.append("g")
+    .attr("class", "axis")
+    .attr("transform", `translate(0,${bottom})`)
+    .call(d3.axisBottom(x).tickSizeOuter(0));
+
+  svg.append("g")
+    .attr("class", "axis")
+    .attr("transform", `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y))
+    .call(g => g.select(".domain").remove())
+    .call(g => g.append("text")              // axis title
+      .attr("class", "axis-title")
+      .attr("x", -margin.left + 4)
+      .attr("y", margin.top - 16)
+      .attr("text-anchor", "start")
+      .text("Incidents"));
+
+</script>
+</body>
+</html>

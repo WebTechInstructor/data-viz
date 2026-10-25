@@ -1,0 +1,135 @@
+/* Shared styles for every step, so step-to-step diffs show only D3 code. */
+:root {
+  color-scheme: light dark;
+  --bg: #fbfbf9;
+  --raised: #ffffff;
+  --ink: #1c2330;
+  --muted: #5a6371;
+  --grid: #e3e6ea;
+  --line: #c9ced6;
+  --dot: #2b6cb0;
+  --dot-stroke: rgb(0 0 0 / 0.28);
+  --focus: #b4530a;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15181e;
+    --raised: #1f242c;
+    --ink: #e6e9ef;
+    --muted: #a2aab7;
+    --grid: #2a3039;
+    --line: #444c58;
+    --dot: #79aee8;
+    --dot-stroke: transparent;
+    --focus: #f0a35e;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
+main { max-width: 64rem; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+
+h1 { font-size: 1.75rem; line-height: 1.2; margin: 0 0 0.25rem; }
+.lede { color: var(--muted); margin: 0 0 1.25rem; max-width: 65ch; }
+
+/* ── Chart ── */
+figure { position: relative; margin: 0; }
+svg { display: block; width: 100%; height: auto; font-family: inherit; font-size: 14px; }
+
+/* d3 axes set font-size="10" on their <g>; override for legibility on video. */
+.axis, .grid { font-family: inherit; font-size: 14px; }
+.axis { color: var(--muted); }
+.axis-title, .x-label { fill: var(--muted); font-size: 14px; }
+.x-label { text-anchor: middle; font-size: 13px; }
+.grid line { stroke: var(--grid); }
+
+.dot { fill: var(--dot); stroke: var(--dot-stroke); stroke-width: 0.6; transition: opacity 200ms; }
+.dot.is-dimmed { opacity: 0.12; }
+.dot.is-hovered { stroke: var(--ink); stroke-width: 2; }
+
+/* ── Controls ── */
+.toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1rem; }
+.toolbar button,
+.legend button {
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+}
+.toolbar button.is-active,
+.toolbar button[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.legend {
+  display: flex; flex-wrap: wrap; gap: 0.25rem 1.1rem;
+  list-style: none; padding: 0; margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+.legend li { display: flex; align-items: center; gap: 0.4rem; }
+.legend button { display: flex; align-items: center; gap: 0.4rem; border-color: transparent; padding: 0.2rem 0.5rem; }
+.legend button[aria-pressed="true"] { border-color: var(--ink); }
+.swatch { width: 0.8rem; height: 0.8rem; border-radius: 50%; flex: none; box-shadow: inset 0 0 0 1px var(--dot-stroke); }
+
+/* ── Tooltip ── */
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  width: max-content;
+  max-width: 19rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.15);
+  font-size: 0.9rem;
+  line-height: 1.35;
+  transform: translate(-50%, calc(-100% - 12px));
+}
+.tooltip strong { display: block; margin-bottom: 0.25rem; }
+.tooltip p { margin: 0; color: var(--muted); }
+
+/* ── Data table (step 6) ── */
+details { margin-top: 1.5rem; }
+summary { cursor: pointer; font-weight: 700; }
+.table-wrap { overflow-x: auto; margin-top: 0.75rem; }
+table { border-collapse: collapse; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+caption { text-align: left; color: var(--muted); padding-bottom: 0.5rem; }
+th, td { padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--grid); text-align: right; }
+th[scope="row"], thead th:first-child { text-align: left; }
+thead th { vertical-align: bottom; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+.error {
+  border-left: 4px solid var(--focus);
+  padding: 0.75rem 1rem;
+  background: color-mix(in srgb, var(--focus) 10%, transparent);
+}
+
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dot { transition: none; }
+}
+
+.baseline { stroke: var(--line); }
+.no-domain .domain { display: none; }

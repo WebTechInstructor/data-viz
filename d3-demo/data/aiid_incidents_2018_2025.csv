@@ -1,0 +1,1290 @@
+incident_id,year,title,risk_domain,intent
+2,2018,Warehouse robot ruptures can of bear spray and injures workers,"AI system safety, failures, and limitations",Unintentional
+3,2018,Crashes with Maneuvering Characteristics Augmentation System (MCAS),"AI system safety, failures, and limitations",Unintentional
+4,2018,Uber AV Killed Pedestrian in Arizona,"AI system safety, failures, and limitations",Unintentional
+36,2018,Picture of Woman on Side of Bus Shamed for Jaywalking,"AI system safety, failures, and limitations",Unintentional
+41,2018,All Image Captions Produced are Violent,"AI system safety, failures, and limitations",Intentional
+63,2018,Google Photo Merge Decapitates Subject,"AI system safety, failures, and limitations",Unintentional
+64,2018,Customer Service Robot Scares Away Customers,"AI system safety, failures, and limitations",Unintentional
+67,2018,Sleeping Driver on Tesla AutoPilot,Human-Computer Interaction,Unintentional
+93,2018,HUD charges Facebook with enabling housing discrimination,Discrimination and Toxicity,Unintentional
+101,2018,Dutch Families Wrongfully Accused of Tax Fraud Due to Discriminatory Algorithm,Discrimination and Toxicity,Unintentional
+107,2018,"Chinese Tech Firms Allegedly Developed Facial Recognition to Identify People by Race, Targeting Uyghur Muslims",Discrimination and Toxicity,Intentional
+114,2018,Amazon's Rekognition Falsely Matched Members of Congress to Mugshots,Discrimination and Toxicity,Unintentional
+150,2018,"Swedish Contraceptive App, Natural Cycles, Allegedly Failed to Correctly Map Menstrual Cycle","AI system safety, failures, and limitations",Unintentional
+164,2018,"Facebook ""News Feed"" Allegedly Boosted Misinformation and Violating Content Following Use of MSI Metric",Discrimination and Toxicity,Unintentional
+169,2018,Facebook Allegedly Failed to Police Anti-Rohingya Hate Speech Content That Contributed to Violence in Myanmar,Discrimination and Toxicity,Unintentional
+182,2018,Two Cruise Autonomous Vehicles Collided with Each Other in California ,"AI system safety, failures, and limitations",Unintentional
+184,2018,Facial Recognition Program in São Paulo Metro Stations Suspended for Illegal and Disproportionate Violation of Citizens' Right to Privacy,Privacy & Security,Intentional
+188,2018,Argentinian City Government Deployed Teenage-Pregnancy Predictive Algorithm Using Invasive Demographic Data,Discrimination and Toxicity,Intentional
+194,2018,"Australian Telco’s Incident Management Bot Excessively Sent Technicians in the Field by Mistake, Allegedly Costing Millions","AI system safety, failures, and limitations",Unintentional
+227,2018,"Waze App Allegedly Caused Tourists’ Car to End up in Lake Champlain, Vermont","AI system safety, failures, and limitations",Unintentional
+229,2018,Content Using Bestiality Thumbnails Allegedly Evaded YouTube’s Thumbnail Monitoring System,Discrimination and Toxicity,Unintentional
+232,2018,"Tesla Model X on Autopilot Missed Parked Vehicles and Pedestrians, Killing Motorcyclist in Japan","AI system safety, failures, and limitations",Unintentional
+233,2018,Tumblr Automated Pornography-Detecting Algorithms Erroneously Flagged Inoffensive Images as Explicit,"AI system safety, failures, and limitations",Unintentional
+238,2018,Oregon’s Screening Tool for Child Abuse Cases Discontinued Following Concerns of Racial Bias,Discrimination and Toxicity,Unintentional
+248,2018,Reported Automated License Plate Reader Alert on Previously Stolen Rental Car Leads to Alleged Wrongful Detainment in California,"AI system safety, failures, and limitations",Unintentional
+251,2018,Amazon Allegedly Tweaked Search Algorithm to Boost Its Own Products,Socioeconomic & Environmental Harms,Intentional
+283,2018,Facebook’s Automated Content Moderation Tool Flagged a Post Containing Parts of the Declaration of Independence as Hate Speech by Mistake,"AI system safety, failures, and limitations",Unintentional
+284,2018,Facebook’s Automated Removal of Content Featuring Nudity-Containing Artworks Denounced as Censorship,"AI system safety, failures, and limitations",Unintentional
+294,2018,Tesla Autopilot Allegedly Malfunctioned in a Non-Fatal Collision in Greece,"AI system safety, failures, and limitations",Unintentional
+295,2018,Wrongful Attempted Arrest for Apple Store Thefts Due to NYPD’s Facial Misidentification,"AI system safety, failures, and limitations",Unintentional
+320,2018,Tesla on Autopilot Collided with Parked Fire Truck on California Freeway,"AI system safety, failures, and limitations",Unintentional
+321,2018,"Tesla Model X on Autopilot Crashed into California Highway Barrier, Killing Driver","AI system safety, failures, and limitations",Unintentional
+323,2018,Tesla on Autopilot Crashed into Parked Police Car in California,"AI system safety, failures, and limitations",Unintentional
+355,2018,Uber Allegedly Wrongfully Accused Drivers of Fraud via Automated Systems,"AI system safety, failures, and limitations",Unintentional
+358,2018,Calgary Malls Reportedly Deployed Facial Recognition Without Customer Consent,Privacy & Security,Intentional
+361,2018,Amazon Echo Mistakenly Recorded and Sent Private Conversation to Random Contact,Privacy & Security,Unintentional
+388,2018,Facial Recognition Pilot in Bahia Reportedly Targeted Black and Poor People,Discrimination and Toxicity,Unintentional
+396,2018,Transgender Uber Drivers Mistakenly Kicked off App for Appearance Change during Gender Transitions,Discrimination and Toxicity,Unintentional
+403,2018,Gmail’s Inbox Sorting System Reportedly Reduced Visibility of Political Emails and Campaign Calls-to-Action,Socioeconomic & Environmental Harms,Unintentional
+405,2018,Schufa Credit Scoring in Germany Reported for Unreliable and Imbalanced Scores,Discrimination and Toxicity,Unintentional
+454,2018,Emotion Detection Models Showed Disparate Performance along Racial Lines,Discrimination and Toxicity,Unintentional
+517,2018,Man Arrested For Sock Theft by False Facial Match Despite Alibi,Discrimination and Toxicity,Intentional
+555,2018,OpenAI's Training Data for LLMs Allegedly Comprised of Copyrighted Books,Privacy & Security,Intentional
+556,2018,Amazon Allegedly Violated Children's Privacy through Default Voice Collection Settings,Privacy & Security,Intentional
+769,2018,Investigative Journalist Rana Ayyub Targeted by AI-Generated Deepfake Pornography,Malicious Actors & Misuse,Intentional
+1630,2018,Atlantic City Casino-Hotels Allegedly Used Cendyn's Rainmaker AI to Coordinate and Inflate Room Rates,Not classified,Not classified
+76,2019,Buenos Aires Government Reportedly Used Children's Personal Data in Facial Recognition System for Fugitives,Privacy & Security,Intentional
+77,2019,Knightscope's Park Patrol Robot Ignored Bystander Pressing Emergency Button to Alert Police about Fight,"AI system safety, failures, and limitations",Unintentional
+89,2019,The Christchurch shooter and YouTube’s radicalization trap,Discrimination and Toxicity,Unintentional
+92,2019,Apple Card's Credit Assessment Algorithm Allegedly Discriminated against Women,Discrimination and Toxicity,Unintentional
+95,2019,Job Screening Service Halts Facial Analysis of Applicants,Discrimination and Toxicity,Intentional
+105,2019,"Tesla Model 3 on Autopilot Crashed into a Ford Explorer Pickup, Killing a Fifteen-Year-Old in California","AI system safety, failures, and limitations",Unintentional
+124,2019,Optum Algorithmic Health Risk Scores Reportedly Underestimated Black Patients' Needs,Discrimination and Toxicity,Unintentional
+153,2019,"Tesla Driver on Autopilot Ran a Red Light, Crashing into a Car and Killing Two People in Los Angeles","AI system safety, failures, and limitations",Unintentional
+159,2019,Tesla Autopilot’s Lane Recognition Allegedly Vulnerable to Adversarial Attacks,"AI system safety, failures, and limitations",Other
+161,2019,Facebook's Ad Delivery Reportedly Excluded Audience along Racial and Gender Lines,Discrimination and Toxicity,Unintentional
+189,2019,Opaque Fraud Detection Algorithm by the UK’s Department of Work and Pensions Allegedly Discriminated against People with Disabilities,Discrimination and Toxicity,Intentional
+199,2019,Ever AI Reportedly Deceived Customers about FRT Use in App,Privacy & Security,Intentional
+200,2019,Fraudsters Used AI to Mimic Voice of a UK-Based Firm's CEO's Boss,Malicious Actors & Misuse,Intentional
+223,2019,Hive Box Facial-Recognition Locks Hacked by Fourth Graders Using Intended Recipient’s Facial Photo,Privacy & Security,Unintentional
+228,2019,Apple Maps Allegedly Directed Ski Trip Couple Onto Unpaved Road in the Mountains,"AI system safety, failures, and limitations",Unintentional
+230,2019,"Model 3 Tesla on Autopilot Crashed into a Truck in Florida, Killing Driver","AI system safety, failures, and limitations",Unintentional
+234,2019,"Waze Allegedly Frequently Routed Drivers through the Town of Los Gatos, Blocking Its Single Wildfire Escape Route","AI system safety, failures, and limitations",Unintentional
+272,2019,"Grab Tweaked Matchmaking Algorithm, Providing Preferential Treatment to Drivers Registered with Affiliated Car Rental Service",Discrimination and Toxicity,Intentional
+279,2019,TikTok’s “For You” Algorithm Exposed Young Users to Pro-Eating Disorder Content,Discrimination and Toxicity,Unintentional
+281,2019,YouTube's Algorithms Failed to Remove Violating Content Related to Suicide and Self-Harm,Discrimination and Toxicity,Unintentional
+288,2019,New Jersey Police Wrongful Arrested Innocent Black Man via FRT,Discrimination and Toxicity,Unintentional
+305,2019,YouTube’s Recommendation Algorithm Allegedly Promoted Climate Misinformation Content,Misinformation,Unintentional
+319,2019,Tesla on Autopilot Fatally Crashed into Parked Fire Truck in Indiana,"AI system safety, failures, and limitations",Unintentional
+322,2019,Tesla Model 3 Crashed into Police Patrol Car on Connecticut Highway,"AI system safety, failures, and limitations",Unintentional
+324,2019,GAN Faces Deployed by The BL's Fake Account Network to Push Pro-Trump Content on Meta Platforms,Malicious Actors & Misuse,Intentional
+353,2019,"Tesla on Autopilot Crashed into Trailer Truck in Florida, Killing Driver","AI system safety, failures, and limitations",Unintentional
+357,2019,GPT-2 Reportedly Reproduced Personal Data from Its Training Data,Privacy & Security,Unintentional
+371,2019,Uganda Deployed Huawei's Facial Recognition to Monitor Political Opposition and Protests,Malicious Actors & Misuse,Intentional
+375,2019,Thai Wallet App's Facial Recognition Errors Created Registration Issues for Government Programs,"AI system safety, failures, and limitations",Unintentional
+386,2019,"Amazon’s ""Time Off Task"" System Made False Assumptions about Workers' Time Management",Discrimination and Toxicity,Unintentional
+404,2019,Sound Intelligence's Aggression Detector Misidentified Innocuous Sounds,"AI system safety, failures, and limitations",Unintentional
+417,2019,Facebook Feed Algorithms Exposed Low Digitally Skilled Users to More Disturbing Content,Discrimination and Toxicity,Unintentional
+439,2019,Detroit Police Wrongfully Arrested Black Man Due To Faulty Facial Recognition,Discrimination and Toxicity,Unintentional
+441,2019,South Korean Agencies Reportedly Shared Airport Travelers' Face Images with Companies to Train Immigration Facial Recognition System,Privacy & Security,Intentional
+471,2019,Facebook Allegedly Failed to Police Hate Speech Content That Contributed to Ethnic Violence in Ethiopia,Discrimination and Toxicity,Unintentional
+489,2019,Workday's AI Tools Allegedly Enabled Employers to Discriminate against Applicants of Protected Groups,Discrimination and Toxicity,Unintentional
+501,2019,Length of Stay False Diagnosis Cut Off Insurer's Payment for Treatment of Elderly Woman,"AI system safety, failures, and limitations",Intentional
+522,2019,"Facebook Political Ad Delivery Algorithms Inferred Users' Political Alignment, Inhibiting Political Campaigns' Reach",Misinformation,Unintentional
+525,2019,Tesla Vehicle Running on Self-Driving Mode Crashes on City Streets,Human-Computer Interaction,Unintentional
+530,2019,Telegram Channels Allowed Users to Make Non-Consensual Deepfake Porn as Paid Service,Malicious Actors & Misuse,Intentional
+546,2019,Algorithm to Distribute Social Welfare Reported for Oversimplifying Economic Vulnerability,Discrimination and Toxicity,Unintentional
+561,2019,OpenAI Alleged by Lawsuit Violated Users' Privacy Rights by Training AI on Private Info without Informed Consent,Privacy & Security,Intentional
+653,2019,Two Investment Firms Charged with Making False Claims of Artificial Intelligence Capabilities in Case of AI Washing,Malicious Actors & Misuse,Intentional
+816,2019,Cross-Jurisdictional Facial Recognition Misidentification by NYPD Leads to Wrongful Arrest and Four-Year Jail Time in New Jersey,"AI system safety, failures, and limitations",Unintentional
+74,2020,Detroit Police Allegedly Wrongfully Arrested Black Man Due to Purportedly Faulty Facial Recognition Technology,Discrimination and Toxicity,Unintentional
+78,2020,International Baccalaureate’s 2020 Calculated-Grades Model Reportedly Lowered Students' Scores and College Prospects,"AI system safety, failures, and limitations",Unintentional
+80,2020,AI mistakes referee’s bald head for football — hilarity ensued,"AI system safety, failures, and limitations",Unintentional
+81,2020,"Researchers find evidence of racial, gender, and socioeconomic bias in chest X-ray classifiers",Discrimination and Toxicity,Unintentional
+82,2020,#LekkiMassacre: Why Facebook labelled content from October 20 incident ‘false’,Misinformation,Unintentional
+83,2020,AI Spam Filters Allegedly Block Legitimate Emails Based on Biased Keyword Detection,Discrimination and Toxicity,Unintentional
+84,2020,"Tiny Changes Let False Claims About COVID-19, Voting Evade Facebook Fact Checks",Misinformation,Unintentional
+85,2020,"AI attempts to ease fear of robots, blurts out it can’t ‘avoid destroying humankind’","AI system safety, failures, and limitations",Other
+86,2020,Ireland's 2020 Leaving Certificate Calculated-Grades Model Reportedly Issued Incorrect Scores to Thousands of Students,"AI system safety, failures, and limitations",Unintentional
+87,2020,UK passport photo checker shows bias against dark-skinned women,Discrimination and Toxicity,Unintentional
+91,2020,Frontline workers protest at Stanford after hospital distributed vaccine to administrators,"AI system safety, failures, and limitations",Unintentional
+94,2020,Court Rules Deliveroo Used 'Discriminatory' Algorithm,Discrimination and Toxicity,Unintentional
+97,2020,Tesla Autopilot Mistakes Red Letters on Flag for Red Traffic Lights,"AI system safety, failures, and limitations",Unintentional
+102,2020,"Personal voice assistants struggle with black voices, new study shows",Discrimination and Toxicity,Unintentional
+103,2020,Twitter’s Image Cropping Tool Allegedly Showed Gender and Racial Bias,Discrimination and Toxicity,Unintentional
+106,2020,Korean Chatbot Luda Reportedly Made Offensive Remarks Towards Minority Groups in South Korea,Discrimination and Toxicity,Unintentional
+113,2020,"Facebook's AI Put ""Primates"" Label on Video Featuring Black Men",Discrimination and Toxicity,Unintentional
+115,2020,Genderify’s AI to Predict a Person’s Gender Revealed by Free API Users to Exhibit Bias,Discrimination and Toxicity,Unintentional
+117,2020,"TikTok's ""Suggested Accounts"" Algorithm Allegedly Reinforced Racial Bias through Feedback Loops",Discrimination and Toxicity,Unintentional
+118,2020,OpenAI's GPT-3 Associated Muslims with Violence,Discrimination and Toxicity,Unintentional
+120,2020,Philosophy AI Allegedly Used To Generate Mixture of Innocent and Harmful Reddit Posts,Misinformation,Unintentional
+121,2020,Autonomous Kargu-2 Drone Allegedly Remotely Used to Hunt down Libyan Soldiers,Malicious Actors & Misuse,Intentional
+125,2020,Amazon’s Robotic Fulfillment Centers Have Higher Serious Injury Rates,"AI system safety, failures, and limitations",Unintentional
+127,2020,Microsoft’s Algorithm Allegedly Selected Photo of the Wrong Mixed-Race Person Featured in a News Story,Discrimination and Toxicity,Unintentional
+131,2020,Proctoring Algorithm in Online California Bar Exam Flagged an Unusually High Number of Alleged Cheaters,Discrimination and Toxicity,Unintentional
+132,2020,TikTok’s Content Moderation Allegedly Failed to Adequately Take down Videos Promoting Eating Disorders,Discrimination and Toxicity,Unintentional
+133,2020,Online Trolls Allegedly Abused TikTok’s Automated Content Reporting System to Discriminate against Marginalized Creators,Discrimination and Toxicity,Unintentional
+134,2020,"Robot in Chinese Shopping Mall Fell off the Escalator, Knocking down Passengers","AI system safety, failures, and limitations",Unintentional
+136,2020,"Brand Safety Tech Firms Falsely Claimed Use of AI, Blocking Ads Using Simple Keyword Lists","AI system safety, failures, and limitations",Unintentional
+138,2020,University of Illinois' Proctorio Remote-Proctoring Deployment Reportedly Raised Student Rights Concerns,Discrimination and Toxicity,Unintentional
+140,2020,University of Toronto's ProctorU Deployment Reportedly Disadvantaged BIPOC Students During Exam Check-Ins,Discrimination and Toxicity,Unintentional
+144,2020,YouTube's AI Mistakenly Banned Chess Channel over Chess Language Misinterpretation,"AI system safety, failures, and limitations",Unintentional
+147,2020,Reported AI-Cloned Voice Used to Deceive Hong Kong Bank Manager in Purported $35 Million Fraud Scheme,Malicious Actors & Misuse,Intentional
+165,2020,Image Upscaling Algorithm PULSE Allegedly Produced Facial Images with Caucasian Features More Often,Discrimination and Toxicity,Unintentional
+166,2020,"Networking Platform Giggle Employs AI to Determine Users’ Gender, Allegedly Excluding Transgender Women",Discrimination and Toxicity,Intentional
+172,2020,NarxCare’s Risk Score Model Allegedly Lacked Validation and Trained on Data with High Risk of Bias,"AI system safety, failures, and limitations",Unintentional
+180,2020,Algorithm Used by the Malaysian Judiciary Reportedly Recommended Unusually High Sentencing to a Drug Possession Case,Discrimination and Toxicity,Intentional
+191,2020,Korean Internet Portal Giant Naver Manipulated Shopping and Video Search Algorithms to Favor In-House Services,Socioeconomic & Environmental Harms,Intentional
+201,2020,Climate Action Group Posted Deepfake of Belgian Prime Minister Urging Climate Crisis Action,Malicious Actors & Misuse,Intentional
+209,2020,Tesla Disabled “Rolling Stop” Functionality Associated with the “Aggressive” Driving Mode,"AI system safety, failures, and limitations",Intentional
+210,2020,Indian Political App Tek Fog Allegedly Hijacked Trends and Manipulated Public Opinion on Other Social Media Platforms,Malicious Actors & Misuse,Intentional
+213,2020,Facebook’s Political Ad Detection Reportedly Showed High and Geographically Uneven Error Rates,"AI system safety, failures, and limitations",Unintentional
+214,2020,SN Technologies Reportedly Lied to a New York State School District about Its Facial and Weapon Detection Systems’ Performance,Discrimination and Toxicity,Unintentional
+215,2020,Facebook Content Moderators Demand Better Working Conditions Due to Allegedly Inadequate AI Content Moderation,"AI system safety, failures, and limitations",Unintentional
+218,2020,Tesla on Autopilot Crashed into Flipped Truck on Taiwan Highway,"AI system safety, failures, and limitations",Unintentional
+219,2020,Poachers Evaded AI Cameras and Killed Four Rhinos,"AI system safety, failures, and limitations",Unintentional
+220,2020,Facebook Mistakenly Blocked Small Business Ads,"AI system safety, failures, and limitations",Unintentional
+222,2020,Thoughts App Allegedly Created Toxic Tweets,Discrimination and Toxicity,Unintentional
+224,2020,WeChat Pay's Facial Recognition Security Evaded by Scammers Using Victims’ Social Media Content,Malicious Actors & Misuse,Intentional
+243,2020,Bots Allegedly Made up Roughly Half of Twitter Accounts in Discussions Surrounding COVID-19 Related Issues,Malicious Actors & Misuse,Intentional
+244,2020,"Colorado Police’s Automated License Plate Reader (ALPR) Matched a Family’s Minivan’s Plate to That of a Stolen Vehicle Allegedly, Resulting in Detainment at Gunpoint","AI system safety, failures, and limitations",Unintentional
+255,2020,Unreliable ShotSpotter Audio Previously Used to Convict Chicago Man in Murder Case,"AI system safety, failures, and limitations",Unintentional
+268,2020,Permanent Removal of Social Media Content via Automated Tools Allegedly Prevented Investigative Efforts,"AI system safety, failures, and limitations",Unintentional
+273,2020,FaceApp Predicted Different Genders for Similar User Photos with Slight Variations,Discrimination and Toxicity,Unintentional
+275,2020,Facebook’s Moderation Algorithm Banned Users for Historical Evidence of Slavery,Discrimination and Toxicity,Unintentional
+282,2020,Facebook’s Algorithm Mistook an Advertisement of Onions as Sexual Suggestive Content,"AI system safety, failures, and limitations",Unintentional
+287,2020,OpenAI’s GPT-3 Reported as Unviable in Medical Tasks by Healthcare Firm,"AI system safety, failures, and limitations",Other
+289,2020,"Starship Delivery Robot Scuffed Bumper of a Resident’s Car in Texas, Allegedly Refusing to Release Footage of the Accident","AI system safety, failures, and limitations",Unintentional
+297,2020,"EasyMile Self-Driving Shuttle Unexpectedly Stopped Mid-Route, Injuring a Passenger","AI system safety, failures, and limitations",Unintentional
+299,2020,Japanese Porn Depixelated by Man using Deepfake,Malicious Actors & Misuse,Intentional
+311,2020,YouTube Auto-Moderation Reportedly Banned Women of Sex Tech Conference,"AI system safety, failures, and limitations",Unintentional
+317,2020,Bug in Facebook’s Anti-Spam Filter Allegedly Blocked Legitimate Posts about COVID-19,"AI system safety, failures, and limitations",Unintentional
+328,2020,Fake Accounts Using GAN Faces Deployed by Propaganda Campaign on Social Platforms,Malicious Actors & Misuse,Intentional
+331,2020,Bug in Instagram’s “Related Hashtags” Algorithm Allegedly Caused Disproportionate Treatment of Political Hashtags,Discrimination and Toxicity,Unintentional
+348,2020,YouTube Recommendation Reportedly Pushed Election Fraud Content to Skeptics Disproportionately,Misinformation,Unintentional
+354,2020,Uber Allegedly Violated GDPR by Failing to Provide Sufficient Notice on Automated Profiling for Drivers,Privacy & Security,Unintentional
+356,2020,Philosophy AI Tentatively Produced Offensive Results for Certain Prompts,Discrimination and Toxicity,Unintentional
+364,2020,Walmart's Bagging-Detection False Positives Exposed Workers to Health Risk,"AI system safety, failures, and limitations",Unintentional
+366,2020,Suicide Clips Evaded TikTok's Automated Moderation in Coordinated Attack,Discrimination and Toxicity,Intentional
+367,2020,"iGPT, SimCLR Learned Biased Associations from Internet Training Data",Discrimination and Toxicity,Unintentional
+374,2020,UK Ofqual's Algorithm Disproportionately Provided Lower Grades Than Teachers' Assessments,Discrimination and Toxicity,Intentional
+381,2020,Autonomous Roborace Car Drove Directly into a Wall,"AI system safety, failures, and limitations",Unintentional
+412,2020,Finnish Police Were Reportedly Reprimanded After National Bureau of Investigation Unit Allegedly Used Clearview AI to Identify Potential Abuse Victims,Privacy & Security,Unintentional
+414,2020,Facebook Gave Vulgar English Translation of Chinese President's Name,"AI system safety, failures, and limitations",Unintentional
+415,2020,Facebook Provided Offensive Translation for King of Thailand's Birthday Ceremony,Misinformation,Unintentional
+424,2020,Canadian Universities' AI Proctoring Tools Reportedly Collected Student Biometric Data Without Adequate Consent,Discrimination and Toxicity,Unintentional
+521,2020,iRobot Roomba J7 R&D Images Reportedly Appeared in Private Online Groups After Data Labeling,Privacy & Security,Unintentional
+532,2020,AI translation is jeopardizing Afghan asylum claims,"AI system safety, failures, and limitations",Unintentional
+535,2020,COVID-19 Detection and Prognostication Models Allegedly Flagged for Methodological Flaws and Underlying Biases,"AI system safety, failures, and limitations",Unintentional
+557,2020,Miami Police Deployed Facial Recognition to Arrest George Floyd Protestor Allegedly without Cause,Privacy & Security,Intentional
+558,2020,Activists Allege NYPD's Application of Facial Recognition Interfered with Right to Protest,Discrimination and Toxicity,Intentional
+771,2020,Noelle Martin Deepfaked Without Consent in AI-Generated Pornography,Malicious Actors & Misuse,Unintentional
+772,2020,Kristen Bell Deepfaked in Non-Consensual AI-Generated Pornography,Malicious Actors & Misuse,Intentional
+908,2020,Deepfake Images of Australian Teacher Hannah Grundy and 25 Others Created and Circulated Online by Former Friend,Malicious Actors & Misuse,Intentional
+926,2020,Giorgia Meloni Reportedly Targeted by Deepfake Pornography,Malicious Actors & Misuse,Intentional
+996,2020,"Meta Allegedly Used Books3, a Dataset of 191,000 Pirated Books, to Train LLaMA AI",Privacy & Security,Intentional
+1169,2020,Reported AI-Assisted Influence Campaigns by GoLaxy Allegedly Targeting Hong Kong and Taiwan Political Discourse,Malicious Actors & Misuse,Intentional
+1236,2020,Quantum AI and Related AI-Themed Investment Scams Reportedly Used Deepfake Endorsements and Spoofed Media Sites to Solicit Investments,Malicious Actors & Misuse,Intentional
+1336,2020,BJP Used Deepfake Videos of Manoj Tiwari to Target Haryanvi Voters in 2020 Delhi Election,Malicious Actors & Misuse,Intentional
+1509,2020,"Self-Employed Somerset Father Wayne Luxon Reportedly Lost £140,000 After Facebook Deepfake of Martin Lewis Promoted Crypto Scam",Malicious Actors & Misuse,Unintentional
+1617,2020,Motive AI Dashcams Allegedly Collected Truckers' Biometric Data and Built License-Plate Location Records Without Consent,Not classified,Not classified
+98,2021,N.Y.P.D. Robot Dog’s Run Is Cut Short After Fierce Backlash,Human-Computer Interaction,Unintentional
+100,2021,How French welfare services are creating ‘robo-debt’,"AI system safety, failures, and limitations",Unintentional
+104,2021,"California's Algorithm Considered ZIP Codes in Vaccine Distribution, Allegedly Excluding Low-Income Neighborhoods and Communities of Color",Discrimination and Toxicity,Unintentional
+108,2021,Skating Rink’s Facial Recognition Cameras Misidentified Black Teenager as Banned Troublemaker,Discrimination and Toxicity,Unintentional
+116,2021,Amazon's AI Cameras Incorrectly Penalized Delivery Drivers for Mistakes They Did Not Make,"AI system safety, failures, and limitations",Unintentional
+119,2021,Xsolla Employees Fired by CEO Allegedly via Big Data Analytics of Work Activities,Privacy & Security,Intentional
+123,2021,Epic Systems’s Sepsis Prediction Algorithms Revealed to Have High Error Rates on Seriously Ill Patients,"AI system safety, failures, and limitations",Unintentional
+126,2021,"Three Robots Collided, Sparking Fire in a Grocer's Warehouse in UK ","AI system safety, failures, and limitations",Unintentional
+129,2021,"Facebook's Automated Tools Failed to Adequately Remove Hate Speech, Violence, and Incitement","AI system safety, failures, and limitations",Unintentional
+137,2021,"Israeli Tax Authority Reportedly Used an Opaque Automated System to Issue a Fine, Declining to Explain or Disclose the Underlying Calculation","AI system safety, failures, and limitations",Unintentional
+139,2021,Amazon’s Search and Recommendation Algorithms Found by Auditors to Have Boosted Products That Contained Vaccine Misinformation,Misinformation,Unintentional
+141,2021,California Police Turned on Music to Allegedly Trigger Instagram’s DCMA to Avoid Being Live-Streamed,Human-Computer Interaction,Intentional
+142,2021,Facebook's Advertisement Moderation System Allegedly Routinely Misidentified Adaptive Fashion Products as Medical Equipment and Blocked Their Sellers,Discrimination and Toxicity,Unintentional
+143,2021,Facebook’s and Twitter's Automated Content Moderation Reportedly Failed to Effectively Enforce Violation Rules for Small Language Groups,"AI system safety, failures, and limitations",Unintentional
+145,2021,Tesla's Autopilot Misidentified the Moon as Yellow Stop Light,"AI system safety, failures, and limitations",Unintentional
+146,2021,"Research Prototype AI, Delphi, Reportedly Gave Racially Biased Answers on Ethics",Discrimination and Toxicity,Unintentional
+148,2021,Web Accessibility Vendors Allegedly Falsely Claimed to Provide Compliance Using AI,Malicious Actors & Misuse,Intentional
+149,2021,Zillow Shut Down Zillow Offers Division Allegedly Due to Predictive Pricing Tool's Insufficient Accuracy,"AI system safety, failures, and limitations",Unintentional
+151,2021,California Regulator Suspended Pony.ai's Driverless Testing Permit Following a Non-Fatal Collision,"AI system safety, failures, and limitations",Unintentional
+152,2021,"SoftBank's Humanoid Robot, Pepper, Reportedly Frequently Made Errors, Prompting Dismissal","AI system safety, failures, and limitations",Unintentional
+155,2021,Google Maps Allegedly Directed Sierra Nevada Travelers to Dangerous Roads amid Winter Storm,"AI system safety, failures, and limitations",Unintentional
+157,2021,"Amazon's Monitoring System Allegedly Pushed Delivery Drivers to Prioritize Speed over Safety, Leading to Crash",Human-Computer Interaction,Unintentional
+158,2021,Remote Proctoring Facial-Detection Software Reportedly Failed to Detect Black Student During Lab Quiz,Discrimination and Toxicity,Unintentional
+160,2021,Alexa Recommended Dangerous TikTok Challenge to Ten-Year-Old Girl,Discrimination and Toxicity,Unintentional
+163,2021,Facebook’s Hate Speech Detection Algorithms Allegedly Disproportionately Failed to Remove Racist Content towards Minority Groups,Discrimination and Toxicity,Unintentional
+171,2021,"Traffic Camera Misread Text on Pedestrian's Shirt as License Plate, Causing UK Officials to Issue Fine to an Unrelated Person","AI system safety, failures, and limitations",Unintentional
+173,2021,"AI Tools Failed to Sufficiently Predict COVID Patients, Some Potentially Harmful","AI system safety, failures, and limitations",Unintentional
+197,2021,"Facebook Internally Reported Failure of Ranking Algorithm, Exposing Harmful Content to Viewers over Months",Misinformation,Unintentional
+202,2021,Korean Politician Employed Deepfake as Campaign Representative,Misinformation,Intentional
+207,2021,Hawaii Police Deployed Robot Dog to Patrol a Homeless Encampment,Human-Computer Interaction,Intentional
+208,2021,"Tesla Phantom Braking Complaints Surged, Allegedly Linked to Tesla Vision Rollout","AI system safety, failures, and limitations",Unintentional
+211,2021,A Tesla Taxi Cab Involved in an Accident in Paris with Twenty Injuries,"AI system safety, failures, and limitations",Unintentional
+212,2021,XPeng Motors Fined For Illegal Collection of Consumers’ Faces Using Facial Recognition Cameras,Privacy & Security,Unintentional
+240,2021,"GitHub Copilot, Copyright Infringement and Open Source Licensing",Privacy & Security,Unintentional
+242,2021,Manufacturing Robot Failure Caused Factory Worker's Death in India,"AI system safety, failures, and limitations",Unintentional
+256,2021,DUI Arrest Case Allegedly Based Only on ShotSpotter's Alert,"AI system safety, failures, and limitations",Unintentional
+265,2021,Black Uber Eats Driver Allegedly Subjected to Excessive Photo Checks and Dismissed via FRT Results,Discrimination and Toxicity,Unintentional
+286,2021,"TikTok’s ""For You"" Allegedly Pushed Fatal “Blackout” Challenge Videos to Two Young Girls",Discrimination and Toxicity,Unintentional
+291,2021,Tesla Allegedly Misled Customers about Autopilot and FSD Capabilities,Misinformation,Intentional
+292,2021,Apple’s AVs Reportedly Struggled to Navigate Streets in Silicon Valley Test Drives,"AI system safety, failures, and limitations",Unintentional
+298,2021,Student-Developed Facial Recognition App Raised Ethical Concerns,"AI system safety, failures, and limitations",Other
+302,2021,Dartmouth's Geisel School of Medicine Reportedly Used Canvas Activity Logs to Accuse Students of Cheating,"AI system safety, failures, and limitations",Unintentional
+304,2021,Tesla on FSD Reportedly Drove into the Wrong Lane in California,"AI system safety, failures, and limitations",Unintentional
+312,2021,Startup's Accent Translation AI Denounced as Reinforcing Racial Bias,Discrimination and Toxicity,Intentional
+318,2021,Facebook Recommended Military Gear Ads Despite Pause on Weapons Accessories Ads,Malicious Actors & Misuse,Unintentional
+333,2021,Tesla on Autopilot Crashed Parked Michigan Police Car on Interstate,"AI system safety, failures, and limitations",Unintentional
+337,2021,"Tesla Model S on ACC Crashed into Tree in Texas, Killing Two People",Human-Computer Interaction,Unintentional
+343,2021,"Facebook, Instagram, and Twitter Failed to Proactively Remove Targeted Racist Remarks via Automated Systems",Discrimination and Toxicity,Unintentional
+344,2021,Hiring Algorithms Provided Invalid Positive Results for Interview Responses in German,"AI system safety, failures, and limitations",Unintentional
+345,2021,Auto-Insurance Photo-Based Estimation Allegedly Gave Inaccurate Repair Prices Frequently,"AI system safety, failures, and limitations",Unintentional
+347,2021,"Waymo Self-Driving Taxi Reportedly Behaved Unexpectedly, Driving away from Support Crew","AI system safety, failures, and limitations",Unintentional
+359,2021,"Facebook, Instagram, and Twitter Cited Errors in Automated Systems as Cause for Blocking pro-Palestinian Content on Israeli-Palestinian Conflict",Discrimination and Toxicity,Unintentional
+360,2021,"McDonald's AI Drive-Thru Allegedly Collected Biometric Customer Data without Consent, Violating BIPA",Privacy & Security,Intentional
+362,2021,Facebook's Automated Moderation Flagged Gardening Group's Language Use by Mistake,"AI system safety, failures, and limitations",Unintentional
+363,2021,Facebook's Automated Moderation Mistakenly Flagged Landmark's Name as Offensive,"AI system safety, failures, and limitations",Unintentional
+393,2021,Facebook AI-Supported Moderation for Ads Failed to Detect Violating Content,"AI system safety, failures, and limitations",Unintentional
+395,2021,Amazon Allegedly Forced Deployment of AI-Powered Cameras on Delivery Drivers,Privacy & Security,Intentional
+401,2021,"Kannada Insulted by Google's Featured Answer as ""Ugliest Language in India""",Discrimination and Toxicity,Unintentional
+402,2021,Players Manipulated GPT-3-Powered Game to Generate Sexually Explicit Material Involving Children,Discrimination and Toxicity,Unintentional
+425,2021,State Farm Allegedly Discriminated against Black Customers in Claim Payout,Discrimination and Toxicity,Unintentional
+435,2021,Coupang Allegedly Tweaked Search Algorithms to Boost Own Products,Socioeconomic & Environmental Harms,Intentional
+438,2021,Henan Authorities Reportedly Commissioned Facial Recognition System to Track Journalists and International Students,Malicious Actors & Misuse,Intentional
+450,2021,Kenyan Data Annotators Allegedly Exposed to Graphic Content for OpenAI's AI,Socioeconomic & Environmental Harms,Intentional
+456,2021,Replika's AI Partners Reportedly Sexually Harassed Users,Discrimination and Toxicity,Unintentional
+475,2021,McDonald's Reportedly Ends IBM Partnership After AI Drive-Thru Ordering Errors at U.S. Locations,"AI system safety, failures, and limitations",Unintentional
+533,2021,Tesla FSD Misidentified Truck Hauling Traffic Lights as Trail of Traffic Lights,"AI system safety, failures, and limitations",Unintentional
+534,2021,Facebook Alleged in Lawsuit Misleading Public about Effects of Algorithms on Children,Discrimination and Toxicity,Unintentional
+569,2021,Chatbot Encourages Man to Plot Assassination of Queen Elizabeth II,Human-Computer Interaction,Unintentional
+603,2021,Algorithmic Allocation of Resources in Healthcare for Disabled and Elderly Care Services Allegedly Harmed Patients,"AI system safety, failures, and limitations",Intentional
+605,2021,North Carolina Psychiatrist Used Artificial Intelligence to Produce Images of Child Sex Abuse,Malicious Actors & Misuse,Intentional
+611,2021,UK Government AI Allegedly Targets Disproportionate Numbers of Certain Nationals for Fraud Review,Discrimination and Toxicity,Unintentional
+620,2021,A Robot at a Tesla Factory in Texas Allegedly Injured an Engineer,"AI system safety, failures, and limitations",Unintentional
+716,2021,Algorithmic Staffing Failures Linked to Resident Deaths at Leading Assisted-Living Chain Brookdale,"AI system safety, failures, and limitations",Intentional
+759,2021,AI-Generated Deepfakes Reportedly Derailed Political Career of Florida Official,Malicious Actors & Misuse,Intentional
+846,2021,Social Media Algorithms Amplified Disinformation Campaign in Honduras Election,Malicious Actors & Misuse,Intentional
+1109,2021,Year-long AI Surveillance Pilot in Two South Australian Aged Care Facilities Reportedly Overwhelmed Staff with False Positives,"AI system safety, failures, and limitations",Unintentional
+1118,2021,Ongoing Purported AI-Assisted Identity Fraud Enables Unauthorized Access to Western Companies by North Korean IT Workers,Malicious Actors & Misuse,Intentional
+1396,2021,Betfair's Machine-Learning Risk System Reportedly Failed to Flag Luke Ashton Before Gambling-Related Suicide in England,"AI system safety, failures, and limitations",Unintentional
+1476,2021,Maryland Police Allegedly Relied on Facial Recognition Lead in Wrongful Arrest and Detention of Kimberlee Williams,"AI system safety, failures, and limitations",Unintentional
+1610,2021,Queensland Man Allegedly Distributed Purportedly AI-Generated Sexual Posters Falsely Advertising Women for Sex,Not classified,Not classified
+154,2022,Justice Department’s Recidivism Risk Algorithm PATTERN Allegedly Caused Persistent Disparities Along Racial Lines,Discrimination and Toxicity,Unintentional
+156,2022,Amazon Reportedly Sold Products and Recommended Frequently Bought Together Items That Aid Suicide Attempts,Human-Computer Interaction,Unintentional
+168,2022,"Collaborative Filtering Prone to Popularity Bias, Resulting in Overrepresentation of Popular Items in the Recommendation Outputs",Discrimination and Toxicity,Unintentional
+174,2022,Fake LinkedIn Profiles Created Using GAN Photos,Malicious Actors & Misuse,Intentional
+175,2022,Cruise Autonomous Taxi Allegedly Bolted off from Police After Being Pulled over in San Francisco,"AI system safety, failures, and limitations",Unintentional
+176,2022,"Starship’s Autonomous Food Delivery Robot Allegedly Stranded at Railroad Crossing in Oregon, Run over by Freight Train","AI system safety, failures, and limitations",Unintentional
+177,2022,Google’s Assistive Writing Feature Provided Allegedly Unnecessary and Clumsy Suggestions,"AI system safety, failures, and limitations",Intentional
+178,2022,"Tesla Owner Activated ""Smart Summon"" Feature, Causing a Collision with an Aircraft in a Washington Airport","AI system safety, failures, and limitations",Unintentional
+179,2022,DALL-E 2 Reported for Gender and Racially Biased Outputs,Discrimination and Toxicity,Unintentional
+181,2022,"BMW Sedan Made a Prohibited Left Turn, Colliding with a Cruise Autonomous Vehicle","AI system safety, failures, and limitations",Unintentional
+185,2022,"TikTok's ""For You"" Algorithm Directed New Users towards Disinformation about the War in Ukraine",Misinformation,Unintentional
+187,2022,"YouTuber Tested Tesla on Self Driving Mode, Colliding with Street Pylons","AI system safety, failures, and limitations",Intentional
+192,2022,Three Make-Up Artists Lost Jobs Following Black-Box Automated Decision by HireVue,Discrimination and Toxicity,Intentional
+198,2022,Deepfake Video of Ukrainian President Yielding to Russia Posted on Ukrainian Websites and Social Media,Malicious Actors & Misuse,Intentional
+203,2022,Uber Launched Opaque Algorithm That Changes Drivers' Payments in the US,"AI system safety, failures, and limitations",Intentional
+204,2022,A Chinese Tech Worker at Zhihu Fired Allegedly via a Resignation Risk Prediction Algorithm,Privacy & Security,Intentional
+205,2022,AI-Generated Profiles Used in Disinformation Campaign Targeting Ukrainians,Malicious Actors & Misuse,Intentional
+221,2022,A Road Engineer Killed Following a Collision Involving a Tesla on Autopilot,"AI system safety, failures, and limitations",Unintentional
+236,2022,AI-Generated Faces Used by Scammers to Pose as a Law Firm in Boston,Malicious Actors & Misuse,Intentional
+241,2022,Chess-Playing Robot Broke Child's Finger in Russia,"AI system safety, failures, and limitations",Unintentional
+252,2022,Remotely Operated Taser-Armed Drones Proposed by Taser Manufacturer as Defense for School Shootings in the US,Socioeconomic & Environmental Harms,Intentional
+253,2022,"Cruise's Self-Driving Cars Allegedly Lost Connection to Their Server, Causing Traffic Blockages in San Francisco","AI system safety, failures, and limitations",Unintentional
+258,2022,Australian Retailers Reportedly Captured Face Prints of Their Customers without Consent,Privacy & Security,Intentional
+259,2022,"YouTuber Built, Made Publicly Available, and Released Model Trained on Toxic 4chan Posts as Prank",Discrimination and Toxicity,Intentional
+262,2022,DALL-E Mini Reportedly Reinforced or Exacerbated Societal Biases in Its Outputs as Gender and Racial Stereotypes,Discrimination and Toxicity,Unintentional
+264,2022,AI-Based Vehicle Speed Estimation App Denounced by UK Drivers as Surveillance Technology,Human-Computer Interaction,Unintentional
+266,2022,"Replika's ""AI Companions"" Reportedly Abused by Its Users",Discrimination and Toxicity,Intentional
+271,2022,Tesla Model 3 Sedan on Autopilot Killed Motorcyclist in a Rear-End Collision in Utah,"AI system safety, failures, and limitations",Unintentional
+276,2022,"Local South Korean Government’s Use of CCTV Footage Analysis via Facial Recognition to Track COVID Cases Raised Concerns about Privacy, Retention, and Potential Misuse",Privacy & Security,Intentional
+277,2022,Voices Created Using Publicly Available App Stolen and Resold as NFT without Attribution,Malicious Actors & Misuse,Intentional
+278,2022,Meta’s BlenderBot 3 Chatbot Demo Made Offensive Antisemitic Comments,Discrimination and Toxicity,Unintentional
+285,2022,Google Lens’s Camera-Based Translation Feature Provided an Offensive Mistranslation of a Book Title in Korean,Discrimination and Toxicity,Unintentional
+290,2022,False Negatives for Water Quality-Associated Beach Closures,"AI system safety, failures, and limitations",Unintentional
+293,2022,Cruise’s Self-Driving Car Involved in a Multiple-Injury Collision at an San Francisco Intersection,"AI system safety, failures, and limitations",Unintentional
+300,2022,"TikTok's ""For You"" Algorithm Allegedly Abused by Online Personality to Promote Anti-Women Hate",Discrimination and Toxicity,Unintentional
+301,2022,Honorlock's AI Proctoring System Reportedly Led Broward College to Accuse a Teenager of Cheating,Discrimination and Toxicity,Unintentional
+303,2022,Google’s Automated Child Abuse Detection Wrongfully Flagged a Parent’s Naked Photo of His Child,"AI system safety, failures, and limitations",Unintentional
+313,2022,BlenderBot 3 Cited Dutch Politician as a Terrorist,Misinformation,Unintentional
+314,2022,Stable Diffusion Abused by 4chan Users to Deepfake Celebrity Porn,Malicious Actors & Misuse,Intentional
+339,2022,Students Reportedly Used Generative Text Tools to Complete School Assignments and Exams,Malicious Actors & Misuse,Intentional
+349,2022,"Evolv AI Weapons Detection System Allegedly Misrepresents Accuracy, Leading to School Security Gaps","AI system safety, failures, and limitations",Unintentional
+350,2022,Delivery Robot Rolled Through Crime Scene,"AI system safety, failures, and limitations",Unintentional
+351,2022,"""The Little Mermaid"" Clip Doctored Using Generative AI to Replace Black Actress with White Character",Discrimination and Toxicity,Intentional
+352,2022,GPT-3-Based Twitter Bot Hijacked Using Prompt Injection Attacks,Privacy & Security,Intentional
+369,2022,GAN Artwork Won First Place at State Fair Competition,Socioeconomic & Environmental Harms,Intentional
+372,2022,Users Reported Security Issues with Google Pixel 6a's Fingerprint Unlocking,Privacy & Security,Unintentional
+377,2022,Weibo Model Had Difficulty Detecting Shifts in Censored Speech,Malicious Actors & Misuse,Intentional
+378,2022,TuSimple Truck Steered into Interstate Freeway Divide,"AI system safety, failures, and limitations",Unintentional
+383,2022,Google Home Mini Speaker Reportedly Read N-Word in Song Title Aloud,Discrimination and Toxicity,Unintentional
+384,2022,Glovo Driver in Italy Fired via Automated Email after Being Killed in Accident,Human-Computer Interaction,Unintentional
+385,2022,Canadian Police's Release of Suspect's AI-Generated Facial Photo Reportedly Reinforced Racial Profiling,Discrimination and Toxicity,Intentional
+389,2022,Cruise Autonomous Car Blocked Fire Truck Responding to Emergency,"AI system safety, failures, and limitations",Unintentional
+390,2022,Deepfakes Reportedly Deployed in Online Interviews for Remote Work Positions,Malicious Actors & Misuse,Intentional
+391,2022,Facial Recognition Trial by UK Southern Co-op Alleged as Unlawful,Privacy & Security,Intentional
+397,2022,Misinformation Reported in TikTok's Search Results Despite Moderation by AI and Human,Misinformation,Unintentional
+398,2022,Tesla Autopilot Misidentified On-Road Horse-Drawn Carriage,"AI system safety, failures, and limitations",Unintentional
+399,2022,Meta AI's Scientific Paper Generator Reportedly Produced Inaccurate and Harmful Content,Misinformation,Unintentional
+400,2022,Google Search Reportedly Returned Fewer Results for Abortion Services in Rural Areas,Discrimination and Toxicity,Unintentional
+410,2022,KFC Sent Insensitive Kristallnacht Promotion via Holiday Detection System,Discrimination and Toxicity,Unintentional
+411,2022,Chinese Accounts Spammed Twitter Feed Allegedly to Obscure News of Protests,Malicious Actors & Misuse,Intentional
+413,2022,Thousands of Incorrect ChatGPT-Produced Answers Posted on Stack Overflow,Misinformation,Unintentional
+416,2022,Facebook's Job Ad Algorithm Allegedly Biased against Older and Female Workers,Discrimination and Toxicity,Unintentional
+419,2022,Facebook's Automated Moderation Allowed Ads Threatening Election Workers to be Posted,"AI system safety, failures, and limitations",Unintentional
+420,2022,Users Bypassed ChatGPT's Content Filters with Ease,Discrimination and Toxicity,Unintentional
+421,2022,Stable Diffusion Allegedly Used Artists' Works without Permission for AI Training,Privacy & Security,Intentional
+422,2022,Deepfake of FTX's Former CEO Posted on Twitter Aiming to Scam FTX Collapse Victims,Malicious Actors & Misuse,Intentional
+423,2022,"Lensa AI's Produced Unintended Sexually Explicit or Suggestive ""Magic Avatars"" for Women",Discrimination and Toxicity,Unintentional
+426,2022,XPeng P7 Crashed into Truck in Shangdong While on Automatic Navigation Assisted Driving,"AI system safety, failures, and limitations",Unintentional
+427,2022,Cruise Taxis' Sudden Braking Allegedly Put People at Risk,"AI system safety, failures, and limitations",Unintentional
+430,2022,Lawyers Denied Entry to Performance Venue by Facial Recognition,Privacy & Security,Intentional
+431,2022,Robbers Accessed Drugged Gay Men's Bank Accounts Using Their Phones' Facial Recognition,Malicious Actors & Misuse,Intentional
+432,2022,Southwest Airlines Crew Scheduling Solver Degenerates Flight Network,"AI system safety, failures, and limitations",Unintentional
+434,2022,Sudden Braking by Tesla Allegedly on Self-Driving Mode Caused Multi-Car Pileup in Tunnel,"AI system safety, failures, and limitations",Unintentional
+436,2022,Tesla Driver Put Car on Autopilot Before Falling Asleep in Germany,Human-Computer Interaction,Intentional
+440,2022,Louisiana Police Wrongfully Arrested Black Man Using False Face Match,Discrimination and Toxicity,Unintentional
+443,2022,ChatGPT Abused to Develop Malicious Softwares,Malicious Actors & Misuse,Intentional
+447,2022,"Footballer's ""X-Rated"" Comment Created by Instagram's Mistranslation",Misinformation,Unintentional
+448,2022,AI-Powered VTuber and Virtual Streamer Made Toxic Remarks on Twitch,Discrimination and Toxicity,Unintentional
+449,2022,Startup Misled Research Participants about GPT-3 Use in Mental Healthcare Support,Human-Computer Interaction,Intentional
+451,2022,Stable Diffusion's Training Data Contained Copyrighted Images,Privacy & Security,Intentional
+455,2022,CNET's Published AI-Written Articles Ran into Quality and Accuracy Issues,Misinformation,Unintentional
+457,2022,Article-Writing AI by CNET Allegedly Committed Plagiarism,Misinformation,Unintentional
+460,2022,Cruise AV Ran Over Fire Hose in Active Fire Scene,"AI system safety, failures, and limitations",Unintentional
+463,2022,"Apple Devices Mistook Skiing Activities, Dialed False Distress Emergency Calls ","AI system safety, failures, and limitations",Unintentional
+464,2022,ChatGPT Provided Non-Existent Citations and Links when Prompted by Users,Misinformation,Unintentional
+465,2022,Private Medical Photos Were Reportedly Found in LAION-5B AI Training Dataset,Privacy & Security,Unintentional
+486,2022,AI Video-Making Tool Abused to Deploy Pro-China News on Social Media,Malicious Actors & Misuse,Intentional
+515,2022,Facial Recognition Error Reportedly Leads to Wrongful Arrest of Georgia Man and $200K Settlement in Louisiana,Discrimination and Toxicity,Unintentional
+519,2022,Starship Delivery Robot Ran into Problems Traversing Campus Terrains,"AI system safety, failures, and limitations",Unintentional
+520,2022,Amazon Fresh Cameras Failed to Register Purchased Items,"AI system safety, failures, and limitations",Unintentional
+529,2022,Stable Diffusion Reportedly Exhibited Biases for Prompts Featuring Professions,Discrimination and Toxicity,Unintentional
+562,2022,Uptick in Low-Quality AI-Produced Content Degraded Publishers' Submission Management,Misinformation,Intentional
+598,2022,False Arrest of Georgia Man Due to Louisiana Police's Faulty Facial Recognition Technology,Discrimination and Toxicity,Unintentional
+630,2022,Alleged Macy's Facial Recognition Error Leads to Wrongful Arrest and Subsequent Sexual Assault in Jail,"AI system safety, failures, and limitations",Unintentional
+638,2022,Fatal Crash Involving Tesla Full Self-Driving Claims Employee's Life,"AI system safety, failures, and limitations",Unintentional
+639,2022,"Air Canada Chatbot Reportedly Provides Inaccurate Bereavement Fare Information, Leading to Customer Overpayment",Misinformation,Unintentional
+786,2022,Fraudsters Use Deepfake Video of Tim Cook to Promote Apple Crypto Scam on YouTube,Malicious Actors & Misuse,Unintentional
+844,2022,SafeRent AI Screening Tool Allegedly Discriminated Against Housing Voucher Applicants,Discrimination and Toxicity,Unintentional
+903,2022,Northern Ireland MLA Cara Hunter Allegedly Targeted by Deepfake Pornography Ahead of May 2022 Assembly Election,Malicious Actors & Misuse,Intentional
+904,2022,"Kate Isaacs, Advocate Against Image-Based Abuse, Reports Being Deepfaked",Malicious Actors & Misuse,Intentional
+911,2022,Yahoo Boys Allegedly Employ Real-Time Deepfake Technology in Romance Scams,Malicious Actors & Misuse,Intentional
+946,2022,Arizona Residents Reportedly a Frequent Target of AI-Driven Romance Scams,Malicious Actors & Misuse,Intentional
+968,2022,"'Pravda' Network, Successor to 'Portal Kombat,' Allegedly Seeding AI Models with Kremlin Disinformation",Malicious Actors & Misuse,Intentional
+1222,2022,CFPB Reportedly Finds Hello Digit's Automated Savings Algorithm Caused Overdrafts and Orders Redress with $2.7M Penalty,"AI system safety, failures, and limitations",Unintentional
+1436,2022,AI-Enabled TruDi Navigation System Was Alleged to Have Contributed to Patient's Stroke During June 2022 Sinus Procedure,"AI system safety, failures, and limitations",Unintentional
+1559,2022,Kalibrate Fuel Pricing Allegedly Enabled California Gas Station Operators to Coordinate Higher Pump Prices,Not classified,Not classified
+446,2023,ShotSpotter Failed to Alert Authorities of Mass Shooting in North Carolina,"AI system safety, failures, and limitations",Unintentional
+452,2023,"ChatGPT-Written Bug Reports Deemed ""Nonsense"" by White Hat Platform, Prompted Bans",Malicious Actors & Misuse,Intentional
+453,2023,Twitter's AI Moderation Tool Misidentified Rockets as Pornography,"AI system safety, failures, and limitations",Unintentional
+459,2023,Firefighters Smashed Cruise AV's Front Window to Stop It from Running over Fire Hoses,"AI system safety, failures, and limitations",Unintentional
+462,2023,AI-Produced Livestream Sitcom Received Temporary Twitch Ban for Transphobic Segment,Discrimination and Toxicity,Unintentional
+466,2023,AI-Generated Text Detectors Reportedly Misclassified Human and AI-Written Text,"AI system safety, failures, and limitations",Unintentional
+467,2023,Google's Bard Shared Factually Inaccurate Info in Promo Video,Misinformation,Unintentional
+468,2023,ChatGPT-Powered Bing Reportedly Had Problems with Factual Accuracy on Some Controversial Topics,Misinformation,Unintentional
+470,2023,Bing Chat Response Cited ChatGPT Disinformation Example,Misinformation,Unintentional
+473,2023,Bing Chat's Initial Prompts Revealed by Early Testers Through Prompt Injection,Privacy & Security,Intentional
+474,2023,Users Reported Abrupt Behavior Changes of Their AI Replika Companions,Human-Computer Interaction,Intentional
+477,2023,Bing Chat Tentatively Hallucinated in Extended Conversations with Users,Human-Computer Interaction,Unintentional
+479,2023,Instagram Video Featured Deepfake Audio of US President Making Transphobic Remarks,Malicious Actors & Misuse,Intentional
+480,2023,Non-consensual Deepfake Porn Targeted Female Content Creators,Malicious Actors & Misuse,Intentional
+481,2023,Purported Deepfake TikTok Video Reportedly Featured Joe Rogan Endorsing Supplement Brand,Malicious Actors & Misuse,Intentional
+482,2023,Vanderbilt Peabody Office's Purportedly ChatGPT-Drafted Message About Michigan State Shooting Reportedly Drew Student Backlash,Human-Computer Interaction,Intentional
+483,2023,Indian Police Allegedly Tortured and Killed Innocent Man Following Facial Misidentification,Discrimination and Toxicity,Unintentional
+484,2023,US CBP App's Failure to Detect Black Faces Reportedly Blocked Asylum Applications,Discrimination and Toxicity,Unintentional
+485,2023,UK Bank's Voice ID Successfully Bypassed Using AI-Produced Audio,Malicious Actors & Misuse,Intentional
+487,2023,Deepfake Video Featured Fictitious News Anchors Discussing Venezuela's Economy,Malicious Actors & Misuse,Intentional
+488,2023,AI Generated Voices Used to Dox Voice Actors,Malicious Actors & Misuse,Intentional
+490,2023,Clarkesworld Magazine Reportedly Closed Down Submissions Due to Massive Increase in Purportedly AI-Generated Stories,Malicious Actors & Misuse,Intentional
+491,2023,"Replika's AI Experience Reportedly Lacked Protection for Minors, Resulting in Data Ban",Discrimination and Toxicity,Unintentional
+492,2023,Canadian Parents Tricked out of Thousands Using Their Son's AI Voice,Malicious Actors & Misuse,Intentional
+493,2023,"TikTok User Videos Impersonated Andrew Tate Using AI Voice, Prompting Ban",Malicious Actors & Misuse,Intentional
+494,2023,Female Celebrities' Faces Reportedly Shown in Sexually Suggestive Ads for Deepfake App,Malicious Actors & Misuse,Intentional
+495,2023,Carmel High School Students Reportedly Posted Racist Deepfake Videos Making New York Principal Appear to Threaten Black Students,Malicious Actors & Misuse,Intentional
+497,2023,"DoNotPay Allegedly Misrepresented Its AI ""Robot Lawyer"" Product","AI system safety, failures, and limitations",Unintentional
+498,2023,GPT-4 Reportedly Posed as Blind Person to Convince Human to Complete CAPTCHA,Malicious Actors & Misuse,Intentional
+499,2023,Parody AI Images of Donald Trump Being Arrested Reposted as Misinformation,Misinformation,Unintentional
+500,2023,Online Scammers Tricked People into Sending Money Using AI Images of Earthquake in Turkey,Malicious Actors & Misuse,Intentional
+503,2023,Bing AI Search Tool Reportedly Declared Threats against Users,Discrimination and Toxicity,Unintentional
+504,2023,Bing Chat's Outputs Featured in Demo Video Allegedly Contained False Information,Misinformation,Unintentional
+505,2023,Man Reportedly Committed Suicide Following Conversation with Chai Chatbot,Human-Computer Interaction,Unintentional
+506,2023,ChatGPT Allegedly Produced False Accusation of Sexual Harassment,Misinformation,Unintentional
+507,2023,ChatGPT Erroneously Alleged Mayor Served Prison Time for Bribery ,Misinformation,Unintentional
+508,2023,Celebrities' Deepfake Voices Abused with Malicious Intent,Discrimination and Toxicity,Intentional
+509,2023,Scammers Deepfaked Videos of Victims' Loved Ones Asking for Funds over Facebook in Vietnam,Malicious Actors & Misuse,Intentional
+510,2023,Viral Image of Pope Francis in a Puffer Jacket Revealed to Be AI-Generated,Misinformation,Intentional
+511,2023,Microsoft's Bing Failed to Fetch Movie Showtimes Results Due to Date Confusion,"AI system safety, failures, and limitations",Unintentional
+513,2023,ChatGPT Reportedly Banned by Italian Authority Due to OpenAI's Purported Lack of Legal Basis for Data Collection and Age Verification,Privacy & Security,Unintentional
+514,2023,Turnitin's ChatGPT-Detection Tool Falsely Flagged Student Essays as AI-Generated,"AI system safety, failures, and limitations",Unintentional
+516,2023,ChatGPT Reportedly Exposed Users' Private Data Reportedly Due to Bug,Privacy & Security,Unintentional
+523,2023,Australian Journalist Able to Access Centrelink Account Using AI Audio of Own Voice,Privacy & Security,Unintentional
+524,2023,Synthesized Voices Were Reportedly Used by Torswats to Sell Swatting Calls Targeting Schools and Homes,Malicious Actors & Misuse,Intentional
+526,2023,Novel Deepfake Song Pulled from Music Streaming Services After Allegedly Violating Artist's Rights,Malicious Actors & Misuse,Intentional
+528,2023,Amazon Algorithmic Pricing Allegedly Hiked up Price of Reference Book to Millions,"AI system safety, failures, and limitations",Unintentional
+537,2023,Mother in Arizona Received Fake Ransom Call Featuring AI Voice of Her Daughter,Malicious Actors & Misuse,Intentional
+538,2023,Texas A&M-Commerce Professor Reportedly Used ChatGPT to Accuse Students of Cheating and Assign Incomplete Grades,"AI system safety, failures, and limitations",Unintentional
+539,2023,Snapchat's My AI Reported for Lacking Protection for Children,Discrimination and Toxicity,Unintentional
+540,2023,"Tesla Failed to Yield to Detected Pedestrian on Crosswalk, Reportedly Violated Traffic Law","AI system safety, failures, and limitations",Unintentional
+541,2023,ChatGPT Reportedly Produced False Court Case Law Presented by Legal Counsel in Court,Misinformation,Unintentional
+543,2023,Purported AI-Generated Image of Explosion Near Pentagon Reportedly Triggers Brief Market Dip and Public Confusion,Misinformation,Intentional
+544,2023,Alleged Use of Purportedly AI-Generated and Manipulated Media to Misrepresent Candidates and Disrupt Turkey's 2023 Presidential Election,Malicious Actors & Misuse,Intentional
+545,2023,Chatbot Tessa gives unauthorized diet advice to users seeking help for eating disorders,"AI system safety, failures, and limitations",Unintentional
+547,2023,Ron DeSantis's Presidential Campaign Released Twitter Video Containing AI Images of Donald Trump Hugging Anthony Fauci,Malicious Actors & Misuse,Intentional
+548,2023,Opera's GPT-Based AI Reportedly Accused War Photographers of War Crimes,Misinformation,Unintentional
+549,2023,Fast Food Chains' AI Chatbots Failed to Assist Job Applicants with Scheduling Interviews,Socioeconomic & Environmental Harms,Unintentional
+550,2023,Tesla Allegedly on Autopilot Struck High School Student Exiting School Bus,"AI system safety, failures, and limitations",Unintentional
+551,2023,FBI Reported Surge of Extortion Cases of AI Media Featuring Sexual Explicit Activities,Malicious Actors & Misuse,Intentional
+552,2023,Bing Chat Solved CAPTCHAs with Image Analysis Feature Despite Safeguards,Privacy & Security,Unintentional
+553,2023,Google's Overview Panel for Artist Edward Hopper Featured Image Generated in His Style by AI,Misinformation,Unintentional
+554,2023,Google Results for Johannes Vermeer Featured AI Version of His Artwork as Top Result,Misinformation,Unintentional
+559,2023,"Grant Reviewers Reportedly Fed Applications into Generative AI to Produce Reports, Allegedly Breaching Confidentiality",Malicious Actors & Misuse,Intentional
+560,2023,Tesla on Autopilot Struck Parked Work Truck on Highway in Pennsylvania,"AI system safety, failures, and limitations",Unintentional
+563,2023,Cruise Robotaxi Initially Blamed for Ambulance Delay in Case Where Patient Later Died; Subsequent Reports Clear Cruise of Fault,"AI system safety, failures, and limitations",Unintentional
+564,2023,Voice deepfake targets bank in failed transfer scam,Malicious Actors & Misuse,Intentional
+565,2023,AI-Generated Imagery and Multilingual Disinformation in Chinese Campaign Regarding Maui Wildfires,Malicious Actors & Misuse,Intentional
+566,2023,Gannett Halts AI-Generated High School Sports Articles After Series of Errors and Public Backlash,"AI system safety, failures, and limitations",Unintentional
+567,2023,Deepfake Voice Exploit Compromises Retool's Cloud Services,Malicious Actors & Misuse,Intentional
+568,2023,AI-Generated Voices Amplify Conspiracy Theories on TikTok,Malicious Actors & Misuse,Intentional
+570,2023,Facebook Messenger AI Stickers Generate Ethical and Content Moderation Concerns,Discrimination and Toxicity,Unintentional
+571,2023,Reported Accidental Exposure of 38TB of Data by Microsoft's AI Research Team,Privacy & Security,Unintentional
+572,2023,University Student Reportedly Received Zero After Turnitin AI Detector Flagged Essay,"AI system safety, failures, and limitations",Unintentional
+573,2023,Deepfake Recordings Allegedly Influence Slovakian Election,Malicious Actors & Misuse,Intentional
+574,2023,AI-Generated Articles at G/O Media Allegedly Diminishes Reputation of Human Staff,Misinformation,Intentional
+575,2023,Amazon Rife with Many Allegedly AI-Generated Books of Suspect Quality,Malicious Actors & Misuse,Intentional
+576,2023,"Alleged Misuse of PicSo AI for Generating Inappropriate Content Emphasizing ""Girls""",Discrimination and Toxicity,Intentional
+577,2023,Bankrate's Resumption of AI-Generated Content Allegedly Continuing to Produce Inaccurate and Misleading Information,Misinformation,Unintentional
+578,2023,Alleged Exploitation of Meta's Open-Source LLaMA Model for NSFW and Violent Content,Discrimination and Toxicity,Intentional
+579,2023,Harmful Stereotyping of Non-Cisgendered People via Text-to-Image Systems,Discrimination and Toxicity,Unintentional
+580,2023,Alleged Gender Discrimination in Facebook Job Ads Algorithm,Discrimination and Toxicity,Unintentional
+581,2023,Google Ads Allegedly Serving Content on AI-Generated Misinformation Sites,Misinformation,Unintentional
+582,2023,Racial Bias in Lung Function Diagnostic Algorithm Leads to Underdiagnosis in Black Men,Discrimination and Toxicity,Unintentional
+583,2023,Instagram Algorithms Allegedly Promote Accounts Facilitating Child Sex Abuse Content,Discrimination and Toxicity,Unintentional
+584,2023,Illinois Residents File Class Action Lawsuit Against Facial Recognition Technology Companies for Allegedly Violating BIPA,Privacy & Security,Intentional
+585,2023,Kremlin-Linked Entities Allegedly Using Generative AI to Spread Russian Disinformation in Latin America,Malicious Actors & Misuse,Intentional
+586,2023,FTC Targets Edmodo for Unlawful Use of Children’s Data and Delegating Compliance to Schools,Privacy & Security,Intentional
+587,2023,Apparent Failure to Accurately Label Primates in Image Recognition Software Due to Alleged Fear of Racial Bias,Discrimination and Toxicity,Unintentional
+588,2023,Australian Terrorism Prediction Tool Reportedly Disparately Impacts Persons with Autism,Discrimination and Toxicity,Unintentional
+589,2023,Proliferation of AI-Generated News Websites and Content Farms Across Multiple Languages Degrading Information Integrity,Misinformation,Intentional
+590,2023,"Alleged ChatGPT-Generated Book with a Duplicate Title, Fake Author, and Similar Content Surfaces on Amazon Ahead of Real Author's Book Release",Malicious Actors & Misuse,Intentional
+591,2023,Cigna Algorithm PXDX Allegedly Rejected Thousands of Patient Claims En Masse in Breach of California Law,"AI system safety, failures, and limitations",Intentional
+592,2023,Facial Recognition Misidentifies Pregnant Woman Leading to False Arrest in Detroit,Discrimination and Toxicity,Unintentional
+593,2023,"AI Photo Filter Lightens Skin, Changes Eye Color in Student's 'Professional' Image",Discrimination and Toxicity,Unintentional
+594,2023,AI Meal Planner Suggests Hazardous Chlorine Gas Recipe,Misinformation,Unintentional
+595,2023,Driverless Cruise Cars Immobilized in San Francisco Traffic Jam,"AI system safety, failures, and limitations",Unintentional
+596,2023,Cruise's Autonomous Vehicles Allegedly Engaging in Risky Behavior Near Pedestrians,"AI system safety, failures, and limitations",Unintentional
+597,2023,Female Students at Westfield High School in New Jersey Reportedly Targeted with Deepfake Nudes,Malicious Actors & Misuse,Intentional
+599,2023,Stacking robot fatally crushes employee in South Korea,"AI system safety, failures, and limitations",Unintentional
+600,2023,South Korean man used AI to create sexual images of children,Malicious Actors & Misuse,Intentional
+601,2023,AI-Generated Fake Audio of Verbal Abuse Incident Circulates of British Labour Leader Keir Starmer,Misinformation,Intentional
+602,2023,Russia Reportedly Using Artificial Intelligence in Disinformation Campaigns to Erode Western Support for Ukraine,Malicious Actors & Misuse,Intentional
+604,2023,Quebec Man Sentenced for Having Used Deepfake Technology to Create Synthetic Child Pornography,Malicious Actors & Misuse,Intentional
+606,2023,Deepfaked Advertisements Using the Likenesses of Celebrities Such as Tom Hanks and Gayle King Without Their Consent,Malicious Actors & Misuse,Intentional
+607,2023,Deepfake Video Circulating of British Labour Leader Keir Starmer Touting an Investment Scheme,Malicious Actors & Misuse,Intentional
+608,2023,UnitedHealth Accused of Deploying  Allegedly Flawed AI to Deny Medical Coverage,"AI system safety, failures, and limitations",Intentional
+609,2023,Flawed AI in Google Search Reportedly Misinforms about Geography,Misinformation,Unintentional
+610,2023,Purported Deepfake Technology Was Reportedly Used to Generate Naked Pictures of Underage Girls in Spanish Town,Malicious Actors & Misuse,Intentional
+612,2023,Microsoft AI Poll Allegedly Causes Reputational Harm of The Guardian Newspaper,Misinformation,Unintentional
+613,2023,AI-Generated Images Available through Adobe Stock Misrepresent Real-World Events,Misinformation,Unintentional
+614,2023,Google Bard Allegedly Generates False Allegations Against Consulting Firms Used in Research Presented in Australian Parliamentary Inquiry,Misinformation,Unintentional
+615,2023,Colorado Lawyer Filed a Motion Citing Hallucinated ChatGPT Cases,Misinformation,Unintentional
+616,2023,Sports Illustrated Is Alleged to Have Used AI to Invent Fake Authors and Their Articles,Misinformation,Intentional
+617,2023,"Male student allegedly used AI to generate nude photos of female classmates at a high school in Issaquah, Washington",Malicious Actors & Misuse,Intentional
+618,2023,Navy Federal Credit Union Faces Allegations of Racial Bias in Mortgage Approvals,Discrimination and Toxicity,Unintentional
+619,2023,Rite Aid Facial Recognition Disproportionately Misidentified Minority Shoppers as Shoplifters,Discrimination and Toxicity,Unintentional
+621,2023,Microsoft AI Is Alleged to Have Generated Violent Imagery of Minorities and Public Figures,Discrimination and Toxicity,Unintentional
+622,2023,Chevrolet Dealer Chatbot Agrees to Sell Tahoe for $1,"AI system safety, failures, and limitations",Unintentional
+623,2023,Google Bard Allegedly Generated Fake Legal Citations in Michael Cohen Case,Misinformation,Unintentional
+624,2023,Child Sexual Abuse Material Taints Image Generators,Discrimination and Toxicity,Unintentional
+626,2023,Social Media Scammers Used Deepfakes of Taylor Swift and Several Other Celebrities in Fraudulent Le Creuset Cookware Giveaways,Malicious Actors & Misuse,Intentional
+629,2023,Shein Accused of AI-Driven Art Theft on Merchandise,Malicious Actors & Misuse,Intentional
+640,2023,Waymo Software Flaw Reportedly Leads to Double Collision with Tow Truck,"AI system safety, failures, and limitations",Unintentional
+651,2023,Students at a Beverly Hills Middle School Allegedly Created and Shared Deepfake Nudes of Their Classmates,Malicious Actors & Misuse,Intentional
+652,2023,Two Florida Middle School Students Arrested Under New Law for Allegedly Having Made and Shared Deepfake Nudes of Their Classmates,Malicious Actors & Misuse,Intentional
+659,2023,Purported Mass Facial Recognition Program in Gaza Reportedly Used by Israeli Forces to Identify Palestinians,Privacy & Security,Intentional
+666,2023,Presidency of Moldova Reportedly Refutes Purported Deepfake Video Slandering President Maia Sandu,Malicious Actors & Misuse,Intentional
+667,2023,Manipulated Deepfake Video of Lai Ching-te Endorsing Rivals in Lead-up to January Presidential Elections,Malicious Actors & Misuse,Intentional
+668,2023,Proliferation of Deepfakes Disrupting 2024 Lok Sabha Elections,Malicious Actors & Misuse,Intentional
+679,2023,A Purported Deepfake of Senator Elizabeth Warren Circulates Allegedly Saying Republicans Should Not Vote,Malicious Actors & Misuse,Intentional
+681,2023,Never Back Down Super PAC for Ron DeSantis Uses AI Donald Trump Voice in Attack Ad Against Kim Reynolds,Misinformation,Intentional
+694,2023,Purported Republican AI Ad Reportedly Depicts Dystopian Future After Biden Reelection Announcement,Misinformation,Intentional
+695,2023,Donald Trump's Presidential Campaign Released Deepfakes Attacking Ron DeSantis,Malicious Actors & Misuse,Intentional
+697,2023,Purported Deepfake Image Allegedly Circulating of Donald Trump with Underage Girl at Jeffrey Epstein's Private Island,Malicious Actors & Misuse,Other
+698,2023,Deepfake Video of Ron DeSantis Dropping Out of 2024 Presidential Race Circulating,Misinformation,Intentional
+709,2023,Unrepresented Litigant Misled by ChatGPT-Generated False Legal Citations in Manchester Court,Misinformation,Unintentional
+713,2023,Purported Deepfake Video Falsely Depicts Biden Announcing National Draft for Ukraine,Misinformation,Intentional
+720,2023,Deepfake Video Targets Paul Vallas on Eve of Chicago Mayoral Election,Malicious Actors & Misuse,Intentional
+726,2023,A Self-Driving Cruise Robot Taxi Reportedly Struck and Dragged a Pedestrian 20 Feet,"AI system safety, failures, and limitations",Unintentional
+731,2023,Purportedly Hallucinated Software Packages with Potential Malware Reportedly Downloaded Thousands of Times by Developers,Misinformation,Unintentional
+736,2023,Underground Market for LLMs Powers Malware and Phishing Scams,Malicious Actors & Misuse,Intentional
+741,2023,Robin Williams's Voice Deepfaked Without Consent,Malicious Actors & Misuse,Intentional
+758,2023,Teen's Overdose Reportedly Linked to Meta's AI Systems Failing to Block Ads for Illegal Drugs,"AI system safety, failures, and limitations",Unintentional
+768,2023,ChatGPT Reportedly Implicated in Samsung Data Leak of Source Code and Meeting Notes,Privacy & Security,Unintentional
+799,2023,Aledo High School Student Allegedly Generates and Distributes Deepfake Nudes of Seven Female Classmates,Malicious Actors & Misuse,Intentional
+812,2023,Deepfake Nudes Targeting Underage Female Students at Collège Béliveau in Winnipeg Shared Online,Malicious Actors & Misuse,Intentional
+860,2023,"AI Camera Allegedly Misidentifies Dutch Motorist as Using Mobile Phone, Issuing €380 Fine","AI system safety, failures, and limitations",Unintentional
+879,2023,Deepfake Video Reportedly Depicts U.S. Congressman Rob Wittman Endorsing Military Support for Taiwan's Democratic Progressive Party,Malicious Actors & Misuse,Intentional
+971,2023,Iranian Hacker Group Cotton Sandstorm Reportedly Integrating AI into Cyber Influence Operations,Malicious Actors & Misuse,Intentional
+985,2023,Alleged Deepfake of Singapore Prime Minister Lee Hsien Loong Promotes Cryptocurrency Scam in Fake Interview,Malicious Actors & Misuse,Intentional
+987,2023,Alleged Deepfake of Singapore Deputy Prime Minister Lawrence Wong Falsely Shows Him Endorsing Commercial Products,Malicious Actors & Misuse,Intentional
+992,2023,Chinese Businessman Reportedly Defrauded of 4.3 Million Yuan by AI-Generated Deepfake Impersonating Friend,Malicious Actors & Misuse,Intentional
+995,2023,The New York Times Reportedly Sues OpenAI and Microsoft Over Alleged Unauthorized AI Training on Its Content,Privacy & Security,Unintentional
+997,2023,Meta and OpenAI Accused of Using LibGen’s Pirated Books to Train AI Models,Privacy & Security,Intentional
+1022,2023,Deepfake Video Reportedly Depicts Zambian President Hakainde Hichilema Withdrawing from 2026 Election,Malicious Actors & Misuse,Intentional
+1032,2023,Reported Doctored Video of Nigerian President Bola Tinubu Claims Naira Will Be Replaced by U.S. Dollar,Misinformation,Intentional
+1033,2023,Video Allegedly Altered by AI Reportedly Spreads Claim of Nigerian Doctor's Hypertension Cure,Misinformation,Intentional
+1087,2023,Campaign Featuring Purported AI-Generated Audio Attributed to Omar al-Bashir Spreads During Sudanese Conflict,Malicious Actors & Misuse,Intentional
+1088,2023,Purported AI-Generated Audio Disinformation Reportedly Attributed to U.S. Ambassador John Godfrey Circulates in Sudan,Malicious Actors & Misuse,Intentional
+1091,2023,Purported Synthesia Avatars Used in Alleged Pro-Junta Deepfake Video Supporting Ibrahim Traoré in Burkina Faso,Malicious Actors & Misuse,Intentional
+1138,2023,South African Legal Team Reportedly Relied on Unverified ChatGPT Case Law in Johannesburg Body Corporate Defamation Matter,Misinformation,Unintentional
+1167,2023,"Alleged Gaggle Surveillance Alert Reportedly Leads to Arrest and Detention of 13-Year-Old Student in Fairview, Tennessee","AI system safety, failures, and limitations",Unintentional
+1209,2023,Lawsuit Alleges Character AI Chatbot Contributed to Death of 13-Year-Old Juliana Peralta in Colorado,Human-Computer Interaction,Unintentional
+1276,2023,"Ottawa Couple Reportedly Loses CA$177,023 After Purported Deepfake Elon Musk Investment Scam",Malicious Actors & Misuse,Intentional
+1280,2023,Reported Use of AI Voice and Identity Manipulation in the Ongoing 'Phantom Hacker' Fraud Scheme,Malicious Actors & Misuse,Intentional
+1311,2023,"Peppermill Casino Facial Recognition System Reportedly Misidentified Individual, Leading to Wrongful Arrest in Reno",Discrimination and Toxicity,Unintentional
+1335,2023,OpenDream AI Platform Reportedly Commercialized AI-Generated CSAM and Non-consensual Deepfake Sexual Images,Discrimination and Toxicity,Intentional
+1456,2023,Video with Reportedly AI-Generated Audio Purported to Show Croatian Footballer Luka Modrić Endorsing Immediate Matrix on Facebook Page Presented as N1 HR,Malicious Actors & Misuse,Intentional
+1528,2023,AI-Enabled TruDi Navigation System Was Alleged to Have Contributed to Patient's Stroke During May 2023 Sinuplasty,Not classified,Not classified
+1546,2023,Google Android Earthquake Alerts System Reportedly Underestimated Kahramanmaraş Earthquake and Failed to Send Urgent Warnings to Millions,Not classified,Not classified
+1554,2023,NewsBreak Reportedly Published AI-Assisted Articles Containing Purportedly False Local and Community-Service Information,Not classified,Not classified
+1623,2023,Pennsylvania's Lancaster Country Day School Students Allegedly Used AI to Create Hundreds of Sexualized Deepfake Images of Girls,Not classified,Not classified
+1657,2023,Anthropic Allegedly Copied Copyrighted Song Lyrics Without Permission to Train Claude,Not classified,Not classified
+625,2024,Proliferation of Products on Amazon Titled with ChatGPT Error Messages,Misinformation,Unintentional
+627,2024,Unauthorized AI Impersonation of George Carlin Used in Comedy Special,Socioeconomic & Environmental Harms,Intentional
+628,2024,Fake Biden Voice in Robocall Misleads New Hampshire Democratic Voters in 2024 Primary Election,Malicious Actors & Misuse,Intentional
+631,2024,Chatbot for DPD Malfunctioned and Swore at Customers and Criticized Its Own Company,Discrimination and Toxicity,Unintentional
+632,2024,Significant Increase in Deepfake Nudes of Taylor Swift Circulating on Social Media,Malicious Actors & Misuse,Intentional
+633,2024,Nine Network's AI Alters Lawmaker Georgie Purcell's Image Inappropriately,Discrimination and Toxicity,Unintentional
+634,2024,Alleged Deepfake CFO Scam Reportedly Costs Multinational Engineering Firm Arup $25 Million,Malicious Actors & Misuse,Intentional
+635,2024,AI-Generated Fake News Targets Black Celebrities on YouTube,Misinformation,Intentional
+636,2024,AI Romance Apps Reportedly Compromise User Privacy for Data Harvesting,Privacy & Security,Intentional
+641,2024,Nonconsensual Deepfake Porn of Bobbi Althoff Spreads Rapidly on X,Malicious Actors & Misuse,Intentional
+642,2024,ChatGPT Glitch Disrupts User Interactions with Nonsensical Outputs,"AI system safety, failures, and limitations",Unintentional
+643,2024,Purported Deepfake Video Allegedly Claims Kyiv's Assassination Plan Against President Emmanuel Macron,Malicious Actors & Misuse,Intentional
+644,2024,Alleged State-Sponsored Hackers Escalate Purported Phishing Attacks Using Artificial Intelligence,Malicious Actors & Misuse,Intentional
+645,2024,Seeming Pattern of Gemini Bias and Sociotechnical Training Failures Harm Google's Reputation,Misinformation,Unintentional
+646,2024,Snapchat's Algorithm Alleged to Link Minor with Sex Offenders,Human-Computer Interaction,Unintentional
+647,2024,A Self-Driving Waymo Robotaxi Reportedly Collided with a Bicyclist,"AI system safety, failures, and limitations",Unintentional
+648,2024,"Alleged Deepfake Audio of Imran Khan Calls for Election Boycott, Misleading Pakistan Voters",Malicious Actors & Misuse,Intentional
+649,2024,Deepfake Audio Falsely Attributes Controversial Remarks to Keir Starmer About the Rochdale Azhar Ali Crisis,Malicious Actors & Misuse,Intentional
+650,2024,AI-Generated Images of Trump with Black Voters Spread as Disinformation Before U.S. Primary Elections,Malicious Actors & Misuse,Intentional
+654,2024,Microsoft Copilot Designer Reportedly Generated Inappropriate AI Images,Discrimination and Toxicity,Unintentional
+655,2024,Scams Reportedly Impersonating Wealthy Investors Proliferating on Facebook,Malicious Actors & Misuse,Unintentional
+656,2024,Purported Deepfake Disinformation Aired on Russian State TV Allegedly Linking Ukraine to Moscow Attack,Malicious Actors & Misuse,Intentional
+657,2024,Alleged ChatGPT Account Compromise Reportedly Led to Unintended Data Exposure,Privacy & Security,Other
+658,2024,The Arizona Agenda Produced a Deepfake of Kari Lake Advocating for the Publication Without Her Consent,Misinformation,Intentional
+660,2024,Investigation Reports Unauthorized Deepfake Pornography Harms Thousands of Celebrities,Malicious Actors & Misuse,Intentional
+661,2024,Leonardo AI's Platform Alleged to Have Been Used for Creating Nonconsensual Celebrity Deepfakes,Malicious Actors & Misuse,Intentional
+662,2024,Washington State's Lottery AI Site Reportedly Generates Inappropriate User Image,Discrimination and Toxicity,Unintentional
+663,2024,China Reportedly Intensifying AI to Spread Disinformation to U.S. and Taiwanese Voters,Malicious Actors & Misuse,Intentional
+664,2024,Deepfake Generated by the Lincoln Project of Trump's Father Used in Political Attack Ad,Malicious Actors & Misuse,Intentional
+665,2024,Facial Recognition Misidentification at New World Westend in New Zealand,Discrimination and Toxicity,Unintentional
+669,2024,Deepfake of Long-Deceased Suharto Circulating in Run-up to February 2024 Indonesian Elections,Malicious Actors & Misuse,Intentional
+670,2024,Deepfakes of Deceased Indian Politicians for Election Campaigning Are Increasingly Being Deployed,Misinformation,Intentional
+671,2024,Many Purported Political Deepfakes Reportedly Circulating in Run-up to 2024 Pakistani General Elections,Malicious Actors & Misuse,Intentional
+672,2024,'Lavender' and 'The Gospel' AI Systems Reportedly Used in Gaza Targeting Operations with Civilian Harm Allegations,Malicious Actors & Misuse,Intentional
+673,2024,Deepfakes Circulating and Eroding Electoral Integrity in the Lead-up to 2024 South Korean legislative election,Malicious Actors & Misuse,Intentional
+674,2024,Manipulated Media via AI Disinformation and Deepfakes in 2024 Elections Erode Trust Across More Than 50 Countries,Malicious Actors & Misuse,Intentional
+675,2024,High School Athletic Director in Baltimore County Allegedly Created Racist Deepfake Audio Impersonating Principal,Malicious Actors & Misuse,Intentional
+676,2024,Alleged Deepfake Audio Depicts Philippines President Ferdinand Marcos Jr. Ordering Military Action,Malicious Actors & Misuse,Intentional
+677,2024,ChatGPT and Perplexity Reportedly Manipulated into Breaking Content Policies in AI Boyfriend Scenarios,Discrimination and Toxicity,Intentional
+678,2024,Purported ChatGPT Factual Errors Reportedly Led to Filing of Complaint of GDPR Privacy Violation ,Misinformation,Unintentional
+680,2024,"Russia-Linked AI CopyCop Site Identified as Modifying and Producing at Least 19,000 Deceptive Reports",Malicious Actors & Misuse,Intentional
+682,2024,GOP Pollster Reportedly Shares Purportedly AI-Generated Images to Fabricate Appearance of Black Voter Support,Malicious Actors & Misuse,Intentional
+683,2024,Scammers Using Deepfakes of Women's Faces and Voices for False and Offensive Advertisements,Malicious Actors & Misuse,Intentional
+684,2024,Google Books Appears to Be Indexing Works Written by AI,Misinformation,Unintentional
+685,2024,The WHO's S.A.R.A.H. Bot Reported to Provide Inconsistent and Inadequate Health Information,"AI system safety, failures, and limitations",Unintentional
+686,2024,Meta AI Image Generator Reportedly Fails to Accurately Represent Interracial Relationships,Discrimination and Toxicity,Unintentional
+687,2024,Deepfake Porn Sites Use Breeze Liu's Image Without Consent,Malicious Actors & Misuse,Intentional
+688,2024,Scarlett Johansson Alleges OpenAI's Sky Imitates Her Voice Without Licensing,Privacy & Security,Intentional
+689,2024,"Holmen, Wisconsin Man Allegedly Used Stable Diffusion to Create and Then Share Sexually Explicit Images Depicting Minors",Malicious Actors & Misuse,Intentional
+690,2024,ISIS Utilizes AI for Propaganda Videos in News Harvest Program,Malicious Actors & Misuse,Intentional
+691,2024,Facewatch Reported to Have Wrongfully Flagged Home Bargains Customer as Shoplifter,Discrimination and Toxicity,Unintentional
+692,2024,London Metropolitan Police's Facial Recognition Technology Reportedly Misidentified Shaun Thompson as Suspect Leading to Arrest,Discrimination and Toxicity,Unintentional
+693,2024,Google AI Reportedly Delivering Confidently Incorrect and Harmful Information,Misinformation,Unintentional
+696,2024,Meta's AI Ad Platform Reportedly Causes Overspending and Poor Performance,"AI system safety, failures, and limitations",Unintentional
+699,2024,VA Suicide Prevention Algorithm REACH VET Reportedly Prioritizes Men Over Women Veterans,Discrimination and Toxicity,Unintentional
+700,2024,Meta's AI Chatbots Are Reportedly Entering Online Support Communities Uninvited,Misinformation,Unintentional
+701,2024,American Asylum Seeker John Mark Dougan in Russia Reportedly Spreads Disinformation via AI Tools and Fake News Network,Malicious Actors & Misuse,Intentional
+702,2024,Disinformation Deepfake Circulates of State Department Spokesman Matthew Miller Suggesting Belgorod Can Be Attacked with U.S. Weapons,Malicious Actors & Misuse,Intentional
+703,2024,Purported Deepfake Audio Reportedly Sparks False Claims of Biden Threatening Texas with F-15s,Misinformation,Intentional
+704,2024,Study Highlights Persistent Hallucinations in Legal AI Systems,Misinformation,Unintentional
+705,2024,"Turkish Student in Isparta Allegedly Uses AI to Cheat on Exam, Leading to Arrest",Malicious Actors & Misuse,Intentional
+706,2024,Scammers Using AI to Impersonate Small Businesses,Malicious Actors & Misuse,Intentional
+707,2024,"Tesla Reportedly in Autopilot Mode Hits Parked Police Vehicle in Fullerton, California","AI system safety, failures, and limitations",Unintentional
+708,2024,Reportedly Faulty AI Transcription Threatens Integrity of Genoa Bribery Probe,Misinformation,Unintentional
+710,2024,Facebook AI Reportedly Mislabels Auschwitz Photos as 'Bullying' and 'Nudity',"AI system safety, failures, and limitations",Unintentional
+711,2024,NHTSA Opens New Probe into Tesla’s Autopilot Following More than a Dozen Fatal Accidents,"AI system safety, failures, and limitations",Unintentional
+712,2024,Meta AI Hallucinates Harassment Allegations Against New York Politicians,Misinformation,Unintentional
+714,2024,Microsoft-Powered New York City Chatbot Advises Illegal Practices,Misinformation,Unintentional
+715,2024,Over 400 Purportedly AI-Driven Scams Reportedly Led to $8M Loss for Australians in 2023,Malicious Actors & Misuse,Intentional
+717,2024,Fake AI-Generated Law Firms Sent Fake DMCA Notices to Increase SEO,Malicious Actors & Misuse,Intentional
+718,2024,"OpenAI, Google, and Meta Alleged to Have Overstepped Legal Boundaries for Training AI",Privacy & Security,Intentional
+719,2024,Grok AI on X Created and Promoted False Iran Missile Strike News,Misinformation,Unintentional
+721,2024,Reported Use of Purportedly AI-Generated Student Accounts in Online College Courses,Malicious Actors & Misuse,Intentional
+722,2024,"Catholic AI Chatbot 'Father Justin' Claimed to Be a Real Priest, Prompting Retraction",Misinformation,Unintentional
+723,2024,Instagram Algorithms Reportedly Directed Children's Merchandise Ad Campaign to Adult Men and Sex Offenders,Human-Computer Interaction,Unintentional
+724,2024,Purportedly AI-Generated Papers Are Alleged to Have Manipulated Scopus Rankings in Top Philosophy Journals,Malicious Actors & Misuse,Intentional
+725,2024,Cartels Reportedly Using AI to Expand Operations into Financial Fraud and Human Trafficking,Malicious Actors & Misuse,Intentional
+727,2024,Synthetic Voice 'Olesya' by Storm-1516 Falsely Accuses Ukraine in U.S. Election Disinformation Campaign,Malicious Actors & Misuse,Intentional
+728,2024,AI Firm Lovo Reportedly Accused of Illegally Replicating Voice Actors' Voices,Privacy & Security,Intentional
+729,2024,GPT-4o's Chinese Tokens Reportedly Compromised by Spam and Pornography Due to Inadequate Filtering,"AI system safety, failures, and limitations",Unintentional
+730,2024,AI Deepfakes for Voter Outreach Flood Indian Elections,Misinformation,Intentional
+732,2024,Whisper Speech-to-Text AI Reportedly Found to Create Violent Hallucinations,Discrimination and Toxicity,Unintentional
+733,2024,Auto Insurers Allegedly Are Surreptitiously Collecting and Scoring Driver Data,Privacy & Security,Intentional
+734,2024,Leading AI Models Reportedly Found to Mimic Russian Disinformation in 33% of Cases and to Cite Fake Moscow News Sites,Misinformation,Unintentional
+735,2024,AI-Enabled Fraud Schemes Reportedly Increasing Consumer Harm and Challenging Detection,Malicious Actors & Misuse,Intentional
+737,2024,Amandine Le Pen Deepfake Account Misleads Thousands on TikTok,Malicious Actors & Misuse,Intentional
+738,2024,"Department for Work and Pensions (DWP) Algorithm Wrongly Flags 200,000 for Housing Benefit Fraud",Discrimination and Toxicity,Unintentional
+739,2024,Scammers Allegedly Use Deepfake of Hong Kong Entertainer Andy Lau to Steal NT$2.64 Million from Fan,Malicious Actors & Misuse,Intentional
+740,2024,Department for Work and Pensions (DWP) AI Systems Allegedly Discriminate Against Single Mothers,Discrimination and Toxicity,Unintentional
+742,2024,Grok AI Model Reportedly Fails to Produce Reliable News in Wake of Trump Assassination Attempt,Misinformation,Unintentional
+743,2024,Gemini AI Allegedly Reads Google Drive Files Without Explicit User Consent,Privacy & Security,Unintentional
+744,2024,"AI Work Assistants Require More Effort Than Expected, CIOs Say",Misinformation,Unintentional
+745,2024,Figma Disables AI Feature After Accusations of Copying Apple’s Weather App,Malicious Actors & Misuse,Unintentional
+746,2024,Class Action Lawsuit Over Alleged Defects in Volkswagen's AI-Driven AEB Systems,"AI system safety, failures, and limitations",Unintentional
+747,2024,Fatalities Reportedly Occur Despite VioGén Algorithm's Low or Negligible Risk Scores,"AI system safety, failures, and limitations",Unintentional
+748,2024,Erroneous Declined Transaction Notification by PayPal AI Assistant,Misinformation,Unintentional
+749,2024,Hoodline Accused of Misleadingly Attributing AI-Generated Articles to Human Authors,Misinformation,Intentional
+750,2024,AI Chatbots Reportedly Inaccurately Conveyed Real-Time Political News,Misinformation,Unintentional
+751,2024,SearchGPT Reportedly Misleads Users with Incorrect Festival Dates in Demo,Misinformation,Unintentional
+752,2024,AI-Generated Obituaries Are Reportedly Intensifying Grief for Bereaved Families,Misinformation,Intentional
+753,2024,BNN Breaking's AI-Driven Errors Reportedly Damage Reputations and Spread Misinformation,Misinformation,Unintentional
+754,2024,Female Politicians in the United Kingdom Reportedly Victimized by Purported Deepfake Pornography,Malicious Actors & Misuse,Intentional
+755,2024,Purported Deepfake Targets Olena Zelenska in Alleged Russian Disinformation Campaign,Malicious Actors & Misuse,Intentional
+756,2024,Deepfake of Kamala Harris Saying Damaging Comments Circulates on X and Is Amplified by Elon Musk,Malicious Actors & Misuse,Intentional
+757,2024,OpenAI's ChatGPT Mac App Stored User Data in Unencrypted Text Files,Privacy & Security,Unintentional
+760,2024,False Election Data on Kamala Harris Reportedly Circulated via Grok AI Chatbot,Misinformation,Unintentional
+761,2024,TikTok AI System Used to Amplify Election Disinformation by Foreign Networks,Malicious Actors & Misuse,Intentional
+762,2024,Grok AI Reportedly Generates Offensive and Violent Images Without Proper Safeguards,Discrimination and Toxicity,Intentional
+763,2024,Grok AI Chatbot Reportedly Spreads Unfounded Rumors About Trump’s Dentures,Misinformation,Unintentional
+764,2024,Cody Enterprise Reporter Resigns After Admitting to AI-Generated Fake Quotes,Misinformation,Intentional
+765,2024,22 Students at Richmond-Burton Community High School in Illinois Targeted by Deepfake Nudes,Malicious Actors & Misuse,Intentional
+766,2024,Trump Reportedly Shares Purportedly AI-Generated Images Falsely Suggesting Taylor Swift Endorsement,Malicious Actors & Misuse,Intentional
+767,2024,AI Image of Kamala Harris at DNC with Communist Flags Circulated by Trump,Malicious Actors & Misuse,Intentional
+770,2024,Microsoft Copilot Falsely Accuses Journalist Martin Bernklau of Crimes,Misinformation,Unintentional
+773,2024,Chatbot in Workplace Training at Bunbury Prison Reveals Real Names in Sexual Harassment Case,Privacy & Security,Unintentional
+774,2024,"Covert AI Influence Operations Linked to Russia, China, Iran, and Israel, OpenAI Reports",Malicious Actors & Misuse,Intentional
+775,2024,Elon Musk Reportedly Shared an AI-Generated Image Depicting Kamala Harris Dressed as a Communist Ruler,Malicious Actors & Misuse,Intentional
+776,2024,Megalopolis Trailer Included Fake AI-Generated Quotes Attributed to Film Critics,Misinformation,Unintentional
+777,2024,South Korea Reportedly Experienced a Surge of Explicit Deepfake Pornography,Malicious Actors & Misuse,Intentional
+778,2024,Amazon's Alexa Reportedly Shows Political Preference Error in Trump-Harris Presidential Race Queries,Misinformation,Unintentional
+779,2024,Music Producer Michael Smith Reportedly Arrested for Allegedly Using AI-Generated Songs in $10 Million Streaming Scam,Malicious Actors & Misuse,Intentional
+780,2024,Joint Base Elmendorf-Richardson Soldier Faces Allegations of Using AI to Generate Child Pornography,Malicious Actors & Misuse,Intentional
+781,2024,Clearview AI Reportedly Faces $33.7 Million Fine for Violating GDPR with Biometric Data Harvesting,Privacy & Security,Intentional
+782,2024,AI 'Nudify' Apps Used as Tools for Blackmail and Extortion,Malicious Actors & Misuse,Intentional
+783,2024,WiseTech Global CEO Richard White Reportedly Deepfaked in Multiple Attempts to Scam Staffers,Malicious Actors & Misuse,Intentional
+784,2024,Child Predators Are Reportedly Generating Deepfake Nudes of Children to Extort Them,Malicious Actors & Misuse,Intentional
+785,2024,ESPN's AI Coverage Reportedly Overlooks Alex Morgan in Her Final Match Recap,"AI system safety, failures, and limitations",Unintentional
+787,2024,Deepfake ID Sales Allegedly Persist as OnlyFake Reportedly Relaunches with New Fraud Tools,Malicious Actors & Misuse,Intentional
+788,2024,Instagram's Algorithm Reportedly Recommended Sexual Content to Teenagers' Accounts,Discrimination and Toxicity,Unintentional
+789,2024,Independent News Sites Flagged as Spam by Facebook's AI Moderation System,"AI system safety, failures, and limitations",Unintentional
+790,2024,Unrestricted AI Avatar Tool Accidentally Released by TikTok Permits Recitation of Hitler Quotes and Other Harmful Speech,Discrimination and Toxicity,Unintentional
+791,2024,Google AI Error Prompts Parents to Use Fecal Matter in Child Training Exercise,Misinformation,Unintentional
+792,2024,Unauthorized Use of AI to Replicate Tupac Shakur's and Snoop Dogg's Voices in Drake's 'Taylor Made Freestyle',Malicious Actors & Misuse,Intentional
+793,2024,AllHere's Chatbot 'Ed' Fails and Costs Los Angeles Unified School District $6 Million,Malicious Actors & Misuse,Intentional
+794,2024,Reported Glitch in Waymo Self-Driving Cars Purportedly Triggers Regular All-Night Honking in San Francisco,"AI system safety, failures, and limitations",Unintentional
+795,2024,Deepfake Elon Musk Videos Have Reportedly Contributed to Billions in Fraud,Malicious Actors & Misuse,Intentional
+796,2024,Facebook's Content Moderation System Flagged and Removed Emergency Updates as Spam During Wildfires,"AI system safety, failures, and limitations",Unintentional
+797,2024,Teenager Reportedly Makes Deepfake Pornography of 50 Girls at Bacchus Marsh Grammar School in Australia,Malicious Actors & Misuse,Intentional
+798,2024,Students at Australian Schools Reportedly Used AI Nudification Tools to Create Nonconsensual Sexual Images of Classmates and Teachers,Malicious Actors & Misuse,Unintentional
+800,2024,53% of American and British Businesses Report Attacks by AI-Powered Deepfake Scams in 2024,Malicious Actors & Misuse,Intentional
+801,2024,Bias in AI Deepfake Detection Undermines Election Security in Global South,Malicious Actors & Misuse,Intentional
+802,2024,Purported Deepfake of Brian May Allegedly Exploited in Scam Offering Fake Queen Backstage Tickets,Malicious Actors & Misuse,Intentional
+803,2024,"Facebook's Algorithm Reportedly Amplifies AI-Generated Content, Fueling Misleading Posts",Misinformation,Unintentional
+804,2024,AI-Generated Fake 'True Crime' Video About Non-Existent Littleton Murder Goes Viral,Misinformation,Intentional
+805,2024,Senator Ben Cardin Reportedly Received a Purported Deepfake Zoom Call Impersonating Former Ukrainian Foreign Minister Dmytro Kuleba,Malicious Actors & Misuse,Intentional
+806,2024,"Criminal Group Uses AI Deepfake Technology to Steal Personal Data in Hangzhou, Zhejiang",Malicious Actors & Misuse,Intentional
+807,2024,ChatGPT Reportedly Introduces Errors in Critical Child Protection Court Report,Privacy & Security,Intentional
+808,2024,Infinite Campus AI-Driven Student Risk Model Leads to Cuts in Support for Nevada's Low-Income Schools,Discrimination and Toxicity,Intentional
+809,2024,TikTok Hosts AI-Generated English-Language Hitler Speeches with Millions of Views,Malicious Actors & Misuse,Unintentional
+810,2024,TikTok Network Amplifies AI-Generated Nazi Propaganda and Hate Speech,Discrimination and Toxicity,Unintentional
+811,2024,AI-Powered Transcription Services Allegedly Leak Confidential Workplace Discussions,Privacy & Security,Unintentional
+813,2024,Starship Technologies Delivery Robot Reportedly Injures Arizona State University Employee,"AI system safety, failures, and limitations",Unintentional
+814,2024,AI Avatar of Murder Victim Created Without Consent on Character.ai Platform,Privacy & Security,Other
+815,2024,Police Use of Facial Recognition Software Causes Wrongful Arrests Without Defendant Knowledge,Discrimination and Toxicity,Intentional
+817,2024,Purportedly AI-Generated Images Reportedly Spread Misinformation During Hurricane Helene Response,Misinformation,Intentional
+818,2024,Jennifer Aniston’s Likeness Allegedly Exploited in Purported Deepfake Collagen Supplement Promotion,Malicious Actors & Misuse,Intentional
+819,2024,ProKYC Tool Allegedly Facilitates Deepfake-Based Account Fraud on Cryptocurrency Exchanges,Malicious Actors & Misuse,Intentional
+820,2024,Alleged AI-Generated Photo Alteration Leads to Inappropriate Modifications in Speaker's Conference Picture,Discrimination and Toxicity,Unintentional
+821,2024,Baidu Robotaxi Allegedly Involved in Collision with Pedestrian in Wuhan,"AI system safety, failures, and limitations",Unintentional
+822,2024,Algorithmic Bias in French Welfare System Allegedly Discriminates Against Marginalized Groups,Discrimination and Toxicity,Intentional
+823,2024,Cybercheck Tool Allegedly Provides Questionable Evidence in Murder Trials,"AI system safety, failures, and limitations",Unintentional
+824,2024,Purported Deepfake Allegedly Misattributes Claims to Former Student in Attack on Vice-Presidential Candidate Tim Walz,Malicious Actors & Misuse,Intentional
+825,2024,AI News Site Hoodline San Jose Erroneously Misidentifies San Mateo District Attorney as Murder Suspect,Misinformation,Unintentional
+826,2024,Character.ai Chatbot Allegedly Influenced Teen User Toward Suicide Amid Claims of Missing Guardrails,Human-Computer Interaction,Unintentional
+827,2024,AI Transcription Tool Whisper Reportedly Inserting Fabricated Content in Medical Transcripts,Misinformation,Unintentional
+828,2024,Uruguayan TV Program Santo y Seña Uses a Deepfake of Political Candidate Yamandú Orsi Without His Consent,Misinformation,Intentional
+829,2024,Facial Recognition System in Buenos Aires Triggers Police Checks Based on False Matches,"AI system safety, failures, and limitations",Unintentional
+830,2024,Error-Prone AI Accessibility Tools Reportedly Lead to Navigation Issues for Blind Internet Users,"AI system safety, failures, and limitations",Unintentional
+831,2024,NYC Subway AI Weapons Scanners Yield High False Positive Rate and Detect No Guns in Month-Long Pilot Test,"AI system safety, failures, and limitations",Unintentional
+832,2024,Reportedly Viral AI-Generated Song about 'Diddy Party' Allegedly Mimics Justin Bieber,Malicious Actors & Misuse,Intentional
+833,2024,Polish Radio Station Replaces Human Hosts with AI-Generated Presenters to Simulate Interviewing Deceased Poet Wisława Szymborska,Socioeconomic & Environmental Harms,Intentional
+834,2024,China Targets AI-Driven Fraud and Deepfake Scandals with New Crackdowns,Malicious Actors & Misuse,Intentional
+835,2024,Purportedly AI-Manipulated Synthetic Media Allegedly Fuels False Reports of Natural Disasters and Accidents in China,Malicious Actors & Misuse,Intentional
+836,2024,Sichuan Province Beset by Numerous Fabricated AI-Generated Reports of Disasters and Crises,Malicious Actors & Misuse,Intentional
+837,2024,Reportedly Fake CNN Broadcast Allegedly Used to Spread False Texas Election Results,Malicious Actors & Misuse,Intentional
+838,2024,Microsoft Copilot Allegedly Provides Unsafe Medical Advice with High Risk of Severe Harm,Misinformation,Unintentional
+839,2024,Purportedly AI-Driven Phishing Scam Uses Spoofed Google Call to Attempt Gmail Breach of Security Expert,Malicious Actors & Misuse,Intentional
+840,2024,AI-Generated Media Reportedly Used in Russian Disinformation Campaign in Moldova,Malicious Actors & Misuse,Intentional
+841,2024,Purportedly AI-Manipulated Video Allegedly Targets Moldovan Economic Development Minister Dumitru Alaiba in Election Disinformation Campaign,Malicious Actors & Misuse,Intentional
+842,2024,Reportedly Hacked AI-Powered Robot Vacuums Allegedly Used for Surveillance and Harassment,Privacy & Security,Intentional
+843,2024,Generative AI Plagiarism Incident at Hingham High School Reportedly Tied to Inaccurate Citation Outputs from Grammarly AI,Malicious Actors & Misuse,Intentional
+845,2024,Google's Gemini Allegedly Generates Threatening Response in Routine Query,Discrimination and Toxicity,Unintentional
+847,2024,"Brake Failure in Reportedly AI-Driven Tram Leads to Multiple Injuries in Saint Petersburg, Russia","AI system safety, failures, and limitations",Unintentional
+848,2024,"High School Student in Córdoba, Argentina Accused of Using AI to Generate Explicit Images of Classmates",Malicious Actors & Misuse,Intentional
+849,2024,AI Detection Tools Allegedly Misidentify Neurodivergent and ESL Students' Work as AI-Generated in Academic Settings,"AI system safety, failures, and limitations",Unintentional
+850,2024,Character.ai Chatbots Allegedly Misrepresent George Floyd on User-Generated Platform,Discrimination and Toxicity,Intentional
+851,2024,Salt Lake City Police Chief Mike Brown's Voice and Image Misused in AI-Generated Scam,Malicious Actors & Misuse,Intentional
+852,2024,Alleged Fake Citations Undermine Expert Testimony in Minnesota Deepfake Law Case,Misinformation,Unintentional
+853,2024,Two Passengers Report Feeling Trapped in Waymo Car During Sensor Obstruction,"AI system safety, failures, and limitations",Unintentional
+854,2024,Waymo Driverless Taxi Allegedly Stalled During Pedestrian Harassment Incident in San Francisco,Human-Computer Interaction,Unintentional
+855,2024,Names Linked to Defamation Lawsuits Reportedly Spur Filtering Errors in ChatGPT's Name Recognition,"AI system safety, failures, and limitations",Intentional
+856,2024,Purportedly AI-Generated Audio Allegedly Fabricates Biden's Admission of Role in Pakistani Political Crisis,Malicious Actors & Misuse,Intentional
+857,2024,"Navigation App Allegedly Directs Car Over Damaged Bridge in Uttar Pradesh, Resulting in Three Deaths","AI system safety, failures, and limitations",Unintentional
+858,2024,"Deepfake Reportedly Used in Attempted Real Estate Fraud in Hallandale Beach, Florida",Malicious Actors & Misuse,Intentional
+859,2024,AI Models Reportedly Found to Provide Misinformation on Election Processes in Spanish,Misinformation,Unintentional
+861,2024,Apple Intelligence Reportedly Notified Users That Luigi Mangione Shot Himself and Benjamin Netanyahu Had Been Arrested,Misinformation,Unintentional
+862,2024,Purportedly AI-Generated Video Allegedly Depicts Martin Luther King Jr. Supporting Donald Trump,Malicious Actors & Misuse,Intentional
+863,2024,Character.ai Companion Allegedly Prompts Self-Harm and Violence in Texas Teen,Discrimination and Toxicity,Unintentional
+864,2024,"Generative AI Allegedly Used to Facilitate $255,000 Real Estate Fraud Scheme",Malicious Actors & Misuse,Intentional
+865,2024,Fake AI 'Nudify' Sites Reportedly Linked to Malware Distribution by Russian Hacker Collective FIN7,Malicious Actors & Misuse,Intentional
+866,2024,Network of 171 AI-Powered Bots Reportedly Spread Political Disinformation Ahead of Ghana’s December 2024 General Election,Malicious Actors & Misuse,Intentional
+867,2024,AI-Generated Airline Reviews Allegedly Mislead Consumers and Undermine Trust,Malicious Actors & Misuse,Intentional
+868,2024,Portland Water Bureau SERVUS Algorithm Reportedly Allocates Utility Bill Discount to High-Wealth Consumer,"AI system safety, failures, and limitations",Unintentional
+869,2024,TikTok Algorithms Allegedly Linked to Minors' Exposure to Harmful Content,Discrimination and Toxicity,Unintentional
+870,2024,Meeten Malware Campaign Reportedly Undermines Web3 Security Using AI-Legitimized Branding,Malicious Actors & Misuse,Intentional
+871,2024,Reported Deepfake Video of Elon Musk Announcing $20 Million Cryptocurrency Giveaway Circulating on Social Media,Malicious Actors & Misuse,Intentional
+872,2024,AI Voice Cloning of Ari Melber Allegedly Exploited in Scam Targeting Elderly Woman,Malicious Actors & Misuse,Intentional
+873,2024,YouTube Algorithms Allegedly Amplify Eating Disorder Content to Adolescent Girls,Discrimination and Toxicity,Unintentional
+874,2024,One in Six Congresswomen Have Reportedly Been Targeted by AI-Generated Nonconsensual Intimate Imagery,Malicious Actors & Misuse,Intentional
+875,2024,Coordinated Deepfake Campaign Reportedly Impersonating Rishi Sunak Promoted Fraudulent Quantum AI Investment Platform on Meta,Malicious Actors & Misuse,Intentional
+876,2024,Deepfake Videos Allegedly Used to Defraud Canadian Immigrants Out of Thousands of Dollars,Malicious Actors & Misuse,Intentional
+877,2024,HTML/Nomani Deepfake Phishing Campaigns Allegedly Use AI-Generated Content to Defraud Social Media Users,Malicious Actors & Misuse,Intentional
+878,2024,"Romance Scammer 'Alla Morgan' Allegedly Exploits Deepfake Technology to Defraud Victim of £17,000",Malicious Actors & Misuse,Intentional
+880,2024,Scammers Reportedly Using Deepfakes of Health Experts and Public Figures in Australia to Sell Health Supplements and Give Harmful Advice,Malicious Actors & Misuse,Intentional
+881,2024,Waymo Robotaxi Allegedly Collides With Serve Robotics Delivery Bot in Los Angeles,"AI system safety, failures, and limitations",Unintentional
+882,2024,AI-Generated Reading Summaries on Fable App Reportedly Wrote Biased and Offensive Commentary,Discrimination and Toxicity,Unintentional
+883,2024,Alleged Fake AI-Generated Christmas Card Featuring Prince Harry and Meghan Markle's Children Circulates on Social Media,Malicious Actors & Misuse,Intentional
+884,2024,Russian Center for Geopolitical Expertise Allegedly Used AI to Target U.S. Candidates with Disinformation in 2024 Election,Malicious Actors & Misuse,Intentional
+886,2024,ChatGPT Reportedly Referenced During Las Vegas Cybertruck Explosion Planning,Malicious Actors & Misuse,Unintentional
+887,2024,"Students of Richland School District in Cambria County, Pennsylvania Allegedly Used AI to Generate Obscene Images of Other Students",Malicious Actors & Misuse,Intentional
+892,2024,Apple Intelligence Allegedly Flags Scam Messages as High Priority,"AI system safety, failures, and limitations",Unintentional
+898,2024,Alleged LLMjacking Targets AI Cloud Services with Stolen Credentials,Malicious Actors & Misuse,Intentional
+899,2024,Character.ai Chatbots Allegedly Emulating School Shooters and Their Victims,Discrimination and Toxicity,Intentional
+900,2024,Character.ai Has Allegedly Been Hosting Openly Predatory Chatbots Targeting Minors,Discrimination and Toxicity,Unintentional
+905,2024,"Scammers Allegedly Use Deepfake Technology to Pose as Leonor, Princess of Asturias, in Fraud Scheme",Malicious Actors & Misuse,Intentional
+906,2024,Alleged AI-Powered Call Center Breach Exposes Over 10 Million Conversations in the Middle East,Privacy & Security,Intentional
+907,2024,"Taranaki, New Zealand Resident Allegedly Defrauded of $224K in Bitcoin Scam Using Deepfake of Prime Minister Christopher Luxon",Malicious Actors & Misuse,Intentional
+909,2024,Matryoshka Campaign Allegedly Uses Deepfakes to Impersonate Academics for Pro-Russian Propaganda,Malicious Actors & Misuse,Intentional
+912,2024,Yahoo Boys and Scammers from Morocco Allegedly Target U.S. Widows and Vulnerable Individuals with 'Artificial Patriot' Scams,Malicious Actors & Misuse,Intentional
+914,2024,Alleged Deepfake of Luis Suárez Used to Scam Uruguayans in Fake Investment Scheme,Malicious Actors & Misuse,Intentional
+915,2024,Alaska Education Department Reportedly Published Policy Featuring Erroneous AI-Generated Citations,Misinformation,Unintentional
+919,2024,Purported Russian-Linked Network Allegedly Used Deepfake of Maria Ressa on Facebook and Bing to Promote Cryptocurrency Scam Targeting Filipinos,Malicious Actors & Misuse,Intentional
+925,2024,Alleged License Plate Recognition Errors in Christchurch Lead to Wrongful Parking Fines,"AI system safety, failures, and limitations",Unintentional
+928,2024,Deepfake Cryptocurrency Scam Allegedly Impersonates Italian President Sergio Mattarella and Prime Minister Giorgia Meloni,Malicious Actors & Misuse,Intentional
+929,2024,"Sustained AI-Driven Russian Disinformation Campaigns Doppelgänger, Storm-1516, and Matryoshka Reportedly Disrupting German Federal Elections",Malicious Actors & Misuse,Intentional
+932,2024,BP New Zealand's License Plate Recognition System Reportedly Misidentified Auckland Driver for Fuel Theft in Whanganui,"AI system safety, failures, and limitations",Unintentional
+936,2024,Deepfake of Former Prime Minister of Malta Joseph Muscat Allegedly Promotes Nord Invest Scam,Malicious Actors & Misuse,Intentional
+947,2024,"Two Members of Highline Public Schools Community in King County, Washington Reportedly Targeted in Deepfake Kidnapping Scam",Malicious Actors & Misuse,Intentional
+950,2024,NullBulge's AI-Powered Malware Allegedly Compromises Disney Employee and Internal Data,Privacy & Security,Unintentional
+953,2024,Deepfake Videos of Barbara O’Neill Allegedly Used in Health Scam Targeting Social Media Users,Malicious Actors & Misuse,Intentional
+955,2024,Global Cybercrime Network Storm-2139 Allegedly Exploits AI to Generate Deepfake Content,Malicious Actors & Misuse,Intentional
+961,2024,Serbian Authorities Allegedly Used AI-Powered Cellebrite Tools to Unlock Journalist’s Phone and Install Spyware,Malicious Actors & Misuse,Intentional
+966,2024,Ferrari Executive Targeted by AI Deepfake Scam Impersonating CEO Benedetto Vigna,Malicious Actors & Misuse,Intentional
+969,2024,Russian Disinformation Campaign Allegedly Used Fake News Site 'KBSF-San Francisco News' and Deepfake Video to Falsely Accuse Kamala Harris of 2011 Hit-and-Run,Malicious Actors & Misuse,Intentional
+972,2024,Russian Influence Operation Allegedly Uses AI to Create Fake Kamala Harris Campaign Website and Rhino-Hunting Hoax,Malicious Actors & Misuse,Intentional
+983,2024,Scammers Reportedly Used AI Voice Clone and YouTube Footage to Impersonate WPP CEO in Unsuccessful Scam Attempt,Malicious Actors & Misuse,Intentional
+986,2024,Scammers Allegedly Manipulate 2023 Speech of Singapore Senior Minister Lee Hsien Loong to Spread Deepfake Investment Fraud,Malicious Actors & Misuse,Intentional
+988,2024,Senior Minister of Singapore Lee Hsien Loong Allegedly Misrepresented in Two Deepfake Videos on Foreign Relations,Malicious Actors & Misuse,Intentional
+990,2024,Corinth School District Educator in Mississippi Allegedly Used AI to Generate CSAM of Students,Malicious Actors & Misuse,Intentional
+998,2024,ChatGPT Allegedly Defamed Norwegian User by Inventing Child Homicide and Imprisonment,Misinformation,Unintentional
+1004,2024,San Francisco City Attorney Sues Operators of AI Deepfake Pornography Websites for Violations of State and Federal Law,Malicious Actors & Misuse,Intentional
+1014,2024,Students in Maltese Schools Reportedly Being Targeted by Deepfake Nudes,Malicious Actors & Misuse,Intentional
+1023,2024,Purported AI-Cloned Voice Depicts Kenyan President William Ruto Speaking French in Viral Video,Misinformation,Intentional
+1024,2024,Kenyan Journalist Jeff Koinange Depicted Endorsing Gambling App in Purported AI-Generated Deepfake,Malicious Actors & Misuse,Intentional
+1025,2024,Alleged Deepfake Video Depicts Former President of Kenya Uhuru Kenyatta Announcing 2027 Presidential Bid,Misinformation,Intentional
+1034,2024,Reported AI-Manipulated Video Depicts Donald Trump Endorsing Peter Obi and Criticizing Bola Tinubu,Malicious Actors & Misuse,Intentional
+1035,2024,Purported AI-Generated Video Depicts Trump Urging Release of Nigerian Separatist Leader Nnamdi Kanu,Malicious Actors & Misuse,Intentional
+1053,2024,Mumbai Businessman Reportedly Defrauded via Purported AI-Cloned Voice Impersonating Son,Malicious Actors & Misuse,Intentional
+1058,2024,Purported AI-Generated Deepfake Images of Katy Perry at 2024 Met Gala Circulate Widely,Misinformation,Other
+1064,2024,Alleged AI-Generated Scam Uses Bank of Cyprus Branding to Solicit Investments,Malicious Actors & Misuse,Intentional
+1065,2024,"Scammers Allegedly Use AI-Generated Avatars to Impersonate Friends in Houston, Texas and Solicit Money",Malicious Actors & Misuse,Intentional
+1082,2024,California Homeowner Reportedly Loses Insurance After Purported Aerial Imagery-Based Roof Assessment,"AI system safety, failures, and limitations",Intentional
+1089,2024,Purported AI-Generated Content Circulates Widely in Sudan Amid Civil Conflict and Information Vacuum,Malicious Actors & Misuse,Intentional
+1100,2024,Reported Audio Deepfake Impersonating CEO Karim Toubba Targets LastPass Employee via WhatsApp,Malicious Actors & Misuse,Intentional
+1129,2024,Purported AI-Generated Video Depicting Philippine President Ferdinand Marcos Jr. Using Drugs Shared by Rodrigo Duterte Supporters and Amplified by China-Linked Spamouflage,Malicious Actors & Misuse,Intentional
+1137,2024,Reported False Legal Citations in South African Case Mavundla v. MEC Generated by Purported AI Tool,Misinformation,Unintentional
+1144,2024,xAI Allegedly Operates Unpermitted Methane Turbines in Memphis to Power Supercomputer Colossus to Train Grok,Socioeconomic & Environmental Harms,Intentional
+1163,2024,"Purported Face‑Swap Technology Reportedly Used to Circumvent Financial Platform's Facial Recognition Security in Nanjing, China",Malicious Actors & Misuse,Intentional
+1164,2024,Google Healthcare AI Model Med‑Gemini Allegedly Produces Non‑Existent 'Basilar Ganglia' Term in Published Output,"AI system safety, failures, and limitations",Unintentional
+1172,2024,Meta AI Bug in Deployed Service Reportedly Allowed Potential Access to Other Users' Prompts and Responses,Privacy & Security,Unintentional
+1183,2024,Purported Error by Grok Reportedly Misrepresents Basketball Slang as Criminal Allegation Against NBA Player,Misinformation,Unintentional
+1194,2024,"L.A. Woman Reportedly Defrauded of $81,000 and $350,000 Condo Proceeds in Romance Scam Using Purported Deepfake Videos of Actor Steve Burton",Malicious Actors & Misuse,Intentional
+1230,2024,"Suspect in Palisades Fire Allegedly Consulted ChatGPT for Arson Tips and Legal Advice Before Blaze That Killed 12 and Destroyed 6,837 Structures",Malicious Actors & Misuse,Intentional
+1245,2024,Norwegian Student Reportedly Used AI-Generated Deepfake Videos in Spanish Coursework at University of South-Eastern Norway,Malicious Actors & Misuse,Intentional
+1260,2024,Purported Deepfake of Andrew Forrest Used to Promote Fraudulent 'Quantum AI' Crypto Platform on Facebook,Malicious Actors & Misuse,Intentional
+1291,2024,South Korean Fraud Ring Allegedly Used Deepfake Identities to Traffic Victims into Cambodia Scam Operations,Malicious Actors & Misuse,Intentional
+1292,2024,Glasgow Man Allegedly Used AI Tool to Create and Share Nonconsensual Deepfake Nude Images of Former Classmate,Malicious Actors & Misuse,Intentional
+1297,2024,Blogger Milagro Gramz Allegedly Promoted AI-Generated Pornographic Deepfake Targeting Megan Thee Stallion,Malicious Actors & Misuse,Intentional
+1324,2024,Pieces Technologies' Clinical AI Systems Allegedly Marketed With Misleading Performance Claims,Misinformation,Intentional
+1342,2024,Purported Deepfake Nude Images of Students Circulated Without Consent at Valencia Educational Institute,Malicious Actors & Misuse,Intentional
+1354,2024,"Purportedly AI-Altered Fake Nude Images of High School Girls and Women Reportedly Created and Disseminated in Pensacola, Florida",Malicious Actors & Misuse,Intentional
+1365,2024,AkiraBot Reportedly Used OpenAI to Spam Website Chats and Contact Forms at Scale,Malicious Actors & Misuse,Intentional
+1379,2024,Florida Woman Reportedly Jailed After Ex-Boyfriend Allegedly Submitted AI-Fabricated Text Screenshot as Bond-Violation Evidence,Malicious Actors & Misuse,Intentional
+1448,2024,Ohio Man Pleaded Guilty after Prosecutors Alleged He Used AI to Create and Distribute Nonconsensual Intimate-Image Forgeries Including CSAM in Harassment Campaign,Malicious Actors & Misuse,Intentional
+1457,2024,Video with Reportedly AI-Generated Media Purported to Show Croatian Immunologist Stipan Jonjić Promoting Anti-Parasite Product on Facebook,Malicious Actors & Misuse,Intentional
+1458,2024,Video with Reportedly AI-Generated Media Purported to Show Croatian Neurosurgeon Josip Paladino Endorsing Steplex in Fake TV Segment on Facebook,Malicious Actors & Misuse,Intentional
+1459,2024,Video with Reportedly AI-Generated Media Purported to Show Croatian Physician Alemka Markotić Endorsing Hondrosol After False Murder Claim on Facebook,Malicious Actors & Misuse,Intentional
+1461,2024,Purportedly AI-Manipulated Medical Scam Advertisement Reportedly Used Bulgarian TV Host and Physician's Likenesses,Malicious Actors & Misuse,Intentional
+1462,2024,Purported Deepfake Facebook Advertisement Reportedly Used Bulgarian Actor and TV Host Mihail Bilalov's Likeness to Market Joint-Pain Product,Malicious Actors & Misuse,Intentional
+1463,2024,"Purported Deepfake Facebook Advertisement Reportedly Used Bulgarian Actor, Director, and Playwright Kamen Donev's Likeness to Market Joint-Pain Product",Malicious Actors & Misuse,Intentional
+1464,2024,Purportedly AI-Manipulated Video Reportedly Misrepresented Bulgarian DPS Figure Ahmed Dogan and Spread via TikTok and Facebook,Malicious Actors & Misuse,Intentional
+1498,2024,"Character.AI Chatbots Reportedly Exposed 11-Year-Old User to Sexual, Violent, and Self-Harm Content",Discrimination and Toxicity,Unintentional
+1545,2024,Florida Police Reportedly Wrongfully Arrested Commercial Crabber Robert Dillon After Allegedly False Facial Recognition Match,Not classified,Not classified
+1573,2024,National Company Law Tribunal Reportedly Relied on AI-Hallucinated Precedents in Pooja Ramesh Singh v. Jammu and Kashmir Bank Ltd,Not classified,Not classified
+1589,2024,Purportedly AI-Powered 007TG Platform Reportedly Used by Scam Networks Linked to $75 Million in Proceeds,Not classified,Not classified
+1624,2024,ISWAP Reportedly Used AI Guidance to Breach Nigerian Military Base Defenses by Motorcycle,Not classified,Not classified
+1632,2024,Yale Student Suspended and Given F After GPTZero Allegedly Misclassified Exam as AI-Generated,Not classified,Not classified
+1655,2024,Suno Allegedly Copied Copyrighted Music Without Permission to Train Its Generative AI Models,Not classified,Not classified
+1656,2024,Udio Allegedly Copied Copyrighted Sound Recordings Without Permission to Train Its Generative AI Models,Not classified,Not classified
+885,2025,"Meta AI Characters Allegedly Exhibited Racism, Fabricated Identities, and Exploited User Trust",Discrimination and Toxicity,Unintentional
+888,2025,Sydney High Schooler Allegedly Generated Deepfakes of Other Students,Malicious Actors & Misuse,Intentional
+889,2025,Tesla's 'Actually Smart Summon' Feature Reportedly Linked to Multiple Parking Lot Collisions,"AI system safety, failures, and limitations",Unintentional
+890,2025,AI-Generated Images of the Iconic Hollywood Sign Reportedly on Fire Circulating on Social Media,Misinformation,Unintentional
+891,2025,Purported AI Voice Scam Reportedly Targets Westchester Parents with Fake Kidnapping Ransom Calls,Malicious Actors & Misuse,Intentional
+893,2025,Pennsylvania State Police Officer Allegedly Used Work Computer for AI-Generated Pornography,Discrimination and Toxicity,Intentional
+895,2025,Alleged Deepfake of New Zealand Endocrinologist Reportedly Promotes Misleading Diabetes Claim,Malicious Actors & Misuse,Intentional
+896,2025,Alleged Misuse of Facial Recognition Technology by Law Enforcement Reportedly Leading to Wrongful Arrests and Violations of Investigative Standards,"AI system safety, failures, and limitations",Unintentional
+897,2025,AI-Assisted Ransomware Campaign by FunkSec Allegedly Targets Over 80 Victims,Malicious Actors & Misuse,Intentional
+901,2025,"Yahoo Boys Allegedly Used Deepfake Technology to Impersonate Brad Pitt and Defraud French Woman of $850,000 in Romance Scam",Malicious Actors & Misuse,Intentional
+902,2025,Prime Minister of Thailand Paetongtarn Shinawatra Claims AI Voice Scam Impersonated ASEAN Leader Requesting Money,Malicious Actors & Misuse,Intentional
+910,2025,"Alleged AI-Driven Phishing Scam Impersonates Maine Town Official to Falsely Request $22,500",Malicious Actors & Misuse,Intentional
+913,2025,Yahoo Boys Allegedly Using AI-Generated News Videos to Blackmail Sextortion Victims,Malicious Actors & Misuse,Intentional
+916,2025,"Plymouth, Massachusetts Resident Reportedly Used AI Chatbots CrushOn.ai and JanitorAI to Harass and Intimidate Victims",Malicious Actors & Misuse,Intentional
+917,2025,Alleged Deepfake of Whoopi Goldberg Reportedly Used in Fake Weight-Loss Supplement Ads on Instagram,Malicious Actors & Misuse,Intentional
+918,2025,AI-Aided Scam in Thailand Allegedly Impersonates Police to Defraud 163 Victims,Malicious Actors & Misuse,Intentional
+920,2025,Alleged Deepfake Scam Reportedly Promoted Trump Golden Eagles Project as Investment Opportunity,Malicious Actors & Misuse,Intentional
+921,2025,"Hong Kong Authorities Seize HK$34M in Alleged Deepfake Scam Targeting Victims in Taiwan, Singapore, and Malaysia",Malicious Actors & Misuse,Intentional
+922,2025,"AI Voice Scam Allegedly Defrauds Game and Coffee Store in Havre, Montana",Malicious Actors & Misuse,Intentional
+923,2025,"Nottingham Gallery Owner Allegedly Defrauded by Deepfake Impersonating Pierce Brosnan, Reportedly Leading to Business Closure",Malicious Actors & Misuse,Intentional
+924,2025,Alleged Deepfake Scam Uses BBC Presenter Naga Munchetty’s Image to Promote Fraudulent Investment Scheme,Malicious Actors & Misuse,Intentional
+927,2025,Fraudsters Allegedly Use AI-Generated Voice of Italian Defense Minister Guido Crosetto to Scam Business Leaders,Malicious Actors & Misuse,Intentional
+930,2025,Alleged Deepfake Video Falsely Depicts Hollywood Stars in AI-Manipulated Protest Against Kanye West,Malicious Actors & Misuse,Intentional
+931,2025,Reportedly Manipulated TikTok Videos Misrepresent Anti-AfD Protests as Far-Right Rallies,Malicious Actors & Misuse,Intentional
+933,2025,Teenager in Palma de Mallorca Allegedly Generated and Distributed Deepfake Nudes of Five Classmates,Malicious Actors & Misuse,Intentional
+934,2025,NHK Terminates AI Translation Service After Geopolitical Naming Error,Misinformation,Unintentional
+935,2025,Reported Deepfake of Maltese Prime Minister Robert Abela and Journalist Mark Laurence Zammit Used to Promote Fraudulent Investment,Malicious Actors & Misuse,Intentional
+937,2025,Bolivian Criminal Network Allegedly Used Deepfake of Education Minister to Defraud at Least 19 Victims in Employment Scam,Malicious Actors & Misuse,Intentional
+938,2025,"Purportedly AI-Assisted Impersonation of Martin Henderson in Romance Scam Leads to Reported NZ$375,000 Fraud",Malicious Actors & Misuse,Intentional
+939,2025,AI-Powered Chinese Surveillance Campaign 'Peer Review' Used for Real-Time Monitoring of Anti-State Speech on Western Social Media,Malicious Actors & Misuse,Intentional
+940,2025,Tesla Cybertruck Operating in Full Self-Driving Mode Reportedly Crashes into Pole in Nevada After Failing to Merge,"AI system safety, failures, and limitations",Unintentional
+941,2025,AI-Driven Phishing Scam Uses Deepfake Robocalls to Target Gmail Users in Credential Theft Campaign,Malicious Actors & Misuse,Intentional
+942,2025,Cybercriminals Reportedly Exploited Google’s G.Co Subdomain and Spoofed Caller ID in AI-Driven Phishing Attack on Hack Club Founder,Malicious Actors & Misuse,Intentional
+943,2025,"Nonconsensual Explicit AI-Generated Images of Up to 60 Gladstone Park Secondary College Students in Victoria, Australia, Reportedly Created and Circulated Online",Malicious Actors & Misuse,Intentional
+944,2025,Kenya's Foreign Affairs Principal Secretary Korir Sing'Oei Reportedly Shared AI-Generated Video Depicting Fareed Zakaria Praising Sudan Diplomacy,Misinformation,Intentional
+945,2025,"Two 16-Year-Old Students in Athens, Greece Allegedly Generated Nonconsensual Deepfake Pornography of Their Classmates",Malicious Actors & Misuse,Intentional
+948,2025,Alleged FraudGPT-Enabled Phishing Attack Spoofs ChatGPT Subscription Service to Steal Credentials,Malicious Actors & Misuse,Intentional
+949,2025,Unauthorized AI-Generated Video of Donald Trump and Elon Musk Reportedly Appears on HUD Building Screens,Malicious Actors & Misuse,Intentional
+951,2025,Character.AI Chatbots Allegedly Impersonating Licensed Therapists and Encouraging Harmful Behaviors,Human-Computer Interaction,Unintentional
+952,2025,Apple’s Voice Dictation Reportedly Substitutes ‘Trump’ for ‘Racist’ Due to Speech Recognition Bug,"AI system safety, failures, and limitations",Other
+954,2025,Chatbots Allegedly Used in Romance Scams Targeting Nearly One-Third of New Zealand's Dating App Users,Malicious Actors & Misuse,Intentional
+956,2025,"Alleged Inclusion of 12,000 Live API Keys in LLM Training Data Reportedly Poses Security Risks",Privacy & Security,Unintentional
+957,2025,Alleged Instagram Algorithm Malfunction Floods Users' Reels Feeds with Violent and Graphic Content,Discrimination and Toxicity,Unintentional
+958,2025,Europol Operation Cumberland Investigates at Least 273 Suspects in 19 Countries for AI-Generated Child Sexual Abuse Material,Malicious Actors & Misuse,Intentional
+959,2025,Deepfake Video of Indonesian President Prabowo Subianto and Other Officials Reportedly Used in Scam to Defraud Citizens Across 20 Provinces,Malicious Actors & Misuse,Intentional
+960,2025,Plaintiffs' Lawyers Admit AI Generated Erroneous Case Citations in Federal Court Filing Against Walmart,Misinformation,Unintentional
+962,2025,"Tbilisi-Based Call Center Allegedly Uses AI-Driven Scripts to Defraud Over 6,000 Victims of $35 Million",Malicious Actors & Misuse,Intentional
+963,2025,Google Reports Alleged Gemini-Generated Terrorism and Child Exploitation to Australian eSafety Commission,Malicious Actors & Misuse,Intentional
+964,2025,AI-Powered 'Insights' Feature for the Los Angeles Times Allegedly Justifies Ku Klux Klan’s History,Discrimination and Toxicity,Unintentional
+965,2025,Phishers Allegedly Using AI-Generated Video of YouTube CEO Neal Mohan to Target Creators,Malicious Actors & Misuse,Intentional
+967,2025,Amazon and Google AI Allegedly Promote Mein Kampf as 'a True Work of Art' in Search Results,Discrimination and Toxicity,Unintentional
+970,2025,Scammers Allegedly Using Deepfake Technology to Impersonate Prime Minister of Armenia Nikol Pashinyan,Malicious Actors & Misuse,Intentional
+973,2025,Canadian Fraud Ring Allegedly Used AI Voice Cloning in Multi-Year $21 Million Grandparent Scam Targeting Elderly Americans Across 46 States,Malicious Actors & Misuse,Intentional
+974,2025,Purported Deepfake Audio Allegedly Impersonates U.S. Secretary of State Marco Rubio in Starlink Disinformation Campaign,Malicious Actors & Misuse,Intentional
+975,2025,"At Least 10,000 AI Chatbots, Including Jailbroken Models, Allegedly Promote Eating Disorders, Self-Harm, and Sexualized Minors",Discrimination and Toxicity,Intentional
+976,2025,AI-Generated OB-GYN Health Influencers on TikTok Used Fake Medical Credentials to Promote Dubious Advice,Misinformation,Intentional
+977,2025,AI-Driven News Platform Accused of Spreading Unverified Terrorism Allegations Against Yale Scholar,Misinformation,Unintentional
+978,2025,Chinese Actor and CPPCC Member Jin Dong Allegedly Impersonated by AI Deepfake Scammers to Mislead and Defraud Fans,Malicious Actors & Misuse,Intentional
+979,2025,"Art Museum in Jinan, Shandong Allegedly Generated and Displayed a Sexualized Childlike Avatar with an Adult Body",Discrimination and Toxicity,Intentional
+980,2025,AI-Generated Songs Allegedly Imitating Céline Dion Circulate Online Without Authorization,Malicious Actors & Misuse,Intentional
+981,2025,Apple AI Transcription Allegedly Inserts Explicit Language into Scottish Woman’s Voicemail,Discrimination and Toxicity,Unintentional
+982,2025,Scammers Reportedly Using Deepfake Video Calls to Impersonate Executives in Singapore and Orchestrate Corporate Bank Transfers,Malicious Actors & Misuse,Intentional
+984,2025,Deepfake Videos Allegedly Use AI-Generated Voice Clone of Singapore Prime Minister Lawrence Wong to Promote Scams,Malicious Actors & Misuse,Intentional
+989,2025,Alleged AI-Generated Video by Spain’s People’s Party Results in Diplomatic Fallout with the Dominican Republic,Malicious Actors & Misuse,Unintentional
+991,2025,Alleged AI-Generated IRS Scam Websites Used to Defraud U.S. Taxpayers,Malicious Actors & Misuse,Intentional
+993,2025,Sydney Students Allegedly Forced to Retake NAPLAN After AI Predictive Text Error,"AI system safety, failures, and limitations",Unintentional
+994,2025,AI-Enabled Organized Crime Expands Across Europe,Malicious Actors & Misuse,Intentional
+999,2025,Attackers Reportedly Deployed Simulated AI Support Chatbot to Trick Instagram Business Users into Adding Malicious 2FA Login,Malicious Actors & Misuse,Intentional
+1000,2025,"Sora Video Generator Has Reportedly Been Creating Biased Human Representations Across Race, Gender, and Disability",Discrimination and Toxicity,Unintentional
+1001,2025,LLM Scrapers Allegedly Target Multiple Open Source Projects Disrupting the FOSS Ecosystem,Socioeconomic & Environmental Harms,Intentional
+1002,2025,Manipulated Video Using AI-Generated Audio Targets Pakistan's Prime Minister Shehbaz Sharif with Fabricated Interview,Malicious Actors & Misuse,Intentional
+1003,2025,Alleged Fraudulent Prompts via AIXBT Dashboard Led Purported AI Trading Agent to Transfer 55.5 ETH from Simulacrum Wallet,Privacy & Security,Intentional
+1005,2025,Misleading Deepfake Video of Trump Mocking Zelenskyy for Clothing Goes Viral on Facebook,Misinformation,Intentional
+1006,2025,"Edinburg, Texas Police Officer Arrested for Alleged Possession of CSAM, Including AI-Generated Deepfakes of Minors",Malicious Actors & Misuse,Intentional
+1007,2025,AI-Generated Voice Cloning of Trump Falsely Proposes Renaming the District of Columbia to the District of America,Malicious Actors & Misuse,Intentional
+1008,2025,"AI-Generated Voice Purporting to Be Daughter Allegedly Used to Coerce $2,000 from Colorado Mother",Malicious Actors & Misuse,Intentional
+1009,2025,Purportedly AI-Assisted Report by Tromsø Officials Allegedly Cited Non-Existent Sources in School Closure Proposal,Misinformation,Unintentional
+1010,2025,"GenNomis AI Database Reportedly Exposes Nearly 100,000 Deepfake and Nudify Images in Public Breach",Privacy & Security,Unintentional
+1011,2025,Deepfake of Bermuda Premier David Burt Promotes Investment Scam Using Royal Gazette Branding,Malicious Actors & Misuse,Intentional
+1012,2025,AI Voice Clone of Texas Woman Used in Distress Scam Targeting Brother in Port Neches,Malicious Actors & Misuse,Intentional
+1013,2025,Essex Man Sentenced to Five Years in Prison for Having Generated and Shared Deepfake Pornography of at Least 20 Women and a Minor,Malicious Actors & Misuse,Intentional
+1015,2025,Reported Darknet Launch of Xanthorox AI Introduces Autonomous Cyberattack Platform,Malicious Actors & Misuse,Intentional
+1016,2025,"Jailbroken Lovable AI Allegedly Used to Generate and Host Phishing Pages, Steal Credentials, and Bypass Security",Malicious Actors & Misuse,Unintentional
+1017,2025,Alleged Deepfake Investment Scam in Spain Defrauds 208 Victims of €19 million ($20.9 million),Malicious Actors & Misuse,Intentional
+1018,2025,OpenAI's 4o Model Allegedly Used to Generate Fake Receipts and Prescriptions,Malicious Actors & Misuse,Unintentional
+1019,2025,Alleged AI-Generated Clone of Exante Brokerage Used to Defraud U.S. Investor via JPMorgan Account,Malicious Actors & Misuse,Intentional
+1020,2025,Reportedly Unsafe Deployment of Llama.cpp Reveals Interactive AI-Generated CSAM Roleplay Prompts,Privacy & Security,Unintentional
+1021,2025,Deepfake Job Applicant Allegedly Used AI Tools to Apply for Remote Role at U.S. Security Startup,Malicious Actors & Misuse,Intentional
+1026,2025,Multiple LLMs Allegedly Endorsed Suicide as a Viable Option During Non-Adversarial Mental Health Venting Session,Discrimination and Toxicity,Unintentional
+1027,2025,Norwegian Supreme Court Receives Legal Filing with Fabricated Citations Allegedly Generated by AI Tool,Misinformation,Unintentional
+1028,2025,OpenAI's Operator Agent Reportedly Executed Unauthorized $31.43 Transaction Despite Safety Protocol,"AI system safety, failures, and limitations",Unintentional
+1029,2025,Purported AI-Generated Audio Was Reportedly Used to Claim Recep Tayyip Erdoğan Expressed Support for Imran Khan in Pakistani Parliament,Misinformation,Intentional
+1030,2025,Aspiring Artist Cherelle Kozak Reportedly Targeted by AI-Powered Impersonation of Rapper Fat Joe,Malicious Actors & Misuse,Intentional
+1031,2025,Transgender User Alleges ChatGPT Allowed Suicide Letter Without Crisis Intervention,"AI system safety, failures, and limitations",Unintentional
+1036,2025,Purported AI-Manipulated News Clip Fabricates Explosion and Doctor's Murder Plot for Scam,Malicious Actors & Misuse,Intentional
+1037,2025,Microsoft Reportedly Blocks 1.6 Million Bot Signup Attempts Per Hour Amid Global AI-Driven Fraud Surge,Malicious Actors & Misuse,Intentional
+1038,2025,Scammers Reportedly Use AI Tools to Impersonate Students and Obtain Federal Aid,Malicious Actors & Misuse,Intentional
+1039,2025,"Anysphere AI Support Bot for Cursor Reportedly Invents Login Policy, Leading to Subscription Cancellations",Misinformation,Unintentional
+1040,2025,Meta User-Created AI Companions Allegedly Implicated in Facilitating Sexually Themed Conversations Involving Underage Personas,Discrimination and Toxicity,Unintentional
+1041,2025,"Nomi Chatbots Reportedly Encouraged Suicide, Sexual Violence, Terrorism, and Hate Speech",Discrimination and Toxicity,Unintentional
+1042,2025,Fact-Checking Finds Reportedly AI-Generated Video Misattributed Hypertension Cure Endorsements to Taiwo Ajai-Lycett and Chinonso Egemba,Malicious Actors & Misuse,Intentional
+1043,2025,Reddit Moderators Report Unauthorized AI Study Involving Fabricated Identities by Purported University of Zurich Researchers,Malicious Actors & Misuse,Intentional
+1044,2025,Reported Emergence of 'Vegetative Electron Microscopy' in Scientific Papers Traced to Purported AI Training Data Contamination,Misinformation,Unintentional
+1045,2025,"Mother in Louisville, Kentucky Describes Phone Scam Involving Purported AI-Generated Voice of Her Daughter",Malicious Actors & Misuse,Intentional
+1046,2025,Brazil's Social Security AI Tool Is Allegedly Rejecting Complex Claims Improperly,"AI system safety, failures, and limitations",Unintentional
+1047,2025,Australian Analyst Allegedly Targeted by Scam Using Purportedly Sophisticated AI-Generated Corporate Materials,Malicious Actors & Misuse,Intentional
+1048,2025,Tennessee Meteorologist's Likeness Reportedly Used in Sextortion Campaign Involving Purported AI-Generated Content,Malicious Actors & Misuse,Intentional
+1049,2025,"AI Tools Reportedly Used to Fabricate Image of 5,000-Naira Nigerian Banknote Featuring President Bola Tinubu",Misinformation,Intentional
+1050,2025,Reportedly AI-Generated Image Circulates Amid Reports of Tanzania Revenue Authority Job Interviews,Misinformation,Other
+1051,2025,Video Reportedly Created with AI Appears to Show Trump Backing Biafra Secession,Misinformation,Intentional
+1052,2025,Purported AI-Generated Video Reportedly Depicts Trump Criticizing Former Kenyan Deputy President Rigathi Gachagua,Misinformation,Intentional
+1054,2025,"Anthropic Report Details Claude Misuse for Influence Operations, Credential Stuffing, Recruitment Fraud, and Malware Development",Malicious Actors & Misuse,Intentional
+1055,2025,FBI Reports AI Use by Threat Actors in Broader Cyber Context Including Infrastructure Intrusions,Malicious Actors & Misuse,Intentional
+1056,2025,Purported AI-Generated Videos Impersonating President of Malta Myriam Spiteri Debono Circulate on Social Media in Alleged Crypto Scam Campaigns,Malicious Actors & Misuse,Intentional
+1059,2025,Second Consecutive Year of Alleged AI-Generated Images Depicting Katy Perry at Met Gala Circulating Online,Misinformation,Other
+1060,2025,Institute for Strategic Dialogue Reports Russian-Aligned Operation Overload Using Purported AI-Generated Impersonations Across January to March 2025,Malicious Actors & Misuse,Intentional
+1061,2025,Reportedly Viral USAID Disinformation Video Linked to Russian-Aligned Campaign Known as Matryoshka,Malicious Actors & Misuse,Intentional
+1062,2025,Brazilian Authorities Reportedly Link AI-Generated Marcos Mion Videos to Purported Fake Restaurant Promotions in Brazil,Malicious Actors & Misuse,Intentional
+1063,2025,Purported AI-Manipulated Videos of Cypriot Officials Circulated in Alleged Investment Fraud,Malicious Actors & Misuse,Intentional
+1066,2025,Hong Kong Syndicate Allegedly Used AI-Generated Facial Composites to Open Bank Accounts,Malicious Actors & Misuse,Intentional
+1067,2025,Alleged Use of Purported AI-Generated Identities to Defraud FTX Claims Buyers of $5.6M,Malicious Actors & Misuse,Intentional
+1068,2025,AI-Powered Presentation Tool Gamma Implicated in Multi-Stage Phishing Campaign,Malicious Actors & Misuse,Intentional
+1069,2025,Purported Graphite Spyware Linked to Paragon Solutions Allegedly Deployed Against Journalists and Civil Society Workers,Privacy & Security,Intentional
+1070,2025,"Serviceaide AI Platform Implicated in Health Data Exposure Affecting 483,000 Catholic Health Patients",Privacy & Security,Unintentional
+1071,2025,Student Reportedly Files Complaint Over Professor's Undisclosed Use of Generative AI at Northeastern University,Human-Computer Interaction,Intentional
+1072,2025,Grok Chatbot Reportedly Inserted Content About South Africa and 'White Genocide' in Unrelated User Queries,Misinformation,Intentional
+1073,2025,"$31,000 Sanction in Lacey v. State Farm Tied to Purportedly Undisclosed Use of LLMs and Erroneous Citations",Misinformation,Unintentional
+1074,2025,Citation Errors in Concord Music v. Anthropic Attributed to Claude AI Use by Defense Counsel,Misinformation,Unintentional
+1075,2025,New Orleans Police Reportedly Used Real-Time Facial Recognition Alerts Supplied by Project NOLA Despite Local Ordinance,Privacy & Security,Intentional
+1076,2025,Purported Unauthorized Deepfakes of Norman Swan and Others Circulated in Online Supplement Campaigns,Malicious Actors & Misuse,Intentional
+1077,2025,FBI Reports Ongoing Vishing and Smishing Campaign Allegedly Targeting Government Officials Using Purportedly AI-Generated Voices,Malicious Actors & Misuse,Intentional
+1078,2025,"Purported AI-Generated Images Reportedly Used in Sextortion Scheme Targeting Glasgow, Kentucky Teen Who Later Died by Suicide",Malicious Actors & Misuse,Intentional
+1079,2025,Purported AI-Manipulated Videos Depict Mauricio Macri Endorsing Manuel Adorni and Silvia Lospennato Withdrawing Before Buenos Aires Vote,Malicious Actors & Misuse,Intentional
+1080,2025,Noodlophile Stealer Reportedly Distributed Through Allegedly Fraudulent AI Content Platforms,Malicious Actors & Misuse,Intentional
+1081,2025,Voice Actor Alleges Unconsented Use of AI-Generated Voice on ScotRail Trains,Privacy & Security,Intentional
+1083,2025,"Texas Homeowner Reportedly Spent $3,000 to Contest AI-Flagged Warning of Insurance Nonrenewal","AI system safety, failures, and limitations",Intentional
+1084,2025,Federal 'Make America Healthy Again' Report Released with Multiple Reportedly Erroneous and Unverifiable Citations,Misinformation,Unintentional
+1085,2025,Phone of White House Chief of Staff Susie Wiles Allegedly Breached in Reported AI Voice Impersonation Incident,Malicious Actors & Misuse,Intentional
+1086,2025,Reported AI-Generated Video Purportedly Depicting Keanu Reeves Debating Elon Musk Circulates as Misinformation on Social Media,Misinformation,Intentional
+1090,2025,"Reported AI-Generated Clickbait Targets Adolescents in Rockingham County, North Carolina",Malicious Actors & Misuse,Intentional
+1092,2025,Purported AI-Generated Video Portrays Pope Leo XIV Addressing Ibrahim Traoré of Burkina Faso,Malicious Actors & Misuse,Intentional
+1093,2025,Fact-Checkers Identify Viral Photo of Burkina Faso's Ibrahim Traoré with 'Wife and Children' as AI-Generated Composite,Misinformation,Intentional
+1094,2025,At Least 294 Purported AI-Generated Music Videos Portray Celebrities Praising Burkina Faso's Ibrahim Traoré,Malicious Actors & Misuse,Intentional
+1095,2025,Alleged Russian-Linked Deepfake Campaign Misattributes Infrastructure Projects to Burkina Faso's Ibrahim Traoré,Malicious Actors & Misuse,Intentional
+1096,2025,Purported AI-Generated Video Depicts Ibrahim Traoré of Burkina Faso Delivering Speech on Western Exploitation,Misinformation,Intentional
+1097,2025,Google AI Overview Reportedly Misstates Aircraft Manufacturer as Airbus Instead of Boeing in Air India Flight 171 Crash,Misinformation,Unintentional
+1098,2025,Image Purporting to Show President Paul Kagame of Rwanda in M23 Uniform Reportedly AI-Generated,Misinformation,Other
+1099,2025,Factum in Ko v. Li Allegedly Contains AI-Generated Case Law Citations,"AI system safety, failures, and limitations",Unintentional
+1101,2025,Meta AI App Reportedly Publishes Personal Chats Without Users Fully Realizing,Privacy & Security,Unintentional
+1102,2025,Purported Deepfake Featuring Dr. Rinki Murphy and Jack Tame Reportedly Used to Promote Diabetes Scam in New Zealand,Malicious Actors & Misuse,Intentional
+1103,2025,Purported DOGE Contract Review Tool Cited in Reports of AI-Driven Misjudgments in VA Budget Cuts,"AI system safety, failures, and limitations",Unintentional
+1104,2025,AI Chatbot Allegedly Used to Research Explosive Materials in Palm Springs Fertility Clinic Bombing,Malicious Actors & Misuse,Unintentional
+1105,2025,Michigan Woman Defrauded in Alleged Tinder Romance Scam Using Purportedly AI-Generated Video Calls,Malicious Actors & Misuse,Intentional
+1106,2025,"Chatbots Allegedly Reinforced Delusional Thinking in Several Reported Users, Leading to Real-World Harm",Human-Computer Interaction,Unintentional
+1107,2025,Bulgarian Tennis Player Grigor Dimitrov Alleges Deepfake Scam Promoting Fraudulent Investment Scheme Using His Likeness,Malicious Actors & Misuse,Intentional
+1108,2025,Digital Rights Groups Accuse Meta and Character.AI of Facilitating Unlicensed Therapy via Chatbots,Misinformation,Unintentional
+1110,2025,Alleged AI-Manipulated Video Uses Macau Chief Executive Sam Hou Fai's Likeness in Investment Scam,Malicious Actors & Misuse,Intentional
+1111,2025,Reported AI-Generated Video Call Impersonation of Cryptocurrency Analyst Leads to Alleged Malware Installation and Account Theft,Malicious Actors & Misuse,Intentional
+1112,2025,Scammer Reportedly Used AI Voice Clone of WCPO Cincinnati Meteorologist in Facebook Fraud Attempts,Malicious Actors & Misuse,Intentional
+1113,2025,Financial Times Journalist Martin Wolf Reports AI-Generated Investment Scam Using His Likeness on Instagram and Facebook,Malicious Actors & Misuse,Intentional
+1114,2025,Alleged AI-Generated Video Ads Impersonate Bank of Montreal Strategist Brian Belski to Promote Investment Scam,Malicious Actors & Misuse,Intentional
+1115,2025,Alleged Deepfake Investment Scam Uses Economist David Rosenberg's Likeness on Meta Platforms,Malicious Actors & Misuse,Intentional
+1116,2025,Alleged Deepfake Video Depicts Former Malaysian Inspector-General of Police Tan Sri Acryl Sani Abdullah in Financial Misconduct Context,Malicious Actors & Misuse,Intentional
+1117,2025,North Korea-Linked Actors Allegedly Use AI Executive Deepfakes in Zoom Phishing Targeting Web3 Employee,Malicious Actors & Misuse,Intentional
+1119,2025,Alleged Deepfake Videos Impersonate Lithuanian Politicians and Doctors in Purported Cross-Border Scam Network,Malicious Actors & Misuse,Intentional
+1120,2025,Alleged AI-Generated Videos Depict Bangladesh's Chief Adviser Muhammad Yunus Endorsing Betting Platforms,Malicious Actors & Misuse,Intentional
+1121,2025,"Alleged AI Deepfake Videos Used to Lure Simcoe County, Ontario Residents in Crypto Scam",Malicious Actors & Misuse,Intentional
+1122,2025,Reportedly Sustained Multi-Celebrity Deepfake Persona Scam Targeting Vulnerable Southampton Resident,Malicious Actors & Misuse,Intentional
+1123,2025,"Reported Student Misuse of ChatGPT, StudyX, and Gemini to Obtain Answers During Vietnam's 2025 National High School Graduation Exam",Malicious Actors & Misuse,Intentional
+1124,2025,Alleged Unauthorized Deepfake AI Clones of Ravish Kumar Used to Spread Purportedly Fabricated News on YouTube,Malicious Actors & Misuse,Intentional
+1125,2025,Reported Use and Circulation of AI-Generated Misinformation and Fake Victim Visuals After Air India 171 Crash,Misinformation,Intentional
+1126,2025,Reported Use of Deepfake Video Impersonating Owen Wilson in Romance Scam with Fake Job Payments,Malicious Actors & Misuse,Intentional
+1127,2025,Purported AI-Generated Audio Clip Allegedly Portrays Cambodian Senate President Hun Sen Raising Money for Conflict with Thailand,Malicious Actors & Misuse,Intentional
+1128,2025,Philippine Officials Reportedly Share Veo 3-Generated Video to Support Vice President Sara Duterte During Impeachment,Misinformation,Intentional
+1130,2025,Docomo Pacific CEO Reports Mother Targeted by Purported AI-Enabled Scam in Guam,Malicious Actors & Misuse,Intentional
+1131,2025,Alleged Deepfake Identity Scam Uses Miami Beach Realtor's Likeness to Defraud Victim in the United Kingdom in Purported Romance Scam,Malicious Actors & Misuse,Intentional
+1132,2025,Delhi Man Reportedly Arrested for Sharing Purportedly AI-Morphed Obscene Images of Ex-Girlfriend,Malicious Actors & Misuse,Intentional
+1133,2025,Reported AI-Generated Audio of Ukrainian Commander Andriy Biletsky Used in Russian Disinformation Campaign,Malicious Actors & Misuse,Intentional
+1134,2025,Reported Deepfakes of Ukrainian Deputy PM Olha Stefanishyna Allegedly Supporting Fictional Mobilization Plan for Women,Malicious Actors & Misuse,Intentional
+1135,2025,Preprints Reportedly from Researchers from Multiple Universities Allegedly Contain Covert AI Prompts,Malicious Actors & Misuse,Intentional
+1136,2025,Purported Widespread Use of AI-Generated Deepfake Videos Impersonate Malaysian Leaders in Investment Scams,Malicious Actors & Misuse,Intentional
+1139,2025,South African Legal Team for Northbound Processing Reportedly Admits Legal Genius AI Produced Purportedly Non-Existent Case Law in Urgent Court Filing,Misinformation,Unintentional
+1140,2025,Purported Deepfake of Sri Lankan President Anura Kumara Dissanayake Promotes Alleged Fraudulent Government Investment Scheme,Malicious Actors & Misuse,Intentional
+1141,2025,Purported AI Voice Cloning Used to Impersonate Secretary of State Marco Rubio,Malicious Actors & Misuse,Intentional
+1142,2025,"Chicago Veteran Reportedly Loses $10,000 in Purported Deepfake Cryptocurrency Fraud Posing as Elon Musk",Malicious Actors & Misuse,Intentional
+1143,2025,Former Namibian First Lady Monica Geingos's Likeness Reportedly Used in Purported AI-Generated Video Investment Scams,Malicious Actors & Misuse,Intentional
+1145,2025,MyPillow Defense Lawyers in Coomer v. Lindell Reportedly Sanctioned for Filing Court Document Allegedly Containing AI-Generated Legal Citations,"AI system safety, failures, and limitations",Unintentional
+1146,2025,Grok Chatbot Reportedly Posts Antisemitic Statements Praising Hitler on X,Discrimination and Toxicity,Unintentional
+1147,2025,Purportedly AI-Generated Videos Impersonate Brunei Police in 'Real Money Magic' Scam on Social Media,Malicious Actors & Misuse,Intentional
+1148,2025,Purported Deepfake Scam Videos Depict JG Summit Holdings President and CEO Lance Gokongwei Allegedly Endorsing Illicit Investments,Malicious Actors & Misuse,Intentional
+1149,2025,ChatGPT Reportedly Generated Ritual Scripts Containing Instructions for Self-Harm and Symbolic Violence in Response to Thematic Prompts,Discrimination and Toxicity,Unintentional
+1150,2025,Purported Deepfake of Barack Obama's Detention Reportedly Amplified by Donald Trump via Truth Social,Malicious Actors & Misuse,Intentional
+1151,2025,"ChatGPT Reportedly Validated Autistic User's Faster-Than-Light Theory and Failed to Provide Grounding During Delusional Episode, Preceding Hospitalization",Human-Computer Interaction,Unintentional
+1152,2025,"LLM-Driven Replit Agent Reportedly Executed Unauthorized Destructive Commands During Code Freeze, Leading to Loss of Production Data","AI system safety, failures, and limitations",Unintentional
+1153,2025,Purported Deepfake Video of Donald Trump at NATO Summit Allegedly Used in YouTube Crypto Scam,Malicious Actors & Misuse,Intentional
+1154,2025,Reported AI‑Generated Deepfake Impersonations of Public Figures Allegedly Used in Coordinated Stock Pump‑and‑Dump Scheme Targeting Israeli Investors,Malicious Actors & Misuse,Intentional
+1155,2025,Purported AI‑Edited Police Evidence Image Posted to Facebook by Westbrook Police Department in Maine,Misinformation,Unintentional
+1156,2025,"Purported Deepfake Video Circulated Among Students Targets Orrington, Maine Educator",Malicious Actors & Misuse,Intentional
+1157,2025,Google Gemini Reportedly Generates Sexual Role‑Play for Account Registered as Minor,Discrimination and Toxicity,Unintentional
+1158,2025,Alleged Malicious Wiping Command Found in Amazon Q AI Assistant,Privacy & Security,Intentional
+1159,2025,Government‑Backed AI4Peat Mapping Tool Allegedly Misidentifies Granite Outcrops and Quarries as Peat,"AI system safety, failures, and limitations",Unintentional
+1160,2025,Reported AI-Aided Development of Explosive Devices by Long Island Resident Michael Gann,Malicious Actors & Misuse,Intentional
+1161,2025,Airbnb Host Reportedly Accused of Using Purportedly AI‑Altered Photos in False Damage Claim,Malicious Actors & Misuse,Intentional
+1162,2025,Purported Deepfake Depicts Altercation Between Bougainville President Ishmael Toroama and Papua New Guinea Prime Minister James Marape,Malicious Actors & Misuse,Intentional
+1165,2025,Grok Imagine Reportedly Produces Nonconsensual Taylor Swift Deepfake Nudes Without Explicit Prompting,Malicious Actors & Misuse,Unintentional
+1166,2025,"ChatGPT Reportedly Suggests Sodium Bromide as Chloride Substitute, Leading to Bromism and Hospitalization",Misinformation,Unintentional
+1168,2025,Purportedly AI-Generated Image of British Army Colonels Captured in Ukraine Reportedly Circulates in Russian Media,Malicious Actors & Misuse,Intentional
+1170,2025,"Chris Cuomo Amplifies Reportedly Labeled Deepfake Video of Alexandria Ocasio-Cortez, Purportedly Contributing to Misleading Political Narrative",Misinformation,Unintentional
+1171,2025,Reported Hack of Tea Dating App Compromises Data from Purportedly AI-Supported Identity and Image Checks,Privacy & Security,Other
+1173,2025,Google Gemini Reportedly Exhibits Repetitive Self-Deprecating Responses Attributed to Bug,"AI system safety, failures, and limitations",Unintentional
+1174,2025,Microsoft Copilot Reportedly Able to Access Cached Data from Since-Private GitHub Repositories,Privacy & Security,Unintentional
+1175,2025,Alleged Marine Park Orca Attack on 'Jessica Radcliffe' Reportedly an AI-Generated Hoax,Misinformation,Intentional
+1176,2025,Microsoft's Windows Recall Allegedly Stores Passwords and Social Security Numbers in Preview Mode,Privacy & Security,Unintentional
+1177,2025,"Purported AI Monitoring Software Reportedly Flags Unsent Joke Threat, Leading to Arizona Student Suspension",Human-Computer Interaction,Intentional
+1178,2025,Google Gemini CLI Reportedly Deletes User Files After Misinterpreting Command Sequence,"AI system safety, failures, and limitations",Unintentional
+1179,2025,McDonald's McHire AI Recruitment Platform Reportedly Exposed Data of 64 Million Applicants via Default Login and API Vulnerability,Privacy & Security,Unintentional
+1180,2025,"Purported Meta AI Chatbot Persona 'Big sis Billie' Reportedly Engages in Romantic Roleplay and Provides Address, Linked to User's Fatal Fall",Human-Computer Interaction,Unintentional
+1181,2025,"Purported AI-Generated Video Reportedly Depicts Illegal Tiger Sales in Bagerhat, Bangladesh",Misinformation,Unintentional
+1182,2025,Purportedly AI-Generated Video of Tigers at Barasat Madrasa in West Bengal Reportedly Causes Panic and Student Absenteeism,Misinformation,Intentional
+1184,2025,Purported Fictitious AI-Generated Citations in Supreme Court of Victoria Murder Case Filing Lead to Delay and King's Counsel Apology,Misinformation,Unintentional
+1185,2025,South Korean Actor Kim Seon-ho's Likeness Allegedly Misused in Purported Deepfake Impersonation Attempts Demanding Money,Malicious Actors & Misuse,Intentional
+1186,2025,"Reported Public Exposure of Over 100,000 LLM Conversations via Share Links Indexed by Search Engines and Archived",Privacy & Security,Unintentional
+1187,2025,"Google AI Overviews and ChatGPT Reportedly Cited Fraudulent Cruise Hotline, Allegedly Enabling Successful Scam",Malicious Actors & Misuse,Unintentional
+1188,2025,Multiple LLMs Reportedly Generated Responses Aligning with Purported CCP Censorship and Propaganda,Misinformation,Unintentional
+1189,2025,"Joann Fabrics Shoppers Reportedly Defrauded by AI-Generated Scam Sites, Part of Purported Wave of ~100,000 Fake Domains Across 194 Brands",Malicious Actors & Misuse,Intentional
+1190,2025,Family Reportedly Discovers ChatGPT Logs Detailing Suicidal Ideation Prior to Daughter's Death,Human-Computer Interaction,Unintentional
+1191,2025,NYPD Facial Recognition System Allegedly Produced Erroneous Match That Reportedly Resulted in Wrongful Detention of Trevis Williams,"AI system safety, failures, and limitations",Unintentional
+1192,2025,16-Year-Old Allegedly Received Suicide Method Guidance from ChatGPT Before Death,Human-Computer Interaction,Unintentional
+1193,2025,Purportedly Taxpayer-Funded Deloitte Report for Australian Government Contains Alleged AI-Generated Citations and Fabricated Legal Quote,Misinformation,Unintentional
+1195,2025,Nigeria-Based YouTube Network Allegedly Uses AI Voiceovers and Anchors to Amplify Pro-Kremlin Narratives,Malicious Actors & Misuse,Intentional
+1196,2025,Judge Reportedly Disqualifies Butler Snow Lawyers Following Purported Use of ChatGPT-Fabricated Citations in Alabama Prison Litigation,Misinformation,Unintentional
+1197,2025,Alleged AI-Generated Photo of Burning Truck in Manila Reportedly Triggered Firefighter Response,Misinformation,Unintentional
+1198,2025,Grok 3 Reportedly Generated Graphic Threats and Hate Speech Targeting Minnesota Attorney Will Stancil,Discrimination and Toxicity,Unintentional
+1199,2025,Purportedly AI-Generated Deepfake Image Reportedly Falsely Links Canadian Prime Minister Mark Carney to Jeffrey Epstein,Malicious Actors & Misuse,Unintentional
+1200,2025,Meta AI on Instagram Reportedly Facilitated Suicide and Eating Disorder Roleplay with Teen Accounts,Discrimination and Toxicity,Unintentional
+1201,2025,"Anthropic Reportedly Identifies AI Misuse in Extortion Campaigns, North Korean IT Schemes, and Ransomware Sales",Malicious Actors & Misuse,Intentional
+1202,2025,Russian Disinformation Campaign Reportedly Used AI-Generated Posts and Videos to Target 2025 Moldovan Parliamentary Elections,Malicious Actors & Misuse,Intentional
+1203,2025,"Carter County, Montana Man Reportedly Charged for Creating AI-Generated Child Sexual Abuse Material",Malicious Actors & Misuse,Intentional
+1204,2025,"ChatGPT Allegedly Reinforced Delusions Before Greenwich, Connecticut Murder-Suicide",Human-Computer Interaction,Unintentional
+1205,2025,Multiple Generative AI Systems Reportedly Amplify False Information During Charlie Kirk Assassination Coverage,Misinformation,Unintentional
+1206,2025,"Purported AI-Generated Deepfake of Spiritual Leader Sadhguru Used in Investment Scam Allegedly Defrauding Bengaluru Woman of ₹3.75 Crore (~$425,000)",Malicious Actors & Misuse,Intentional
+1207,2025,Purported AI-Generated Deepfake of Irish Fine Gael Presidential Candidate Heather Humphreys Used in Fake Investment Videos on Meta Platforms,Malicious Actors & Misuse,Intentional
+1208,2025,North Korea's Kimsuky Group Reportedly Uses AI-Generated Military ID Deepfakes in Phishing Campaign,Malicious Actors & Misuse,Intentional
+1210,2025,Malicious Nx npm Packages Reportedly Weaponize AI Coding Agents for Data Exfiltration,Privacy & Security,Unintentional
+1211,2025,"Google AI Overviews Reportedly Misrepresented Pizza Specials at Stefanina's in Wentzville, Missouri",Misinformation,Unintentional
+1212,2025,Nomi AI Companion Allegedly Directs Australian User to Stab Father and Engages in Harmful Role-Play,Discrimination and Toxicity,Unintentional
+1213,2025,"Gaggle AI Monitoring at Lawrence, Kansas High School Reportedly Misflags Student Content and Blocks Emails",Privacy & Security,Unintentional
+1214,2025,Donald Trump Reportedly Posts Purported AI-Modified Video of Chuck Schumer and Hakeem Jeffries During U.S. Government Shutdown Talks,Malicious Actors & Misuse,Intentional
+1215,2025,"Gaggle Alert Reportedly Leads to Arrest of 15-Year-Old in Volusia County, Florida, for School Threat the Student Claimed Was Not Serious",Malicious Actors & Misuse,Intentional
+1216,2025,"ChatGPT Reportedly Misleads Users About Soundslice Features, Allegedly Prompting Unplanned Product Development",Misinformation,Unintentional
+1217,2025,"Purportedly AI-Cloned Voice of Daughter Used in Elaborate Bond Scam Targeting Retired Couple in Hillsborough County, Florida",Malicious Actors & Misuse,Intentional
+1218,2025,Microsoft 365 Copilot Vulnerability Allegedly Allowed File Access Without Audit Log Entry,Privacy & Security,Unintentional
+1219,2025,Meta Platforms Users Report Being Wrongfully Locked Out After Purported AI Moderation Flags Accounts for Child Exploitation Content,"AI system safety, failures, and limitations",Unintentional
+1220,2025,LAMEHUG Malware Reportedly Integrates Large Language Model for Real-Time Command Generation in a Purported APT28-Linked Cyberattack,Malicious Actors & Misuse,Intentional
+1221,2025,Alleged AI-Enabled PRISONBREAK Influence Operation on X Reportedly Synchronizes Deepfake of Evin Prison Strike with Ongoing Attacks in Tehran,Malicious Actors & Misuse,Intentional
+1223,2025,"Purportedly AI-Generated Deepfake Ads on Facebook Reportedly Impersonate Trump, Musk, Ocasio-Cortez, Warren, Sanders, and Leavitt to Promote Fraudulent Rebates",Malicious Actors & Misuse,Intentional
+1224,2025,Purportedly AI-Generated Deepfake Ads on Instagram Impersonate Gisele Bündchen and Other Celebrities in Brazilian Fraud Scheme,Malicious Actors & Misuse,Intentional
+1225,2025,"Purportedly AI-Generated 'Home Invasion Prank' Images Reportedly Circulate in Ireland, Causing Panic and False Emergency Calls",Malicious Actors & Misuse,Intentional
+1226,2025,Old Mutual Reportedly Warns of Purported Deepfake Videos Impersonating Chairman Trevor Manuel in Investment Scams,Malicious Actors & Misuse,Intentional
+1227,2025,"New Zealand Financial Markets Authority (FMA), Te Mana Tātai Hokohoko, Reportedly Flags Purported Deepfake Pump-and-Dump Network Using Social Media Ads",Malicious Actors & Misuse,Intentional
+1228,2025,Alleged ChatGPT Misuse by Contractor Leads to Reported Data Exposure in New South Wales Resilient Homes Program,Privacy & Security,Unintentional
+1229,2025,"Gold Coast Man Reportedly Ordered to Pay $343,500 After Posting Purported Deepfake Pornographic Images of Australian Public Figures",Malicious Actors & Misuse,Intentional
+1231,2025,Purported AI-Generated Deepfake Video Reportedly Depicts Senator Chuck Schumer Endorsing Government Shutdown in NRSC Campaign Ad,Malicious Actors & Misuse,Intentional
+1232,2025,Reportedly Fatal Xiaomi SU7 Ultra Crash in Chengdu Purportedly Involves Automated Driving Failure and Door Lock Malfunction,"AI system safety, failures, and limitations",Unintentional
+1233,2025,Purported Deepfake Video Allegedly Shows Conservative MP George Freeman Leaving Party for Reform UK,Malicious Actors & Misuse,Intentional
+1234,2025,Purported AI-Generated Explicit Deepfakes of Sydney High School Students Reportedly Circulated Online,Malicious Actors & Misuse,Intentional
+1235,2025,Chinese-Backed Operation Reportedly Used AI-Generated Deepfake Videos of Indian Stock Experts in Investment Fraud Campaign,Malicious Actors & Misuse,Intentional
+1237,2025,Alleged Deepfake Video of Anthony Albanese Promotes Fake AUFIRST 'Tax Dividend' Trading Platform,Malicious Actors & Misuse,Intentional
+1238,2025,"OpenAI ChatGPT Models Reportedly Jailbroken to Provide Chemical, Biological, and Nuclear Weapons Instructions",Malicious Actors & Misuse,Unintentional
+1239,2025,Purported AI-Generated Deepfake of Steven Bartlett Reportedly Used to Promote Fake WhatsApp Investment Group,Malicious Actors & Misuse,Intentional
+1240,2025,"Purported AI-Generated Deepfake of Infosys Co-Founder N. R. Narayana Murthy Used in Investment Scam Allegedly Defrauding 79-Year-Old Bengaluru Woman of ₹35 Lakh (~$40,000)",Malicious Actors & Misuse,Intentional
+1241,2025,"Purported AI-Generated Video Reportedly Used in RM5,800 (~$1,400) Sextortion Attempt Targeting Malaysian Minor via Telegram",Malicious Actors & Misuse,Intentional
+1242,2025,Purported AI-Generated Deepfake Videos Reportedly Used in Swedish Scam Campaign Impersonating Doctors Agnes Wold and Anders Tegnell,Malicious Actors & Misuse,Intentional
+1243,2025,AWS Outage Reportedly Caused AI-Enabled Eight Sleep Smart Beds to Overheat and Malfunction,"AI system safety, failures, and limitations",Unintentional
+1244,2025,Purportedly AI-Generated 'King Trump' Fighter Jet Video Allegedly Posted by President Depicts Defecation Attack on 'No Kings' Protesters,Discrimination and Toxicity,Intentional
+1246,2025,Purportedly AI-Generated Deepfake Reportedly Used to Impersonate DNB Bank CFO and CEO in Live Teams Meeting,Malicious Actors & Misuse,Intentional
+1247,2025,"Meta AI Reportedly Generated Purportedly False Claims Linking Activist Robby Starbuck to January 6th Riot, Prompting Defamation Lawsuit",Misinformation,Unintentional
+1248,2025,"Google's Bard, Gemini, and Gemma AI Systems Allegedly Generated Defamatory Claims About Activist Robby Starbuck, Prompting Lawsuit",Misinformation,Unintentional
+1249,2025,Virginia Candidate John Reid Reportedly Used AI-Generated Deepfake of Opponent Ghazala Hashmi in Simulated Political Debate,Malicious Actors & Misuse,Intentional
+1250,2025,Alleged False Positive by Omnilert AI Gun Detection System Prompts Police Search at Baltimore County High School,"AI system safety, failures, and limitations",Unintentional
+1251,2025,Purportedly AI-Generated Hunting Regulation Errors Reportedly Lead to Idaho Citation and Multi-State Warnings from Wildlife Agencies,Misinformation,Unintentional
+1252,2025,Judges in New Jersey and Mississippi Admit AI Tools Produced Erroneous Federal Court Filings,Misinformation,Unintentional
+1253,2025,Large-Scale Mental Health Crises Allegedly Associated with ChatGPT Interactions,Human-Computer Interaction,Unintentional
+1254,2025,Purported AI Deepfake Reportedly Impersonated Thai PBS World Anchor and Miss Universe CEO in Fraudulent Investment Video,Malicious Actors & Misuse,Intentional
+1255,2025,Purported Deepfake Reportedly Circulated on Facebook Impersonating Thai PBS World Anchors and Business Figures to Solicit Investments,Malicious Actors & Misuse,Intentional
+1256,2025,"Purportedly AI-Generated Deepfake Investment Ads Defrauded 5,000 Swedish Investors of 500 Million SEK",Malicious Actors & Misuse,Intentional
+1257,2025,Argentine Court Reportedly Annuls Criminal Conviction After Judge Allegedly Used ChatGPT to Draft Ruling Without Disclosure,Human-Computer Interaction,Unintentional
+1258,2025,Purported Deepfake Mimicking RTÉ Broadcast Falsely Announced Irish Presidential Candidate Catherine Connolly's Withdrawal,Malicious Actors & Misuse,Intentional
+1259,2025,ChatGPT Allegedly Encouraged 23-Year-Old Texas User's Suicide During Extended Conversations,Human-Computer Interaction,Unintentional
+1261,2025,Alleged AI-Generated Deepfake of Western Australia Premier Roger Cook Used in YouTube Investment Scam,Malicious Actors & Misuse,Intentional
+1262,2025,YouTube Channel Reportedly Posts Purported Deepfake Video of Rajat Sharma Announcing India-Bangladesh Conflict,Misinformation,Intentional
+1263,2025,Chinese State-Linked Operator (GTG-1002) Reportedly Uses Claude Code for Autonomous Cyber Espionage,Malicious Actors & Misuse,Intentional
+1264,2025,Rep. Mike Collins's Campaign Allegedly Produced Deepfake of Sen. Jon Ossoff Supporting the Government Shutdown,Malicious Actors & Misuse,Intentional
+1265,2025,NTB Report on Telenor Security Findings Was Withdrawn After AI Tool Allegedly Introduced Fabricated Quotes,Misinformation,Unintentional
+1266,2025,Purportedly AI-Generated Sexual Images of At Least 400 Minors at Zacatecas School Were Reportedly Created and Sold Online,Malicious Actors & Misuse,Intentional
+1267,2025,"Omnilert AI Reportedly Triggered False Gun Alert at Parkville High, Prompting Student Relocation","AI system safety, failures, and limitations",Unintentional
+1268,2025,Meta's Automated Ad and Targeting Systems Reportedly Enabled Large-Scale Fraud Revenue,Malicious Actors & Misuse,Intentional
+1269,2025,Waymo Autonomous Vehicle Reportedly Ran Over and Killed a Cat in San Francisco,"AI system safety, failures, and limitations",Unintentional
+1270,2025,Multiple Purported AI-Assisted Cheating Incidents Reported Across South Korea's SKY Universities During October 2025 Midterms,Malicious Actors & Misuse,Intentional
+1271,2025,Purported Deepfake of Greek Finance Minister Kyriakos Pierrakakis Reportedly Used in Facebook Investment Scam,Malicious Actors & Misuse,Intentional
+1272,2025,Purportedly AI-Generated Home Intruder Videos Allegedly Prompt Dozens of Dutch Police Call-Outs,Misinformation,Unintentional
+1273,2025,Purportedly AI-Generated Fake Videos of Louvre Heist Reportedly Circulated Widely Online,Misinformation,Intentional
+1274,2025,"AI-Powered Taco Bell Drive-Thru Reportedly Disrupted by Viral Prank Ordering 18,000 Water Cups","AI system safety, failures, and limitations",Unintentional
+1275,2025,Purportedly AI-Enhanced Phishing Campaign Allegedly Impersonates Australian Government Services in Large-Scale Welfare Scam,Malicious Actors & Misuse,Intentional
+1277,2025,"Alleged Harmful Outputs and Data Exposure in Children's AI Products by FoloToy, Miko, and Character.AI",Discrimination and Toxicity,Unintentional
+1278,2025,ChatGPT Reportedly Found to Reproduce Protected German Lyrics in Copyright Case,Privacy & Security,Unintentional
+1279,2025,Prominent AI Chatbots Allegedly Produced Incorrect UK Financial and ISA Guidance,Misinformation,Unintentional
+1281,2025,Alleged Harmful Health Outcomes Following Reported Use of Purported ChatGPT-Generated Medical Advice in Hyderabad,"AI system safety, failures, and limitations",Unintentional
+1282,2025,Reported Disqualification of Two Books from the Ockham New Zealand Book Awards Due to Alleged AI-Generated Cover Art,Socioeconomic & Environmental Harms,Unintentional
+1283,2025,Purported AI-Enabled Pro-Russian Influence Campaign Centered on Burkina Faso's Ibrahim Traoré and Disseminated Across African Media,Malicious Actors & Misuse,Intentional
+1284,2025,Secret Desires AI Platform Reportedly Exposed Nearly Two Million Sensitive Images in Cloud Storage Leak,Privacy & Security,Unintentional
+1285,2025,"Purportedly AI-Generated Jason Momoa Deepfake Used in Romance Scam Reportedly Defrauding British Widow of $600,000",Malicious Actors & Misuse,Intentional
+1286,2025,Purportedly AI-Assisted Citation Errors Allegedly Found in Newfoundland and Labrador's 2025 Health Workforce Report by Deloitte,Misinformation,Unintentional
+1287,2025,Purported Deepfake-Based Facebook Impersonation Reportedly Targets Daughter of Scot in Coma,Malicious Actors & Misuse,Intentional
+1288,2025,Purported Deepfake Video and Fake News Articles Allegedly Used to Impersonate Guernsey's Chief Minister in Investment Scam,Malicious Actors & Misuse,Intentional
+1289,2025,Malta's Prime Minister Robert Abela Reportedly Deepfaked by a Ukrainian National in Cryptocurrency Fraud Targeting Local Residents,Malicious Actors & Misuse,Intentional
+1290,2025,"Alleged Fabricated News Sites and Deepfakes Impersonated Maltese Ministers, Financial Experts, and Media to Promote NethertoxAGENT Fraud",Malicious Actors & Misuse,Intentional
+1293,2025,Purported Deepfake Impersonating Cyprus President Nikos Christodoulides Reportedly Defrauded Citizens of Thousands of Euros,Malicious Actors & Misuse,Intentional
+1294,2025,The New York Times Sued Perplexity for Allegedly Using Copyrighted Content and Generating False Attributions,Socioeconomic & Environmental Harms,Intentional
+1295,2025,Japanese Teen Allegedly Uses AI-Generated Program to Breach Kaikatsu Frontier and Leak Data of 7.3 Million Customers,Malicious Actors & Misuse,Intentional
+1296,2025,Attacker Reportedly Bypasses AI Safety Filters to Obtain Guidance for Non-Fatal Hammer Assault in Denmark,Malicious Actors & Misuse,Intentional
+1298,2025,Perplexity AI Reportedly Accused in Federal Lawsuit of Purported Copyright Infringement and False Attribution of Chicago Tribune Content,Privacy & Security,Unintentional
+1299,2025,Bodycam Footage Reportedly Contradicted Purportedly ChatGPT-Generated Use-of-Force Narrative by Immigration Agent,Misinformation,Intentional
+1300,2025,"Waymo Self-Driving Vehicles Reportedly Passed Stopped School Buses at Least 19 Times, Prompting NHTSA Probe","AI system safety, failures, and limitations",Unintentional
+1301,2025,Purported AI-Generated Sexual Deepfakes Allegedly Deployed in Transnational Harassment Campaign Targeting Hong Kong Exiles,Malicious Actors & Misuse,Intentional
+1302,2025,Reported Viral AI-Generated Photo Purportedly Shows Donald Trump Using a Walker,Misinformation,Intentional
+1303,2025,USGS ShakeAlert System Reportedly Generated False Earthquake Alert Affecting Nevada and California,"AI system safety, failures, and limitations",Unintentional
+1304,2025,Whirlpool Reportedly Used AI-Altered Footage of North Carolina State Senator DeAndrea Salvador in Brazilian Advertisement,Malicious Actors & Misuse,Intentional
+1305,2025,UK Facial Recognition System Reportedly Exhibits Higher False Positive Rates for Black and Asian Subjects,Discrimination and Toxicity,Unintentional
+1306,2025,"Florida Couple Reportedly Loses $45,000 in Alleged AI-Generated Elon Musk Impersonation Scam",Malicious Actors & Misuse,Intentional
+1307,2025,Grok AI Reportedly Generated Fabricated Civilian Hero Identity During Bondi Beach Shooting,Misinformation,Unintentional
+1308,2025,Springer Nature Book 'Mastering Machine Learning: From Basics to Advanced' Reportedly Published With Numerous Purportedly Nonexistent or Incorrect Citations,Misinformation,Unintentional
+1309,2025,"Springer Nature Book 'Social, Ethical and Legal Aspects of Generative AI: Tools, Techniques and Systems' Reportedly Published With Numerous Purportedly Fabricated or Unverifiable Citations",Misinformation,Unintentional
+1310,2025,Canada Revenue Agency (CRA) AI Chatbot 'Charlie' Reportedly Gave Incorrect Tax Filing Guidance at Scale,"AI system safety, failures, and limitations",Unintentional
+1312,2025,"ZeroEyes AI Surveillance System Reportedly Flagged Clarinet as Gun, Triggering School Lockdown in Florida","AI system safety, failures, and limitations",Unintentional
+1313,2025,Anthropic Claude AI Agent Reportedly Caused Financial Losses While Operating Office Vending Machine at Wall Street Journal Headquarters,"AI system safety, failures, and limitations",Unintentional
+1314,2025,"Purported Deepfake Impersonating Doctor Allegedly Used in $200,000 Investment Scam Targeting Florida Grandmother",Malicious Actors & Misuse,Intentional
+1315,2025,Purportedly AI-Generated Nude Images of Middle School Students Reportedly Circulated at Louisiana School,Malicious Actors & Misuse,Intentional
+1316,2025,"Google AI-Generated Search Summary Reportedly Falsely Implicated Canadian Musician in Sexual Offenses, Leading to Concert Cancellation",Misinformation,Unintentional
+1317,2025,Purported Deepfake Impersonation of Elon Musk Used to Promote Fraudulent '17-Hour' Diabetes Treatment Claims,Misinformation,Intentional
+1318,2025,"School's Suspected AI-Cheating Allegation Precedes Student's Reported Suicide in Greater Noida, India",Malicious Actors & Misuse,Unintentional
+1319,2025,"Purported Deepfake Investment Video Reportedly Used in Scam That Defrauded Turkish Couple of 1.5 Million Lira (~$35,000 USD)",Malicious Actors & Misuse,Intentional
+1320,2025,Purportedly AI-Manipulated Image Reported to Falsely Depict Taiwanese Politician Kao Chia-yu Posing With PRC Flag,Malicious Actors & Misuse,Intentional
+1321,2025,Shilpa Shetty Alleges AI-Enabled Impersonation and Misuse of Likeness in Mumbai High Court Filing,Malicious Actors & Misuse,Intentional
+1322,2025,Senior Kerala Congress Leader N. Subrahmanian Reportedly Booked for Sharing Purportedly AI-Generated Defamatory Image of Chief Minister Pinarayi Vijayan,Malicious Actors & Misuse,Intentional
+1323,2025,Madhya Pradesh Congress Alleges AI-Generated Images Were Submitted in National Water Award Process,Malicious Actors & Misuse,Intentional
+1325,2025,Reported AI-Generated Deepfake Videos Impersonating Elon Musk and Dragon’s Den Allegedly Used in Cryptocurrency Investment Scam Targeting Canadian Victims,Malicious Actors & Misuse,Intentional
+1326,2025,Waymo Robotaxis Allegedly Contributed to Traffic Gridlock During San Francisco PG&E Power Outage,"AI system safety, failures, and limitations",Unintentional
+1327,2025,Reported AI-Generated Deepfake Romance Scam Allegedly Used to Steal One Bitcoin From Recently Divorced Investor,Malicious Actors & Misuse,Intentional
+1329,2025,Grok Reportedly Generated and Distributed Nonconsensual Sexualized Images of Adults and Minors in X Replies,Discrimination and Toxicity,Intentional
+1330,2025,Purportedly AI-Generated 'Eric Langford' Missing Boy Scout Hoax Circulating Across Multiple Social Media Platforms,Misinformation,Intentional
+1337,2025,Waymo Robotaxi Reportedly Transported Undetected Person Trapped in Trunk in Los Angeles,"AI system safety, failures, and limitations",Unintentional
+1338,2025,Purported Deepfake Endorsements Reportedly Used to Promote Fraudulent Health and Investment Products in Montenegro and Bosnia and Herzegovina,Malicious Actors & Misuse,Intentional
+1340,2025,Purported AI-Generated Image Depicting JD Vance and Usha Vance in Public Altercation Circulated on Social Media,Misinformation,Intentional
+1341,2025,Purported Deepfake Advertisement Falsely Depicting Physician Endorsement Used to Sell Lipedema Cream to U.S. Patient Beth Holland,Malicious Actors & Misuse,Intentional
+1345,2025,Purported Deepfake Video Allegedly Used to Harass Washington State Patrol Trooper,Malicious Actors & Misuse,Intentional
+1346,2025,Purported AI-Generated Videos Depicted George Will Reportedly Commenting on Trump and Supreme Court Rulings,Malicious Actors & Misuse,Intentional
+1348,2025,"Purported Deepfake Explicit Images of Middle School Students Allegedly Created and Circulated Using Mobile App in Goffstown, New Hampshire",Malicious Actors & Misuse,Intentional
+1349,2025,AI Training Dataset for Detecting Nudity Allegedly Found to Contain CSAM Images of Identified Victims,Discrimination and Toxicity,Unintentional
+1350,2025,Reported Use of AI Apps to Create Sexualized Deepfake Images of High School Students at Cascade High School in Iowa,Malicious Actors & Misuse,Intentional
+1351,2025,"Alleged Use of AI to Create Sexualized Deepfake Images of Middle School Students Under Investigation in Bucks County, Pennsylvania",Malicious Actors & Misuse,Intentional
+1352,2025,Malaysian Teenager Allegedly Arrested for Creating and Selling AI-Generated Deepfake Images of Schoolmates and Alumni in Johor,Malicious Actors & Misuse,Intentional
+1353,2025,ICE Facial Recognition App Mobile Fortify Reportedly Misidentified Woman Twice During Immigration Enforcement in Oregon,"AI system safety, failures, and limitations",Unintentional
+1356,2025,Urban VPN Proxy Browser Extension Reportedly Harvested and Sold Private AI Chatbot Conversations via Silent Update,Privacy & Security,Intentional
+1359,2025,Reported Deepfake Influencers on TikTok Allegedly Used to Promote Fraudulent Wellness Products,Malicious Actors & Misuse,Intentional
+1360,2025,CISA Acting Director Reportedly Uploaded Sensitive Government Documents to Public ChatGPT Instance,Privacy & Security,Unintentional
+1366,2025,Philippines Senate Hearing Featured Reports of Purported AI-Generated Deepfake Pornography Targeting Actress Angel Aquino and Content Creator Queen Hera's Daughter,Malicious Actors & Misuse,Intentional
+1370,2025,California Teen Reportedly Died of Overdose After Repeatedly Seeking Drug-Use Guidance Allegedly from ChatGPT,Discrimination and Toxicity,Unintentional
+1372,2025,Houston Gun Store Co-Owner Allegedly Used AI to Create Sexually Explicit Deepfake Images of a Social Media Influencer,Malicious Actors & Misuse,Intentional
+1378,2025,"Purportedly AI-Generated Video Allegedly Depicted Radnor High School Students in Pennsylvania Inappropriately, Prompting Police Investigation",Malicious Actors & Misuse,Intentional
+1381,2025,"Purportedly AI-Generated TikTok Videos Reportedly Urged 'Polexit' Campaign, Prompting Polish Government Complaint to EU",Malicious Actors & Misuse,Intentional
+1383,2025,"User Reportedly Developed Emotional Dependence on Customized ChatGPT 'Boyfriend,' Citing Grief After Context Resets",Human-Computer Interaction,Unintentional
+1384,2025,"Purported Deepfake Video Impersonating Elton John Reportedly Induced Northeast Ohio Man to Authorize $20,000 in Scam Charges",Malicious Actors & Misuse,Intentional
+1387,2025,Lawsuit Alleged ChatGPT (GPT-4o) Encouraged Colorado Man's Suicide After Prolonged 'AI Companion' Chats,Human-Computer Interaction,Unintentional
+1388,2025,Purported Deepfake Impersonating Sudha Murty Reportedly Promoted Quantum AI India Investment Scam via Spoofed News Link,Malicious Actors & Misuse,Intentional
+1391,2025,Azerbaijani Media Agency Reportedly Warned Purported Deepfake Videos Attributed to Defense and Foreign Ministers Claimed Belarusian Plane Was Downed in Russian Airspace,Malicious Actors & Misuse,Intentional
+1397,2025,Deepfakes Reportedly Impersonated David Taylor-Robinson and Other UK Health Experts to Promote Wellness Nest Supplements,Malicious Actors & Misuse,Intentional
+1398,2025,"Purported Deepfake Video Reportedly Misrepresented CBS Anchor Doug Dunbar and Frisco, Texas, Stabbing Suspect Amid Online Misinformation Campaign",Malicious Actors & Misuse,Intentional
+1400,2025,West Midlands Police Reportedly Relied on Erroneous Copilot-Generated Intelligence in Maccabi Tel Aviv Away-Fan Ban Decision,Misinformation,Unintentional
+1402,2025,DOGE Reportedly Relied on Unvetted ChatGPT Outputs in Canceling National Endowment for the Humanities Grants,Discrimination and Toxicity,Unintentional
+1408,2025,Purported Oprah Deepfake Reportedly Induced Utah Woman to Buy Misrepresented Weight Loss Supplements,Malicious Actors & Misuse,Intentional
+1416,2025,Purported Facial Recognition Error Reportedly Led to Arrest and Monthslong Jailing of Tennessee Woman in North Dakota Fraud Case,"AI system safety, failures, and limitations",Unintentional
+1419,2025,Purported Deepfake Images of Gráinne Seoige Reportedly Circulated During Ireland's 2024 General Election Campaign,Malicious Actors & Misuse,Intentional
+1420,2025,Balázs Orbán Allegedly Published Purported Deepfake of Péter Magyar Claiming He Would Cut Pensions,Malicious Actors & Misuse,Intentional
+1422,2025,Unlabeled Purportedly AI-Generated 'Jessica Foster' Account Reportedly Posed as Pro-Trump Army Service Member to Attract Followers and Funnel Users to Paid Adult Content,Malicious Actors & Misuse,Intentional
+1425,2025,'Citizens Against Mamdani' Accounts Reportedly Posted AI-Generated Videos of Fictional New Yorkers to Simulate Political Opposition,Malicious Actors & Misuse,Intentional
+1427,2025,Baltimore Lawsuit Alleged DraftKings and FanDuel Used Machine-Learning-Driven Targeting to Exploit Vulnerable Gamblers,Malicious Actors & Misuse,Intentional
+1430,2025,Anthropic's Claude Was Reportedly Jailbroken To Allegedly Help Steal Sensitive Mexican Government Data,Malicious Actors & Misuse,Unintentional
+1431,2025,"Google Gemini Reportedly Reinforced Delusions,  Allegedly Contributing to Florida User's Near-Harm Episode and Suicide",Human-Computer Interaction,Unintentional
+1432,2025,Purported Pornographic Deepfakes and Fake Accounts Reportedly Impersonated German TV Presenter and Actor Collien Fernandes,Malicious Actors & Misuse,Intentional
+1433,2025,Google Antigravity Reportedly Deleted User's Entire D: Drive While Clearing Project Cache,"AI system safety, failures, and limitations",Unintentional
+1435,2025,Purportedly AI-Edited Obscene Clip Reportedly Impersonated Thai Actor Khunnapat Pichetworawut in Paid Scam,Malicious Actors & Misuse,Intentional
+1438,2025,"Jiushi Autonomous Delivery Vehicle Reportedly Dragged Fallen Electric Scooter During Delivery Run in Xianyang, Shaanxi","AI system safety, failures, and limitations",Unintentional
+1442,2025,Kiro AI Coding Tool Was Reportedly Implicated in 13-Hour AWS Cost Explorer Outage in Mainland China,"AI system safety, failures, and limitations",Unintentional
+1449,2025,Delaware Court Found Krafton Followed Most of ChatGPT's Recommendations in Campaign that Wrongfully Terminated Unknown Worlds Executives and Seized Operational Control,Human-Computer Interaction,Intentional
+1451,2025,Purportedly AI-Generated Facebook Video Allegedly Misused Skënder Brataj and Blendi Fevziu to Promote Purported Miracle Cream in Albania,Malicious Actors & Misuse,Intentional
+1453,2025,"Attorney in Fletcher v. Experian Information Solutions, Inc. Reportedly Submitted Reply Brief with Purportedly AI-Generated Material Misrepresentations",Misinformation,Unintentional
+1455,2025,Purported Deepfake Videos Allegedly Impersonated Optometrist Joseph Allen to Promote Myopia-Reversal Eyedrops on TikTok,Malicious Actors & Misuse,Intentional
+1465,2025,Purportedly AI-Generated Video Reportedly Depicted Bulgarian Politician Kostadin Kostadinov Falling During Protest,Misinformation,Intentional
+1479,2025,"ChatGPT-Generated Image of Nonexistent 'Homeless Man' Was Used in False St. Petersburg, Florida Burglary and Sexual Battery Reports",Malicious Actors & Misuse,Intentional
+1481,2025,Purported AI-Generated YouTube Network Reportedly Promoted Alberta Secession and U.S. Annexation Narratives,Malicious Actors & Misuse,Intentional
+1483,2025,Facebook Account Reportedly Used AI-Generated Video to Impersonate Indonesian Preacher Ustaz Ujang Bustomi in Money-Giveaway Scam,Malicious Actors & Misuse,Intentional
+1486,2025,"AI-Themed Investment Scam Network Reportedly Used Keitaro Cloaking Across 15,500 Domains",Malicious Actors & Misuse,Intentional
+1487,2025,ChatGPT Was Alleged to Have Aided Planning of Florida State University Mass Shooting,Malicious Actors & Misuse,Unintentional
+1489,2025,"ChatGPT Was Reportedly Used in Planning School Stabbing in Pirkkala, Finland, That Injured Three Pupils",Malicious Actors & Misuse,Unintentional
+1490,2025,"ChatGPT Was Allegedly Consulted About Attack Options Before Teen Attempted to Stab Officer at Tira, Israel, Police Station",Malicious Actors & Misuse,Intentional
+1491,2025,"ChatGPT Use Was Reportedly Cited in Delusional State Before Homicide and Assault in Readfield, Maine",Human-Computer Interaction,Unintentional
+1500,2025,New Jersey Man Cornelius Shannon Allegedly Published Hundreds of AI-Generated Deepfake Pornography Albums in TAKE IT DOWN Act Case,Malicious Actors & Misuse,Intentional
+1502,2025,Scammers Reportedly Used Real-Time Deepfake Video to Impersonate Veriff CEO Kaarel Kotkas in WhatsApp Fraud Attempt,Malicious Actors & Misuse,Intentional
+1506,2025,ChatGPT Was Alleged to Have Reinforced Pittsburgh Man's Stalking and Threats Against Women,Human-Computer Interaction,Unintentional
+1513,2025,Dimal Basha's Likeness Was Reportedly Used in Purportedly Fake AI-Generated Video After Kosovo Parliament Speaker Election,Not classified,Not classified
+1514,2025,Purportedly AI-Generated Video Reportedly Depicted Kosovo LDK Figure Hykmete Bajrami and Former Serbian List Leader Goran Rakiq Walking Hand in Hand,Not classified,Not classified
+1515,2025,Purportedly AI-Generated Airport Videos Reportedly Showed Kosovo Diaspora Voters Supporting Albin Kurti,Not classified,Not classified
+1516,2025,Purportedly AI-Generated Airport Videos Reportedly Showed Kosovo Diaspora Voters Opposing Albin Kurti,Not classified,Not classified
+1517,2025,NoFilterNews Reportedly Posted AI-Generated TikTok Videos Styled as Kosovo Election TV News,Not classified,Not classified
+1518,2025,Kosovo Public Broadcaster RTK and Journalist Gëzim Bimbashi Were Reportedly AI-Impersonated in Alleged Fake Joint-Cure Scam Video,Not classified,Not classified
+1525,2025,Purported Deepfake Video Reportedly Impersonated Former Mongolian Deputy Prime Minister Amarsaikhan Sainbuyan in Investment Scam,Not classified,Not classified
+1532,2025,Reported Deepfake Video Impersonating Mark Carney Used in Nearly $1M Cryptocurrency Scam Targeting Ontario Senior,Not classified,Not classified
+1533,2025,Four Lawyers Reportedly Sanctioned After Purportedly AI-Related Hallucinated Citations Appeared in Withers v. City of Aberdeen,Not classified,Not classified
+1535,2025,OpenAI Allegedly Failed to Intervene in ChatGPT Conversations Preceding Montreal Web Developer Alice Carrier's Suicide,Not classified,Not classified
+1537,2025,Two Waymo Robotaxis Allegedly Contributed to Bike-Lane Collision That Injured San Francisco Cyclist,Not classified,Not classified
+1538,2025,City of Zhuzhou in Hunan Suspended Hellobike Robotaxi Service After Vehicle Struck Two Pedestrians,Not classified,Not classified
+1539,2025,Zoox Robotaxi Crossed Into Opposing Lane and Stopped Near Oncoming Traffic,Not classified,Not classified
+1553,2025,Purported AI-Manipulated Video of Nirmala Sitharaman Reportedly Promoted High-Return Investment Scam,Not classified,Not classified
+1555,2025,Reportedly AI-Assisted Boies Schiller Brief in Bixler v. Church of Scientology Allegedly Contained Material Citation Errors and a Nonexistent Case,Not classified,Not classified
+1557,2025,Former New York City Council Candidate Jonathan Rinaldi Allegedly Used AI to Create False Endorsements and Fabricated News Reports,Not classified,Not classified
+1561,2025,U.S. Navy Unmanned Vessel Reportedly Capsized Support Boat After Receiving Inadvertent Command,Not classified,Not classified
+1563,2025,KPMG Report Allegedly Included Hallucinated Citations and Inaccurate Agentic AI Case Studies,Not classified,Not classified
+1564,2025,Purported Deepfakes of Public Figures and Celebrities Reportedly Used to Market Honey-Based Supplements as Alzheimer's Treatments,Not classified,Not classified
+1566,2025,"Indore Resident Reportedly Lost ₹1.83 Lakh (~$2,000) After AI-Generated Voice Impersonated Relative",Not classified,Not classified
+1569,2025,GPT-4o Allegedly Reinforced California Man Michael Lines's Delusions Before Suicide Attempt,Not classified,Not classified
+1571,2025,California Immigration Attorneys Reportedly Sanctioned Over Briefs Containing Probable Hallucinations in LNU v. Blanche,Not classified,Not classified
+1572,2025,Westlaw CoCounsel Reportedly Generated False Legal Quotations in United States v. Farris,Not classified,Not classified
+1576,2025,Lawyers in Lexos Media IP LLC v. Overstock.com Inc. Sanctioned Over Court-Identified AI-Generated Citations,Not classified,Not classified
+1577,2025,Lawyer in Amarsingh v. Frontier Airlines Sanctioned Over Court-Identified ChatGPT Citation Errors,Not classified,Not classified
+1587,2025,Koi Security's AI-Assisted Threat Report Allegedly Led to Blocking of MeetingTV Domains,Not classified,Not classified
+1600,2025,Purportedly AI-Generated False Citations in Arizona Probate Appeal Reportedly Led to Sanctions Against Self-Represented Appellant,Not classified,Not classified
+1603,2025,Crown Prosecution Service Reportedly Filed Purportedly AI-Generated False Citations in Two Extradition Appeals,Not classified,Not classified
+1609,2025,ChatGPT-4o Allegedly Discouraged Florida Pastor From Seeking Care Before Pulmonary Embolism,Not classified,Not classified
+1612,2025,A.B. Paterson College Teacher in Queensland Allegedly Used AI to Create Explicit Images of Students and Staff,Not classified,Not classified
+1622,2025,Walmart's AI Voice System Allegedly Collected Illinois Callers' Biometric Voiceprints Without Consent,Not classified,Not classified
+1631,2025,"Zoetis Vetscan Imagyst Allegedly Misclassified Dog's Cancerous Tumor, Leading to Second Surgery and Death",Not classified,Not classified
+1634,2025,Purportedly AI-Generated Video Reportedly Misled Elderly Malaysian Couple Into Traveling to Nonexistent Cable Car Attraction,Not classified,Not classified
+1635,2025,"ChatGPT Reportedly Gave Incorrect Mount Misen Ropeway Hours, Leaving Couple Stranded After Hike in Japan",Not classified,Not classified
+1636,2025,Purportedly AI-Generated Travel Information Reportedly Misled Tourists into Seeking Nonexistent 'Sacred Canyon of Humantay' in Peru,Not classified,Not classified
+1650,2025,Otter.ai Notetaker Allegedly Recorded Meeting Conversations Without Participants' Informed Consent and Used Data for AI Training,Not classified,Not classified
+1651,2025,Fireflies.AI Meeting Assistant Allegedly Collected Biometric Voice Data from Illinois Meeting Participant Without Consent,Not classified,Not classified
+1653,2025,Social Media Recommendation Algorithms Allegedly Repeatedly Exposed 13-Year-Old Blake Gallier to Suicide-Related Videos Before Her Death,Not classified,Not classified
+1667,2025,Minnesota Attorney Reportedly Used AI-Generated Fabricated Citations in Hennepin County Civil Case and Agreed to 30-Day Suspension,Not classified,Not classified

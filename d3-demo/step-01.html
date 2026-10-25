@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Step 1: Load, group, scale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Reported AI incidents, 2018–2025</h1>
+  <p class="lede">Step 1: load the data, group it by year, and give each year a column.</p>
+  <figure>
+    <svg id="chart"></svg>
+  </figure>
+</main>
+
+<!-- D3 v7, pinned to an exact version -->
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script type="module">
+  // ── 1. Margin convention: a fixed coordinate system, scaled by viewBox ──
+  const width = 1000;
+  const height = 540;
+  const margin = { top: 36, right: 20, bottom: 64, left: 56 };
+  const innerW = width - margin.left - margin.right;
+  const innerH = height - margin.top - margin.bottom;
+  const bottom = height - margin.bottom;
+
+  const svg = d3.select("#chart")
+    .attr("viewBox", [0, 0, width, height]);
+
+  // ── 2. Load: d3.csv returns a Promise; autoType turns "2018" into 2018 ──
+  let incidents;
+  try {
+    incidents = await d3.csv("data/aiid_incidents_2018_2025.csv", d3.autoType);
+  } catch (err) {
+    d3.select("figure").html(
+      `<p class="error">The data file didn’t load. Open this page through a local
+       server (for example <code>npx serve</code>), not by double-clicking it.</p>`
+    );
+    throw err;
+  }
+  console.log(incidents.length, incidents[0]);   // 1289, {incident_id: 2, year: 2018, …}
+
+  // ── 3. Group: one row per incident → a Map of year → incidents ──
+  const byYear = d3.group(incidents, d => d.year);
+  const years = d3.sort(byYear.keys());            // [2018, 2019, …, 2025]
+  console.log(byYear);                             // Map(8) {2018 => Array(46), …}
+
+  // ── 4. Scale: a band scale gives each year an equal-width column ──
+  const x = d3.scaleBand()
+    .domain(years)
+    .range([margin.left, width - margin.right])
+    .paddingInner(0.15);
+
+  // ── 5. Axis: a generator that draws ticks and labels from a scale ──
+  svg.append("g")
+    .attr("class", "axis")
+    .attr("transform", `translate(0,${bottom})`)
+    .call(d3.axisBottom(x).tickSizeOuter(0));
+
+</script>
+</body>
+</html>

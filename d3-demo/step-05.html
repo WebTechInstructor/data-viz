@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Step 5: Details on demand</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Reported AI incidents, 2018–2025</h1>
+  <p class="lede">Step 5: hover a dot to see the incident behind it; hover the legend to highlight a risk domain.</p>
+  <div class="toolbar" id="views" role="group" aria-label="Arrange dots">
+    <button type="button" data-view="year" class="is-active">By year</button>
+    <button type="button" data-view="domain">By risk domain</button>
+    <button type="button" data-view="intent">By intent</button>
+    <button type="button" data-view="share">Share of each year</button>
+  </div>
+  <ul class="legend" id="legend"></ul>
+  <figure>
+    <svg id="chart"></svg>
+    <div class="tooltip" id="tooltip" hidden></div>
+  </figure>
+</main>
+
+<!-- D3 v7, pinned to an exact version -->
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script type="module">
+  // ── 1. Margin convention: a fixed coordinate system, scaled by viewBox ──
+  const width = 1000;
+  const height = 540;
+  const margin = { top: 36, right: 20, bottom: 64, left: 56 };
+  const innerW = width - margin.left - margin.right;
+  const innerH = height - margin.top - margin.bottom;
+  const bottom = height - margin.bottom;
+
+  const svg = d3.select("#chart")
+    .attr("viewBox", [0, 0, width, height]);
+
+  // ── 2. Load: d3.csv returns a Promise; autoType turns "2018" into 2018 ──
+  let incidents;
+  try {
+    incidents = await d3.csv("data/aiid_incidents_2018_2025.csv", d3.autoType);
+  } catch (err) {
+    d3.select("figure").html(
+      `<p class="error">The data file didn’t load. Open this page through a local
+       server (for example <code>npx serve</code>), not by double-clicking it.</p>`
+    );
+    throw err;
+  }
+  console.log(incidents.length, incidents[0]);   // 1289, {incident_id: 2, year: 2018, …}
+
+  // ── Risk domains: stacking order (largest first), short labels, colors ──
+  //    Okabe–Ito palette: distinguishable with common color-vision deficiencies.
+  const DOMAINS = [
+    { key: "Malicious Actors & Misuse",                   label: "Malicious use",               color: "#D55E00" },
+    { key: "AI system safety, failures, and limitations", label: "AI safety & failures",        color: "#0072B2" },
+    { key: "Discrimination and Toxicity",                 label: "Discrimination & toxicity",   color: "#E69F00" },
+    { key: "Misinformation",                              label: "Misinformation",              color: "#CC79A7" },
+    { key: "Privacy & Security",                          label: "Privacy & security",          color: "#009E73" },
+    { key: "Human-Computer Interaction",                  label: "Human–computer interaction",  color: "#56B4E9" },
+    { key: "Socioeconomic & Environmental Harms",         label: "Socioeconomic & environmental", color: "#F0E442" },
+    { key: "Not classified",                              label: "Not classified",              color: "#8A8F98" },
+  ];
+  const color = d3.scaleOrdinal(DOMAINS.map(d => d.key), DOMAINS.map(d => d.color));
+  const domainRank = new Map(DOMAINS.map((d, i) => [d.key, i]));
+  const byDomainOrder = (a, b) =>
+    d3.ascending(domainRank.get(a.risk_domain), domainRank.get(b.risk_domain)) ||
+    d3.ascending(a.incident_id, b.incident_id);
+
+  const years = d3.sort(d3.union(incidents.map(d => d.year)));   // [2018, …, 2025]
+  const INTENTS = ["Intentional", "Unintentional", "Other", "Not classified"];
+  const domainLabel = new Map(DOMAINS.map(d => [d.key, d.label]));
+  const byYearOrder = (a, b) =>
+    d3.ascending(a.year, b.year) || d3.ascending(a.incident_id, b.incident_id);
+
+  // ── Helpers ──
+  function fitColumns(bandWidth, maxCount, availableHeight) {
+    for (let step = 16; step > 2; step -= 0.25) {
+      const cols = Math.floor(bandWidth / step);
+      const rows = Math.ceil(maxCount / cols);
+      if (rows * step <= availableHeight) return { step, cols };
+    }
+  }
+
+  // Put incident d in slot i of a grid `cols` wide, filling bottom→top
+  function place(d, left, i, cols, step, rowStep = step) {
+    d.x = left + (i % cols) * step + step / 2;
+    d.y = bottom - Math.floor(i / cols) * rowStep - rowStep / 2;
+    d.r = step * 0.42;
+  }
+
+  // Split a long label in two: before "&" if there is one, else at the last space
+  function twoLines(text) {
+    if (text.length <= 14) return [text];
+    const at = text.includes(" & ") ? text.indexOf(" & ") : text.lastIndexOf(" ");
+    return [text.slice(0, at), text.slice(at + 1)];
+  }
+
+  // ── Layout A: equal-width columns; height = count (a unit bar chart) ──
+  function columns(keyOf, order, compare, labelOf) {
+    const x = d3.scaleBand(order, [margin.left, width - margin.right]).paddingInner(0.15);
+    const groups = d3.group(incidents, keyOf);
+    const maxCount = d3.max(groups.values(), group => group.length);
+    const { step, cols } = fitColumns(x.bandwidth(), maxCount, innerH);
+
+    for (const [key, group] of groups) {
+      const left = x(key) + (x.bandwidth() - cols * step) / 2;
+      group.sort(compare).forEach((d, i) => place(d, left, i, cols, step));
+    }
+    return {
+      labels: order.map(key => ({
+        key, count: groups.get(key)?.length ?? 0,
+        x: x(key) + x.bandwidth() / 2, lines: labelOf(key),
+      })),
+      y: d3.scaleLinear([0, (innerH / step) * cols], [bottom, margin.top]),
+      yFormat: d3.format(","),
+      yTitle: "Incidents",
+    };
+  }
+
+  // ── Layout B: equal-height columns; width = year total (a unit Marimekko) ──
+  //    Every year gets the same number of rows, so a domain's band height
+  //    is its share of that year, and column width is the year's total.
+  function shareByYear() {
+    const groups = d3.group(incidents, d => d.year);
+    const gap = 18;
+    let best = { step: 0 };
+    for (let rows = 4; rows <= 120; rows++) {            // try every row count…
+      const widths = years.map(y => Math.ceil(groups.get(y).length / rows));
+      const step = Math.min(innerH / rows, (innerW - gap * (years.length - 1)) / d3.sum(widths));
+      if (step > best.step) best = { step, rows, widths };   // …keep the biggest dots
+    }
+    const { step, rows, widths } = best;
+    const used = d3.sum(widths) * step + gap * (years.length - 1);
+    let left = margin.left + (innerW - used) / 2;
+
+    const labels = years.map((year, j) => {
+      const group = groups.get(year).sort(byDomainOrder);
+      // Stretch rows slightly so every column reaches exactly 100%
+      const rowStep = (rows * step) / Math.ceil(group.length / widths[j]);
+      group.forEach((d, i) => place(d, left, i, widths[j], step, rowStep));
+      const label = { key: year, count: group.length,
+                      x: left + (widths[j] * step) / 2, lines: [String(year)] };
+      left += widths[j] * step + gap;
+      return label;
+    });
+    return {
+      labels,
+      y: d3.scaleLinear([0, 1], [bottom, bottom - rows * step]),
+      yFormat: d3.format(".0%"),
+      yTitle: "Share of the year’s incidents",
+      xNote: "Column width = incidents reported that year",
+    };
+  }
+
+  // ── Views: each one only computes positions ──
+  const VIEWS = {
+    year:   () => columns(d => d.year,        years,                   byDomainOrder, k => [String(k)]),
+    domain: () => columns(d => d.risk_domain, DOMAINS.map(d => d.key), byYearOrder,   k => twoLines(domainLabel.get(k))),
+    intent: () => columns(d => d.intent,      INTENTS,                 byDomainOrder, k => [k]),
+    share:  shareByYear,
+  };
+
+  // ── Layers, created once (draw order = stacking order) ──
+  const gridG   = svg.append("g").attr("class", "grid no-domain").attr("transform", `translate(${margin.left},0)`);
+  const dotsG   = svg.append("g");
+  const labelsG = svg.append("g");
+  const yAxisG  = svg.append("g").attr("class", "axis no-domain").attr("transform", `translate(${margin.left},0)`);
+  const yTitle  = svg.append("text").attr("class", "axis-title").attr("x", 4).attr("y", margin.top - 16);
+  const xNote   = svg.append("text").attr("class", "axis-title").attr("text-anchor", "end")
+    .attr("x", width - margin.right).attr("y", height - 8);
+  svg.append("line").attr("class", "baseline")
+    .attr("x1", margin.left).attr("x2", width - margin.right)
+    .attr("y1", bottom).attr("y2", bottom);
+
+  // ── update(): one function redraws any view ──
+  function update(viewName) {
+    const view = VIEWS[viewName]();            // writes d.x, d.y, d.r onto each incident
+    const duration = 900;
+
+    // Dots: the key keeps each incident on the same <circle> → object constancy
+    dotsG.selectAll("circle")
+      .data(incidents, d => d.incident_id)
+      .join(enter => enter.append("circle")
+          .attr("class", "dot")
+          .attr("cx", d => d.x)
+          .attr("cy", bottom)                  // first load: grow up from the baseline
+          .attr("r", 0)
+          .style("fill", d => color(d.risk_domain))
+          .on("pointerenter", showTooltip)
+          .on("pointerleave", hideTooltip))
+      .transition()
+        .duration(duration)
+        .delay(d => ((d.x - margin.left) / innerW) * 300)   // left-to-right sweep
+        .attr("cx", d => d.x)
+        .attr("cy", d => d.y)
+        .attr("r", d => d.r);
+
+    // Column labels: the same join pattern, keyed by category
+    labelsG.selectAll("text")
+      .data(view.labels, d => d.key)
+      .join(
+        enter => enter.append("text")
+          .attr("class", "x-label")
+          .attr("opacity", 0)
+          .attr("transform", d => `translate(${d.x},${bottom + 22})`),
+        update => update,
+        exit => exit.transition().duration(duration / 3).attr("opacity", 0).remove()
+      )
+      .call(text => text.selectAll("tspan")
+        .data(d => d.lines)
+        .join("tspan")
+          .attr("x", 0)
+          .attr("dy", (line, i) => (i ? "1.15em" : 0))
+          .text(line => line))
+      .transition().duration(duration)
+        .attr("opacity", 1)
+        .attr("transform", d => `translate(${d.x},${bottom + 22})`);
+
+    // Axis generators transition too
+    yAxisG.transition().duration(duration)
+      .call(d3.axisLeft(view.y).ticks(6).tickFormat(view.yFormat));
+    gridG.transition().duration(duration)
+      .call(d3.axisLeft(view.y).ticks(6).tickSize(-innerW).tickFormat(""));
+    yTitle.text(view.yTitle);
+    xNote.text(view.xNote ?? "");
+  }
+
+  // ── Details on demand: tooltip ──
+  const figure = d3.select("figure");
+  const tooltip = d3.select("#tooltip");
+
+  function showTooltip(event, d) {
+    d3.select(event.currentTarget).classed("is-hovered", true).raise();
+    let [px, py] = d3.pointer(event, figure.node());       // pointer relative to <figure>
+    const w = figure.node().clientWidth;
+    px = Math.max(150, Math.min(w - 150, px));             // keep it inside the figure
+
+    tooltip.attr("hidden", null).style("left", `${px}px`).style("top", `${py}px`);
+    tooltip.selectAll("*").remove();
+    tooltip.append("strong").text(d.title);                // .text(), never .html(), for data
+    tooltip.append("p").text(`Incident ${d.incident_id}, ${d.year}`);
+    tooltip.append("p").text(domainLabel.get(d.risk_domain));
+    tooltip.append("p").text(`Intent: ${d.intent}`);
+  }
+
+  function hideTooltip(event) {
+    d3.select(event.currentTarget).classed("is-hovered", false);
+    tooltip.attr("hidden", true);
+  }
+
+  // ── Highlight one risk domain (key = null clears it) ──
+  function highlight(key) {
+    dotsG.selectAll("circle")
+      .classed("is-dimmed", d => key !== null && d.risk_domain !== key);
+  }
+
+  // ── Wire up the buttons (v6+: handlers receive the event first) ──
+  d3.selectAll("#views button").on("click", event => {
+    const button = event.currentTarget;
+    d3.selectAll("#views button").classed("is-active", false);
+    d3.select(button).classed("is-active", true);
+    update(button.dataset.view);
+  });
+
+  update("year");
+
+  // ── Legend: D3 can join data to any DOM, including HTML lists ──
+  d3.select("#legend")
+    .selectAll("li")
+    .data(DOMAINS)
+    .join("li")
+      .call(li => li.append("span")
+        .attr("class", "swatch")
+        .style("background", d => d.color))
+      .call(li => li.append("span")
+        .text(d => d.label))
+      .on("pointerenter", (event, d) => highlight(d.key))   // mouse only — fixed in step 6
+      .on("pointerleave", () => highlight(null));
+
+</script>
+</body>
+</html>
