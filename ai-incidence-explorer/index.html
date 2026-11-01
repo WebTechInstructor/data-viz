@@ -10,7 +10,7 @@
 <style>
 :root{
   --bg:#FFFFFF; --surface:#F6F7F9; --ink:#1B2430; --ink2:#3A4552; --muted:#5B6673; --rule:#D8DEE6; --faint:#EDF0F4;
-  --bar:#5A6573; --focus:#1F5FBF; --flag:#A3460A; --sel:#EAF1FA;
+  --bar:#5A6573; --focus:#1F5FBF; --hl:#FFE3A1; --flag:#A3460A; --sel:#EAF1FA;
   --c-mal:#B4530A; --c-mis:#B8891F; --c-hci:#7B5EA7; --c-soc:#827D5C; --c-pri:#2E8077; --c-dis:#B8496A; --c-saf:#2F5D8F;
   --pos:#2F5D8F; --neg:#B4530A;
   color-scheme: light;
@@ -19,14 +19,14 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#12161C; --surface:#1A2029; --ink:#E7ECF2; --ink2:#C3CCD6; --muted:#97A3B0; --rule:#323C48; --faint:#222A35;
-    --bar:#8C97A4; --focus:#7FB0F5; --flag:#F0965A; --sel:#1E2A3A;
+    --bar:#8C97A4; --focus:#7FB0F5; --hl:#5C4A16; --flag:#F0965A; --sel:#1E2A3A;
     --c-mal:#E07A2E; --c-mis:#E0B54F; --c-hci:#A88BD4; --c-soc:#B3AE8C; --c-pri:#4FB3A8; --c-dis:#E07A98; --c-saf:#6C9BD2;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#12161C; --surface:#1A2029; --ink:#E7ECF2; --ink2:#C3CCD6; --muted:#97A3B0; --rule:#323C48; --faint:#222A35;
-  --bar:#8C97A4; --focus:#7FB0F5; --flag:#F0965A; --sel:#1E2A3A;
+  --bar:#8C97A4; --focus:#7FB0F5; --hl:#5C4A16; --flag:#F0965A; --sel:#1E2A3A;
   --c-mal:#E07A2E; --c-mis:#E0B54F; --c-hci:#A88BD4; --c-soc:#B3AE8C; --c-pri:#4FB3A8; --c-dis:#E07A98; --c-saf:#6C9BD2;
   color-scheme: dark;
 }
@@ -54,7 +54,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .key button:hover{border-color:var(--muted)}
 .key button[aria-checked="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:600}
 .sw{width:12px;height:12px;border-radius:3px;flex:none}
-.period{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink2)}
+.periodbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;font-size:14px;color:var(--ink2);margin:0 0 14px;padding:10px 12px;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+.periodbar .lbl{font-weight:600;color:var(--ink)}
+.cmpstatus{flex-basis:100%;font-size:13px;color:var(--muted);padding:2px 6px;margin:0 -6px;border-radius:4px}
+.cmpline{font-size:13px;margin:0 0 12px;color:var(--ink2);padding:2px 6px;margin-left:-6px;border-radius:4px}
 select{font:inherit;font-size:14px;padding:6px 10px;border:1px solid var(--rule);border-radius:6px;background:var(--bg);color:var(--ink);min-height:36px}
 main{padding-bottom:48px}
 section.level{padding:32px 0 8px}
@@ -72,7 +75,9 @@ svg text{font-family:inherit}
 .yearctl{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--ink2);margin:0 0 18px;flex-wrap:wrap}
 .yearctl input{width:min(320px,60vw);accent-color:var(--ink)}
 .yearctl output{font-weight:600;color:var(--ink);min-width:3ch}
-aside.readout{position:sticky;top:76px;border:1px solid var(--rule);border-radius:8px;padding:18px;background:var(--surface)}
+aside.readout{position:sticky;top:calc(var(--hdr,64px) + 12px);max-height:calc(100vh - var(--hdr,64px) - 24px);overflow:auto;min-height:420px;border:1px solid var(--rule);border-radius:8px;padding:18px;background:var(--surface)}
+.gridA.unstick aside.readout{position:static;max-height:none}
+@media (max-width:980px){aside.readout{position:static;max-height:none;min-height:0}}
 .readout h3{margin:0 0 2px;font-size:18px;line-height:1.3;display:flex;gap:10px;align-items:flex-start}
 .readout h3 .sw{margin-top:5px}
 .verdict{margin:8px 0 14px;font-size:15px;color:var(--ink);font-weight:500}
@@ -114,7 +119,9 @@ caption{text-align:left;font-size:13px;color:var(--muted);padding:0 0 6px}
 .sumline{font-size:13px;color:var(--muted);margin:8px 12px 0}
 .gridB{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:24px;align-items:start}
 @media (max-width:980px){.gridB{grid-template-columns:minmax(0,1fr)}}
-.detail{border:1px solid var(--rule);border-radius:8px;padding:18px;background:var(--surface)}
+.detail{border:1px solid var(--rule);border-radius:8px;padding:18px;background:var(--surface);min-height:520px}
+.subs{min-height:calc(var(--rows,4) * 47px)}
+@media (max-width:980px){.detail{min-height:0}.subs{min-height:0}}
 .detail h3{margin:0 0 4px;font-size:17px;line-height:1.3}
 .detail p{margin:0 0 10px;font-size:14px;color:var(--ink2)}
 .evidence{margin:6px 0 0;padding-left:20px;font-size:14px}
@@ -124,6 +131,10 @@ caption{text-align:left;font-size:13px;color:var(--muted);padding:0 0 6px}
 .coverage li{border-top:2px solid var(--ink);padding-top:10px;font-size:14px;color:var(--ink2)}
 .coverage b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
 footer{border-top:1px solid var(--rule);padding:20px 0 40px;font-size:13px;color:var(--muted)}
+@keyframes flash{from{background:var(--hl)}to{background:transparent}}
+.flash{animation:flash 1.4s ease-out}
+@media (prefers-reduced-motion: reduce){.flash{animation:none;background:var(--hl)}}
+@media (max-width:760px){.controls{padding:8px 0}.key{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:4px;scrollbar-width:thin}.key button{flex:none;scroll-snap-align:center;font-size:13px;padding:5px 10px;min-height:34px}}
 @media (forced-colors: active){.sw{forced-color-adjust:none;border:1px solid CanvasText}.key button[aria-checked="true"]{outline:2px solid Highlight}}
 </style>
 </head>
@@ -142,14 +153,6 @@ footer{border-top:1px solid var(--rule);padding:20px 0 40px;font-size:13px;color
 
 <div class="controls"><div class="wrap">
   <div class="key" id="key" role="radiogroup" aria-label="Risk domain"></div>
-  <label class="period" for="early">Compare
-    <select id="early">
-      <option value="0">2018–19</option>
-      <option value="2">2020–21</option>
-      <option value="4">2022–23</option>
-    </select>
-    with 2024–25
-  </label>
 </div></div>
 
 <main id="main"><div class="wrap">
@@ -157,7 +160,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0 40px;font-size:13px;color
 <section class="level" aria-labelledby="hA">
   <p class="lvl">Overview</p>
   <h2 id="hA">What changed: share versus count</h2>
-  <p class="lede">The top chart shows each domain’s share of all classified incidents in each year. The selected domain sits on the baseline. The two charts below show how many incidents that share represents.</p>
+  <p class="lede">The top chart shows each domain’s share of all classified incidents in each year. The selected domain sits on the baseline. The two charts below show how many incidents that share represents. Shaded columns mark the two periods compared further down.</p>
   <div class="gridA">
     <div>
       <figure>
@@ -189,9 +192,18 @@ footer{border-top:1px solid var(--rule);padding:20px 0 40px;font-size:13px;color
 <section class="level" aria-labelledby="hS">
   <p class="lvl">Summary</p>
   <h2 id="hS">Period comparison with uncertainty</h2>
+  <div class="periodbar" role="group" aria-labelledby="pbLabel">
+    <span class="lbl" id="pbLabel">Compare periods</span>
+    <label class="sr-only" for="early">Earlier period</label>
+    <select id="early"><option value="0">2018–19</option><option value="2">2020–21</option><option value="4">2022–23</option></select>
+    <span>with</span>
+    <label class="sr-only" for="late">Later period</label>
+    <select id="late"><option value="2">2020–21</option><option value="4">2022–23</option><option value="6" selected>2024–25</option></select>
+    <span class="cmpstatus" id="cmpStatus"></span>
+  </div>
   <p class="lede" id="ledeS"></p>
   <figure>
-    <figcaption>Share of classified incidents, by period <span>(whiskers: 95% interval)</span></figcaption>
+    <figcaption>Share of classified incidents, by period <span>(hollow dot: earlier, filled dot: later, shaded band: 95% range of plausible values)</span></figcaption>
     <div class="chart" id="dumbbell"></div>
   </figure>
   <details>
@@ -242,12 +254,14 @@ const DOMS = DATA.domains;
 const BY = Object.fromEntries(DOMS.map(d => [d.key, d]));
 const BASE = DOMS.map(d => d.key);
 DOMS.forEach(d => { d.counts = YRS.map((_, i) => d.subs.reduce((s, x) => s + x.counts[i], 0)); });
-const LATE = [6, 7];
-const state = { dom: "mal", early: 0, sub: null, year: 2025 };
+const DUR = 400;
+const state = { dom: "mal", early: 0, late: 6, sub: null, year: 2025 };
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const col = k => `var(--c-${k})`;
 const sum = (a, idx) => idx.reduce((s, i) => s + a[i], 0);
 const eIdx = () => [state.early, state.early + 1];
+const lIdx = () => [state.late, state.late + 1];
+const inCmp = yr => [...eIdx(), ...lIdx()].includes(YRS.indexOf(yr));
 const pLabel = idx => `${YRS[idx[0]]}–${String(YRS[idx[1]]).slice(2)}`;
 const nOf = idx => sum(TOT, idx);
 const pct = x => (x * 100).toFixed(1) + "%";
@@ -259,8 +273,8 @@ function wilson(k, n, z = 1.96) {
   return [Math.max(0, c - h), Math.min(1, c + h)];
 }
 function stats(arr) {
-  const e = eIdx(), ne = nOf(e), nl = nOf(LATE);
-  const ce = sum(arr, e), cl = sum(arr, LATE);
+  const e = eIdx(), ne = nOf(e), nl = nOf(lIdx());
+  const ce = sum(arr, e), cl = sum(arr, lIdx());
   return { ce, cl, se: ce / ne, sl: cl / nl, d: cl / nl - ce / ne, ne, nl };
 }
 const el = id => document.getElementById(id);
@@ -274,6 +288,15 @@ function geom(id) {
 }
 const xs = {};
 function xScale(g) { return d3.scaleLinear([2018, 2025], [g.m.l + 14, g.W - g.m.r - 14]); }
+function periodBands(svg, x, top, bottom, onTop) {
+  const P = layer(svg, onTop ? "periodsTop" : "periods").attr("pointer-events", "none");
+  const step = x(2019) - x(2018);
+  const bands = [eIdx(), lIdx()].map((idx, j) => ({ j, x0: x(YRS[idx[0]]) - step / 2, w: x(YRS[idx[1]]) - x(YRS[idx[0]]) + step }));
+  P.selectAll("rect").data(bands, b => b.j)
+    .join(en => en.append("rect").attr("x", b => b.x0).attr("width", b => b.w))
+    .attr("y", top).attr("height", bottom - top).attr("fill", "var(--ink)").attr("fill-opacity", onTop ? 0.08 : 0.06)
+    .transition().duration(reduce ? 0 : DUR).attr("x", b => b.x0).attr("width", b => b.w);
+}
 function setupSvg(id, H, label) {
   const g = geom(id);
   const svg = d3.select("#" + id).selectAll("svg").data([0]).join("svg")
@@ -343,8 +366,9 @@ function renderShare(animate) {
     .on("click", (ev, s) => select(s.key, true));
   paths.select("title").remove();
   paths.append("title").text(s => BY[s.key].name);
-  if (animate && !reduce) paths.transition().duration(450).attr("d", area);
+  if (animate && !reduce) paths.transition().duration(DUR).attr("d", area);
   else paths.interrupt().attr("d", area);
+  periodBands(svg, x, m.t - 4, H - m.b, true);
 
   // small-base marker
   const anno = layer(svg, "anno");
@@ -360,7 +384,8 @@ function renderShare(animate) {
   // x axis
   layer(svg, "xax").selectAll("text").data(YRS).join("text")
     .attr("x", v => x(v)).attr("y", H - 6).attr("text-anchor", "middle").attr("font-size", 11)
-    .attr("fill", "var(--muted)").text(v => g.narrow && v % 2 ? "" : v);
+    .attr("fill", v => inCmp(v) ? "var(--ink)" : "var(--muted)").attr("font-weight", v => inCmp(v) ? 600 : 400)
+    .text(v => g.narrow && v % 2 ? "" : v);
 
   // direct labels at the 2025 edge
   const lab = series.map(s => { const p = s[7]; return { k: s.key, y: y((p[0] + p[1]) / 2), v: p[1] - p[0] }; })
@@ -394,13 +419,14 @@ function renderTotals() {
   const mx = d3.max(TOT.map((t, i) => t + UNC[i]));
   const y = d3.scaleLinear([0, mx], [H - m.b, m.t]);
   const bw = Math.min(46, (x(2019) - x(2018)) * 0.62);
+  periodBands(svg, x, m.t - 6, H - m.b, false);
   const B = layer(svg, "bars"); B.selectAll("*").remove();
   YRS.forEach((yr, i) => {
     B.append("rect").attr("x", x(yr) - bw / 2).attr("y", y(TOT[i])).attr("width", bw).attr("height", y(0) - y(TOT[i])).attr("fill", "var(--bar)");
     if (UNC[i]) B.append("rect").attr("x", x(yr) - bw / 2 + .5).attr("y", y(TOT[i] + UNC[i])).attr("width", bw - 1).attr("height", y(TOT[i]) - y(TOT[i] + UNC[i])).attr("fill", "var(--bg)").attr("stroke", "var(--bar)");
     B.append("text").attr("x", x(yr)).attr("y", y(TOT[i] + UNC[i]) - 4).attr("text-anchor", "middle").attr("font-size", 11)
       .attr("font-weight", 600).attr("fill", "var(--ink)").text(TOT[i] + (UNC[i] >= 5 ? ` +${UNC[i]}` : ""));
-    B.append("text").attr("x", x(yr)).attr("y", H - 6).attr("text-anchor", "middle").attr("font-size", 11).attr("fill", "var(--muted)").text(g.narrow && yr % 2 ? "" : yr);
+    B.append("text").attr("x", x(yr)).attr("y", H - 6).attr("text-anchor", "middle").attr("font-size", 11).attr("fill", inCmp(yr) ? "var(--ink)" : "var(--muted)").attr("font-weight", inCmp(yr) ? 600 : 400).text(g.narrow && yr % 2 ? "" : yr);
   });
   B.append("line").attr("x1", x(2018) - bw).attr("x2", x(2025) + bw).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "var(--rule)");
   if (!g.narrow) {
@@ -411,7 +437,7 @@ function renderTotals() {
 }
 
 /* ---------- selected domain count ---------- */
-function renderCount() {
+function renderCount(animate) {
   const H = 150, d = BY[state.dom];
   el("capCount").innerHTML = `${esc(d.name)}: incidents per year <span>(own scale)</span>`;
   const { svg, g } = setupSvg("count", H, `Bar chart of ${d.name} incidents per year: ${d.counts.join(", ")}.`);
@@ -419,17 +445,24 @@ function renderCount() {
   const x = xScale(g); xs.count = x;
   const y = d3.scaleLinear([0, Math.max(5, d3.max(d.counts))], [H - m.b, m.t]);
   const bw = Math.min(46, (x(2019) - x(2018)) * 0.62);
-  const B = layer(svg, "bars"); B.selectAll("*").remove();
-  YRS.forEach((yr, i) => {
-    const v = d.counts[i];
-    B.append("rect").attr("x", x(yr) - bw / 2).attr("y", y(v)).attr("width", bw).attr("height", Math.max(0, y(0) - y(v))).attr("fill", col(d.key));
-    B.append("text").attr("x", x(yr)).attr("y", y(v) - 4).attr("text-anchor", "middle").attr("font-size", 12).attr("font-weight", 600).attr("fill", "var(--ink)").text(v);
-    B.append("text").attr("x", x(yr)).attr("y", H - 6).attr("text-anchor", "middle").attr("font-size", 11).attr("fill", "var(--muted)").text(g.narrow && yr % 2 ? "" : yr);
-  });
-  B.append("line").attr("x1", x(2018) - bw).attr("x2", x(2025) + bw).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "var(--rule)");
+  periodBands(svg, x, m.t - 6, H - m.b, false);
+  const dur = animate && !reduce ? DUR : 0;
+  const data = YRS.map((yr, i) => ({ yr, v: d.counts[i] }));
+  layer(svg, "cbars").selectAll("rect").data(data, p => p.yr)
+    .join(en => en.append("rect").attr("y", y(0)).attr("height", 0))
+    .attr("x", p => x(p.yr) - bw / 2).attr("width", bw).attr("fill", col(d.key))
+    .transition().duration(dur).attr("y", p => y(p.v)).attr("height", p => Math.max(0, y(0) - y(p.v)));
+  layer(svg, "cvals").selectAll("text").data(data, p => p.yr)
+    .join(en => en.append("text").attr("y", y(0) - 4))
+    .attr("x", p => x(p.yr)).attr("text-anchor", "middle").attr("font-size", 12).attr("font-weight", 600).attr("fill", "var(--ink)").text(p => p.v)
+    .transition().duration(dur).attr("y", p => y(p.v) - 4);
+  const A = layer(svg, "caxis"); A.selectAll("*").remove();
+  YRS.forEach(yr => A.append("text").attr("x", x(yr)).attr("y", H - 6).attr("text-anchor", "middle").attr("font-size", 11)
+    .attr("fill", inCmp(yr) ? "var(--ink)" : "var(--muted)").attr("font-weight", inCmp(yr) ? 600 : 400).text(g.narrow && yr % 2 ? "" : yr));
+  A.append("line").attr("x1", x(2018) - bw).attr("x2", x(2025) + bw).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", "var(--rule)");
   if (!g.narrow) {
-    B.append("text").attr("x", x(2025) + 30).attr("y", m.t + 10).attr("font-size", 12).attr("fill", "var(--ink2)").text(`${d3.sum(d.counts)} incidents`);
-    B.append("text").attr("x", x(2025) + 30).attr("y", m.t + 26).attr("font-size", 12).attr("fill", "var(--ink2)").text("in 2018–2025");
+    A.append("text").attr("x", x(2025) + 30).attr("y", m.t + 10).attr("font-size", 12).attr("fill", "var(--ink2)").text(`${d3.sum(d.counts)} incidents`);
+    A.append("text").attr("x", x(2025) + 30).attr("y", m.t + 26).attr("font-size", 12).attr("fill", "var(--ink2)").text("in 2018–2025");
   }
   hoverLayer(svg, x, m.t, H - m.b);
 }
@@ -478,54 +511,71 @@ function renderReadout() {
   el("readout").innerHTML = `
     <h3 id="roTitle"><span class="sw" style="background:${col(d.key)}" aria-hidden="true"></span>${esc(d.name)}</h3>
     <p class="verdict">${verdict(s)}</p>
+    <p class="cmpline">Comparing ${pLabel(e)} (n = ${s.ne}) with ${pLabel(lIdx())} (n = ${s.nl}). <a href="#hS" id="toPeriods">Change periods</a></p>
     <dl class="stats">
       <dt>Share</dt><dd>${pct(s.se)} → ${pct(s.sl)} <small>(${pp(s.d)})</small></dd>
       <dt>Count</dt><dd>${s.ce} → ${s.cl} <small>incidents</small></dd>
-      <dt>Periods</dt><dd><small>${pLabel(e)} (n = ${s.ne}) vs. 2024–25 (n = ${s.nl})</small></dd>
       <dt>Per year</dt><dd>${d.counts[2]} → ${d.counts[7]} <small>incidents, 2020 → 2025 (range ${d3.min(recent)}–${d3.max(recent)})</small></dd>
     </dl>
     <p class="yearline" id="yearLine"></p>
     <p class="note"><b>Intent:</b> ${Math.round(top[1] / itot * 100)}% ${esc(top[0].toLowerCase())} across all years.</p>
     <p class="note"><b>Unclassified check:</b> 2025 has ${UNC[7]} unclassified incidents. Assigning none or all of them here gives a 2025 share between ${pct(lo)} and ${pct(hi)}.</p>`;
+  el("toPeriods").addEventListener("click", ev => {
+    ev.preventDefault();
+    el("hS").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    el("early").focus({ preventScroll: true });
+  });
   renderYearLine();
 }
 
 /* ---------- dumbbell (C5) ---------- */
-function renderDumbbell() {
-  const e = eIdx(), ne = nOf(e), nl = nOf(LATE);
-  el("ledeS").textContent = `Hollow dots: ${pLabel(e)} (n = ${ne}). Filled dots: 2024–25 (n = ${nl}). Wide whiskers mean the estimate rests on few incidents.`;
+function renderDumbbell(animate) {
+  const e = eIdx(), l = lIdx(), ne = nOf(e), nl = nOf(l);
+  el("ledeS").textContent = `Each row compares a domain’s share in ${pLabel(e)} (n = ${ne}) with ${pLabel(l)} (n = ${nl}). The shaded band around each dot is the 95% range of plausible values; a wide band means the share rests on few incidents.`;
   const W = Math.max(el("dumbbell").clientWidth || 860, 340), narrow = W < 640;
   const rows = DOMS.map(d => ({ d, s: stats(d.counts) })).sort((a, b) => b.s.d - a.s.d);
-  const rh = 40, top = 26, H = top + rows.length * rh + 8;
+  rows.forEach((r, i) => { r.i = i; r.ea = wilson(r.s.ce, ne); r.la = wilson(r.s.cl, nl); });
+  const rh = 44, top = 26, H = top + rows.length * rh + 8;
   const lab = narrow ? 128 : 250, right = narrow ? 70 : 170;
-  const mx = Math.min(1, Math.ceil(d3.max(rows, r => Math.max(wilson(r.s.ce, ne)[1], wilson(r.s.cl, nl)[1])) * 10) / 10);
+  const mx = Math.min(1, Math.ceil(d3.max(rows, r => Math.max(r.ea[1], r.la[1])) * 10) / 10);
   const x = d3.scaleLinear([0, mx], [lab, W - right]);
+  const dur = animate && !reduce ? DUR : 0;
   const svg = d3.select("#dumbbell").selectAll("svg").data([0]).join("svg").attr("width", W).attr("height", H)
     .attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img")
-    .attr("aria-label", "Dumbbell chart of each domain's share in the two periods with 95% intervals. " + rows.map(r => `${r.d.name}: ${pct(r.s.se)} to ${pct(r.s.sl)}`).join("; ") + ".");
-  svg.selectAll("*").remove();
+    .attr("aria-label", `Dumbbell chart of each domain's share in ${pLabel(e)} and ${pLabel(l)} with 95% ranges. ` + rows.map(r => `${r.d.name}: ${pct(r.s.se)} to ${pct(r.s.sl)}`).join("; ") + ".");
+  const G = layer(svg, "dgrid"); G.selectAll("*").remove();
   d3.range(0, mx + 0.0001, mx > .5 ? .1 : .05).forEach(v => {
-    svg.append("line").attr("x1", x(v)).attr("x2", x(v)).attr("y1", top - 6).attr("y2", H - 6).attr("stroke", "var(--rule)");
-    svg.append("text").attr("x", x(v)).attr("y", top - 12).attr("text-anchor", "middle").attr("font-size", 11).attr("fill", "var(--muted)").text(Math.round(v * 100) + "%");
+    G.append("line").attr("x1", x(v)).attr("x2", x(v)).attr("y1", top - 6).attr("y2", H - 6).attr("stroke", "var(--rule)");
+    G.append("text").attr("x", x(v)).attr("y", top - 12).attr("text-anchor", "middle").attr("font-size", 11).attr("fill", "var(--muted)").text(Math.round(v * 100) + "%");
   });
-  if (!narrow) {
-    svg.append("text").attr("x", W - right + 16).attr("y", top - 12).attr("font-size", 11).attr("font-weight", 600).attr("fill", "var(--ink2)").text("Count");
-    svg.append("text").attr("x", W - 6).attr("y", top - 12).attr("text-anchor", "end").attr("font-size", 11).attr("font-weight", 600).attr("fill", "var(--ink2)").text("Change");
-  }
-  rows.forEach((r, i) => {
-    const cy = top + i * rh + rh / 2, on = r.d.key === state.dom, c = col(r.d.key);
-    const gR = svg.append("g").style("cursor", "pointer").on("click", () => select(r.d.key, true));
-    gR.append("rect").attr("x", 0).attr("y", cy - rh / 2).attr("width", W).attr("height", rh).attr("fill", on ? "var(--sel)" : "transparent");
-    gR.append("text").attr("x", 8).attr("y", cy + 4).attr("font-size", 13).attr("font-weight", on ? 600 : 400).attr("fill", "var(--ink)").text(narrow ? r.d.short : r.d.name);
-    const [ea, eb] = wilson(r.s.ce, ne), [la, lb] = wilson(r.s.cl, nl);
-    gR.append("line").attr("x1", x(r.s.se)).attr("x2", x(r.s.sl)).attr("y1", cy).attr("y2", cy).attr("stroke", c).attr("stroke-width", 2).attr("stroke-opacity", .5);
-    gR.append("line").attr("x1", x(ea)).attr("x2", x(eb)).attr("y1", cy - 8).attr("y2", cy - 8).attr("stroke", "var(--muted)").attr("stroke-width", 1.5);
-    gR.append("line").attr("x1", x(la)).attr("x2", x(lb)).attr("y1", cy + 8).attr("y2", cy + 8).attr("stroke", c).attr("stroke-width", 3);
-    gR.append("circle").attr("cx", x(r.s.se)).attr("cy", cy).attr("r", 6).attr("fill", "var(--bg)").attr("stroke", c).attr("stroke-width", 2);
-    gR.append("circle").attr("cx", x(r.s.sl)).attr("cy", cy).attr("r", 6).attr("fill", c);
-    if (!narrow) gR.append("text").attr("x", W - right + 16).attr("y", cy + 4).attr("font-size", 13).attr("fill", "var(--ink)").text(`${r.s.ce} → ${r.s.cl}`);
-    gR.append("text").attr("x", W - 6).attr("y", cy + 4).attr("text-anchor", "end").attr("font-size", 13).attr("font-weight", 600).attr("fill", "var(--ink)").text(pp(r.s.d));
+  if (!narrow) G.append("text").attr("x", W - right + 16).attr("y", top - 12).attr("font-size", 11).attr("font-weight", 600).attr("fill", "var(--ink2)").text("Count");
+  G.append("text").attr("x", W - 6).attr("y", top - 12).attr("text-anchor", "end").attr("font-size", 11).attr("font-weight", 600).attr("fill", "var(--ink2)").text("Change");
+  const g = layer(svg, "drows").selectAll("g.row").data(rows, r => r.d.key).join(en => {
+    const n = en.append("g").attr("class", "row").attr("transform", r => `translate(0,${top + r.i * rh})`).style("cursor", "pointer");
+    n.append("rect").attr("class", "bg").attr("x", 0).attr("height", rh);
+    n.append("text").attr("class", "name").attr("x", 8).attr("y", rh / 2 + 4).attr("font-size", 13).attr("fill", "var(--ink)");
+    n.append("rect").attr("class", "eb").attr("y", rh / 2 - 7).attr("height", 14).attr("rx", 3).attr("fill", "var(--muted)").attr("fill-opacity", 0.22);
+    n.append("rect").attr("class", "lb").attr("y", rh / 2 - 7).attr("height", 14).attr("rx", 3).attr("fill-opacity", 0.3);
+    n.append("line").attr("class", "cn").attr("y1", rh / 2).attr("y2", rh / 2).attr("stroke-width", 1.5).attr("stroke-opacity", 0.35);
+    n.append("circle").attr("class", "ed").attr("cy", rh / 2).attr("r", 6).attr("fill", "var(--bg)").attr("stroke-width", 2);
+    n.append("circle").attr("class", "ld").attr("cy", rh / 2).attr("r", 6);
+    n.append("text").attr("class", "cnt").attr("y", rh / 2 + 4).attr("font-size", 13).attr("fill", "var(--ink)");
+    n.append("text").attr("class", "chg").attr("y", rh / 2 + 4).attr("text-anchor", "end").attr("font-size", 13).attr("font-weight", 600).attr("fill", "var(--ink)");
+    n.append("text").attr("class", "note").attr("y", rh / 2 - 10).attr("font-size", 10).attr("fill", "var(--muted)");
+    return n;
   });
+  g.on("click", (ev, r) => select(r.d.key, true));
+  g.transition().duration(dur).attr("transform", r => `translate(0,${top + r.i * rh})`);
+  g.select("rect.bg").attr("width", W).attr("fill", r => r.d.key === state.dom ? "var(--sel)" : "transparent");
+  g.select("text.name").attr("font-weight", r => r.d.key === state.dom ? 600 : 400).text(r => narrow ? r.d.short : r.d.name);
+  g.select("rect.eb").transition().duration(dur).attr("x", r => x(r.ea[0])).attr("width", r => Math.max(2, x(r.ea[1]) - x(r.ea[0])));
+  g.select("rect.lb").attr("fill", r => col(r.d.key)).transition().duration(dur).attr("x", r => x(r.la[0])).attr("width", r => Math.max(2, x(r.la[1]) - x(r.la[0])));
+  g.select("line.cn").attr("stroke", r => col(r.d.key)).transition().duration(dur).attr("x1", r => x(r.s.se)).attr("x2", r => x(r.s.sl));
+  g.select("circle.ed").attr("stroke", r => col(r.d.key)).transition().duration(dur).attr("cx", r => x(r.s.se));
+  g.select("circle.ld").attr("fill", r => col(r.d.key)).transition().duration(dur).attr("cx", r => x(r.s.sl));
+  g.select("text.cnt").attr("x", W - right + 16).attr("display", narrow ? "none" : null).text(r => `${r.s.ce} → ${r.s.cl}`);
+  g.select("text.chg").attr("x", W - 6).text(r => pp(r.s.d));
+  g.select("text.note").text(r => r.i === 0 ? "95% range" : "").transition().duration(dur).attr("x", r => x(r.la[0]));
 }
 
 /* ---------- Level B: merged C8 + C3 ---------- */
@@ -550,7 +600,7 @@ function sparkSvg(a, color) {
 function renderLevelB() {
   const d = BY[state.dom], ds = stats(d.counts), e = eIdx();
   fixedScale();
-  el("cntHead").textContent = `${pLabel(e)} → 24–25`;
+  el("cntHead").textContent = `${pLabel(e)} → ${pLabel(lIdx())}`;
   const subs = d.subs.map(s => ({ s, st: stats(s.counts), n: d3.sum(s.counts) })).sort((a, b) => b.st.d - a.st.d);
   if (!state.sub || !d.subs.some(s => s.id === state.sub)) state.sub = subs.slice().sort((a, b) => Math.abs(b.st.d) - Math.abs(a.st.d))[0].s.id;
   const c = col(d.key);
@@ -598,8 +648,8 @@ function renderTableA() {
   el("tableA").innerHTML = h;
 }
 function renderTableS() {
-  const e = eIdx(), ne = nOf(e), nl = nOf(LATE);
-  let h = `<table><caption>Share by period with 95% Wilson intervals</caption><thead><tr><th scope="col">Domain</th><th scope="col">${pLabel(e)} share</th><th scope="col">95% interval</th><th scope="col">2024–25 share</th><th scope="col">95% interval</th><th scope="col">Change</th><th scope="col">Count</th></tr></thead><tbody>`;
+  const e = eIdx(), ne = nOf(e), nl = nOf(lIdx());
+  let h = `<table><caption>Share by period with 95% Wilson intervals</caption><thead><tr><th scope="col">Domain</th><th scope="col">${pLabel(e)} share</th><th scope="col">95% interval</th><th scope="col">${pLabel(lIdx())} share</th><th scope="col">95% interval</th><th scope="col">Change</th><th scope="col">Count</th></tr></thead><tbody>`;
   DOMS.forEach(d => { const s = stats(d.counts), a = wilson(s.ce, ne), b = wilson(s.cl, nl);
     h += `<tr><th scope="row">${esc(d.name)}</th><td>${pct(s.se)}</td><td>${pct(a[0])}–${pct(a[1])}</td><td>${pct(s.sl)}</td><td>${pct(b[0])}–${pct(b[1])}</td><td>${pp(s.d)}</td><td>${s.ce} → ${s.cl}</td></tr>`; });
   el("tableS").innerHTML = h + "</tbody></table>";
@@ -629,20 +679,46 @@ function select(k, user) {
   if (k === state.dom && user) return;
   state.dom = k; state.sub = null;
   renderAll(true);
-  if (user) announce();
+  if (user) {
+    announce();
+    const b = el("key").querySelector(`[data-k="${k}"]`);
+    if (b && b.scrollIntoView) b.scrollIntoView({ block: "nearest", inline: "center", behavior: reduce ? "auto" : "smooth" });
+  }
 }
 function renderAll(animate) {
-  renderKey(); renderShare(animate); renderTotals(); renderCount(); renderReadout(); renderDumbbell(); renderLevelB(); renderTableS();
+  renderKey(); renderShare(animate); renderTotals(); renderCount(animate); renderReadout(); renderDumbbell(animate); renderLevelB(); renderTableS(); renderCmp();
 }
-el("early").addEventListener("change", ev => {
-  state.early = +ev.target.value;
-  renderReadout(); renderDumbbell(); renderLevelB(); renderTableS();
+function renderCmp() {
+  const e = eIdx(), l = lIdx();
+  el("cmpStatus").textContent = `Now comparing ${pLabel(e)} (n = ${nOf(e)}) with ${pLabel(l)} (n = ${nOf(l)}). This updates the readout card, this chart, the subdomain view and the shaded columns in the overview charts.`;
+  el("early").querySelectorAll("option").forEach(o => o.disabled = +o.value >= state.late);
+  el("late").querySelectorAll("option").forEach(o => o.disabled = +o.value <= state.early);
+}
+function flash() {
+  const els = document.querySelectorAll(".stats dd, .cmpline, .subrow .pp, .subrow .cnt, #cmpStatus");
+  els.forEach(n => { n.classList.remove("flash"); void n.offsetWidth; n.classList.add("flash"); });
+  clearTimeout(flash.t); flash.t = setTimeout(() => els.forEach(n => n.classList.remove("flash")), 1500);
+}
+function onPeriod(ev) {
+  let e = +el("early").value, l = +el("late").value;
+  if (l <= e) { if (ev.target.id === "early") l = Math.min(6, e + 2); else e = Math.max(0, l - 2); }
+  el("early").value = e; el("late").value = l;
+  state.early = e; state.late = l;
+  renderShare(false); renderTotals(); renderCount(false); renderReadout(); renderDumbbell(true); renderLevelB(); renderTableS(); renderCmp();
+  flash();
   const d = BY[state.dom], s = stats(d.counts);
-  el("live").textContent = `Comparing ${pLabel(eIdx())} with 2024–25. ${d.name}: share ${pct(s.se)} to ${pct(s.sl)}, count ${s.ce} to ${s.cl}.`;
-});
+  el("live").textContent = `Comparing ${pLabel(eIdx())} with ${pLabel(lIdx())}. ${d.name}: share ${pct(s.se)} to ${pct(s.sl)}, count ${s.ce} to ${s.cl}.`;
+}
+el("early").addEventListener("change", onPeriod);
+el("late").addEventListener("change", onPeriod);
 el("year").addEventListener("input", ev => setYear(+ev.target.value));
+el("subs").style.setProperty("--rows", d3.max(DOMS, d => d.subs.length) + 1);
+const ctl = document.querySelector(".controls");
+const setHdr = () => document.documentElement.style.setProperty("--hdr", ctl.offsetHeight + "px");
+setHdr(); new ResizeObserver(setHdr).observe(ctl);
+document.querySelector(".gridA details").addEventListener("toggle", ev => document.querySelector(".gridA").classList.toggle("unstick", ev.target.open));
 renderTableA(); renderCoverage(); renderAll(false);
-let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(() => { renderShare(false); renderTotals(); renderCount(); renderDumbbell(); }, 120); }).observe(document.querySelector("main"));
+let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(() => { renderShare(false); renderTotals(); renderCount(false); renderDumbbell(false); }, 120); }).observe(document.querySelector("main"));
 })();
 </script>
 </body>
