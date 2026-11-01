@@ -97,9 +97,9 @@ th:first-child,td:first-child{text-align:left}
 thead th{font-weight:600;color:var(--ink)}
 tbody th{font-weight:500}
 caption{text-align:left;font-size:13px;color:var(--muted);padding:0 0 6px}
-.subhead{display:grid;grid-template-columns:minmax(200px,1.5fr) minmax(160px,2fr) 76px 104px minmax(120px,1fr);gap:12px;font-size:12px;color:var(--muted);font-weight:600;padding:0 12px 6px;border-bottom:1px solid var(--rule)}
+.subhead{display:grid;grid-template-columns:minmax(150px,1.4fr) minmax(100px,1.6fr) 70px 128px minmax(120px,1fr);gap:12px;font-size:12px;color:var(--muted);font-weight:600;padding:0 12px 6px;border-bottom:1px solid var(--rule)}
 .subs{list-style:none;margin:0;padding:0}
-.subrow{all:unset;box-sizing:border-box;display:grid;grid-template-columns:minmax(200px,1.5fr) minmax(160px,2fr) 76px 104px minmax(120px,1fr);gap:12px;align-items:center;width:100%;padding:8px 12px;border-bottom:1px solid var(--faint);cursor:pointer;font-size:14px;color:var(--ink)}
+.subrow{all:unset;box-sizing:border-box;display:grid;grid-template-columns:minmax(150px,1.4fr) minmax(100px,1.6fr) 70px 128px minmax(120px,1fr);gap:12px;align-items:center;width:100%;padding:8px 12px;border-bottom:1px solid var(--faint);cursor:pointer;font-size:14px;color:var(--ink)}
 .subrow:hover{background:var(--surface)}
 .subrow[aria-pressed="true"]{background:var(--sel);box-shadow:inset 3px 0 0 var(--ink)}
 .subrow:focus-visible{outline:3px solid var(--focus);outline-offset:-3px}
@@ -108,17 +108,20 @@ caption{text-align:left;font-size:13px;color:var(--muted);padding:0 0 6px}
 .subrow svg{width:100%;height:22px;display:block;overflow:visible}
 .pp{font-weight:600;text-align:right}
 .cnt{white-space:nowrap}
-.flag{display:inline-block;margin-left:6px;font-size:12px;font-weight:600;color:var(--flag)}
+.subrow>*,.subhead>*{min-width:0}
+.subhead>span{white-space:nowrap}
+.flag{display:block;margin-left:0;font-size:12px;font-weight:600;color:var(--flag)}
 .spark{display:flex;align-items:center;gap:6px;min-width:0}
-.spark span{font-size:12px;color:var(--muted);white-space:nowrap}
+.spark span{font-size:12px;color:var(--muted);white-space:nowrap;flex:none}
+.subrow .spark svg{flex:1 1 0;width:auto;min-width:40px}
 @media (max-width:760px){
   .subhead{display:none}
   .subrow{grid-template-columns:1fr auto;grid-template-areas:"n n" "b b" "p c"}
   .subrow .n{grid-area:n}.subrow .b{grid-area:b}.subrow .pp{grid-area:p;text-align:left}.subrow .cnt{grid-area:c}.subrow .spark{display:none}
 }
 .sumline{font-size:13px;color:var(--muted);margin:8px 12px 0}
-.gridB{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:24px;align-items:start}
-@media (max-width:980px){.gridB{grid-template-columns:minmax(0,1fr)}}
+.gridB{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(300px,1fr);gap:24px;align-items:start}
+@media (max-width:1180px){.gridB{grid-template-columns:minmax(0,1fr)}}
 .detail{border:1px solid var(--rule);border-radius:8px;padding:18px;background:var(--surface);min-height:520px}
 .subs{min-height:calc(var(--rows,4) * 47px)}
 @media (max-width:980px){.detail{min-height:0}.subs{min-height:0}}
@@ -291,7 +294,12 @@ function xScale(g) { return d3.scaleLinear([2018, 2025], [g.m.l + 14, g.W - g.m.
 function periodBands(svg, x, top, bottom, onTop) {
   const P = layer(svg, onTop ? "periodsTop" : "periods").attr("pointer-events", "none");
   const step = x(2019) - x(2018);
-  const bands = [eIdx(), lIdx()].map((idx, j) => ({ j, x0: x(YRS[idx[0]]) - step / 2, w: x(YRS[idx[1]]) - x(YRS[idx[0]]) + step }));
+  const pad = onTop ? 0 : Math.min(46, step * 0.62) / 2 + 3;
+  const lo = x(2018) - pad, hi = x(2025) + pad;
+  const bands = [eIdx(), lIdx()].map((idx, j) => {
+    const a = Math.max(lo, x(YRS[idx[0]]) - step / 2), b = Math.min(hi, x(YRS[idx[1]]) + step / 2);
+    return { j, x0: a, w: b - a };
+  });
   P.selectAll("rect").data(bands, b => b.j)
     .join(en => en.append("rect").attr("x", b => b.x0).attr("width", b => b.w))
     .attr("y", top).attr("height", bottom - top).attr("fill", "var(--ink)").attr("fill-opacity", onTop ? 0.08 : 0.06)
